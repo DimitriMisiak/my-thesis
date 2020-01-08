@@ -1,0 +1,12 @@
+# ignoring latex regenrating files
+*.aux
+*.bbl
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.xml
+*.gz
+*-blx.bib
+
