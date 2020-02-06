@@ -395,26 +395,36 @@ a + b*E_{heat}
 \end{equation}
 with the coefficient $a$ and $b$ coming from the estimation of the RMS resolution at 0keV (noise blob) and 10.37keV (calibration peak) (precision necessary here).
 
-\subsection{Chaining the streams}
+\subsection{Review of the selected events}
+
+We have discarded the events with a possible bad energy reconstruction energy and calibrated the remaining ones. The experimental signal obtained with the heat and ionization channels were reconstructed into heat energy $E_{heat}$ and total ionization energy $E_{ion.}$. The figure \ref{ecei-plot} shows the scatter plot of these two values for the events of the Calibration configuration.
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth,]{Figures/Neutron/ecei_plot.png}
-\caption{Reconstructed Ionization Energy in function of the Reconstructed Heat Energy, for the quality events of the Calibration configuration.}
+\caption{Reconstructed Ionization Energy in function of the Reconstructed Heat Energy, for the quality events of the Calibration configuration. The plot is zoomed up to 12keV for an easier view of the calibration peaks. }
 \label{fig:ecei-plot}
 \end{figure}
 
-It is now possible to express the recoil energy $E_R$, the quenching factor $Q$ as well as the Luke-Neganov energy that was boosting the heat channel measurement for each event:
+We recognize the noise blob near the origin corresponding to recoils of very low energy and triggering noise windows. Expanding from this noise blob, we note two bands. 
+The electronic recoil band corresponds to events depositing the same energy in the ionization channel and the heat energy channel (both in keVee). They are characterized by a quenching factor of 1. As a matter of fact, the gamma recoil of 1.3keV and 10.37keV coming from the calibration peaks of the germanium belongs to this band. Any event below this band deposited less energy in the ionization channel than in the heat channel, and therefore possess a quenching factor inferior to one. We see that the population blob associated to the 10.37keV is smeared to lower quenching factor. This is due to events of the calibration peaks with incomplete charge collection. We note that this population is following a linear trend, which can be explained by an incomplete Luke-Neganov Boost of the heat channel according to the equation:
+\begin{equation}
+E_{heat} = 6 \textsf{keVee} + \epsilon \frac{2 \textsf{V}}{\epsilon_{Ge}} E_{ion.}
+\end{equation}
+The other major population of events below the electronic recoil band counts a lot of events in the case of the Calibration configuration. This hints that this band corresponds to the nuclear recoil induced by the AmBe neutron source.
+The presence of the two bands in this plot demonstrate the discriminating ability of the associated heat and ionization channels. Note that, although the bands are well separated at high energy, they are merging at low energy due to their width which is fixed by the energy resolution of the heat and ionization channel.
+
+Another way to represent the discrimination between the electronic and the nuclear recoil is to compute the recoil energy $E_R$ and the quenching factor $Q$ for each event:
 \begin{align}
-	E_{Luke} &= \frac{V}{\epsilon} ( E_{ion., ???} - E_{heat} )
+	E_{NL} &= \frac{V}{\epsilon} ( E_{ion., ???} - E_{heat} )
 	\\
-	E_R = E_{heat} - E_{Luke} &= E_{heat} \left( 1 + \frac{V}{\epsilon} \right) - E_{ion., ???} \frac{V}{\epsilon}
+	E_R = E_{heat} - E_{NL} &= E_{heat} \left( 1 + \frac{V}{\epsilon} \right) - E_{ion., ???} \frac{V}{\epsilon}
 	\\
 	Q &= \frac{E_{ion., ???}}{E_R}
 \end{align}
-
+with $E_{NL}$ being the heat energy boost coming from the Neganov-Luke effect \cite{luke-neganov-effect}.
 The recoil energy $E_R$ is expressed in the usual $keV$ energy unit, as the Luke-Neganov Boost depending on the type of recoil was substracted from the heat energy. The Quenching factor is unitless.
-
+The figure \ref{fig:quenching_plot} show, for each configuration, the quenching factor as a function of the recoil energy.
 
 \begin{figure}
 \centering
@@ -423,7 +433,46 @@ The recoil energy $E_R$ is expressed in the usual $keV$ energy unit, as the Luke
 \label{fig:quenching_plot}
 \end{figure}
 
+We recognize the electronic band, centered around $Q=1$ and the nuclear recoil band with $Q<0.4$. We also note some inter-band events like the smearing of the 10.37keV events hinting at the incomplete charge collection.
 
-\subsection{Fiducial Cut}
+%HEAT ONLY EVENT
+However, there are some interesting events with a quenching factor $Q=0$ which are known as "Heat-only" events. This population is infamously known in domains in the EDELWEISS experiment [ref?] and CRESST [ref?]. This population could correspond to events with no charge collection, but this is not compatible with the lower count of inter-band events with an incomplete charge collection. An other and more realistic explanation would be the existence of energy deposit in the crystal without ionization. The source of this Heat-only event is still under investigation [ref?].
 
-The response of the bolometer to an event depends on the location of the energy deposit. An event happening very near the surface of the crystal would give an abnormal signal with a poor energy reconstruction. The guard electrodes A and C can tag such events on the lateral side of the crystal: any event with a signal on any of these electrode is discarded. This cut aims at keeping only the potentially well reconstructed event of the bulk, and is historically called the "Fiducial cut".
+The merging phenomenon of the bands at low energy is also more visible in this graph with the change of variable. We can even visually witness that the lower part of the 1.3keV event blob is leaking into the higher part of the nuclear band.
+
+
+\subsection{Band cut}
+
+With the obtainment of well reconstructed events, it is now time to count the events corresponding to electronic and nuclear recoils. The events will be allocated into different population based on their quenching factor and the resolution of the heat and ionization channel at the considered energies. This "band cuts" are represented on the figure \ref{fig:band-cut-ecei} with ionization and heat energies and on the figure \ref{fig:band-cut-quenching} by reasoning on the quenching factor and the recoil energy.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/band_cut_ecei.png}
+\caption{Band cut representation on the graph of Ionization energy vs Heat energy.}
+\label{fig:band-cut-ecei}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/band_cut_quenching.png}
+\caption{Band cut representation on the graph of Quenching vs Recoil Energy.}
+\label{fig:band-cut-quenching}
+\end{figure}
+
+The events are allocated to the electronic recoil "ER" band their ionization energy corresponds to the heat energy with a tolerance of two times the RMS resolution of the total ionization energy at the considered heat energy:
+\begin{equation}
+|E_{ion} - E_{heat}| < 2 \times \sigma_{E_ion}\left( E_{heat}\right)
+\end{equation}
+
+
+For the allocation to the neutron recoil "NR" band, events should have a quenching factor compatible with the nuclear recoil quenching in germanium as found in literature [Linhard ref].
+
+
+
+
+
+
+
+
+
+
