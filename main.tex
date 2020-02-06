@@ -43,9 +43,15 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage{mathpazo} % Use the Palatino font by default
 
-\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage{amssymb,amsmath} % math formatting
+\usepackage[version=4]{mhchem} % nuclear and chemical reaction
+\usepackage{subcaption} % two figures side by side
+\usepackage{multirow} % tables with merged rows
+
+\usepackage[backend=bibtex,style=numeric,natbib=true]{biblatex} % Use the bibtex backend with the authoryearcitation style (which resembles APA)
 
 \addbibresource{thesis.bib} % The filename of the bibliography
+
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
@@ -204,14 +210,19 @@ headsepline, % Uncomment to get a line under the header
 %
 %\listoftables % Prints the list of tables
 %
-%%----------------------------------------------------------------------------------------
-%%	ABBREVIATIONS
-%%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	ABBREVIATIONS
+%----------------------------------------------------------------------------------------
 %
 %\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 %
 %\textbf{PSD} & \textbf{P}ower \textbf{S}pectral \textbf{D}ensity \\
 %\textbf{FID} & \textbf{F}ully \textbf{I}nter\textbf{D}igitized \\
+%\textbf{NTD} & \textbf{N}eutron \textbf{T}ransmutation \textbf{D}oped \\
+%\textbf{Ge} & \textbf{Ge}rmanium \\
+%\textbf{RMS} & \textbf{R}oot \textbf{M}ean \textbf{S}quare \\
+%\textbf{ADU} & \textbf{A}nalog-to-\textbf{D}igital conversion \textbf{U}nit \\
+%\textbf{OF} & \textbf{O}ptimal \textbf{F}iltering \\
 %
 %\end{abbreviations}
 %
@@ -296,7 +307,7 @@ headsepline, % Uncomment to get a line under the header
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
-\printbibliography[heading=bibintoc]
+%\printbibliography[heading=bibintoc]
 
 %----------------------------------------------------------------------------------------
 

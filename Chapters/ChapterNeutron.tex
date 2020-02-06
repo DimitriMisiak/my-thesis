@@ -6,9 +6,28 @@
 
 %----------------------------------------------------------------------------------------
 %	BEGING CHAPTER
+
+\underline{PERSONNAL REF}
+{\color{red}[see Neutron measurements at IP2I with Ge
+bolometers.pdf]}
+
+\href{https://elog.ipnl.in2p3.fr/manoir/R%26D+Cryo+LIO/51}{https://elog.ipnl.in2p3.fr/manoir/R\%26D+Cryo+LIO/51}
+
+\underline{WEAK REF}
+
+{\color{red}[see NeutronMeasurementCampaign.pdf]}
+
+OFNote.pdf
+
+\underline{STRONG REF}
+
+68Ge-68Ga-Decay.pdf
+
+
 %----------------------------------------------------------------------------------------
 
-\section{Background}
+
+\section{Motivation}
 
 As the Ricochet experiment is happening near a nuclear reactor, there is a risk that the bolometers will be blinded by the radioactive background of the site.
 The radioactive background is mainly composed of particles inducing electronic recoil (such as gammas, electrons, muons, charged particles essentially) and neutron producing neutron recoil.
@@ -16,11 +35,395 @@ While the former background component can be discriminated thanks to technology 
 Therefore, it is vital to evaluate the neutron background on-site and understand its dependency in the energy.
 In addition to estimating the limitations on the measurement, the study of the neutron background on-site will also be used in the design of the shielding.
 
-The actual measurement of the neutron background at the ILL site was achieved with gaseous Helium-3 Tube Detector based on the "?neutron capture?". 
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Neutron/scheme_ip2i.png}
+  \caption{IP2I: R\&D Laboratory}
+  \label{fig:scheme-ill}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Neutron/scheme_ill.png}
+  \caption{ILL: Reactor Site}
+  \label{fig:scheme-ip2i}
+\end{subfigure}
+\caption{Schemes of the neutron background measurements site with \ce{^3He} gaseous detectors. The positions of the detectors and the neutron source are indicated with numbered/colored tokens.}
+\label{fig:scheme-site}
+\end{figure}
+
+The actual measurement of the neutron background at the ILL site \ref{fig:scheme-ill} was achieved with gaseous Helium-3 Tube Detector based on the neutron capture by \ce{^3He}:
+
+\begin{equation}
+	\ce{^1_0n + ^3He -> ^3H + ^1_1p}
+\end{equation}
+
 This detector technology is sensitive to thermal/fast? neutron at high energy >MeV which is order of magnitude superior to the energy range of the cryogenic germanium bolometers.
 The estimation of the neutron background at ILL in the energy range of interest is then obtained by extrapolation of the neutron background at IP2I validated with relative measurements between the tube detector and the germanium detector technology.
 
+
 \section{Experimental Setup}
 
-The measure of the neutron background at the IP2I cryogenic facility was done with a newly designed low-threshold germanium detector of the RED series called RED80.
+The measure of the neutron background at the IP2I cryogenic facility was done with a newly designed low-threshold germanium detector of the RED series called RED80 with RMS resolution of approximately 120eV on the heat channel and 200eV on the ionization channel.
+The data were taken during the run 57 which began on 03/07/2019 and ended on 01/08/2019. In this run, RED80 and RED70 were both operated on the suspended tower.
 
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Neutron/photo_red80.png}
+  \caption{Photo of RED80}
+  \label{fig:photo-red80}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Neutron/scheme_red80.png}
+  \caption{Scheme of RED80}
+  \label{fig:scheme-red80}
+\end{subfigure}
+\caption{Description of RED80, with a schematic drawing of the Germanium crystal, the NTD sensor and the position and polarization of the electrodes.}
+\label{fig:description-red80}
+\end{figure}
+
+% Description of RED80
+RED80 is composed of a 38g cylindrical germanium crystal of height 10mm and diameter 30mm.
+It is equipped with a heat channel and an ionization channel (see figure \ref{fig:description-red80})
+The ionization channel consists of a pair of collecting electrodes and guard electrodes.
+The collecting electrodes are two flat full aluminium electrodes of diameter 27mm deposited on its top and bottom surface.
+The guard electrodes are four circular electrodes deposited on its side.
+The heat channel consists of a NTDGe thermistance labeled K58 with dimension 4*4*0.45 mm.
+Before being installed into the cryostat, the detector was place near a neutron source in order to activate the Germanium crystal and benefit from the intrinsic gamma calibration peak during operation. The neutron activation started on 28/06/2019 at 17h08 and ended on 02/08/2019 at 10h08 yielding 89h of activation.
+
+% Conditions of data taking
+From 08/08/2019, the detectors were characterized at 18mK. As for the actual condition of the neutron background measuremets, RED80 was operated at 16mK with an optimal NTD polarization current of 1nA and an electric potential difference of 2V on the ionization channel:
+$$ A, B, C, D = +1, +1, -1, -1.$$
+
+The data taking was divided between two configurations, "Background" and "Calibration", meant to measure the neutron background and calibrate the neutron recoil band in the detector respectively.
+The Background configuration was used to save 34 hours of data partitioned in three streams: tg18l005, tg27l000 and tg28l000.
+The Calibration configurations was used to take 78 hours of data, with an Americium-Beryllium neutron source situated 4.5m away from the cryostat and shielded with milk (acting as water) to thermalize the emitted neutron (see figure ??). The data were saved in four streams: tg17l007, tg19l010, tg20l000 and tg21l000.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Neutron/photo_source_front.jpg}
+  \caption{Front view, towards the cryostat}
+  \label{fig:photo-source-frontt}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth, angle=-90]{Figures/Neutron/photo_source_rear.jpg}
+  \caption{Rear view}
+  \label{fig:photo-source-rear}
+\end{subfigure}
+\caption{Photo of the shielded AmBe neutron source used for the neutron calibration.}
+\label{fig:photo-source}
+\end{figure}
+
+Each stream was taken during nights or week-ends to benefit from the long time with stable operation (see Table \ref{tab:neutron-streams}). The configurations were mixed in term of dates, which is of importance when measuring the rate of the Germanium calibration peaks which is decreasing with time.
+
+\begin{table}[]
+\centering
+\begin{tabular}{l|l|r}
+Configuration                & Stream   & Started at          \\ \hline
+\multirow{3}{*}{Background}  & tg18l005 & ?? on 18/08/2019    \\
+                             & tg27l000 & 21h20 on 27/08/2019 \\
+                             & tg28l000 & 11h27 on 28/08/2019 \\ \hline
+\multirow{4}{*}{Calibration} & tg17l007 & ?? on 17/08/2019    \\
+                             & tg19l010 & 17h10 on 19/08/2019 \\
+                             & tg20l000 & ?? on 20/08/2019    \\
+                             & tg21l000 & ?? on 21/08/2019   
+\end{tabular}
+\caption{Starting hours and date of the streams for neutron background and calibration measurements.}
+\label{tab:neutron-streams}
+\end{table}
+
+
+\section{Data Analysis}
+
+
+\subsubsection{Data format: Pre-processing by Julien}
+
+The data were initially saved as streams: the voltage value of the heat channel and the four ionization channel are saved for each time step in the acquisition with a sampling frequency of 400Hz. 
+
+{\color{red} FIGURE STREAM HEAT/IONIZATION}
+
+These voltage values are extracted by an analog-to-digital conversion system and thus expressed in \textbf{A}nalog-to-\textbf{D}igital conversion \textbf{U}nit (ADU).
+These data streams are then processed by an \textbf{O}ptimal \textbf{F}iltering (OF) software called NEPAL developed by Julien Billard. A filter based on the signal PSD and the noise PSD in the bolometer is applied to the stream. Time windows of 1s centered on a triggering events are selected with an amplitude threshold on the filtered stream (see Figure \ref{fig:pulse-of}).
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/pulse_of.png}
+\caption{Optimal filtering of a 1s pulse window.}
+\label{fig:pulse-of}
+\end{figure}
+
+These time windows are processed to extract several quantities:
+\begin{itemize}
+	\item Timestamp,
+	\item Amplitude (filtered decorrelated),
+	\item Chi2 value (filtered decorrelated),
+	\item Offset (raw),
+	\item Ionization Slope (raw),
+\end{itemize}
+The figure \ref{fig:analysis-monitoring-demo} shows this characterization quantities for each triggering event as a function of their timestamp (for the considered stream, here tg17l007). Each scatter plots is understood when applying the quality cut:
+\begin{itemize}
+	\item Heat Energy vs Timestamp: Reconstruction of the energy deposited in the heat channel for each event. This graph can be linked to the heat energy spectrum presented later. One can note pronounced population of fixed energy corresponding to the abundance of 10.37keV events due to the activation of the Germanium crystal and the noise blob poulation at $\mathcal{O}(50)$eV.
+	\item Ionization Energy vs Timestamp: is quite the same as heat energy, except that with the overlap of the different channels this graph is now an useless mess
+	\item Offset Heat vs Timestamp: this curve is proportional to the resistance value of the NTD sensor and allows us to follow the baseline temperature. With this decreasing profile, we deduce that the detector has been cooling during this stream. Note that although RED80 is still slowly thermalizing, the sensitivity is stable (precision?)
+	\item Offset Ionization vs Timestamp: this curve is essentially used to discard all the events with an offset outside of the $[-14000, 14000]$ ADU (see \ref{par:quality-cuts}).
+	\item Slope Ionization vs Timestamp: this curve is proportional to the baseline current measured by each electrodes. This baseline current is explained by the presence of leakage current between the electrodes (dedicated section?) and the collection of trapped charges (especially after a maintenance).
+	\item Chi2 vs Timestamp: This describes the goodness of the fit of the template to the pulse. A stable low value indicate a fixed shape for the pulses, which is required for the chi2 cut applied later (see \ref{par:quality-cuts})
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/analysis_monitoring_demo.png}
+\caption{Characterization quantities of triggering events as a function of their timestamp. (TO BE CHANGE !)}
+\label{fig:analysis-monitoring-demo}
+\end{figure}
+
+In the end, for each configuration of data measurements(Background and Calibration), triggering events were selected in each streams and described by several quantities.
+Among those triggering events are events of interest well reconstructed and induced by electronic recoil from the radioactive gamma background, the KLM activation lines from the germanium and the cosmic muons and neutron recoil from the AmBe neutron source and the radioactive neutron background. However, many triggering events can not be reconstructed or were induced by parasitic source, and can not yield information for the measurement of the neutron background at IP2I. To extract the events of interest from all the data, analysis cuts are applied.
+
+
+\subsection{Glitch Time Cut}
+
+{\color{red} We should also substract the maintenance time ?}
+
+Some portions of the streams are glitched for reasons not clearly understood relative to the acquisition electronics or the cryostat temperature regulation system (see figure \ref{}).
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/analysis_glitch_cut_demo.png}
+\caption{Heat Amplitude in function of the Timestamp. All events are in grey, while events passing the "Glitch Time Cut" are in blue.}
+\label{fig:analysis-monitoring-demo}
+\end{figure}
+
+Thus, some time intervals were chosen for each streams where the events would not pass what is called the "Glitch Time Cut" (see table \ref{tab:stream-glitch-time-cut}). It is important to consider the appropriate livetime. Indeed, all the results presented later will be weighted by the exposure of the detector. Thus, period of time when the detector is not available for proper measurements should be discarded from the analysis and not taken into the computation of the exposure.
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Neutron/glitch_time_cut.tex}
+}
+\caption{Application of the Glitch Time cut on the streams. The studied time intervals are adjusted to discard glitch periods. This shortened exposure of the detector is then computed taking into account this cut. (might need to take into account the maintenance time cut, no?)}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\subsection{Quality Cuts}
+\label{par:quality-cuts}
+
+In order for an event to have a correctly reconstructed energy, it should satisfy several criteria, which together forms the "Quality Cut":
+\begin{itemize}
+	\item passing the Glitch Time Cut,
+	\item not happening during a maintenance period of the ionization channel,
+	\item offset of the ionization channel in the $[-14000, +14000] ADU$ interval,
+	\item the $\chi^2$ value, expressing the goodness of the fit of the event with the signal template.
+\end{itemize}
+
+Concerning the $\chi^2$ value, the threshold depends on the energy. Indeed, because of non-linearity in the bolometer heat response, the shape of the signal do depends on the recoil energy as the first order perturbation theory becomes less and less valid.
+Good events at low energy should have a $\chi^2$ value of about
+$$ <\chi^2> = N_{samples in window} = T_{window} \times f_{sampling} = 0.5 \times 400 = 200$$
+However, with a signal template based on events from the 10.37keV activation line of the germanium, the $\chi^2$ value of good events is increasing from $\mathcal{O}(10keV)$.
+Therefore, a threshold function depending on the event amplitude is chosen:
+$$ Threshold(Amplitude) = <\chi^2> \times \left[ 1+ \left( \frac{Amplitude}{\alpha} \right)^\beta \right]$$
+with $\alpha$ and $\beta$ estimated visually for each streams.
+In the end, the $\chi^2$ cut is applied on each channels (as seen in figure \ref{fig:chi2-cut}) independently. Only the events passing the cut for all the channels is kept and eligible as a quality event.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/chi2_cut.png}
+\caption{$\chi^2$ value for each event in function of its reconstructed amplitude for the five measuring channels. The cut threshold is represented by the black line. All events are in red, passing events are in blue.}
+\label{fig:chi2-cut}
+\end{figure}
+
+With all these criteria being applied to the events passing the Glitch Time Cut, we have selected the events passing the Quality Cut, qualified as "quality events".
+
+
+\subsection{Cross-talk Correction}
+
+While the heat channel can readily be calibrated, this is not the case for the ionization channel which are affected by a phenomenon of cross-talk which should be corrected before proceeding with their calibration.
+Because of the capacitive coupling between the different electrodes of the bolometer, a signal collected by an electrode will induce another smaller signal on other electrodes. With such a coupling, the cross-talk factor between two electrodes increases with their associated capacitance term.
+As a result, for a small bolometer as RED80 with capacitance terms in $\mathcal(O)(10 pF)$, the cross-talk factors are about few percents. This is to be compared to the bigger 200g FID bolometers used in EDELWEISS-III, with an increased capacitance of $\mathcal(O)(100 pF)$, presenting cross-talk factors of about few tens of percent.
+The real ionization channels $A,B,C,D$ affected by the crosstalk can be corrected into decoupled ionization channels $A', B', C', D'$ according to the following equation:
+
+\begin{equation}
+	\left[\begin{array}{c}
+	A' \\ 
+	B' \\ 
+	C' \\ 
+	D'
+	\end{array}\right]
+	=
+	\mathcal{M}
+	\left[\begin{array}{c}
+	A \\ 
+	B \\ 
+	C \\ 
+	D
+	\end{array} \right]
+\end{equation}
+with $\mathcal{M}$ the cross-talk correction matrix being:
+\begin{equation}
+	\mathcal{M}
+	=
+	\left[\begin{array}{cccc}
+	1 & -0.052 & 0 & 0 \\ 
+	-0.03 & 1 & 0 & 0 \\ 
+	-0.012 & 0.001 & 1 & -0.025 \\ 
+	0 & 0 & -0.03 & 1
+	\end{array}\right]
+\end{equation}
+
+The terms of this correction matrix were found with the study of specific populations of events of known characteristics (as seen in figure \ref{fig:scheme-red80}):
+\begin{itemize}
+	\item Bulk events are collected by the main electrodes and no charge is collected by the guard electrodes with $$A'= C' = 0$$
+	\item Surface events are collected by the guard electrodes and no charge is collected by the main electrodes with $$B' = D' = 0$$
+\end{itemize}
+
+This correction is implemented iteratively by visually checking the plotting of the corrected ionization channels against themselves. The figure \ref{fig:crosstalk-correction} shows the signals of the events of the uncorrected ionization channels $A, B, C, D$ as black points. Superposing to this are the blue points associated with the events of the decoupled ionization channels $A', B', C', D'$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/crosstalk_correction.png}
+\caption{Corner plot of the reconstructed ionization energies of the quality events. Energies affected by the cross-talk are in grey/black, corrected energies are in blue. The x-axis and y-axis are plotted in red as visual guides.}
+\label{fig:crosstalk-correction}
+\end{figure}
+
+We check that the cross-talk correction matrix $\mathcal{M}$ corresponds to the identity matrix at the first order. The correction terms are in the range of few percents, going up to $5.2\%$ in the case of the case of the electrode $B$ inducing signal on the electrode $A$.
+
+
+\subsection{Calibration}
+
+The five measurements channels are saving the voltage of their associated sensors in ADU unit specific to each considered channel. In order to proceed with physical interpretation, it is now necessary to convert the channels into a common unit.
+For this purpose, we use the activation of the KLM lines of the Germanium crystal, which emits a gamma of energy 100eV, 1.3keV and 10.37keV respectively [\cite{germanium-decay}]. This gammas of known energy produce electronic recoils depositing a known energy in the ionization channels and the heat channel, with the latter being boosted with the Luke-Neganov effect [\cite{luke-neganov-effect} and \citep{luke-neganov-interpretation}]. As the quenching of the electronic recoil is different from the one of the nuclear recoil, we use the $keV_{ee}$ which precise that the energy deposit done with an electronic recoil.
+
+Concerning the ionization channels, we use the 10.37keV line forming a multivariate normal distributed blob in the figure \ref{fig:calibration-ion} showing the signal of an event in each ionization channel in ADU unit. We estimate the center of this distribution to be $55$ ADU for each channels. We can now deduce the calibration coefficient for the ionization channels : $\pm 55 ADU \leftrightarrow 10.37 keV_{ee}$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/calibration_ion.png}
+\caption{Corner plot of the reconstructed ionization amplitude of the quality events, zoomed on the 10.37keV calibration peak.}
+\label{fig:calibration-ion}
+\end{figure}
+
+As for the heat channel, we use the 10.37keV line forming a normal distribution visible in the ADU amplitude spectrum of the heat channel as seen in figure \ref{fig:calibration-heat}. The estimated center of this distribution is $1200$ ADU. The calibration coefficient for the heat channel is therefore: $1200 ADU \leftrightarrow 10.37 keV_{ee}$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/calibration_heat.png}
+\caption{Heat Amplitude Spectrum for a stream. The calibration coefficient is estimated from the 10.37keV calibration peak position.}
+\label{fig:calibration-heat}
+\end{figure}
+
+With these calibration coefficient, it is now possible to reason with the reconstructed energy for each channels as
+$$
+\textsf{Reconstructed energy [keV]}
+=
+\textsf{Calibration Coefficient [keV/ADU]}
+\times
+\textsf{Event Amplitude [ADU]}
+$$
+Now that the events of all the streams are calibrated, they are expressed in the same unit and can be compared. From now on, we concatenate the calibrated streams and consider all the events for the Background and the Calibration configurations.
+
+\subsection{Regional Cut}
+
+Referring to the streamlines of the electric field in the crystal of RED80 (see Figure \ref{fig:streamlines-red80}), we expect some region of the crystal with a specific drifting behavior. Represented in the Figure \ref{fig:scheme-red80}, we have:
+\begin{itemize}
+	\item the Bulk region, where the charge will drift towards the collect electrodes B and D,
+	\item the Guard region, where the charge will be collected by the surface electrodes A and C,
+	\item the Corner regions, where and , we expect the charges to recombine on place of the recoil because of the very weak electric field or become trapped on the surface by drifting along the streamlines exiting the crystal.
+\end{itemize}
+{\color{red}(what is the ref? what is the motivation really ?)}
+Because we think that the guard region might collect more ill-reconstructed events, we chose to apply a cut in order to select the event in the bulk region as illustrated on the quality events of the Background data in the figure \ref{fig:fid-cut}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/fid_cut.png}
+\caption{Corner plot of the reconstructed ionization energy for each electrodes for the quality events of the Background configurations. The energy thresholds for the cuts as well as the passing events are highlighted in the associated colors: blue for "bulk cut" and red for "guard cut".}
+\label{fig:fig-cut}
+\end{figure}
+
+This "Bulk cut" will discard any event with a reconstructed energy on the guard electrodes A and C which is greater than two times the RMS resolution.
+For this purpose, it is useful to define the reconstructed total ionization energy:
+\begin{equation}
+E_{ion., total} = \frac{A+B+C+D}{2}
+\end{equation}
+
+%\begin{itemize}
+%	\item Ionization Energy in the Bulk region: $E_{ion., bulk} = \frac{B+D}{2}$
+%	\item Ionization Energy in the Guard region: $E_{ion., guard} = \frac{A+C}{2}$
+%	\item Total Ionization Energy: $E_{ion., total} = \frac{A+B+C+D}{2}$
+%\end{itemize}
+
+As the RMS resolution $\sigma_i$ of given channel $i$ depends on the total ionization energy deposited in the crystal, it is modeled by a power law:
+\begin{equation}
+\sigma_i\left( E_{i, total} \right)
+=
+\sqrt{ 
+\left( \sigma_i(0\textsf{keV}) \right)^2 + 
+\left( \alpha E_{ion., total} \right)^2
+}
+\quad \textsf{with} \quad
+\alpha = \frac{\sqrt{\sigma_i(10.37\textsf{keV})^2 - \sigma_i(0\textsf{keV})^2}}{10.37 \textsf{keV}}
+\end{equation}
+In this equation, the baseline resolution $\sigma_i(0\textsf{keV})$ is estimated with the standard deviation of the noise blob while the resolution $\sigma_i(10.37\textsf{keV})$ is estimated with the standard deviation of the events associated to the germanium calibration peak.
+
+\subsection{Charge conservation cut}
+
+Even with the bulk cut, some events might still have charge collection issue. Drifting charges can be trapped in the germanium and may not end up being collected. On way to discard such events is to consider the "Charge Conservation" quantity, defined as:
+\begin{equation}
+\mathcal{C.C.} = \frac{-A-B+C+D}{2}
+\end{equation}
+
+As a recoil produces electron-hole pairs, the charge of the drifting particles in the crystal should be zero as well as the total collected charges (considering their complete collection). This is characterized by a the normal distribution of the $\mathcal{C.C}$ around zero with an STD depending on the RMS resolution of the ionization channels. Events with an incomplete charge collection would stand out of this gaussian profile and can be discarded. As a result, we define the event passing this "Charge conservation cut" with a $\mathcal{C.C.}$ lower than two times the RMS resolution for the considered heat energy. This cut is represented in the figure \ref{fig:charge-conservation}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/charge_conservation.png}
+\caption{"Charge conservation" quantity as a function of the heat energy for the bulk quality events of the Background configuration. Passing events are in blue while discarded events are in red.}
+\label{fig:charge-conservation}
+\end{figure}
+
+As the RMS resolution depends on the energy associated to the event, it is once more necessary to model it with a linear law:
+\begin{equation}
+\sigma_{\mathcal{C.C.}}\left(E_{heat}\right)
+=
+a + b*E_{heat}
+\end{equation}
+with the coefficient $a$ and $b$ coming from the estimation of the RMS resolution at 0keV (noise blob) and 10.37keV (calibration peak) (precision necessary here).
+
+\subsection{Chaining the streams}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/ecei_plot.png}
+\caption{Reconstructed Ionization Energy in function of the Reconstructed Heat Energy, for the quality events of the Calibration configuration.}
+\label{fig:ecei-plot}
+\end{figure}
+
+It is now possible to express the recoil energy $E_R$, the quenching factor $Q$ as well as the Luke-Neganov energy that was boosting the heat channel measurement for each event:
+\begin{align}
+	E_{Luke} &= \frac{V}{\epsilon} ( E_{ion., ???} - E_{heat} )
+	\\
+	E_R = E_{heat} - E_{Luke} &= E_{heat} \left( 1 + \frac{V}{\epsilon} \right) - E_{ion., ???} \frac{V}{\epsilon}
+	\\
+	Q &= \frac{E_{ion., ???}}{E_R}
+\end{align}
+
+The recoil energy $E_R$ is expressed in the usual $keV$ energy unit, as the Luke-Neganov Boost depending on the type of recoil was substracted from the heat energy. The Quenching factor is unitless.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/quenching_plot.png}
+\caption{Quenching value $Q$ for each quality events of the Background (black) and Calibration (blue) configurations in function of their recoil energy $E_R$.}
+\label{fig:quenching_plot}
+\end{figure}
+
+
+\subsection{Fiducial Cut}
+
+The response of the bolometer to an event depends on the location of the energy deposit. An event happening very near the surface of the crystal would give an abnormal signal with a poor energy reconstruction. The guard electrodes A and C can tag such events on the lateral side of the crystal: any event with a signal on any of these electrode is discarded. This cut aims at keeping only the potentially well reconstructed event of the bulk, and is historically called the "Fiducial cut".
