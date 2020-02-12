@@ -143,7 +143,8 @@ Configuration                & Stream   & Started at          \\ \hline
 \section{Data Analysis}
 
 
-\subsubsection{Data format: Pre-processing by Julien}
+\subsection{Pre-processing and Data format}
+\label{par:data-format}
 
 The data were initially saved as streams: the voltage value of the heat channel and the four ionization channel are saved for each time step in the acquisition with a sampling frequency of 400Hz. 
 
@@ -416,6 +417,7 @@ The presence of the two bands in this plot demonstrate the discriminating abilit
 
 Another way to represent the discrimination between the electronic and the nuclear recoil is to compute the recoil energy $E_R$ and the quenching factor $Q$ for each event:
 \begin{align}
+\label{eq:quenching-from-ecei}
 	E_{NL} &= \frac{V}{\epsilon} ( E_{ion., ???} - E_{heat} )
 	\\
 	E_R = E_{heat} - E_{NL} &= E_{heat} \left( 1 + \frac{V}{\epsilon} \right) - E_{ion., ???} \frac{V}{\epsilon}
@@ -459,16 +461,156 @@ With the obtainment of well reconstructed events, it is now time to count the ev
 \label{fig:band-cut-quenching}
 \end{figure}
 
-The events are allocated to the electronic recoil "ER" band their ionization energy corresponds to the heat energy with a tolerance of two times the RMS resolution of the total ionization energy at the considered heat energy:
+Electronic recoils are characterized by a quenching factor $Q_{ER}=1$. Nuclear recoil are associated to lower quenching factor depending on the recoil energy $E_R$ and the material of the absorber. According to the literature [Lindhard ref], with an atomic number of $Z=32$ and an average number of nucleons of $A=72.63$, the quenching factor of a nuclear recoil in a pure-germanium crystal is expressed as:
 \begin{equation}
-|E_{ion} - E_{heat}| < 2 \times \sigma_{E_ion}\left( E_{heat}\right)
+\label{eq:lindhard}
+	Q_{NR}(E_R) = \frac{k g(E_R)}{1+k g(E_R)}
+\end{equation}
+with the $k,g$ terms calculated as:
+\begin{align}
+	k &= 0.133 Z^\frac{2}{3} A^\frac{-1}{2} \\
+	\epsilon(E_R) &= 11.5 E_R Z^\frac{-7}{3} \\
+	g(E_R) &= 3 \epsilon(E_R)^{0.15} + 0.7 \epsilon(E_R)^{0.6} + \epsilon(E_R) 
+\end{align}
+The heat-only event show a null quenching $Q_{HO}=0$.
+
+These constraints on the quenching factor are translated in term of ionization and heat energy with the change of variables induced by eq \ref{eq:quenching-from-ecei}. For the electronic recoil, the ionization and heat energies follow:
+\begin{align}
+\label{eq:ER-char}
+	E_{heat, ER} &= E_R \frac{1 + Q_{ER}\frac{V}{3}}{1 + \frac{V}{3}} = E_R \\
+	E_{ion., ER} &= E_R Q_{ER} = E_R
+\end{align}
+The heat and ionization energy are theoretically equals.
+For the neutron recoil, the energies follow:
+\begin{align}
+\label{eq:NR-char}
+	E_{heat, NR} &= E_R \frac{1 + Q_{NR}(E_R)\frac{V}{3}}{1 + \frac{V}{3}} \\
+	E_{ion., NR} &= E_R Q_{NR}(E_R)
+\end{align}
+As for the heat-only events, the energies are modeled as:
+\begin{align}
+\label{eq:HO-char}
+	E_{heat, HO} &= E_R \frac{1 + Q_{HO}(E_R)\frac{V}{3}}{1 + \frac{V}{3}} = E_R \frac{1}{1 + \frac{V}{3}} \\
+	E_{ion., HO} &= E_R Q_{HO}(E_R) = 0
+\end{align}
+
+An experimental event is allocated to the electronic recoil "ER" band if its ionization energy $E_{ion., exp}$ and heat energy $E_{heat, exp}$ follow the energy function associated to the ER recoil \ref{eq:ER-char} with a tolerance of two times the RMS resolution of the ionization energy at the considered heat energy, $\sigma_{ion}(E_{heat, exp})$. This condition to be satisfied is mathematically written as:
+\begin{equation}
+|E_{ion., exp} - E_{ion, ER}(E_{heat, exp})| < 2 \times \sigma_{ion}\left( E_{heat, exp}\right)
+\end{equation}
+Taking into account the equality of the heat and ionization energy in \ref{eq:ER-char}, this condition is also written as:
+\begin{equation}
+\label{eq:condition-ER-ecei}
+|E_{ion., exp} - E_{heat_exp}| < 2 \times \sigma_{ion}\left( E_{heat, exp}\right)
 \end{equation}
 
+Concerning the allocation in the neutron recoil "NR" band, the heat and ionization energies should now follow the functions associated to the neutron recoil \ref{eq:NR-char}. The tolerance is still fixed to two times the RMS resolution $\sigma_{ion}(E_{heat, exp})$. The condition now is expressed as:
+\begin{equation}
+\label{eq:condition-NR-ecei}
+|E_{ion., exp} - E_{ion, NR}(E_{heat, exp})| < 2 \times \sigma_{ion}\left( E_{heat, exp}\right)
+\end{equation}
+One should note that according to the expressions \ref{eq:NR-char}, their is no analytical expression of the ionization energy $E_{ion, NR}$ as a function of the heat energy. To bypass this issue, $E_{ion, NR}$ is computed over a fine array of heat energy between 0keV and 50keV. The term $E_{ion, NR}(E_{heat, exp})$ is therefore obtained by linear interpolation.
 
-For the allocation to the neutron recoil "NR" band, events should have a quenching factor compatible with the nuclear recoil quenching in germanium as found in literature [Linhard ref].
+As for the allocation to the heat-only "HO" band, we use the modelization of the heat-only event energies in equations \ref{eq:HO-char} to define the condition:
+\begin{equation}
+|E_{ion., exp} - E_{ion, HO}(E_{heat, exp})| < 2 \times \sigma_{ion}\left( E_{heat, exp}\right)
+\end{equation}
+which is simplified to:
+\begin{equation}
+\label{eq:condition-HO-ecei}
+|E_{ion., exp}| < 2 \times \sigma_{ion}\left( E_{heat, exp}\right)
+\end{equation}
+
+The ER, NR and HO band defined by the three previous conditions \ref{eq:condition-ER-ecei}, \ref{eq:condition-NR-ecei} and \ref{eq:condition-HO-ecei} respectively are represented on the figure \ref{fig:band-cut-ecei} along with the experimental events passing the quality cuts. With the change of variable \ref{eq:quenching-from-ecei}, the ER, NR and HO bands are also defined in terms of quenching factor and recoil energy in figure \ref{fig:band-cut-quenching}. 
+It is now possible to obtain a raw recoil energy spectrum of the different bands by counting the number of events in each energy bins. These histograms are presented in figure \ref{fig:raw-hist}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/placeholder}
+\caption{Histogram of the event allocated to the ER, NR and HO bands in function of their recoil energy.}
+\label{fig:raw-hist}
+\end{figure}
+
+We can note some usual features in this histogram like the noise blob at the lowest energies, the 1.3keV events and the 10.37keV of the calibration peaks. As before, we see that from 6keV and below, the different bands are merging into each other. The lower parts of the 1.3keV and 10.37keV population of the calibration peaks are even counted in the NR and HO band !
+This contamination between the bands is harmful for an unbiased counting of the events in each bands.
+Moreover, the experimental events presented in the figures were the one passing the quality cuts presented previously. Even though this cuts were vital to prune the data from ill-reconstructed events, they effectively reduced the number of events in the ER, NR and HO bands, which are therefore underestimating the initial number of recoils having happened.
+
+
+\subsection{Energy spectrum correction}
+
+In order to estimate the true ER, NR and HO background, it is necessary to correct the raw histograms \ref{fig:raw-hist} from the following bias:
+\begin{itemize}
+	\item the efficiency of the quality cuts, to take into account all the events which did not passed the quality cuts
+	\item the cross-band contamination, particularly at the lowest energy when the bands are merging
+\end{itemize}
+In this analysis, we choose to use a method called "Pulse Simulation" to estimate these bias.
+
+
+\subsubsection{Pulse simulation}
+
+This method aims at simulating signals (aka pulses) of ER and NR recoil with known recoil energy and injecting them into the experimental stream. Thus, this technique is only valid when the whole stream of data is saved. All the steps of the pulse simulation described in this very section were realized by Julien Billard.
+
+The simulation of a signal comes from a bank of well characterized events. This bank is built with a selected population of 10.37keV event from the associated calibration peak passing the quality cuts as represented in the figure \ref{fig:ecei-plot}. These selected events comes from gamma recoils with a known recoil energy. Although most of these events present a complete charge collection associated with a quenching $Q_{ER}=1$, some are subjects to incomplete charge collection (and still taken into account ??? are discarded ??? idk).
+
+Once the bank of 10.37keV events is formed, we proceed with the the simulation of events coming from ER and NR recoil and with the wanted recoil energy. We fix the recoil energy of a simulated event by scaling the signal of the 10.37keV event from the bank with a rule of three. Simulating event coming from electronic recoil is straightforward as the 10.37keV event of the bank are already produced by gamma recoils. As for the simulation of events coming from nuclear recoil, the ionization and heat energies should be corrected to present a quenching calculated from the Linhard formula in equation \ref{eq:lindhard}.
+
+In this analysis, four different population of events were simulated:
+\begin{itemize}
+	\item 10.37keV line ER events: the most straightforward simulation as these simulated corresponds to the raw selected events of the bank.
+	\item 1.3keV line ER events: simply rescaling the bank of events provides this simulated population corresponding to the second calibration peak of the germanium.
+	\item $[0-50]$keV flat ER events: this uniform distribution in recoil energy is obtained by rescaling the bank of events by radom factors.
+	\item $[0-50]$keV flat NR events: as before, this is a uniform distribution in recoil energy and corrected in heat and ionization energy to present an appropriate quenching factor $Q_{NR}$.
+\end{itemize}
+
+The pulse simulation continues with the injection of these simulated population into the saved streams. This means taking one event of a population, and adding it to stream at a random known time $t_0$. In order to keep this probing technique from altering too much the characteristics of the analysis, it is decided to inject a maximum of 60(?) pulses per hour of streams. This process is repeated multiples times with different $t_0$ and for the four simulated population independently.
+
+An important remark is to be made here concerning the signal noise injected in the streams along with the simulated pulses. The 10.37keV events composing the bank of events and used for the creation of the simulated population are real events from the streams affected a signal noise. By adding simulated pulses to the streams, we are effectively adding the noise of the simulated pulse and the noise of the stream. This means that all the pulses that are injected into the streams are by construction noisier than real pulses.
+While the effect of this phenomenon is negligible at low energies as the 10.37kev and its associated noise were scaled down, for higher energies this additional noise might result in a worse energy reconstruction than real pulses as well as lead to a discarding by the $\chi^2$ cut.
+As a concrete example, an injected pulse of the "10.37keV line ER" population should be affected by a noise PSD with a factor $\sqrt{2}$ higher than the noise PSD of a real 10.37keV pulses of the stream. This will result in a biased $\chi^2$ value for the simulated pulse, sampled from a $\chi^2$ distribution of mean $\sqrt{2}N$ rather than $\sqrt{N}$. Hopefully, the $\chi^2$ cut of this analysis (presented in \ref{par:quality-cuts}) are large enough to alleviate this effect. As for the energy reconstruction, the bias should be covered by the energy resolution of the sensors.
+Having considered the existence of this added noise, we can considered that the simulated pulse are excellent facsimiles of the real pulses with the major advantages than we know their input recoil energy $E_R^{input}$, their injection time $t_0^{input}$ and their quenching $Q_{ER}$ or $Q_{NR}(E_R^{input})$ (depending on the simulated population they belong to.
 
 
 
+\subsubsection{Trigger cut}
+
+{\color{red} this explanation definitively needs a plot to explanation all the different cases and the different t0, else this will be too much confusing :(}
+
+Just as in the previous section \ref{par:data-format}, the newly created streams with injected pulses are pre-processed using optimal filtering and information on the triggering time windows are saved.
+As what is interesting us in this streams are the injected pulses, we are focusing on the triggering events.
+The objective is this section is to decide whether a simulated event injected at $t_0^{input}$ has properly triggered or not.
+On the one hand, we should discard "non-triggering" simulated event where:
+\begin{itemize}
+	\item the simulated pulse with a low energy could not have reach the trigger threshold, and the an earlier or later real triggering pulse was selected as closest to the injection time $t_0^{input}$
+	\item a simulated pulse could have been injected near (<0.5s) a real pulse of higher energy. As both the simulated and the real pulses are triggering and are close in time, only the real one with the highest reconstructed energy is triggering.
+\end{itemize}
+A maximum tolerance of $5$ms between the injection time of a simulated pulse $t_0^{input}$ and the timestamp of the closest triggering event $t_0$ was arbitrary chosen to ensure that the triggering pulses are in fact corresponding to simulated pulses.
+On the other hand, a triggering simulated event could also have been injected exactly at the same time as a real pulse of the stream, this occurrence is called a "pile-up". The resulting signal is the addition of a real and the injected pulse which will bias the energy reconstruction. A minimum time of $5$ms between the timestamp of the closest triggering event $t_0^{input}$(extracted from the stream with injected simulated pulses) and the timestamp of the closest triggering real pulse $t_0^{data}$(extracted from the original stream) was chosen to discard any pile-up event.
+By combining this two condition ensuring a proper triggering of the simulated event, we can define the "trigger cut" condition:
+\begin{equation}
+\left\{
+\begin{array}{r c l}
+| t_0^{input} - t_0 | &\geq& 5\textsf{ms}\\
+| t_0 - t_0^{data} | &\leq& 5\textsf{ms}
+\end{array}
+\right.
+\end{equation}
+Triggering event of timestamp $t_0$ closest to a $t_0^{input}$ satisfying this condition are considered as having properly triggered.
+
+It is important to note that this trigger cut is specific to simulated pulses. In order to reproduce such a study with real pulses can only be done if we know the exact time of the energy deposit in the crystal. Access to this piece of information is impossible in this work using either an AmBe neutron source or the gamma calibration peak of the germanium as both this source are based on the intrinsically stochastic process of radioactive decay. However, the use of controlled source of particles could be envisioned:
+\begin{itemize}
+	\item facing the germanium crystal inside the cryostat, an optical fiber linked to a pulsing LED could be used as a repetitive source of electronic recoil.
+	\item outside of the cryostat, a pulsed neutron source would be overkill (or would it ? idk just thinking here)
+\end{itemize}
+
+Now that we have selected the simulated pulses which properly triggered, the entire analysis chain of this very chapter \label{ChapterNeutron} described until now is applied to these events. The triggering simulated events population is pruned of the reconstruction biased with the quality cuts and are then allocated to the ER, NR and HO bands.
+
+\subsubsection{Band Contamination Correction}
+
+\subsubsection{Efficiency cut correction}
+
+Trigger cut: Livetime and Pile-up
+
+Quality cuts should be the broad term for all the cuts before band...
 
 
 
