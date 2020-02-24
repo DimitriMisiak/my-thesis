@@ -30,7 +30,7 @@ OFNote.pdf
 \section{Motivation}
 
 As the Ricochet experiment is happening near a nuclear reactor, there is a risk that the bolometers will be blinded by the radioactive background of the site.
-The radioactive background is mainly composed of particles inducing electronic recoil (such as gammas, electrons, muons, charged particles essentially) and neutron producing neutron recoil.
+The radioactive background is mainly composed of particles inducing electronic recoil (such as gammas, electrons, muons, charged particles essentially) and neutron producing nuclear recoils.
 While the former background component can be discriminated thanks to technology used in the bolometers, the latter can not and thus constitute an unavoidable background for Ricochet which will limit the CENNS process measurement.
 Therefore, it is vital to evaluate the neutron background on-site and understand its dependency in the energy.
 In addition to estimating the limitations on the measurement, the study of the neutron background on-site will also be used in the design of the shielding.
@@ -41,13 +41,13 @@ In addition to estimating the limitations on the measurement, the study of the n
   \centering
   \includegraphics[width=\linewidth]{Figures/Neutron/scheme_ip2i.png}
   \caption{IP2I: R\&D Laboratory}
-  \label{fig:scheme-ill}
+  \label{fig:scheme-ip2i}
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=\linewidth]{Figures/Neutron/scheme_ill.png}
   \caption{ILL: Reactor Site}
-  \label{fig:scheme-ip2i}
+  \label{fig:scheme-ill}
 \end{subfigure}
 \caption{Schemes of the neutron background measurements site with \ce{^3He} gaseous detectors. The positions of the detectors and the neutron source are indicated with numbered/colored tokens.}
 \label{fig:scheme-site}
@@ -65,7 +65,9 @@ The estimation of the neutron background at ILL in the energy range of interest 
 
 \section{Experimental Setup}
 
-The measure of the neutron background at the IP2I cryogenic facility was done with a newly designed low-threshold germanium detector of the RED series called RED80 with RMS resolution of approximately 120eV on the heat channel and 200eV on the ionization channel.
+{\color{red} Two subsections: RED80 detector (describing RED80, sensitivity, electric field, polarization), Operation in cryostat (describing the temperature, the suspended tower, the configuration Calibration and Background, the calendar of the streams)}
+
+The measurement of the neutron background at the IP2I cryogenic facility was done with a newly designed low-threshold germanium detector of the RED series called RED80 with RMS resolution of approximately 120eV on the heat channel and 200eV on the ionization channel.
 The data were taken during the run 57 which began on 03/07/2019 and ended on 01/08/2019. In this run, RED80 and RED70 were both operated on the suspended tower.
 
 \begin{figure}
@@ -140,10 +142,7 @@ Configuration                & Stream   & Started at          \\ \hline
 \end{table}
 
 
-\section{Data Analysis}
-
-
-\subsection{Pre-processing and Data format}
+\section{Pre-processing and Data format}
 \label{par:data-format}
 \label{par:of-processing}
 
@@ -152,7 +151,7 @@ The data were initially saved as streams: the voltage value of the heat channel 
 {\color{red} FIGURE STREAM HEAT/IONIZATION}
 
 These voltage values are extracted by an analog-to-digital conversion system and thus expressed in \textbf{A}nalog-to-\textbf{D}igital conversion \textbf{U}nit (ADU).
-These data streams are then processed by an \textbf{O}ptimal \textbf{F}iltering (OF) software called NEPAL developed by Julien Billard. A filter based on the signal PSD and the noise PSD in the bolometer is applied to the stream. Time windows of 1s centered on a triggering events are selected with an amplitude threshold on the filtered stream (see Figure \ref{fig:pulse-of}).
+These data streams are then processed by an \textbf{O}ptimal \textbf{F}iltering (OF) software called NEPAL. A filter based on the signal PSD and the noise PSD in the bolometer is applied to the stream. Time windows of 1s centered on a triggering events are selected with an amplitude threshold on the filtered stream (see Figure \ref{fig:pulse-of}).
 
 \begin{figure}
 \centering
@@ -190,48 +189,113 @@ In the end, for each configuration of data measurements(Background and Calibrati
 Among those triggering events are events of interest well reconstructed and induced by electronic recoil from the radioactive gamma background, the KLM activation lines from the germanium and the cosmic muons and neutron recoil from the AmBe neutron source and the radioactive neutron background. However, many triggering events can not be reconstructed or were induced by parasitic source, and can not yield information for the measurement of the neutron background at IP2I. To extract the events of interest from all the data, analysis cuts are applied.
 
 
-\subsection{Glitch Time Cut}
+\section{Livetime Cut}
 
-{\color{red} We should also substract the maintenance time ?}
-
-Some portions of the streams are glitched for reasons not clearly understood relative to the acquisition electronics or the cryostat temperature regulation system (see figure \ref{}).
+The livetime corresponds to the period of time where the detector is considered available for data taking.
+It is important to consider the appropriate livetime for a stream as all the results presented in the analysis will eventually be weighted by the exposure of the detector and so this very livetime. While we would like the livetime to corresponds to the running time of the detector, it is often not the case. There can be some periods where the temperature regulation of the cryostat can be defective (temperature spikes, power cuts) which degrade the heat sensitivity of the detector, and other periods where various malfunctions can prevent the saving of data all together. The stability of the detector operation is monitored for each streams with a graph of the energy amplitude of the events in function of their timestamp. Such a graph is plotted in the figure \ref{fig:analysis-monitoring-demo} for the stream "tg27l000".
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth,]{Figures/Neutron/analysis_glitch_cut_demo.png}
-\caption{Heat Amplitude in function of the Timestamp. All events are in grey, while events passing the "Glitch Time Cut" are in blue.}
+\caption{Reconstructed amplitude on the heat channel in function of the timestamp for every events of the stream "tg27l000". All events are plotted in grey while events passing the "Livetime" are in blue.}
 \label{fig:analysis-monitoring-demo}
 \end{figure}
 
-Thus, some time intervals were chosen for each streams where the events would not pass what is called the "Glitch Time Cut" (see table \ref{tab:stream-glitch-time-cut}). It is important to consider the appropriate livetime. Indeed, all the results presented later will be weighted by the exposure of the detector. Thus, period of time when the detector is not available for proper measurements should be discarded from the analysis and not taken into the computation of the exposure.
+It appears that RED80 was operated at a constant temperature for the duration of this stream (this is also observed for all the other streams). Indeed, the events corresponding to the calibration peaks are reconstructed with a fixed amplitude (approximately $2 \times 10^2$ ADU for the 1.3keV and $2 \times 10^3$ ADU for the 10.37keV), and thus we check that the sensitivity of the heat channel is constant for the whole stream.
+
+However, some strange periods of time are visible where no events were saved. In the presented figure, it is most notable in the intervals $[7, 11.3]$ and $[13.8, 14.1]$ hours. These portions of the streams were corrupted or rendered useless for reasons not clearly understood relative to the acquisition electronics.
+
+The livetime is visually deduced from this monitoring plot for each stream and presented in the table \ref{tab:stream-glitch-time-cut}.
 
 \begin{table}[]
 \centering
 \resizebox{\linewidth}{!}{
 	\input{Tables/Neutron/glitch_time_cut.tex}
 }
-\caption{Application of the Glitch Time cut on the streams. The studied time intervals are adjusted to discard glitch periods. This shortened exposure of the detector is then computed taking into account this cut. (might need to take into account the maintenance time cut, no?)}
+\caption{Calculation of the livetime of every stream. Fine time intervals were estimated visually from monitoring plots (as in figure \ref{fig:analysis-monitoring-demo}) with precautionary buffers. The "Livetime cut" keeps all the events with timestamps in the selected fine intervals. The total lifetime of both configuration is used in the calculation of the exposure of the RED80.}
 \label{tab:stream-glitch-time-cut}
 \end{table}
 
-\subsection{Quality Cuts}
+The raw streams have various "fine" time intervals where the data can be taken properly. These fine intervals define the so-called "Livetime cut" which discarded any events not in the fine intervals. In the figure \ref{fig:analysis-monitoring-demo}, all the events are plotted in gray while only the events passing the Livetime cut are plotted in blue. The intervals were chosen with some precautionary buffer in to apply a conservative cut that would reject any abnormal event. In the end, the livetime is obtained for each streams and added for both configuration, giving a livetime of $75.6$ hours for the Calibration and $35.93$ hours for the Background.
+
+
+\section{Quality Cuts}
 \label{par:quality-cuts}
 
-In order for an event to have a correctly reconstructed energy, it should satisfy several criteria, which together forms the "Quality Cut":
+The objective of the "Quality cut" is to keep the events induced by recoils in the germanium absorber of RED80 and with a good energy reconstruction. These events  passing the Quality cut are labeled as "quality events" and satisfy several criteria:
 \begin{itemize}
-	\item passing the Glitch Time Cut,
+	\item passing the Livetime Cut,
 	\item not happening during a maintenance period of the ionization channel,
 	\item offset of the ionization channel in the $[-14000, +14000] ADU$ interval,
 	\item the $\chi^2$ value, expressing the goodness of the fit of the event with the signal template.
 \end{itemize}
 
+{\color{red} Maintenance cut paragraph, will surely be moved in the section describing the electronics.}
+\label{par:reset-maintenance}
+The electrodes of the ionization channel are collecting the electron-hole pairs induced by the recoils in the germanium crystal. As a results, their electric potential is decreasing (recall $Q=CU$) as well as the electric field guiding the e-h pairs in the crystal. In order to keep a steady electric field, it is necessary to periodically recharge the electrodes, offsetting the effect of the e-h pairs collection. This process is called "Reset" and is usually set to happen every few seconds in detectors.
+An adverse effect of these resets is that they usually induce a signal on the heat and ionization channels. While these signals are easily discarded using their known frequency, they can happen close to a valid signal resulting in a pile-up, the discarding of the event from the analysis, and so a decrease in the livetime of a data stream.
+
+Another phenomenon degrading the electric field is the trapping of the charges in the crystal. Even if the electrodes are properly "resetted", the accumulating trapped charges produces a counter-field effectively reducing the electric field seen by the e-h pairs in the crystal. The method used to even the charges in the crystal is called "Maintenance". The electrodes are successively polarized at plus and minus their nominal electric potential with a frequency of $\mathcal{O}(1\textsf{Hz})$ for about a minute. The trapped charges are shaken up in the crystal and eventually recombine or are collected at the electrodes. The counter-field vanishes and the detector is ready to operate with its standard electric field (graph necessary to illustrate ?). A downside is that the detector is not available for data taking during a maintenance, representing about a minute of deadtime for several tenths of minutes of running time. 
+
+As this work uses data taken with detectors operated in an above-ground laboratory, the event rate is higher compared to an underground facility due to the abundance of cosmic rays and the natural radioactivity.
+With this higher event rate  comes a higher charge collected per unit of time. This induces a quicker decrease of the electric potential of the electrodes, which needs for more frequent resets, and a quicker appearing of the counter-field due to the charge trapping, which calls for more frequent maintenances.
+
+Thus, the frequency of the reset and the maintenance is adapted to the event rate seen by the detectors. The reset and maintenance should be frequent enough to keep up with the electric field decrease, yet spaced out to keep a reasonable livetime. Moreover, the event rate do fluctuate between each run as it depends on the mass of the absorbers (here 32g, 38g or 200g) and the possible use of calibration sources increasing the event rate (see the section \ref{par:calibration-sources}).
+In average in this work, the resets are set to a frequency of $2$Hz (?) and maintenance set to take place every 40 minutes.
+{\color{red} End of Maintenance paragraph}
+
+Quality events should not happen during a maintenance period nor a reset (introduced in section \ref{par:reset-maintenance} as they are considered electronics artifacts. The "Maintenance cut" is defined as:
+$$ bli blou bloup$$
+which discards any event happening during a maintenance period.
+The "Reset cut" is expressed as:
+$$ hello there general$$
+which discards event occurring within $5$ms (?) of a reset. 
+{\color{red} INSERT MATHEMATICAL DEFINITION of the maintenance cut and the reset cut. And implement it correctly in the analysis! }
+
+{\color{red} paragraph about the ion sensitivity degradation past 14000ADU. Dont know if this is gonna stay in this chapter or move it when describing the electronics. Feel like it should belong here, as I can illustrate that with a figure}
+
+We noticed a malfunction for the ionization channel: apparently, the sensitivity of the ionization channels depends on their offset value. This behavior is consider as faulty as we expect the electrodes to have a constant sensitivity. This phenomenon is illustrated in the figure \ref{fig:offset-problem} which plots the ionization amplitudes of events as a function of their offset values for the data stream "???".
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth, height=6cm]{Figures/placeholder.jpg}
+\caption{Graph of the reconstructed amplitude of the ionization channels in function of their offset value. The data presented corresponds to the stream "???". Should illustrate the sensitivity degradataion going past approx 1400 ADU.}
+\label{fig:offset-problem}
+\end{figure}
+
+INTERPRETATION when plot is ready.
+We decide to keep the events with the standard ionization sensitivity with low absolute offset value. Other events are discarded by the "Offset cut" which is expressed as:
+$$ mathemics here $$
+
+
 Concerning the $\chi^2$ value, the threshold depends on the energy. Indeed, because of non-linearity in the bolometer heat response, the shape of the signal do depends on the recoil energy as the first order perturbation theory becomes less and less valid.
-Good events at low energy should have a $\chi^2$ value of about
-$$ <\chi^2> = N_{samples in window} = T_{window} \times f_{sampling} = 0.5 \times 400 = 200$$
+Good events at low energy should have a $\chi^2$ value of about:
+
+\begin{equation}
+\mathbb{E}\left( \chi^2 \right) 
+= N_{\textsf{samples in window}}
+ = T_{\textsf{window}} \times f_{\textsf{sampling}}
+ = 0.5 \times 400 = 200
+\end{equation}
+
 However, with a signal template based on events from the 10.37keV activation line of the germanium, the $\chi^2$ value of good events is increasing from $\mathcal{O}(10keV)$.
-Therefore, a threshold function depending on the event amplitude is chosen:
-$$ Threshold(Amplitude) = <\chi^2> \times \left[ 1+ \left( \frac{Amplitude}{\alpha} \right)^\beta \right]$$
-with $\alpha$ and $\beta$ estimated visually for each streams.
+Therefore, a cut parametrization function depending on the event amplitude is chosen:
+
+\begin{equation}
+Threshold(Amplitude) 
+= \gamma \times \mathbb{E}\left( \chi^2 \right)  \times \left[ 1+ \left( \frac{Amplitude}{\alpha} \right)^\beta \right]
+\end{equation}
+
+with $\alpha$, $\beta$ and $\gamma$ estimated visually for each streams and presented in table \ref{tab:chi2-cut}.
+
+\begin{table}[]
+\centering
+\input{Tables/Neutron/chi2-cut-coefficients.tex}
+\caption{Coefficient of the $chi^2$ cut for each streams. These coefficients were determined visually in order to defined the band of events of lowest $chi^2$ value on the whole energy range.}
+\label{tab:chi2-cut}
+\end{table}
+
+
 In the end, the $\chi^2$ cut is applied on each channels (as seen in figure \ref{fig:chi2-cut}) independently. Only the events passing the cut for all the channels is kept and eligible as a quality event.
 
 \begin{figure}
@@ -241,10 +305,10 @@ In the end, the $\chi^2$ cut is applied on each channels (as seen in figure \ref
 \label{fig:chi2-cut}
 \end{figure}
 
-With all these criteria being applied to the events passing the Glitch Time Cut, we have selected the events passing the Quality Cut, qualified as "quality events".
+With all these criteria being applied to the events passing the Livetime Cut, we have selected the events passing the Quality Cut, qualified as "quality events".
 
 
-\subsection{Cross-talk Correction}
+\section{Cross-talk Correction}
 \label{par:crosstalk}
 While the heat channel can readily be calibrated, this is not the case for the ionization channel which are affected by a phenomenon of cross-talk which should be corrected before proceeding with their calibration.
 Because of the capacitive coupling between the different electrodes of the bolometer, a signal collected by an electrode will induce another smaller signal on other electrodes. With such a coupling, the cross-talk factor between two electrodes increases with their associated capacitance term.
@@ -297,7 +361,7 @@ This correction is implemented iteratively by visually checking the plotting of 
 We check that the cross-talk correction matrix $\mathcal{M}$ corresponds to the identity matrix at the first order. The correction terms are in the range of few percents, going up to $5.2\%$ in the case of the case of the electrode $B$ inducing signal on the electrode $A$.
 
 
-\subsection{Calibration}
+\section{Calibration}
 \label{par:calibration}
 
 The five measurements channels are saving the voltage of their associated sensors in ADU unit specific to each considered channel. In order to proceed with physical interpretation, it is now necessary to convert the channels into a common unit.
@@ -331,7 +395,34 @@ $$
 $$
 Now that the events of all the streams are calibrated, they are expressed in the same unit and can be compared. From now on, we concatenate the calibrated streams and consider all the events for the Background and the Calibration configurations.
 
-\subsection{Regional Cut}
+\section{Charge conservation cut}
+\label{par:charge-conservation-cut}
+
+to be corrected vvv
+Even with the bulk cut, some events might still have charge collection issue. Drifting charges can be trapped in the germanium and may not end up being collected. On way to discard such events is to consider the "Charge Conservation" quantity, defined as:
+\begin{equation}
+\mathcal{C.C.} = \frac{-A-B+C+D}{2}
+\end{equation}
+
+As a recoil produces electron-hole pairs, the charge of the drifting particles in the crystal should be zero as well as the total collected charges (considering their complete collection). This is characterized by a the normal distribution of the $\mathcal{C.C}$ around zero with an STD depending on the RMS resolution of the ionization channels. Events with an incomplete charge collection would stand out of this gaussian profile and can be discarded. As a result, we define the event passing this "Charge conservation cut" with a $\mathcal{C.C.}$ lower than two times the RMS resolution for the considered heat energy. This cut is represented in the figure \ref{fig:charge-conservation}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/charge_conservation.png}
+\caption{"Charge conservation" quantity as a function of the heat energy for the bulk quality events of the Background configuration. Passing events are in blue while discarded events are in red.}
+\label{fig:charge-conservation}
+\end{figure}
+
+As the RMS resolution depends on the energy associated to the event, it is once more necessary to model it with a linear law:
+\begin{equation}
+\sigma_{\mathcal{C.C.}}\left(E_{heat}\right)
+=
+a + b*E_{heat}
+\end{equation}
+with the coefficient $a$ and $b$ coming from the estimation of the RMS resolution at 0keV (noise blob) and 10.37keV (calibration peak) (precision necessary here).
+
+
+\section{Fiducial Cut}
 \label{par:fiducial-cut}
 
 Referring to the streamlines of the electric field in the crystal of RED80 (see Figure \ref{fig:streamlines-red80}), we expect some region of the crystal with a specific drifting behavior. Represented in the Figure \ref{fig:scheme-red80}, we have:
@@ -340,8 +431,8 @@ Referring to the streamlines of the electric field in the crystal of RED80 (see 
 	\item the Guard region, where the charge will be collected by the surface electrodes A and C,
 	\item the Corner regions, where and , we expect the charges to recombine on place of the recoil because of the very weak electric field or become trapped on the surface by drifting along the streamlines exiting the crystal.
 \end{itemize}
-{\color{red}(what is the ref? what is the motivation really ?)}
-Because we think that the guard region might collect more ill-reconstructed events, we chose to apply a cut in order to select the event in the bulk region as illustrated on the quality events of the Background data in the figure \ref{fig:fiducial-cut}.
+
+Surface regions are always hazardous for charge collection. Indeed, EDELWEISS has a knowledge (ref necessary) of charges drifting close to the surface devoid of electrodes being easily trapped and not being collected. This behavior is degrading the ionization signal leading to a recoil with reduced quenching factor. This means that electronic recoils happening near the surface could be reconstructed with a lower quenching and be identified as nuclear recoils. The major source of such surface recoil are the $\beta$ radiation induced by the natural radioactivity interacting in the first $\mu$m of the germanium crystal (ref edelweiss necessary). Thus, we want to discard any event that may be induced by a surface recoil. When interacting on the lateral surface of the germanium crystal, this events should be collected by the guard electrodes A and C. Referring to the scheme \ref{fig:scheme-red80}, the objective of the "Fiducial cut" is to discard events from the Surface zones and Corners, and keep the events induced by recoil in the bulk region of the crystal. This Fiducial cut is applied by considering the reconstructed ionization energy of the events as represented in the figure \ref{fig:fiducial-cut}.
 
 \begin{figure}
 \centering
@@ -350,6 +441,19 @@ Because we think that the guard region might collect more ill-reconstructed even
 \label{fig:fiducial-cut}
 \end{figure}
 
+The Fiducial cut identifies events of the bulk region as events which did not deposited any signal on the guard electrodes A and C, with a tolerance of two $\sigma^{A,C}\left( \textsf{baseline} \right)$. For the bulk events, this conditions is expressed as:
+
+\begin{equation}
+mathmathmath for bulk events
+\end{equation}
+
+In a similar manner, we can also define the guard events with no signal on the collect electrodes B and D with a tolerance of two $\sigma^{B,D}\left( \textsf{baseline} \right)$. This condition then is written:
+
+\begin{equation}
+mathmathmath for guard events
+\end{equation}
+
+{\color{red}NOW, ITS GIBBERISH TIME !(yay, but to be modified)}
 This "Bulk cut" will discard any event with a reconstructed energy on the guard electrodes A and C which is greater than two times the RMS resolution.
 For this purpose, it is useful to define the reconstructed total ionization energy:
 \begin{equation}
@@ -374,33 +478,10 @@ As the RMS resolution $\sigma_i$ of given channel $i$ depends on the total ioniz
 \alpha = \frac{\sqrt{\sigma_i(10.37\textsf{keV})^2 - \sigma_i(0\textsf{keV})^2}}{10.37 \textsf{keV}}
 \end{equation}
 In this equation, the baseline resolution $\sigma_i(0\textsf{keV})$ is estimated with the standard deviation of the noise blob while the resolution $\sigma_i(10.37\textsf{keV})$ is estimated with the standard deviation of the events associated to the germanium calibration peak.
+{\color{red}END of GIBBERISH, i think}
 
-\subsection{Charge conservation cut}
-\label{par:charge-conservation-cut}
 
-Even with the bulk cut, some events might still have charge collection issue. Drifting charges can be trapped in the germanium and may not end up being collected. On way to discard such events is to consider the "Charge Conservation" quantity, defined as:
-\begin{equation}
-\mathcal{C.C.} = \frac{-A-B+C+D}{2}
-\end{equation}
-
-As a recoil produces electron-hole pairs, the charge of the drifting particles in the crystal should be zero as well as the total collected charges (considering their complete collection). This is characterized by a the normal distribution of the $\mathcal{C.C}$ around zero with an STD depending on the RMS resolution of the ionization channels. Events with an incomplete charge collection would stand out of this gaussian profile and can be discarded. As a result, we define the event passing this "Charge conservation cut" with a $\mathcal{C.C.}$ lower than two times the RMS resolution for the considered heat energy. This cut is represented in the figure \ref{fig:charge-conservation}.
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/charge_conservation.png}
-\caption{"Charge conservation" quantity as a function of the heat energy for the bulk quality events of the Background configuration. Passing events are in blue while discarded events are in red.}
-\label{fig:charge-conservation}
-\end{figure}
-
-As the RMS resolution depends on the energy associated to the event, it is once more necessary to model it with a linear law:
-\begin{equation}
-\sigma_{\mathcal{C.C.}}\left(E_{heat}\right)
-=
-a + b*E_{heat}
-\end{equation}
-with the coefficient $a$ and $b$ coming from the estimation of the RMS resolution at 0keV (noise blob) and 10.37keV (calibration peak) (precision necessary here).
-
-\subsection{Review of the selected events}
+%\subsection{Review of the selected events}
 
 We have discarded the events with a possible bad energy reconstruction energy and calibrated the remaining ones. The experimental signal obtained with the heat and ionization channels were reconstructed into heat energy $E_{heat}$ and total ionization energy $E_{ion.}$. The figure \ref{ecei-plot} shows the scatter plot of these two values for the events of the Calibration configuration.
 
@@ -447,7 +528,7 @@ However, there are some interesting events with a quenching factor $Q=0$ which a
 The merging phenomenon of the bands at low energy is also more visible in this graph with the change of variable. We can even visually witness that the lower part of the 1.3keV event blob is leaking into the higher part of the nuclear band.
 
 
-\subsection{Band cut}
+\section{Band cut}
 \label{par:band-cut}
 
 With the obtainment of well reconstructed events, it is now time to count the events corresponding to electronic and nuclear recoils. The events will be allocated into different population based on their quenching factor and the resolution of the heat and ionization channel at the considered energies. This "band cuts" are represented on the figure \ref{fig:band-cut-ecei} with ionization and heat energies and on the figure \ref{fig:band-cut-quenching} by reasoning on the quenching factor and the recoil energy.
@@ -465,6 +546,8 @@ With the obtainment of well reconstructed events, it is now time to count the ev
 \caption{Band cut representation on the graph of Quenching vs Recoil Energy.}
 \label{fig:band-cut-quenching}
 \end{figure}
+
+{\color{red} Paragraph on the quenching, recoil energy here, but will surely be moved in a previous chapter !}
 
 Electronic recoils are characterized by a quenching factor $Q_{ER}=1$. Nuclear recoil are associated to lower quenching factor depending on the recoil energy $E_R$ and the material of the absorber. According to the literature [Lindhard ref], with an atomic number of $Z=32$ and an average number of nucleons of $A=72.63$, the quenching factor of a nuclear recoil in a pure-germanium crystal is expressed as:
 \begin{equation}
@@ -498,6 +581,9 @@ As for the heat-only events, the energies are modeled as:
 	E_{heat, HO} &= E_R \frac{1 + Q_{HO}(E_R)\frac{V}{3}}{1 + \frac{V}{3}} = E_R \frac{1}{1 + \frac{V}{3}} \\
 	E_{ion., HO} &= E_R Q_{HO}(E_R) = 0
 \end{align}
+
+{\color{red} End of quenching paragraph to be moved.}
+
 
 An experimental event is allocated to the electronic recoil "ER" band if its ionization energy $E_{ion., exp}$ and heat energy $E_{heat, exp}$ follow the energy function associated to the ER recoil \ref{eq:ER-char} with a tolerance of two times the RMS resolution of the ionization energy at the considered heat energy, $\sigma_{ion}(E_{heat, exp})$. This condition to be satisfied is mathematically written as:
 \begin{equation}
@@ -541,24 +627,21 @@ This contamination between the bands is harmful for an unbiased counting of the 
 Moreover, the experimental events presented in the figures were the one passing the quality cuts presented previously. Even though this cuts were vital to prune the data from ill-reconstructed events, they effectively reduced the number of events in the ER, NR and HO bands, which are therefore underestimating the initial number of recoils having happened.
 
 
-\subsection{Energy spectrum correction}
+\section{Pulse simulation}
+\label{par:pulse-simulation}
 
 In order to estimate the true ER, NR and HO background, it is necessary to correct the raw histograms \ref{fig:raw-hist} from the following bias:
 \begin{itemize}
 	\item the efficiency of the quality cuts, to take into account all the events which did not passed the quality cuts
 	\item the cross-band contamination, particularly at the lowest energy when the bands are merging
 \end{itemize}
-In this analysis, we choose to use a method called "Pulse Simulation" to estimate these bias.
+In this analysis, we choose to use a method called "Pulse Simulation" to estimate these bias and correct for the livetime.
 
-
-\subsubsection{Pulse simulation}
-\label{par:pulse-simulation}
-
-This method aims at simulating signals (aka pulses) of ER and NR recoil with known recoil energy and injecting them into the experimental stream. Thus, this technique is only valid when the whole stream of data is saved. All the steps of the pulse simulation described in this very section were realized by Julien Billard.
+This method aims at simulating signals (aka pulses) of ER and NR recoil with known recoil energy and injecting them into the experimental stream. Thus, this technique is only valid when the whole stream of data is saved.
 
 The simulation of a signal comes from a bank of well characterized events. This bank is built with a selected population of 10.37keV event from the associated calibration peak passing the quality cuts as represented in the figure \ref{fig:ecei-plot}. These selected events comes from gamma recoils with a known recoil energy. Although most of these events present a complete charge collection associated with a quenching $Q_{ER}=1$, some are subjects to incomplete charge collection (and still taken into account ??? are discarded ??? idk).
 
-Once the bank of 10.37keV events is formed, we proceed with the the simulation of events coming from ER and NR recoil and with the wanted recoil energy. We fix the recoil energy of a simulated event by scaling the signal of the 10.37keV event from the bank with a rule of three. Simulating event coming from electronic recoil is straightforward as the 10.37keV event of the bank are already produced by gamma recoils. As for the simulation of events coming from nuclear recoil, the ionization and heat energies should be corrected to present a quenching calculated from the Linhard formula in equation \ref{eq:lindhard}.
+Once the bank of 10.37keV events is formed, we proceed with the the simulation of events coming from ER and NR recoil and with the wanted recoil energy. We fix the recoil energy of a simulated event by scaling the signal of the 10.37keV event from the bank. Simulating event coming from electronic recoil is straightforward as the 10.37keV event of the bank are already produced by gamma recoils. As for the simulation of events coming from nuclear recoil, the ionization and heat energies should be corrected to present a quenching calculated from the Linhard formula in equation \ref{eq:lindhard}.
 
 In this analysis, four different population of events were simulated:
 \begin{itemize}
@@ -570,6 +653,7 @@ In this analysis, four different population of events were simulated:
 
 The pulse simulation continues with the injection of these simulated population into the saved streams. This means taking one event of a population, and adding it to stream at a random known time $t_0$. In order to keep this probing technique from altering too much the characteristics of the analysis, it is decided to inject a maximum of 60(?) pulses per hour of streams. This process is repeated multiples times with different $t_0$ and for the four simulated population independently.
 
+{\color{red} This paragraph is no longer relevant because the pulse simulation is analytical and thus injects perfect theoretical pulses into the the stream. The selected quality 10.37keV events are fitted with a 3exponental model. Therefore, no additional noise is injected into the stream. This is easy to check with a chi2 heat vs energy graph, where the real pulse will show a diverging band while the simulated should remain constant. There is however a added deviation on the 10.37keV resolution (this phenomenon is negligeable as the heat resolution at 10.37kev is much greater than the heat resolution of the baseline}
 An important remark is to be made here concerning the signal noise injected in the streams along with the simulated pulses. The 10.37keV events composing the bank of events and used for the creation of the simulated population are real events from the streams affected a signal noise. By adding simulated pulses to the streams, we are effectively adding the noise of the simulated pulse and the noise of the stream. This means that all the pulses that are injected into the streams are by construction noisier than real pulses.
 While the effect of this phenomenon is negligible at low energies as the 10.37kev and its associated noise were scaled down, for higher energies this additional noise might result in a worse energy reconstruction than real pulses as well as lead to a discarding by the $\chi^2$ cut.
 As a concrete example, an injected pulse of the "10.37keV line ER" population should be affected by a noise PSD with a factor $\sqrt{2}$ higher than the noise PSD of a real 10.37keV pulses of the stream. This will result in a biased $\chi^2$ value for the simulated pulse, sampled from a $\chi^2$ distribution of mean $\sqrt{2}N$ rather than $\sqrt{N}$. Hopefully, the $\chi^2$ cut of this analysis (presented in \ref{par:quality-cuts}) are large enough to alleviate this effect. As for the energy reconstruction, the bias should be compensated by the energy resolution of the sensors.
@@ -578,32 +662,33 @@ As we know that the pulse simulation accuracy is reduced for high energies, the 
 Having considered the existence of this added noise, we can considered that the simulated pulse are excellent facsimiles of the real pulses, especially at the lowest energies, with the major advantages than we know their input recoil energy $E_R^{input}$, their injection time $t_0^{input}$ and their quenching $Q_{ER}$ or $Q_{NR}(E_R^{input})$ (depending on the simulated population they belong to).
 
 
-\subsubsection{Trigger cut}
+\section{Trigger cut}
 \label{par:livetime-cut}
 
 {\color{red} this explanation definitively needs a plot to explanation all the different cases and the different t0, else this will be too much confusing :(}
 
-Just as in the previous section \ref{par:data-format}, the newly created streams with injected pulses are pre-processed using optimal filtering and information on the triggering time windows are saved.
+Just as in the previous section \ref{par:data-format}, the newly created streams with injected pulses are processed using the same pipeline and information on the triggering time windows are saved.
 As what is interesting us in this streams are the injected pulses, we are focusing on the triggering events.
 The objective is this section is to decide whether a simulated event injected at $t_0^{input}$ has properly triggered or not.
 On the one hand, we should discard "non-triggering" simulated event where:
 \begin{itemize}
 	\item the simulated pulse with a low energy could not have reach the trigger threshold, and the an earlier or later real triggering pulse was selected as closest to the injection time $t_0^{input}$
-	\item a simulated pulse could have been injected near (<0.5s) a real pulse of higher energy. As both the simulated and the real pulses are triggering and are close in time, only the real one with the highest reconstructed energy is triggering.
+	\item a simulated pulse could have been injected near a real pulse of higher energy. As both the simulated and the real pulses are triggering and are close in time, only the real one with the highest reconstructed energy is triggering.
 \end{itemize}
-A maximum tolerance of $5$ms between the injection time of a simulated pulse $t_0^{input}$ and the timestamp of the closest triggering event $t_0$ was arbitrary chosen to ensure that the triggering pulses are in fact corresponding to simulated pulses.
-On the other hand, a triggering simulated event could also have been injected exactly at the same time as a real pulse of the stream, this occurrence is called a "pile-up". The resulting signal is the addition of a real and the injected pulse which will bias the energy reconstruction. A minimum time of $5$ms between the timestamp of the closest triggering event $t_0^{input}$(extracted from the stream with injected simulated pulses) and the timestamp of the closest triggering real pulse $t_0^{data}$(extracted from the original stream) was chosen to discard any pile-up event.
+A maximum tolerance of $5$ms between the injection time of a simulated pulse $t_0^{input}$ and the timestamp of the closest triggering event $t_0$ was found optimal {\color{red}(cf fig + paragraph on this study)} to ensure that the triggering pulses are in fact corresponding to simulated pulses.
+On the other hand, a triggering simulated event could also have been injected exactly at the same time as a real pulse of the stream, this occurrence is called a "pile-up". The resulting signal is the addition of a real and the injected pulse which will bias the energy reconstruction. A minimum time of $5$ms between the timestamp of the closest triggering event $t_0^{input}$(extracted from the stream with injected simulated pulses) and the timestamp of the closest triggering real pulse $t_0^{data}$(extracted from the original stream) was similarly chosen to discard any pile-up event.
 By combining this two condition ensuring a proper triggering of the simulated event, we can define the "trigger cut" condition:
 \begin{equation}
 \left\{
 \begin{array}{r c l}
-| t_0^{input} - t_0 | &\geq& 5\textsf{ms}\\
-| t_0 - t_0^{data} | &\leq& 5\textsf{ms}
+| t_0^{input} - t_0 | &\leq& 5\textsf{ms}\\
+| t_0 - t_0^{data} | &\geq& 5\textsf{ms}
 \end{array}
 \right.
 \end{equation}
 Triggering event of timestamp $t_0$ closest to a $t_0^{input}$ satisfying this condition are considered as having properly triggered.
 
+{\color{red} nuance nece}
 It is important to note that this trigger cut is specific to simulated pulses. In order to reproduce such a study with real pulses can only be done if we know the exact time of the energy deposit in the crystal. Access to this piece of information is impossible in this work using either an AmBe neutron source or the gamma calibration peak of the germanium as both this source are based on the intrinsically stochastic process of radioactive decay. However, the use of controlled source of particles could be envisioned:
 \begin{itemize}
 	\item facing the germanium crystal inside the cryostat, an optical fiber linked to a pulsing LED could be used as a repetitive source of electronic recoil.
@@ -620,7 +705,7 @@ Now that we have selected the simulated pulses which properly triggered, the ent
 \end{figure}
 
 
-\subsubsection{Band Contamination Correction}
+\section{Band Contamination Correction}
 
 {\color{red} DISCLAIMER: Proper paragraph with mathematical expression coming later. For the moment, just an idea dump}
 
@@ -695,7 +780,7 @@ First, we should know what amount of events in each bins of the NR band correspo
 We now know the weight, and the number of events,associated to each components of the ER background modelization. Thus, we have now access to the number of simulated events of the 1.3keV, 10.37keV and flat ER population allocated to the NR band. These numbers are therefore substracted from the NR band and added to the ER band. The recoil energy spectrum corresponding to the ER and NR bands are now corrected of cross-contamination for both configuration Background and Calibration.
 
 
-\subsubsection{Efficiency cut correction}
+\section{Efficiency correction}
 \label{par:efficiency}
 
 Up until this section, the presented analysis has mainly pruned the initial experimental events with different cuts. In the end, only a fraction of all the events that did happened into the detectors did triggered, passed the cuts and are used to estimate the NR and ER background. In order to obtain the initial number of recoil in the detector it is necessary to correct the energy spectra with the efficiency of each cuts.
@@ -706,7 +791,9 @@ In the presented analysis, a cut is essentially a binary classification. This me
 In this work, the cuts were chosen to minimize the amount of false passing events, which might otherwise lead to an incorrect estimation of the neutron background. This choice also impose a possibly high amount of false negative. The efficiency of a cut in the $i$-th bin is defined as:
 
 \begin{equation}
-	Eff_{i} = \frac{ N_i\left( \textsf{true passing} \right) }{ N_i \left( \textsf{true passing} \right) + N_i \left( \textsf{false discarded} \right) }
+Eff_{i} 
+= \frac{ N_i\left( \textsf{true passing} \right) }{ N_i \left( \textsf{true passing} \right) + N_i \left( \textsf{false discarded} \right) }
+= \frac{ N_i\left( \textsf{true passing} \right) }{ N_i (\textsf{injected pulses})}
 \end{equation}
 
 with $N(A)$ corresponding to the number of events for the one of the four combination $A$.
@@ -724,9 +811,11 @@ The figure \ref{fig:cut-efficiency} presents the efficiency factor of each cut f
 
 The trigger cut, defined in section \ref{par:livetime-cut}, aims at selecting the simulated events that triggered during the optimal filtering pre-processing step in section \ref{par:of-processing}. Its efficiency is an estimation of the livetime of the detector, which is the fraction of the time that the detector was available to register an event. For each combination presented in figure \ref{fig:cut-efficiency}, this efficiency is dropping at the lowest energies. This can be explained by the screening of the low energy by events of higher energies. This explanation even holds for the rest of the energy range. However, one can note the step in efficiency at about 10keV for the ER recoil and 15keV for the NR recoil. Let recall that the germanium crystal of RED80 was neutron-activated which results in a high rate of 10.37keV X-ray calibration events. These events are screening the events of energy lower than $10.37keVee$ corresponding to $10.37keV$ for the ER recoils, and about $15keV$ (precision required here !!!) for the NR events. All-in-all, the asymptotic efficiency of the livetime cut is about $70\%$ for the Background configuration, meaning that the detector is not available for proper data taking half the time! This is symptomatic from an above-ground experiment with minimal shielding which is subject to the natural radioactivity and cosmic rays inducing recoils triggering in the detector and screening other recoils. As for the Calibration configuration, this asymptotic efficiency is a lower $50\%$ as the neutron source is facing the detector and adding to the total rate of event in the detector.
 
+{\color{red} Need to link this to the window length of 1s. Because a shorter window length would increase the livetime at the cost of the resolution i think.}
+
 The quality cut, defined in section \ref{par:quality-cuts} discards the events with a possibly problematic energy reconstruction. With this added cut, the efficiency drops to approximately $13\%$ for the Background configuration and $3\%$ for the Calibration configuration. We also note that the step assigned to the screening by the 10.37keV calibration events has vanished. This is explained by considering that all the events presenting a pile-up effect (usually with a 10.37keV X-ray recoil) were discarded, as mentioned in section \ref{par:quality-cuts}. As the total event rate is higher for the Calibration configuration, the pile-up effect affects more events and thus the quality cut is pruning more than for the Background configuration.
 
-The charge conservation cut effect seems marginal for the NR recoils and the lower-half of the energy range in the case of ER recoils. The slight suppression of the higher-half of the ER recoils spectra could be attributed to the broad ray-like ionization of the crystal due to muons with higher chances to produce electron-holes pairs in the corners of RED80 where charge collection is hazardous (see Chapter \ref{Electrodes}).
+The charge conservation cut effect seems marginal for the NR recoils and the lower-half of the energy range in the case of ER recoils. The slight suppression of the higher-half of the ER recoils spectra could be attributed to a more significant trapping of the electric charges in the crystal (see Chapter \ref{Electrodes}).
 
 The fiducial cut then comes into play and have a significant effect on all the energy range for each combination. As defined in section \ref{par:fiducial-cut}, this cut selects the fiducial events happening in the bulk of the detector crystal. The efficiency is reduced by a factor $2/3$ (precision necessary, associated plot is welcome), which could be attributed to fiducial volume of RED80 (link with chapter Electrodes ?).
 
@@ -745,12 +834,15 @@ The histogram of the events passing all the cuts presented in figure \ref{fig:ra
 We could redraw energy spectra corresponding to this newly estimated number of recoils in the detector. However, the amount of events depends on the exposure of the detector as well as the presented data analysis. Normalization of the histogram is necessary to expressed the measurements independently from the experimental setup and the analysis.
 
 
-\subsection{Normalization of the energy spectra}
+\section{Normalization of the energy spectra}
 
 From experimental data taken with the detector RED80 over a time span of several days, and with a proper processing and analysis of this data, we were able to estimate the number of electronic recoils and nuclear recoils that happened in the detector.
 The amount of recoil does depend on the nuclear and electronic background associated with the experimental setup which we want to measure. Yet, it is also proportional to the exposure of the detector as well as the bin width considered for the analysis.The bin width $W_i$ was previously discussed in section \ref{par:bin-width} and is used now for this normalization.
 
-The exposure corresponds to the mass of the detector multiplied by its running time. The latter was calculated in the table \ref{tab:stream-glitch-time-cut} with a period of $T^{\textsf{Calibration}} = 75.60 \textsf{hours} = 3.150 \textsf{days}$ for the Calibration configuration and $T^{\textsf{Background}} = 35.93 \textsf{hours} = 1.497 \textsf{days}$ for the Background configuration. These time length were obtained by removing periods where the detector was not taking data, considering only the livetime as discuss in section \ref{par:data-format}. The same concern can be expressed concerning the mass of the detector: by definition the crystal is the only part of the detector used as absorber and contribute to the exposure of the detector. If we want to be even more rigorous, we could say that some fraction of the crystal would not contribute to the exposure. For example, it is known that event happening on the surface of the crystal are subject to edge effects which alter the signal induced by a recoil, discarding it from the analysis through the quality cuts or the charge conservation. Nevertheless, as these surface are entirely negligible, we can consider the mass of the detector to be the mass of the germanium crystal: $m_{Ge} = 38 \textsf{g} = 0.038 \textsf{kg} $.
+The exposure corresponds to the mass of the germanium crystal: $m_{Ge} = 38 \textsf{g} = 0.038 \textsf{kg} $ multiplied by the running time of RED80. The latter was calculated in the table \ref{tab:stream-glitch-time-cut} with a period of $T^{\textsf{Calibration}} = 75.60 \textsf{hours} = 3.150 \textsf{days}$ for the Calibration configuration and $T^{\textsf{Background}} = 35.93 \textsf{hours} = 1.497 \textsf{days}$ for the Background configuration. These time length were obtained by removing periods where the detector was not taking data, considering only the livetime as discuss in section \ref{par:data-format}. 
+
+%{\color{red}Just accept a mass of 38g, measured by the entreprise mirion, maybe add some precision with uncertainty if necessary. Because what i am tryig to discuss here is already taken into account in the fiducial cut paragraph}
+%The same concern can be expressed concerning the mass of the detector: by definition the crystal is the only part of the detector used as absorber and contribute to the exposure of the detector. If we want to be even more rigorous, we could say that some fraction of the crystal would not contribute to the exposure. For example, it is known that event happening on the surface of the crystal are subject to edge effects which alter the signal induced by a recoil, discarding it from the analysis through the quality cuts or the charge conservation. Nevertheless, as these surface are entirely negligible, we can consider the mass of the detector to be the mass of the germanium crystal: $m_{Ge} = 38 \textsf{g} = 0.038 \textsf{kg} $.
 
 The presentation of the measurement of the neutron and electronic background is done with the "event rate" quantity expressed in events/kg/keV/days. The event rate $\mathcal{R}_i^A$ in the $i$-th bin for the combination $A$ is expressed as:
 
@@ -763,7 +855,7 @@ with $\mathcal{M}_{i}^{A}$ the estimated number of recoils (from equation \ref{e
 The four event rates corresponding to each combination of recoil type and configuration are presented in figure \ref{fig:background-measurements}. 
 The event rates associated with the neutron background recoils are plotted in deep blue and light sky blue for the Calibration and the Background configuration respectively. We see that the event rate of the Calibration is two order of magnitude higher than for the Background configuration. The reference value is the event rate level at the lowest energies, which is about $10^5$ Counts/keV/kg/days for the Calibration and $10^3$ for the Background. This is expected (and reassuring) as the AmBe neutron source was only irradiating the detector during the Calibration configuration. Both event rates follows a "kinematic recoil distribution" (precision necesary here!!) as expected from thermalized neutron background (ref necessary). 
 
-The event rates corresponding to electronic recoil background is plotted is red and orange for the Calibration and Background configuration respectively. As expected, the ER background follow a mixture distribution whose components are the normal distribution of the 1.3keV and 10.37keV calibration lines of the germanium and the uniform distribution of the Compton background. We see that while the amplitude of the calibration peaks is approximately the same for both configurations, the flat Compton background is greater by a factor two for the Calibration compared to the Background. This can be explained by the higher neutron flux which produces X-ray by interacting with the lead shielding of the cryostat.
+The event rates corresponding to electronic recoil background is plotted is red and orange for the Calibration and Background configuration respectively. As expected, the ER background follow a mixture distribution whose components are the normal distribution of the 1.3keV and 10.37keV calibration lines of the germanium and the uniform distribution of the Compton background. We see that while the amplitude of the calibration peaks is approximately the same for both configurations, the flat Compton background is greater by a factor two for the Calibration compared to the Background. This can be explained by the higher neutron flux which produces gamma rays by interacting with the lead shielding of the cryostat.
 
 Comparing the nuclear recoil background and the electronic recoil background, we see that the NR recoil is predominant over the Compton background from $\mathcal{O}(10keV)$ in the Background configuration. This means that at higher energies, the main component of the energy spectrum is the Compton background, which is typically observe in the past Direct Dark Matter Searches. However, the neutron background is becoming the main component of the energy spectrum at lower energy. This means that by improving their energy resolution, the Direct Dark Matter experiments should now prepare for this new NR background and adapt their shielding. 
 
@@ -775,11 +867,11 @@ Comparing the nuclear recoil background and the electronic recoil background, we
 \end{figure}
 
 
-\subsection{Measurement of the ILL neutron background}
+\section{Measurement of the ILL neutron background}
 
 The neutron background measurements at the IP2I cryostat with the RED80 38g germanium detector is used to extrapolate the neutron background that will affect the Cryocube array of germanium detector in the RICOCHET cryostat next to the nuclear reactor of the ILL. Indeed, the knowledge of this background is vital for RICOCHET as it is expected to constitute the main source of neutron recoil events that will screen the nuclear recoil coming from the CENNs process.
 
-While the neutron background was measured at the ILL with He3 detectors (with multiple nuclear reactor activities), this technology is only sensitive to energies higher than $\mathcal{0}(100)$keV. A way to link the neutron background at high energy with the neutron background at low energy is to measure the same neutron background with the two technologies of detectors.
+While the neutron background was measured at the ILL with He3 detectors (with multiple nuclear reactor activities), this technology is only sensitive to energies higher than $\mathcal{O}(100)$keV. A way to link the neutron background at high energy with the neutron background at low energy is to measure the same neutron background with the two technologies of detectors.
 This reference neutron background measurement is the one at the IP2I cryostat facility. Measurement at low energy was presented in this section while measurement at high energies were taken with the He3 detector in place of the cryostat, with the same positions of the AmBe neutron source, leading to the two Calibration and Background configuration.
 
 The comparison of the high and low energy spectra should be relative (why?) between the Calibration and the Background configuration. For this, we use the nuclear recoil event rate of both configuration integrated of an energy span. The ratio of the integration in the interval $[2-50]$keV of the nuclear recoil energy spectra in Calibration and Background is:
@@ -799,6 +891,28 @@ The ratio obtained by the He3 detectors were:
 
 {\color{red} Interpretation, conclusion... Waiting for the final result for my analysis.}
 
-\subsection{Study of the Heat-Only events}
+\begin{equation}
+E_R
+= E_{kin}^N \frac{ 4 m_N m_{Ge} }{ \left( m_N + m_{Ge} \right)^2 } \cos^2(\theta)
+\approx E_{kin}^N \frac{ 4 m_N }{ m_{Ge} } \cos^2(\theta)
+\approx \frac{4}{73} E_{kin}^N \cos^2(\theta)
+\approx \frac{1}{20} E_{kin}^N \cos^2(\theta)
+\end{equation}
+This equation means that a neutron with a kinematic energy of $E_{kin}^N = 200$keV can produces at most a nuclear recoil of energy $E_R = 10$keV.
+
+\section{Study of the Heat-Only events}
 
 {\color{red} Work ongoing, Coming soon! free DLC}
+The Heat-only events can be induced by several known process:
+\begin{itemize}
+	\item recoil in the NTD passing the Quality cuts (usually at the lowest energy)
+	\item event with a quenching factor $Q=0$ induced by a surface electronic recoil (usually a electron from a $\beta$ decay)
+\end{itemize}
+However, these processes alone can not explain the observations. Some ideas:
+\begin{itemize}
+	\item crystal cracks
+	\item release of energy stocked by inelastic nuclear recoil in the crystal lattice
+	\item ???
+\end{itemize}
+
+\section{Rejection and Leakage}
