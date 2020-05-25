@@ -244,6 +244,9 @@
 %	COLOURS
 %----------------------------------------------------------------------------------------
 
+%% Dimitri: hack table and xcdraw before xcolor, or else clash option idontevenknow
+\usepackage[table,xcdraw]{xcolor}
+
 \usepackage{xcolor} % Required for specifying custom colours
 
 \colorlet{mdtRed}{red!50!black}

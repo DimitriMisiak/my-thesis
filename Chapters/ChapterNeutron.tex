@@ -148,7 +148,12 @@ Configuration                & Stream   & Started at          \\ \hline
 
 The data were initially saved as streams: the voltage value of the heat channel and the four ionization channel are saved for each time step in the acquisition with a sampling frequency of 400Hz. 
 
-{\color{red} FIGURE STREAM HEAT/IONIZATION}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth,]{Figures/Neutron/event_example.png}
+\caption{Raw signals in ADU of a triggering event.}
+\label{fig:event-example}
+\end{figure}
 
 These voltage values are extracted by an analog-to-digital conversion system and thus expressed in \textbf{A}nalog-to-\textbf{D}igital conversion \textbf{U}nit (ADU).
 These data streams are then processed by an \textbf{O}ptimal \textbf{F}iltering (OF) software called NEPAL. A filter based on the signal PSD and the noise PSD in the bolometer is applied to the stream. Time windows of 1s centered on a triggering events are selected with an amplitude threshold on the filtered stream (see Figure \ref{fig:pulse-of}).
@@ -258,8 +263,8 @@ We noticed a malfunction for the ionization channel: apparently, the sensitivity
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=6cm]{Figures/placeholder.jpg}
-\caption{Graph of the reconstructed amplitude of the ionization channels in function of their offset value. The data presented corresponds to the stream "???". Should illustrate the sensitivity degradataion going past approx 1400 ADU.}
+\includegraphics[width=\linewidth, height=6cm]{Figures/Neutron/offset_cut.png}
+\caption{Graph of the reconstructed amplitude of the triggering events on the ionization channel D in function of their offset value. The dense population of 10keV calibration events with a reconstructed ionization energy of about 60ADU let us monitor the sensitivity of the electrodes. We note that past 23000 ADU of offset, the electrodes becomes half as sensitive as before with the 10keV calibration population reconstructed at 30ADU. The red overlay span illustrates the region discarded by the offset cut.The data presented corresponds to the stream "tg18l005". }
 \label{fig:offset-problem}
 \end{figure}
 

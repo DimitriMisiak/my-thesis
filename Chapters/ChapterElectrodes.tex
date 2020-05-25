@@ -16,13 +16,666 @@ A usual impossible to solve problem which lead to a lot of trade-off in itself, 
 But hey, I could obtain some nice plots and tables, check them out.
 
 
-\section{Crosstalk}
+\section{Electrodes as Sensors for the Ionization Channel}
 
-Yep, goota talk about the link between the crosstalk on the ionization channels and the capacitance term between those electrodes.
+\subsection{Basics of the Ionization channel}
+
+The ionization channels aims at converting the ionization of the germanium into a voltage signal.
+This is done with the use of aluminium electrodes acting as the terminals of a capacitor of capacitance $C$. When collecting an electric charge $\Delta Q$, a voltage $\Delta U$ is created across the capacitor such as:
+
+\begin{equation}
+C = Q \times U \quad \Leftrightarrow \quad U \times = \frac{C}{Q}
+\label{eq:capacitor-basic}
+\end{equation}
+
+A high sensitivity of the ionization channel means that the created voltage $\Delta V$ is maximized. The equation \label{eq:capacitor-basic} shows that a low capacitance $C$ of the electrodes and a high collection of electric charge $\Delta Q$ increase the ionization channel response. While the amount of electric charge $\Delta Q$ can depend of the electric field shape, in the case of a theoretically perfect charge collection, the number of electron-hole pairs created and collected only depends on the recoil energy $E_R$ of the interacting particle $i$ and the associated quenching factor $Q^i(E_R)$. This factor depends only on the material used as absorber, in our case Germanium.
+The capacitance depends on the design of the detector, and is the one of the main quantities used to quantify the performance of a detector design.
+
+
+\subsection{Germanium as Semiconductor}
+
+The material used as absorber for the detectors is semi-conducting High Purity Germanium [ref?].
+This paragraph focuses on its characteristics and also compares it to materials used by others experiments using bolometers.
+
+The use of semi-conducting Germanium as an absorber was first proposed by Taverdale? and Evvan [80, Emeline].
+Along with an increase in temperature, a semi-conducting germanium also features a phenomenon of ionization caused by a particle interaction. Such electronic and nuclear recoils form electron-hole pairs of average energy $\epsilon = 3 eV/pair$. This energy corresponds to the gap energy separating the valence and conduction electronic bands in the germanium in its semi-conducting state accessible for temperature below 77K.
+
+In order to understand the physical properties of a semi-conductor, we can consider the theory of energy bands. In a solid material, at rest electrons are occupying the lowest state of energy according to their fermion nature. This lowest state of energy are strongly linked to the nucleus, forming the valence electronic band of energy. Higher energy states are able to interact with neighboring atoms and compose the conduction electronic band of energy.
+conducting, not conducting, semi-conductor. Small gap. blablabla
+
+The semi-conducting properties of a germanium crystal heavily depends on the impurities affecting it. With the Germanium element being of valence 4, there exist two kind of impurities:
+\begin{itemize}
+	\item acceptor impurities of valence 3 producing a p-type germanium,
+	\item donor impurities of valence 5 producing an n-type germanium.
+\end{itemize}
+These impurities creates intermediary energy steps in the semi-conducting germanium band gap accessible to electric charges (as seen in figure \ref{fig:conduction-bands}). The presence if this intermediate accessible energy bands has several consequences on the ionization channel. It reduces the energy necessary to create an electron-hole pair, thus creating additional noise and biasing for the ionization channel. Then, it creates a trapping phenomenon which prevent electric charge carriers from reaching the electrodes. With trapped charges in the crystal, a counter electric field slowly generates, reducing the sensitivity of the electrodes. Finally, these impurities lower the global resistivity of the germanium crystal and increase the leakage current.
+The semi-conducting germanium use as absorber thus should contain the lowest amount of impurities in order to have a detector with good performances.
+The study of the trapping in EDELWEISS detector and the impact of impurities is presenting in [ref quentin 80].
+We define $N_a$ and $N_d$ as the number of acceptor and donor impurities respectively. We  can have access (how?) to the absolute difference of this quantities $|N_a - N_d|$ which determine the number of available charge carriers.
+The material used as absorber is High-Purity Germanium (HPGe) with an estimated:
+$$ 10^{9} < |N_a - N_d| < 10^{10} \textsf{cm}^{-3}$$
+which corresponds to less than one impurity atom for $10^{12}$ germanium atoms. With this material, low leakage currents of few pA can be achieved for the usual operating  electric field range of a few V/cm.
+
+Ok, so here might be some mumbo jumbo concerning the p-n junction in a semi-conductor. Is it useful ? idk.
+A recurring term is "depletion depth" which apparently is inversely proportional to the impurity concentration.
+A germanium crystal with good performance should present a high resistivity obtainable with a high depletion depth.
+As a result, the EDELWEISS and RICOCHET experiment use high purity germanium (HPGe) with special treatment [ref?] leading to a low impurity concentration of less than $10^{10}$ atoms.cm${-3}$ (1 impurity for $10^{12}$ germanium atoms) whereas a normal germanium crystal possesses a concentration of about $10^{13}$ atoms.cm${-3}$.
+
+Comparing the germanium to silicium:
+\begin{itemize}
+	\item higher Z, so better quenching factor [lindhard]
+	\item denser material, better for exposure
+	\item low impurities, big depletion region
+	\item low ionization energy (gap?)
+	\item high conductivity (?)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/conduction_bands.pdf}
+\caption{Scheme of the conduction bands for semiconductor, insulator and conductor materials.}
+\label{fig:conduction-bands}
+\end{figure}
+
+
+\subsection{Electric Charge Drifting in Crystal}
+
+{\color{red}
+Alex B. biblio here.
+Also explainin trapping, charge collection.
+}
+
+The study of charge migration in EDELWEISS germanium crystal is presentend in [ref Emeline 82] taking into account the crystallographic structure of the germanium crystal. In this study, Alex.B simulates numerically the drifting of eletrons and holes in a 200g FID Edelweiss detector with bulk interaction of gamma-rays of energy 348keV. The charge trajectories are presented in the figure \ref{fig:charge-drifting}. He also follows the generation of the voltage signal on the electrodes. This is consistent with Ramo field theory which will be described later.
+
+When interacting with the atoms of a germanium crystal, a particle deposits a so-called recoil energy. The word "recoil" references to the elastic diffusion of the incoming particle on a germanium nuclei, this is a nuclear recoil, or the elastic diffusion of the electronic cloud of a germanium atom, this is an electronic recoil. A fraction of the recoil energy is used for the creation of electron-hole pairs, this process is known as ionization. This fraction is called quenching factor $Q$ whose value depends on the recoil type, the incoming particle, and the recoil energy. When a electron-hole pair is created, a valence electron is going into the conducting band of the semi-conducting germanium crystal (as illustrated in the figure \ref{fig:conduction-bands}) while a hole appears in the valence band. Following a recoil, electrons can excited with energies much greater than the germanium gap energy. However, such electrons relaxes by phonon emission and creation of new electon-hole pairs. We can consider that after relaxation, the number of electron-hole pairs $N^j$ induced by a recoil of type $j \in {e(lectronic), n(uclear)}$ is expressed as:
+\begin{equation}
+\label{eq:number-pairs}
+N^j = Q^j \left( E_R \right) \frac{E_R}{\epsilon}
+\end{equation}
+with $\epsilon$ the average energy necessary for the formation of an electron-hole pair and $Q^j$ the quenching factor function of $E_R$ the recoil energy.
+
+The average energy $\epsilon$ contained in a pair is greated than the germanium gap band of $0.67\textsf{eV}$ as it also take into account the momentum associated to the interaction between the pair and the crystal. The figure \ref{fig:band-structure} represents the lower energy of the valence band and the higher energy of the conduction band in a germanium crystal depending on the orientation (orientation of what ? germanium crystallography, electron momentum ?). While the absolute lowest energy of the conducting band, at [111] and the highest energy of the valence band, at [000], are separated by the germanium gap energy of $0.67\textsf{eV}$, this extremum does not correspond to the same orientation $\bm{k}$, the germanium gap is indirect. An electron can transition into the conducting band with the transfer of a momentum $\bm{k}$ from the phonon in order to respect the conservation of momentum and energy (as described in [ref quentin 87]). In the end, the average energy of a pair in germanium is estimated to [ref necessary]:
+\begin{equation}
+\label{eq:energy-pair}
+\epsilon = 3 \textsf{eV}
+\end{equation} 
+
+The number of created pairs $N^j$ is subject to fluctuation and thus impose itself as an intrinsic limit to the resolution of the ionization channel. The number of pairs $N^j$ should be expected to follow a Poisson distribution of standard deviation $\sigma(N^j) = \sqrt{N^j}$. However, the observed fluctuation are lower than expected and could be explained by a correlation of the relaxation process of the phonons and electron-hole pairs. The paper [ref 85 quentin] propose a standard deviation expressed as:
+\begin{equation}
+\sigma(N^j) = 2.35 \sqrt{F \epsilon E_R / Q(E_R)}
+\end{equation}
+with an introduced Fano factor $F$ of about 0.1 for the germanium. Considering the current range of ionization channel resolution, the fluctuation of the number of pairs created by ionization could be limiting with $\sigma(N^j) \approx 300\textsf(eV)$ which could be obtained for (electronic) recoil energy greater than $300\textsf{keV}$. As we are interested in the lowest energy range and the experiments presented in this work use calibration peaks of energy $\approx 10keV$, the impact of these fluctuation are negligible (especially considering other effects such as the trapping, the electronic noise, etc..).
+
+As will be seen in the next paragraph, the voltage signal generated at the electrodes is based on the charge movement and is only partially affected by the fact that the charge is indeed collected by the electrode. The signal last a few microseconds with a speed of the charge carrier of a few cm/$\mu$s.
+Also, the electrons tends to travel following inter-valleys in the crystal with a certain angle while the hole travel independently of the crystal orientation. This is problematic for a good charge collection and "herding" of the electron by the electric field.
+
+
+\begin{figure}
+\centering
+\includegraphics[height=0.5\textheight]{Figures/Electrodes/band_structure.pdf}
+\caption{Scheme of the band structure in a germanium crystal.}
+\label{fig:band-structure}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[height=0.5\textheight]{Figures/Electrodes/charge_drifting.pdf}
+\caption{Scheme of the band structure in a germanium crystal.}
+\label{fig:charge-drifting}
+\end{figure}
+
+
+\subsection{DAQ and electronics for ionization}
+
+The electronics used for the ionization and the heat channel uses Junction Field Effect Transistor (JFET) which are operated at a low temperature of 100K inside the cryostat.
+Some mumbo jumbo about the bolo-box (is it necessary ?).
+The figure \ref{fig:electronics-scheme} show the scheme of the cold electronics for the heat channel (on the left) and the ionization channel (on the right).
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Figures/Electrodes/electronics_scheme.pdf}
+\caption{Scheme of the cold electronics readout for the heat channel (left) and the ionization channel (right)}
+\label{fig:electronics-scheme}
+\end{figure}
+
+In most experiments (source?), the ionization channel readout is done with the integration of the drifting charge current on the feedback capacitance of a charge amplifier. However, the EDELWEISS electronics directly measures the electric potential of the electrodes with a voltage amplifier. As each electrode is considered as a terminal of a capacitor $C_{electrode}$, the measured voltage is:
+\begin{equation}
+U = \frac{Q}{C_{electrode}}
+\end{equation}
+with $Q$ the drifting charge seen by the electrode.
+Compare with a charge amplifier, the voltage amplifier does not involve any resistor in the amplification scheme, resulting a lower noise. However, the use of a voltage amplifier is only possible with a low leakage current, lower than 0.1fA (good for EDELWEISS, but is this possible for RICOCHET with operation on surface).
+
+The ionization channel readout being based on the collection of electric charges, the renewal of the electric potential of the electrodes is necessary to maintain the voltage bias of the detector and to prevent the signal from leaving the readout range [-32000, +32000]. This operation, called a “reset”, consists in linking each electrodes to a polarization circuit of fixed electric potential. The linking is assured with mechanical relays (motivated by publication?) represented as a switch on the electronics scheme. The period of the resets is of a few seconds and should be adjusted empirically to the operated detectors and the event rates. In the case of surfaces operation at IP2I, the event rate is high and lot of charges are accumulated which needs for a shorter period than an underground operation at the LSM.
+One should note the double switch of the mechanical relays accompanying each reset induces an artifact signal on both the heat and ionization channel. While easily discriminable from real events, these artifact signal result in dead time during which the detector is not available for valid event recording. Thus a short period of reset is not wanted.
+
+While the majority of the electric charges produces by the ionization process are collected by the electrodes, some become trapped in the crystal (impurities) or on the surfaces of the crystal. These trapped charges are slowly accumulating and creating a counter electric field in the absorber. This results in a lower electric field perceived in the bulk of the detector which hampers a correct charge collection and decreases the sensitivity of the electrodes.
+A procedure called “maintenance” is used to periodically shake up the trapped charges. These maintenances prevent, or at least slow significantly, the counter field build-up in the detector. A maintenance consists of a minute of multiples relay switches and relay changeovers. This procedure continuously invert the voltage bias in the detector, eventually destabilizing the trapped charges which are left to drift and collection in the electrodes.
+During a maintenance, the detector is not available for data taking. The frequency of maintenance should be low to lower the dead time. For above ground operation, the usual maintenance period is of about 30 minutes and should be empirically adjusted to the detector and the event rate.
+
+While a maintenance shakes up the majority of the trapped electric charges, a small fraction is not affected and participates to build up the counter field. These remaining charges are deeply trapped and need for a stronger perturbation to be freed. The detector is therefore periodically submitted to a procedure called "regeneration" aiming at a full reset of any passive electric field in the germanium crystal. With the electrodes being grounded, an intense gamma-ray radioactive source irradiates the detector. The high frequency of high energy recoils produces ionization in the whole crystal which eventually neutralize the accumulated space charges. 
+As for the reset and maintenance procedures, the period between two regenerations should be empirically adjusted to the measured charge accumulation while not too frequent to avoid supplementary dead times. For above-ground operation, regeneration are realized ever two days (with a 1Cu cesium source).
+
+Between each maintenance, the detector stays floating. The common noise can be subtracted when considering the charge conservation for all the electrodes:
+\begin{equation}
+\label{eq:charge-conservation}
+A + B + C + D = 0
+\end{equation}
+With a linear combination of the raw ionization channels (A,B,C,D), we obtain new quantities (A’, B’, C’, D’) corrected from this common noise:
+\begin{equation}
+\label{eq:common-noise-subtraction}
+A’ = \frac{3}{4} A - \frac{1}{4} \left( B + C + D \right)
+\end{equation} 
+The decrease of the noise level can be appreciated in the figure \ref{fig:ionization-noise} showing the noise spectrum affecting the different ionization channels before and after linear combination.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Figures/Electrodes/ionization_noise.pdf}
+\caption{Average noise amplitude (in nV / Hz ) as a function of frequency of the
+ionization channel for an EDELWEISS detector. The black histogram corresponds to the
+noise before the correlated noise correction and the purple histogram to the noise after
+the correction. Left: frequencies below 500 Hz. Right: high frequency part. [Emeline caption]}
+\label{fig:ionization-noise}
+\end{figure}
+
+The ionization channel readout is sampled at an initial 100kHz. This means the period of the  measurement points is 10$\mu$s which greater than the estimated time span of an ionization signal of a few $\mu$s [ref necessary Alex.B ?]. As a result, an ionization signal is recorded as an Heaviside function. No information can be obtained on the shape of the signal.
+The high readout sampling was historically chosen in EDELWEISS for the purpose of triggering on the ionization channel with a good temporal resolution (is it true ?). The highly sampled ionization signal is then averaged in order to produce a signal of frequency $f_s$ of about 400Hz. This lower sampling is able to record the information contained in the ionization Heaviside signal (its amplitude mainly) while being lightweight in term of disk space, which is essential considering the recording and processing resources at our disposal. The saved ionization signal of sampling frequency $f_s$ is composed of points which are averages of $100kHz/f_s$ points. The saved signal is therefore a skewed Heaviside-like function (more info needed? Is this work using this fact?).
+
+Should I talk about the HEMT technology ? The expected resolution and noise level ?
+
+
+\subsection{Aluminum Deposition}
+
+*Stefanos biblio here.*
+
+The electrodes of the detectors are made by depositing aluminium on the surface of the germanium crystal. The aluminium deposition is carried out by the research group at CSNSM at Orsay. The deposition processes are still being improved.
+
+The germanium crystal is placed in vacuum chamber where its surface is altered with beams of vaporized atoms (hydrogen, aluminium, xenon…). 
+In order to prevent the surface leakage, a highly resistive layer is created under the aluminium electrodes. It is a 60 to 80 nm deep amorphous layer of hydrogenated germanium.
+
+Two techniques are used for the detectors presented in this work: evaporation with mask and the (photo)lithography.
+A solid mask can set between the beam source and the crystal in order to shape the altered surface. In the case of concentric circular electrode, the mask (presented in figure {fig:mask-evaporation}) consists in several curved slits which allow the passage of vaporized aluminium. By rotating the mask during the process, the aluminium is deposited in a ring pattern on the germanium.
+Another method to control the shape of the electrode is to use photolitography. First, the whole surface of the crystal is covered with a layer of aluminium. Then, the aluminium is coated with a chemically-protective wax. The negative of the electrode pattern is carved in the wax coating with the use of lasers (hence the name of the procedure). Once done, the germanium crystal face is immersed in chemical solution reactive with aluminium. Only the aluminium protected by the wax (patterned as the desired electrode design) is left on the surface. Finally, the wax coating is removed with an other chemical.
+
+Advantages and Inconvenient of the 2 techniques ?
+-Mask during evaporation is more precise and quicker but can only be use for simple patterns  with the cylindrical symmetry of the crystal.
+-Photolitography is a longer process, and may be less precise (chemical attack of the aluminium?) but can be used for any pattern desired. Useful in the case of square grids.
+- Also, some constraints on the minimum width of the electrodes ?
+
+Leakage current exist on the surface of the crystal thanks to possible defects (ref edelweiss?). After depositing the electrodes, the bare germanium surfaces are etched with a XeF2 pulsed beam in vacuum chamber. The surface of the germanium is altered according to the following equation:
+$$Ge + 2XeF_2 \longrightarrow GeF_4 + 2Xe$$
+The xenon gas is removed and the fluoarated germanium surface is able to hold much higher voltage bias.
+
+Now that the aluminium electrodes were deposited on the germanium crystal, it is possible to proceed with the cabling. The fragility of the germanium and the shallow aluminium layers motivate the use of wire-bonding as cabling technique. 
+
+*description wire-bonding machine*
+
+In the case of simple electrodes (full planar detector), several wires link the top (and bottom) electrodes to a conductive pad on the detector copper chassis. The conductive pad is then cabled to the ionization electronics.
+With more complex design (fully interdigitized), wires are used to connect different aluminium patches, essentially imposing the same electric potential is those. With two wire bridges, It is possible to create interleaved electrodes with a biasing scheme based on the co-planar grid technique for event localisation [ref emeline 86], but more on that later.
+
+
+\subsection{Luke Neganov effect}
+
+When electric charges drift under the influence of the applied electric field in the germanium crystal, phonons are created and eventually participate to the heat signal. This process is called the Luke-Neganov [ref 63 emeline]. This phenomenon happening in semi-conductors is analogous to the Joule Effect present in conductors. 
+The drifting electrons constantly dissipate their energy to the phonons bath. As the electrons stay in motion and are eventually collected by the electrodes, the electric field must provide a work $W$ compensating the energy loss going into the heat channel.
+This work required for a single electron-hole pair is expressed as:
+\begin{align}
+W &= q_{e^{-}} \int_{ \vec{r_i} }^{ \vec{r_{e,f}} } \vec{E} d\vec{r} - q_{h^{+}} \int_{ \vec{r_i} }^{ \vec{r_{h,f}} } \vec{E} d\vec{r} \\
+&=  -e \int_{ \vec{r_i} }^{ \vec{r_{e,f}} } \frac{\partial V}{\partial \vec{r}} d\vec{r} + e \int_{ \vec{r_i} }^{ \vec{r_{h,f}} } \frac{\partial V}{\partial \vec{r}} d\vec{r} \\
+&= e \left( V(\vec{r_{h,f}}) - V(\vec{r_{e,f}}) \right)
+\end{align}
+where $q_{e^{-}} = e = - q_{h^{+}} $ represent the electric charges and $\vec{r_{i,f}}$ is the final position of the electric charge $i \in \{e^{-}, h^{+}\}$. Therefore, the energy generated by the Luke-Neganov (for a single pair) depends solely on the electric potential at the end of drift positions for the electron $\vec{r_{e,f}}$ and the hole $\vec{r_{h,f}}$.
+
+
+The Luke-Neganov effect boosts the heat channel by adding a Luke-Neganov energy $E_{Luke-Neganov}$. For a recoil of type $j \in \{ e, n\}$ generating a number of electron-pairs $N^j$, the expression of this energy is:
+\begin{equation}
+E_{Luke-Neganov} = e \sum_{i=0}^{N^j} \left( V(\vec{r_{h,f}^i}) - V(\vec{r_{e,f}^i}) \right)
+\end{equation}
+A useful, and mostly accurate, approximation is to consider that all the charges end their drift by being collected at the electrodes polarized at potential $V_+$ and $V_-$. Thus, a simpler expression of the boost in energy is:
+\begin{equation}
+E_{Luke-Neganov} = N^j e (V_+ - V_-) = N^j e \Delta V
+\end{equation}
+The Luke-Neganov effect is proportional to the number of pairs $N^j$ created in the ionization process and the voltage bias $\Delta V$ of the detector. Using the equation \ref{eq:number-pairs}, we can express the boost as a function of the recoil energy $E_R$ and the associated quenching factor $Q^j$:
+\begin{equation}
+E_{Luke-Neganov} = Q^j \frac{E_R}{\epsilon} e \Delta V
+\end{equation}
+A useful simplification is to consider that $e / {\epsilon} = 1/3 \textsf{V}^{-1}$,  and to have a final expression of the Luke-Neganov boost as:
+\begin{equation}
+\label{eq:nl-boost}
+E_{Luke-Neganov} = Q^j E_R \frac{\Delta V}{3}
+\end{equation}
+We see that for the same recoil energy $E_R$, an electronic recoil will benefits more than a nuclear recoil from the boost according to the comparison of  their quenching factor $Q^e > Q^n$. This is very important to keep in mind when reconstructing the recoil energy $E_R$ from the measured heat energy $E_{heat}$ as it is a function of the deposited recoil energy $E_R$ and the recoil type $j$:
+\begin{align}
+E_{heat} (E_R, j ) &= E_{R} + E_{Luke-Neganov} ( E_R, j) \\
+&= E_R \left( 1 + Q^j(E_R) \frac{\Delta V}{3} \right)
+\end{align}
+
+*more on that now or later ? Kevee, kevnr, use of the Ei and Ec to deduce Q and Er*
+
+
+\subsection{Shockley–Ramo theorem}
+
+[ref quentin 100 101 102]
+The signal induced on the electrodes of a detector does not corresponds to the collection of the drifting charges (when the charges reach the electrodes) but rather corresponds to the induced current starting from the moment the electron-pairs are created by a recoil. Indeed, when a charge is moving in the vicinity of an electrode, it induces an instantaneous electric current by affecting the electrostatic field lines ending on the electrode. 
+[wiki after]
+The Shockey-Ramo theorem states that the current $i$ induced on a given electrode due to the motion of a charge is given by:
+\begin{equation}
+I = E_v q v
+\end{equation}
+where $q$ is the charge of the particle, $v$ its velocity and $E_v$ the component of the electric field in the direction of $v$, under the following conditions: charge removed, given electrode raised to unit potential, and all other conductors grounded. This theorem ensues from Gauss theorem.
+This theorem can be integrated to access the induced charge on a given electrode $k$:
+\begin{equation}
+Q_k = - q \Phi_k(\vec{r})
+\end{equation}
+with $\Phi_k(\vec{r})$ the weighted potential of the electrode $k$. This weighted potential is obtained in the same conditions as $E_v$. (figure of such potential for an electrode?).
+In the case of a drifting charge $q$ of initial position $\vec{r_{q,i}}$ and final position $\vec{r_{q,f}}$, the total integrated charge induced on the electrode $k$ is:
+\begin{equation}
+Q_k = q \left( \Phi_k (\vec{r_{q,f}}) - \Phi_k (\vec{r_{q,i}}) \right)
+\end{equation}
+The Shocley-Ramo theorem benefits from the superposition theorem such that it is possible to express the signal induced by a number $N$ of electron-hole pairs:
+\begin{align}
+Q_k &= \sum_{n=1}^{N} \left( Q_k^n(e^-) + Q_k^n(h^+) \right) \\
+&= \sum_{n=1}^{N} -e \left( \Phi_k^n (\vec{r_{e,f}}) - \Phi_k^n (\vec{r_{e,i}}) \right) +e \left( \Phi_k^n (\vec{r_{h,f}}) - \Phi_k^n (\vec{r_{h,i}}) \right)
+\end{align}
+When considering the drifting of a single electron-hole pair, the initial position is the same for both charges and thus: $\Phi_k (\vec{r_{e,i}}) = \Phi_k (\vec{r_{h,i}})$.
+The signal induced by $N$ electron-hole pairs is simplified to:
+\begin{equation}
+Q_k = e \sum_{n=1}^{N} \left( \Phi_k^n (\vec{r_{e,f}}) - \Phi_k^n (\vec{r_{h,f}}) \right)
+\end{equation}
+It solely depends on the weighted potential of the final position of the charges. While the vast majority of charges ends up collected in the electrodes and participate with a weighted potential of $\pm 1$, some charges are trapped and so participate to the signal with the weighted potential corresponding to the position of the trap, which reduces the induced signal.
+If the electrodes of the detector form a Faraday cage, all the field lines end on the electrodes and none is leaving the crystal. As a result, when considering a unique charge $q$ in the crystal, the total weighted potential $Q_T$ is:
+\begin{equation}
+\label{eq:charge-conservation}
+Q_T = Q_A + Q_B + Q_C + Q_D = -q
+\end{equation}
+When considering $N$ electron-holes pairs, the Faraday cage imposes the charge conservation:
+\begin{equation}
+\label{eq:charge-conservation}
+Q_T = Q_A + Q_B + Q_C + Q_D = \sum_{n=1}^{N} e (1 – 1) = 0
+\end{equation}
+
+Should I include the study of the trapping by Quentin ? Some studies [103 and 104 quentin ref] were done on the dependance of the electric charge  trapping in germanium crystals. Electrons are more prone to be trapped than hole. According ti Quentin, 10 to 20% of the carriers are trapped (?). He then calculates the signal induced with trapping and also the effect of trapping as a function of the trap localization. And the impact of trapping on the heat channel.
+
+
+
+\subsection{Objective of the electrode study}
+
+Produce a good design of electrodes for 32g/38g ge detectors
+Objectives:
+Low capacitance
+High fiducial volume
+Good charge collection
+
+
+\section{Of the use of Comsol}
+
+\subsection{Axy-symmetrical} 
+
+Let's talk about the fact that I used 2D simulation which is then rotated to form a 3D simulation of cylindrical symmetry.
+
+2D simulations are quicker than 3D simulation.
+According to some quick tests, the simulation of a given geometry is the same in 3D or 2D.
+So yeah, using that.
+
+Maybe, search in the comsol manual and see how this is done in the equations.
+TO BE DONE.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/2D_simulation.png}
+  \caption{Simulation of the concentric grid planar in 2D-axisymmetry with COMSOL.}
+  \label{fig:2D-simulation}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/3D_simulation.png}
+  \caption{Simulation of the concentric grid planar in 3D with COMSOL.}
+  \label{fig:3D-simulation}
+\end{subfigure}
+\caption{To illustrate the differences between 2D and 3D.}
+\label{fig:2D-vs-3D}
+\end{figure}
+
+\subsection{Building the geometry}
+
+Assomptions used for the simulation (like perfect cylindrical symmetry)
+No simulation of the NTD, just test in 3D, no impact if put on electrode, but discussion and checking are necessary for that.
+
+\subsection{Meshing}
+
+Did I told you that comsol is a finte elements software ? no ? well, it is !
+These finite elements are small section of the geometric space where the calculationb of the physics quantities are calculated discritely. These finite elements are defined by the meshing, which divide the space. However, there is a way to divide space more efficiently than others. Like attribuating large portion of space where the physical quantities are quite constant and small portions where they are prone to a lot of fluctuation.
+And guess what I did with this fabulous option ?
+yeah, I kept it on full automatic for physics. Guess I should dig a bit deeper to see what this is all about. Like, size a mesh simplex according to the smallest feature in the geometry and things like that.
+TO BE DONE.
+
+\subsection{Capacitance Calculation}
+
+Everybody know that the capacitance $C$ links the voltage of an electrode $V$ and $Q$ the  charges accumulated in this electrode:
+\begin{equation}
+C \times U = Q
+\end{equation}
+
+This is quite basic, but no so evident when their is more than two electrodes with different electric potential in a system. That is why it is hopefully possible to generalized the notion of capacitance to more electrodes with the lumped matrix capacity or the Maxwell capacity matrix (consider whatever suits you, they mean the same).
+
+INSERT MATRIX HERE
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/lumped_capacitance_scheme.png}
+\caption{Scheme representing the capacitance between each electrodes in electric field simulation.}
+\label{fig:lumped-capacitance}
+\end{figure}
+
+How does comsol calculate this lumped capacitance matrix ?
+Well, it considers the equation i just wrote before, and fixes all except one electrode to zero and sweep over the electrodes with 1V of potential. Just with that, the software is able to deduce all the terms of the matrix.
+Yeah, i should read more about that in the manual to see if this is done like that. But it is. yep.
+TO BE DONE.
+
+
+CROSSTALK
+Yep, gotta talk about the link between the crosstalk on the ionization channels and the capacitance term between those electrodes.
 We can simply say for now that the higher the capacitance is and the higher the crosstalk will be. However, it should be very interesting to quantify the link between these two quantities.
 Linking the crosstalk matrix and the capacitance matrix, and be able to compare that experimentally.
 
-\section{Appendix: Detectors fields lines}
+ANALYSIS TO BE DONE
+
+
+\subsection{Estimation of the Theoretical Fiducial Volume}
+
+In this subsection, i explain how to estimate the fiducial volume.
+Draw streamlines crossing the z=0.
+Exporting to image png.
+Using graphical analysis with python and rescaling to take into account 2D-axisymmetry.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_comsol.png}
+  \caption{Drawing streamlines in COMSOL}
+  \label{fig:streamlines-comsol}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_corrected.png}
+  \caption{for 4*4mm NTD}
+  \label{fig:streamlines-corrected}
+\end{subfigure}
+\caption{Illustration of the estimation of the fiducial volume.}
+\label{fig:fiducial-volume-estimation}
+\end{figure}
+
+\subsection{General region for the charge collection in a detector}
+
+WITH A SCHEME
+To illustrate the different region of the detector differing by the expected charge collection.
+
+\begin{itemize}
+	\item collecting zone
+	\item veto zone
+	\item guard zone
+	\item lost zone (streamlines exiting the crystal)
+	\item in between all of them, either low electric field (bad for trapping and recombination) or unclear frontier (when thinking of the recoil as a charged firework).
+\end{itemize}
+
+\section{Simulated Configurations}
+
+In this section, I will talk about the different configurations that were simulated.
+These configurations can differ according to the mass of the crystal, the number of electrodes, the position and geometry of the electrodes.
+Maybe, i should describe the configurations in a kind of general way: planar, grid, ID, FID, etc.. and put the exact simulation of each detectors in the annexes. I dont really know yet.
+
+\subsection{Planar Geometry}
+
+(Like REDN1 or RED80, with planar polarization, not much runs)
+
+\subsubsection{Full Planar}
+
+Maxwell Capacitance: $11.88 \times 10^{-12}$F
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/full_planar.png}
+\caption{Scheme of the simulated full planar h10phi30 detector.}
+\label{fig:full-planar}
+\end{figure}
+
+\subsubsection{Concentric/Square Grid Planar}
+
+Maxwell Capacitance: $11.88 \times 10^{-12}$F
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/concentric_grid_planar.png}
+\caption{Scheme of the simulated concentric grid planar h10phi30 detector.}
+\label{fig:concentric-grid-planar}
+\end{figure}
+
+\subsection{Planar with Guard}
+
+Like RED80, many runs.
+
+\subsection{Interdigitized}
+
+Like REDN1, many runs.
+
+Lot of different variants here.
+
+On the presented figure, the central pad is chosen to be polarized at veto potential and the NTD thermal sensor should be glued on it.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/ID_geometry.png}
+\caption{Scheme of the simulated interdigitized detector.}
+\label{fig:concentric-grid-planar}
+\end{figure}
+
+\subsection{Fully Interdigitized}
+
+Like RED70 (no run, RIP)
+
+Presenting the FID geometry, with veto zone, collect, zone and the faraday cages effect which means that the charge collection is *really* good.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/placeholder.jpg}
+\caption{Illustrating the veto zone and the collect zone thanks to the electric field shape induced by the FID electrodes.}
+\label{fig:fid-illustration}
+\end{figure}
+
+\subsection{Comparing the different topologies}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/performance_overview.tex}
+}
+\caption{Sum-up of the performance and specificity of each electrode topology.}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\section{Influence of parameters}
+
+For each parameter, we want to study their impact on the performances of the detector.
+The fiducial volume, the electric field shape, the electric field norm and the capacitance.
+
+The fiducial volume is a number.
+The electric field shape/norm is one or two graphs.
+The capacitance is a matrix (non-diagonal term are useful to estimate the coupling between each electrodes)
+
+\subsection{Capacitance with chassis distance}
+
+*All topologies*
+
+The capacitance term between the electrodes and the ground decreases with the distance of the copper chassis. As expected by the capacitance formula of a plan capacitor.
+The capacitance term capa-capa tends to the expected value for a plan capacitor in empty space.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_chassis_distance.png}
+\caption{Graph of the capacitance terms in function of the distance between the Ge crystal and the copper chassis (concentric grid planar h10phi30 detector).}
+\label{fig:capcaitance-chassis-distance}
+\end{figure}
+
+\subsection{Capacitance with electrode spacing}
+
+*All topologies except full planar*
+
+The electrode spacing directly fixes the number of concentric circle on a plan face of the germanium crystal. As a result the curves show a saw-shaped profile corresponding to the discrete number of electrodes.
+Anyway, the global trend is that with a high spacing, there is less electrodes and less capacitance.
+
+This tells us that we want to reduce the surface of electrode on the crystal in order to decrease the capacitance. However, a lower surface of electrodes comes with a worse charge collection eventually. So trade-off time.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
+\caption{Graph of the capacitance terms in function of the electrode spacing (concentric grid planar h10phi30 detector).}
+\label{fig:capacitance-electrode-spacing}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/2x2_distance_sweep.png}
+  \caption{for 2*2mm NTD}
+  \label{fig:2D-simulation}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/4x4_distance_sweep.png}
+  \caption{for 4*4mm NTD}
+  \label{fig:3D-simulation}
+\end{subfigure}
+\caption{Graph of the capacitance terms in function of the electrode spacing (interdigitized).}
+\label{fig:2D-vs-3D}
+\end{figure}
+
+I could also mention the projection for the fid32 and fid38 that were simulated with different electrode spacing.
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/fid32_parameter_sweep.tex}
+}
+\caption{Projection of the FID32 design performance with multiple variants (collect at $\pm4$V, veto at $\mp1.5$V)}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/fid38_parameter_sweep.tex}
+}
+\caption{Projection of the FID38 design performance with multiple variants. (collect at $\pm4$V, veto at $\mp1.5$V)}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\subsection{Capacitance with the electrode width}
+
+*All topologies except full planar*
+
+As expected, increasing the width of electrodes also increases the surface of the electrodes and the capacitance of the detector.
+Some configurations are more affected than others: planar detector less affected than the interleaved electrode configurations.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
+\caption{Graph of the capacitance terms in function of the electrode width (concentric grid planar h10phi30 detector).}
+\label{fig:capacitance-electrode-width}
+\end{figure}
+
+\subsection{Potential of the veto/guard electrodes}
+
+*Planar with guard, ID and FID*
+
+When considering geometry with veto or guards electrodes, the potential of these electrodes in respect to the main collecting electrodes is a parameter.
+Changing this parameter has an impact on the shape of the streamline of the electric field in the detector.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_0.png}
+  \caption{ratio veto/collect: 0.21}
+  \label{fig:ratio-veto-0}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_1.png}
+  \caption{ratio veto/collect: 0.13}
+  \label{fig:veto-ratio-1}
+\end{subfigure}
+\caption{Illustration of the estimation of the fiducial volume.}
+\label{fig:veto-ratio}
+\end{figure}
+
+\subsection{Symmetry of the polarization}
+
+*All topologies*
+
+Checking that a symmetric polarization is better than asymmetric,
+and showing some numbers/graphs to justify that
+($\pm1$V is better than 0,2V)
+
+\subsection{Central hole/pad for NTD}
+
+*All topologies*
+
+Impact of a hole/pad for the NTD. Important for electric field shape.
+Should be decided by the experimental heat-only rate.
+
+\subsection{Corner of the crystal}
+
+*All topologies*
+
+No electrodes or electrodes on/near the corner.
+Impact of the charge collection, "dead" volume in the corner.
+
+\subsection{Equatorial distance}
+
+*Planar extreme, Planar with guard, FID*
+
+Equatorial length, discussion on charge collection/trapping/tagging on this equatorial volume.
+
+\section{Experiment with REDN1}
+
+In this section, experiment with the ionization channel of REDN1, and analysis and results and comparison with expected performances. This is based on the run61.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/redn1_ion_vs_ion.png}
+\caption{For each fiducial events of the run tk15l005, comparing the reconstructed ionization energy for each electrodes.}
+\label{fig:redn1-ion-vs-ion}
+\end{figure}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/redn1_fiducial_volume.tex}
+}
+\caption{Estimation of the experimental fiducial volume for REDN1.}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\subsection{Experimental fiducial volume}
+
+\subsection{Experimental Charge collection}
+
+\subsection{Experimental sensitivity and crosstalk}
+
+
+\section{Experiment with RED80}
+
+\subsection{Experimental fiducial volume}
+
+\subsection{Experimental Charge collection}
+
+\subsection{Experimental sensitivity and crosstalk}
+
+
+\section{Appendix: Catalog of Detectors fields lines}
 
 \begin{figure}
 \centering
