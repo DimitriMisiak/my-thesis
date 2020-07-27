@@ -273,17 +273,23 @@ In the case of a drifting charge $q$ of initial position $\vec{r_{q,i}}$ and fin
 Q_k = q \left( \Phi_k (\vec{r_{q,f}}) - \Phi_k (\vec{r_{q,i}}) \right)
 \end{equation}
 The Shocley-Ramo theorem benefits from the superposition theorem such that it is possible to express the signal induced by a number $N$ of electron-hole pairs:
+
 \begin{align}
 Q_k &= \sum_{n=1}^{N} \left( Q_k^n(e^-) + Q_k^n(h^+) \right) \\
 &= \sum_{n=1}^{N} -e \left( \Phi_k^n (\vec{r_{e,f}}) - \Phi_k^n (\vec{r_{e,i}}) \right) +e \left( \Phi_k^n (\vec{r_{h,f}}) - \Phi_k^n (\vec{r_{h,i}}) \right)
 \end{align}
+
 When considering the drifting of a single electron-hole pair, the initial position is the same for both charges and thus: $\Phi_k (\vec{r_{e,i}}) = \Phi_k (\vec{r_{h,i}})$.
 The signal induced by $N$ electron-hole pairs is simplified to:
+
 \begin{equation}
+\label{eq:ramo-induced-charge}
 Q_k = e \sum_{n=1}^{N} \left( \Phi_k^n (\vec{r_{e,f}}) - \Phi_k^n (\vec{r_{h,f}}) \right)
 \end{equation}
+
 It solely depends on the weighted potential of the final position of the charges. While the vast majority of charges ends up collected in the electrodes and participate with a weighted potential of $\pm 1$, some charges are trapped and so participate to the signal with the weighted potential corresponding to the position of the trap, which reduces the induced signal.
 If the electrodes of the detector form a Faraday cage, all the field lines end on the electrodes and none is leaving the crystal. As a result, when considering a unique charge $q$ in the crystal, the total weighted potential $Q_T$ is:
+
 \begin{equation}
 \label{eq:charge-conservation}
 Q_T = Q_A + Q_B + Q_C + Q_D = -q
@@ -296,6 +302,103 @@ Q_T = Q_A + Q_B + Q_C + Q_D = \sum_{n=1}^{N} e (1 – 1) = 0
 
 Should I include the study of the trapping by Quentin ? Some studies [103 and 104 quentin ref] were done on the dependance of the electric charge  trapping in germanium crystals. Electrons are more prone to be trapped than hole. According ti Quentin, 10 to 20\% of the carriers are trapped (?). He then calculates the signal induced with trapping and also the effect of trapping as a function of the trap localization. And the impact of trapping on the heat channel.
 
+It is now possible to know the electric charge perturbation in the detector.
+In the case of the Planar38, the charges are collected by the top and bottom electrodes. We can introduce the electric charge vector associated to the Planar38:
+
+Let's introduce the vector formalism for the electric charge $\vec{Q}$ and the electric potential $\vec{V}$ of the electrodes of a detector. Each term corresponds to a specific electrode of the detector. The Planar38 possesses two main electrodes $top$ and $bottom$. The electric charge $\vec{Q}^{PL38}$ and the electric potential vector $\vec{V}^{PL38}$ are expressed:
+
+\begin{equation}
+\vec{Q}^{PL38} =
+\begin{bmatrix}
+Q_{top} \\ Q_{bottom}
+\end{bmatrix}
+\quad
+\textsf{and}
+\quad
+\vec{V}^{PL38} =
+\begin{bmatrix}
+V_{top} \\ V_{bottom}
+\end{bmatrix}
+\end{equation}
+
+The FID38 possesses two main collecting electrodes $B, D$ and two veto electrodes $A, C$. The electric charge $\vec{Q}^{FID38}$ and the electric potential vector $\vec{V}^{FID38}$ are expressed:
+
+\begin{equation}
+\vec{Q}^{FID38} =
+\begin{bmatrix}
+Q_{A} \\ Q_{B} \\ Q_{C} \\ Q_{D}
+\end{bmatrix}
+\quad
+\textsf{and}
+\quad
+\vec{V}^{FID38} =
+\begin{bmatrix}
+V_{A} \\ V_{B} \\ V_{C} \\ V_{D}
+\end{bmatrix}
+\end{equation}
+
+With the Shockley-Ramo theorem, we can express the charge induced on the electrodes of the detectors. We consider that a recoil uses an energy $E_{Ion.}$ to create $N_p$ electron-hole pairs such that:
+\begin{equation}
+N_p = \frac{E_{Ion.}}{\epsilon} = \frac{E_{ion.}}{3 \textsf{eV}}
+\end{equation}
+
+We consider that the charges will drift in the crystal along the electric field lines and are not subject to trapping. All the electrons represents a total electric charge of $- N_p \cdot e$ while all the holes represents the opposite charge $N_p \cdot e$.
+In the case of the Planar38 detector, the polarization scheme is usually
+$$ \{top, bottom\} = \{+1V, -1V\}$$
+The electrons are collected by the top electrode, while the holes are collected by the bottom electrode. The charge perturbation vector is deduced thanks to the equation \ref{eq:ramo-induced-charge}:
+
+\begin{equation}
+\label{eq:plana38-induced-charges}
+\vec{Q}_{event}^{PL38} =
+\begin{bmatrix}
+-1 \\ 1
+\end{bmatrix}
+\cdot N_p \cdot e
+\end{equation}
+
+In the case of the FID38 detector, the polarization scheme is usually
+$$ \{ A, B, C, D \} = \{ -0.2, +1, +0.2, -1 \} $$
+Now, the electrodes upon which are collected the charges depends of the location of the recoil in the crystal. We can see on the scheme [ref scheme fid38], that the electric field forms four regions with specific collecting signatures:
+\begin{itemize}
+	\item bulk region, electrons collected by $B$ and holes by $D$
+	\item top veto region, electrons collected by $B$ and holes by $A$
+	\item bottom veto region, electrons collected by $C$ and holes by $D$
+	\item equator region, electrons collected by $C$ and holes by $A$
+\end{itemize}
+Considering the charge collection, the FID38 thus presents four type of events with specific electric charge perturbation vectors:
+
+\begin{equation}
+\label{eq:fid38-induced-charges}
+\begin{array}{rr}
+\vec{Q}_{bulk}^{FID38} =
+\begin{bmatrix}
+0 \\ -1 \\ 0 \\ 1
+\end{bmatrix}
+\cdot N_p \cdot e
+\quad \quad
+&
+\quad \quad
+\vec{Q}_{veto,top}^{FID38} =
+\begin{bmatrix}
+1 \\ -1 \\ 0 \\ 0
+\end{bmatrix}
+\cdot N_p \cdot e
+\\
+\vec{Q}_{veto,bottom}^{FID38} =
+\begin{bmatrix}
+0 \\ 0 \\ -1 \\ 1
+\end{bmatrix}
+\cdot N_p \cdot e
+\quad \quad
+&
+\quad \quad
+\vec{Q}_{equator}^{FID38} =
+\begin{bmatrix}
+1 \\ 0 \\ -1 \\ 0
+\end{bmatrix}
+\cdot N_p \cdot e
+\end{array}
+\end{equation}
 
 \subsection{Objective of the electrode study}
 
@@ -597,10 +700,10 @@ C_{N1} & C_{N2} & \cdots & C_{NN}
 \end{pmatrix}
  = 
 \begin{pmatrix}
-\sum_{j=1}^N C_{1j}^m & -C_{12}^m & \cdots & C_{1N}^m \\[0.3em]
--C_{21}^m & \sum_{j=1}^N C_{2j}^m & \cdots & C_{2N}^m \\[0.3em]
+\sum_{j=1}^N C_{1j}^m & -C_{12}^m & \cdots & -C_{1N}^m \\[0.3em]
+-C_{21}^m & \sum_{j=1}^N C_{2j}^m & \cdots & -C_{2N}^m \\[0.3em]
 \vdots & \vdots & \ddots & \vdots \\[0.3em] 
-C_{N1}^m & C_{N2}^m & \cdots & \sum_{j=1}^N C_{Nj}^m
+-C_{N1}^m & -C_{N2}^m & \cdots & \sum_{j=1}^N C_{Nj}^m
 \end{pmatrix}
 \end{equation}
 
@@ -668,160 +771,205 @@ C_{DA}^m & C_{DB}^m & C_{DC}^m & C_{DD}^m
 Discussion on the matrix evaluation (this logical, blablabla).
 }
 
+In the case of the Planar38 design with default parameters, the matrices are evaluated to:
+
+\begin{equation} 
+\label{eq:planar38-matrix-evaluation}
+\begin{array}{rrccclc}
+ & \bm{P} = &
+ \begin{pmatrix}
+P_{AA} & P_{AB} \\ 
+P_{BA} & P_{BB}
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+1.42 & 1.04 \\
+1.04 & 1.42
+\end{pmatrix}
+& \cdot 10^{11} & [\textsf{F}^{-1}] \\
+\Rightarrow & \bm{C} = &
+\begin{pmatrix}
+C_{AA} & C_{AB} \\ 
+C_{BA} & C_{BB}
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+14.92 & -10.86 \\
+-10.86 & 14.92
+\end{pmatrix}
+& \cdot 10^{-12} & [\textsf{F}] \\
+\Rightarrow & \bm{C}^m = &
+\begin{pmatrix}
+C_{AA}^m & C_{AB}^m \\ 
+C_{BA}^m & C_{BB}^m
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+4.06 & 10.86 \\
+10.86 & 4.06
+\end{pmatrix}
+& \cdot 10^{-12} & [\textsf{F}]
+\end{array}
+\end{equation}
+
 \subsection{Sensitivity and Figure of Merits}
 
 {\color{red} Lot of calculus ahead. Not formatted for manuscript !}
 
-In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters (A,B,C,D = -1,+4,+1,-4 V) with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}. The electric potential signal $\vec{v}$ created by the electric charge perturbation $\vec{q}$ with the application of the equation \ref{eq:capacitance-definition-matrix} along with the evaluation of the Maxwell capacitance matrix \ref{eq:fid38-matrix-evaluation}. The different case of ionization signal generation are:
-\begin{itemize}
-	\item Bulk events, electron to B, hole to D \begin{equation}
-	\Rightarrow \vec{q} =
-	\begin{bmatrix}
-	0 \\ -1 \\ 0 \\ 1
-	\end{bmatrix}
-	\cdot e
-	\quad \Rightarrow \quad
-	\vec{v} = \bm{P} \vec{q} =
-	\begin{bmatrix}
-	1.92 \\ 2.34 \\ 1.69 \\ 1.68
-	\end{bmatrix}
-	\cdot (-e)
-	+ 
-	\begin{bmatrix}
-	1.69 \\ 1.68 \\ 1.92 \\ 2.34
-	\end{bmatrix}
-	\cdot e
-	= 
-	\begin{bmatrix}
-	-0.23 \\ -0.66 \\ 0.23 \\ 0.66
-	\end{bmatrix}
-	\cdot e \cdot 10^{11}
-	\end{equation}
-	\item Top Veto events, electron to B, hole to A \begin{equation}
-	\Leftrightarrow \vec{q} =
-	\begin{bmatrix}
-	1 \\ -1 \\ 0 \\ 0
-	\end{bmatrix}
-	\cdot e
-	\quad \Rightarrow \quad
-	\vec{v} = \bm{P} \vec{q} =
-	\begin{bmatrix}
-	2.23 \\ 1.92 \\ 1.71 \\ 1.69
-	\end{bmatrix}
-	\cdot e
-	+
-	\begin{bmatrix}
-	1.92 \\ 2.34 \\ 1.69 \\ 1.68
-	\end{bmatrix}
-	\cdot (-e)
-	= 
-	\begin{bmatrix}
-	0.31 \\ -0.42 \\ 0.02 \\ 0.01
-	\end{bmatrix}
-	\cdot e \cdot 10^{11}
-	\end{equation}
-	\item Bottom Veto events, electron to C, hole to D \begin{equation}
-	\Leftrightarrow \vec{q} =
-	\begin{bmatrix}
-	0 \\ 0 \\ -1 \\ 1
-	\end{bmatrix}
-	\cdot e
-	\quad \Rightarrow \quad
-	\vec{v} = \bm{P} \vec{q} =
-	\begin{bmatrix}
-	1.71 \\ 1.69 \\ 2.23 \\ 1.92
-	\end{bmatrix}
-	\cdot (-e)
-	+
-	\begin{bmatrix}
-	1.69 \\ 1.68 \\ 1.92 \\ 2.34
-	\end{bmatrix}
-	\cdot e
-	= 
-	\begin{bmatrix}
-	-0.02 \\ -0.01 \\ -0.31 \\ 0.42
-	\end{bmatrix}
-	\cdot e \cdot 10^{11}
-	\end{equation}
-	\item Equatorial events, electron to C, hole to A \begin{equation}
-	\Leftrightarrow \vec{q} =
-	\begin{bmatrix}
-	1 \\ 0 \\ -1 \\ 0
-	\end{bmatrix}
-	\cdot e
-	\quad \Rightarrow \quad
-	\vec{v} = \bm{P} \vec{q} =
-	\begin{bmatrix}
-	2.23 \\ 1.92 \\ 1.71 \\ 1.69
-	\end{bmatrix}
-	\cdot e
-	+	
-	\begin{bmatrix}
-	1.71 \\ 1.69 \\ 2.23 \\ 1.92
-	\end{bmatrix}
-	\cdot (-e)
-	= 
-	\begin{bmatrix}
-	0.52 \\ 0.23 \\ -0.52 \\ -0.23
-	\end{bmatrix}
-	\cdot e \cdot 10^{11}
-	\end{equation}
-\end{itemize} 
+In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters (A,B,C,D = -1,+4,+1,-4 V) with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{Q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}. The electric potential signal $\vec{V}$ created by the electric charge perturbation $\vec{Q}$ with the application of the equation \ref{eq:capacitance-definition-matrix} along with the evaluation of the Maxwell capacitance matrix \ref{eq:fid38-matrix-evaluation}. The electric charge perturbation is assumed to be created by a 1keV electronic recoil, creating a number $N_p = 1000/3 = 333$ of electron-hole pairs.
+In the case of the Planar38, we refer to the equation \ref{eq:plana38-induced-charges} for the electric charge perturbation vector. The voltage signal vector is thus:
+
+\begin{equation}
+\label{eq:planar38-sensitivity}
+\vec{V}_{event} = \bm{P} \vec{Q}_{event} =
+\begin{bmatrix}
+- P_{AA} + P_{AB} \\ - P_{BA} + P_{BB}
+\end{bmatrix}
+\cdot N_p \cdot e
+= 
+\begin{bmatrix}
+-0.39 \\  \\ 0.39
+\end{bmatrix}
+\cdot N_p \cdot e \cdot 10^{11}
+= 
+\begin{bmatrix}
+-2.08 \\ 2.08 
+\end{bmatrix}
+[\mu V/keV]
+\end{equation}
+
+In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges} for the four possible electric charges perturbation vector. There are four corresponding voltage signal vectors:
+
+\begin{align}
+\label{eq:fid38-sensitivity}
+\vec{V}_{bulk} = \bm{P} \vec{Q}_{bulk} &=
+\begin{bmatrix}
+- P_{AB} + P_{AD} \\
+- P_{BB} + P_{BD} \\
+- P_{CB} + P_{CD} \\
+- P_{DB} + P_{DD} \\
+\end{bmatrix}
+\cdot N_p \cdot e
+= 
+\begin{bmatrix}
+-0.23 \\ -0.66 \\ 0.23 \\ 0.66
+\end{bmatrix}
+\cdot N_p \cdot e \cdot 10^{11}
+=
+\begin{bmatrix}
+-1.23 \\ -3.52 \\ 1.23 \\ 3.52
+\end{bmatrix}
+[\mu V/ keV]
+\\
+\vec{V}_{veto, top} = \bm{P} \vec{Q}_{veto,top} &=
+\begin{bmatrix}
++ P_{AA} - P_{AB} \\
++ P_{BA} - P_{BB} \\
++ P_{CA} - P_{CB} \\
++ P_{DA} - P_{DB} \\
+\end{bmatrix}
+\cdot N_p \cdot e
+= 
+\begin{bmatrix}
+0.31 \\ -0.42 \\ 0.02 \\ 0.01
+\end{bmatrix}
+\cdot N_p \cdot e \cdot 10^{11}
+= 
+\begin{bmatrix}
+1.65 \\ -2.24 \\ 0.11 \\ 0.05
+\end{bmatrix}
+[\mu V/keV]
+\\
+\vec{V}_{veto,bottom} = \bm{P} \vec{Q}_{veto,bottom} &=
+\begin{bmatrix}
+- P_{AC} + P_{AD} \\
+- P_{BC} + P_{BD} \\
+- P_{CC} + P_{CD} \\
+- P_{DC} + P_{DD} \\
+\end{bmatrix}
+\cdot N_p \cdot e
+= 
+\begin{bmatrix}
+0.02 \\ 0.01 \\ -0.31 \\ -0.42
+\end{bmatrix}
+\cdot N_p \cdot e \cdot 10^{11}
+= 
+\begin{bmatrix}
+0.11 \\ 0.05 \\ -1.65 \\ 2.24
+\end{bmatrix}
+[\mu V/keV]
+\\
+\vec{V}_{equator} = \bm{P} \vec{Q}_{equator} &=
+\begin{bmatrix}
+- P_{AA} + P_{AC} \\
+- P_{BA} + P_{BC} \\
+- P_{CA} + P_{CC} \\
+- P_{DA} + P_{DC} \\
+\end{bmatrix}
+\cdot N_p \cdot e
+= 
+\begin{bmatrix}
+0.52 \\ 0.23 \\ -0.52 \\ -0.23
+\end{bmatrix}
+\cdot N_p \cdot e \cdot 10^{11}
+= 
+\begin{bmatrix}
+2.77 \\ 1.23 \\ -2.77 \\ -1.23
+\end{bmatrix}
+[\mu V/keV]
+\end{align}
 
 The first thing one can note is that even though for each case the electron and hole were collected by two electrode, an electric potential perturbation was created on all the electrodes. This phenomenon is referred as "capacitive cross-talk". Then, we note that the amplitude of the signal, referred as "electrode sensitivity" $S_{type}^{A} = |\vec{v}/e|$ is not equal among the collecting electrodes comparing different events. We can quantify this cross-talk by calculating the ratio $X_{type}$ between the signal induced on a non-collecting electrode over the signal induced on a collecting electrode:
 
+The sensitivity of an electrode corresponds to the amplitude of the voltage signal weighted by the input energy and is expressed in $\mu V/keV$. Considering the results of the equation \ref{eq:planar38-sensitivity} and \ref{eq:fid38-sensitivity}, for an electrode $X$ and a kind of event $type$, the sensitivity is expressed as:
+
 \begin{equation}
-\begin{array}{cc}
-X_{bulk} = \frac{-0.23}{-0.66} = 0.35 & S_{bulk}^{B} = S_{bulk}^{D} = 0.66 \cdot 10^{11}
-\\
-X_{veto,top} = \frac{0.02}{0.31} = 0.06 & S_{veto,top}^{B} = 0.42 \cdot 10^{11} \quad S_{veto,top}^{A} = 0.31 \cdot 10^{11}
-\\
-X_{veto,bottom} = \frac{-0.02}{-0.31} = 0.06 & S_{veto,bottom}^{D} = 0.42 \cdot 10^{11} \quad S_{veto,bottom}^{C} = 0.31 \cdot 10^{11}
-\\
-X_{equator} = \frac{0.23}{0.52} = 0.44 & S_{equator}^{A} = S_{equator}^{C} = 0.52 \cdot 10^{11}
-\end{array}
+S_{X, type} = | V_{X,type} | \quad \textsf{in} \quad [\mu V/keV]
 \end{equation}
 
-We can compare the FID38 design "efficiency" by comparing the Maxwell capacitance matrix to a reference ideal planar capacitance $C_{ref}(type, A)$ of the same sensitivity that the considered recoil $type$ and electrode $A$. This reference capacitance is composed of a ground and a unique terminal such that the charge perturbation is $q_{ref}=-e$ and the induced electric potential $v_{ref}(type)$ is expressed as:
+We can compare the FID38 design "efficiency" by comparing the Maxwell capacitance matrix, obtained in equations \ref{eq:planar38-matrix-evaluation} and \ref{eq:fid38-matrix-evaluation}, to a reference ideal two plate capacitance $C_{ref}(type, A)$ of the same sensitivity that the considered recoil $type$ and electrode $A$. This reference capacitance is composed of a ground and a unique terminal such that the charge perturbation is $q_{ref}=-e$ and the induced electric potential $v_{ref}(type)$ is expressed as:
+
+\begin{equation}
+C_{X,type}^{ref} = \left( \frac{S_{X,type}}{N_p \cdot e} \right)^{-1}
+\end{equation}
+
+In the case of the Planar38 detector, there is only one type of event for two electrodes with equal sensitivities. The reference capacitance is expressed as:
+
+\begin{equation}
+\label{eq:planar38-reference-capacitance}
+C_{top}^{ref}
+= C_{bottom}^{ref}
+= \left( | -P_{AA} + P_{AB} |\right)^{-1}
+= \left( | -P_{AB} + P_{BB} |\right)^{-1}
+= 0.39 \cdot 10^{11}
+= 26 \cdot 10^{-12} [F]
+\end{equation}
+
+The equivalent reference capacitance is 26 pF. It is greater than any term of the capacitance matrices for the Planar38, which indicates that this design as worse efficiency than the two-plate capacitor design. The calculation of the sensitivity in equation \ref{eq:planar38-sensitivity} and the reference capacitance in equation \ref{eq:planar38-reference-capacitance} shows that the sensitivity is proportional to the term $| -P_{AA} + P_{AB} | = | -P_{AB} + P_{BB} |$. This term can be interpreted as the difference between the diagonal terms, $P_{AA}$ and $P_{BB}$, of the elastance matrix and the non-diagonal term $P_{AB}$ expressing the coupling between the two collecting electrodes (here $A$ and $B$). (Should be discussed with the fid38, this structure is confirmed there).
+
+In the case of the FID38 detector, there are four types of events and four electrodes, resulting to a total of 16 sensitivities as seen in equation \ref{eq:fid38-sensitivity}. Among all this values, some are more relevant to the ionization channel operation than the others.
+
+The auxiliary electrodes $A,C$ are as veto and their signal is used to determine if an event is a bulk or veto event (see fiducial cut in Chapter Neutron). Therefore, the sensitivities of these veto electrodes are relevant in the case of $veto$, $S_{A, veto}=S_{C, veto}$, and $equator$ recoils, $S_{A, equator}=S_{C, equator}$. The main electrodes $B,D$ are used to reconstruct the ionization energy of the $bulk$ events. Thus, their sensitivities are relevant for $bulk$ recoils, $S_{B, bulk}=S_{D, bulk}$. From these sensitivities, the equivalent reference capacitances are deduced:
 
 \begin{align}
-v_{ref}(type, A) &= C_{ref}(type, A)^{-1} \cdot q_{ref} = C_{ref}(type, A)^{-1} \cdot e
-\\ \Rightarrow \quad
-C_{ref}(type,A) &= \frac{e}{v_{ref}(type,A)} = S_{ref}(type, A)^{-1} = (S_{type}^A)^{-1}
+C_{A, veto}^{ref} = C_{C, veto}^{ref}
+= \left( | P_{AA} - P_{AB} |\right)^{-1}
+= \left( | -P_{CC} + P_{CB} |\right)^{-1}
+= 0.31 \cdot 10^{11}
+&= 32 \cdot 10^{-12} [F]
+\\
+C_{A, equator}^{ref} = C_{C, equator}^{ref}
+= \left( | P_{AA} - P_{AC} |\right)^{-1}
+= \left( | -P_{CC} + P_{AC} |\right)^{-1}
+= 0.52 \cdot 10^{11}
+&= 19 \cdot 10^{-12} [F]
+\\
+C_{B, bulk}^{ref} = C_{D, bulk}^{ref}
+= \left( | -P_{BB} + P_{BD} |\right)^{-1}
+= \left( | P_{DD} - P_{BD} |\right)^{-1}
+= 0.66 \cdot 10^{11}
+&= 15 \cdot 10^{-12} [F]
 \end{align}
-
-With this definition of the reference capacitance, we can evaluate its value in all the cases:
-
-\begin{equation}
-\begin{array}{llr}
-C_{ref}(bulk, B) &= C_{ref}(bulk, D) &= 15.2 [\textsf{pF}] \\
-C_{ref}(veto top, A) &= C_{ref}(veto bottom, C) &= 32.3 [\textsf{pF}] \\
-C_{ref}(veto top, B) &= C_{ref}(veto bottom, D) &= 23.8 [\textsf{pF}] \\
-C_{ref}(equator, A) &= C_{ref}(equator, C) &= 19.2 [\textsf{pF}] \\
-\end{array}
-\end{equation}
-
-We can also compare the FID38 sensitivity to the naive method of ionization sensitivity considering that the reference sensitivity $S_{ref}(type, A)$ of an electrode $A$ is the voltage across a capacitance of value $C_{AA}$ for an accumulation of a unitary charge by using the equation \ref{eq:capacitance-definition-simple} (this is what EDELWEISS and HEMT alex is doing). In this case, the expected sensitivity are:
-
-\begin{equation}
-\begin{array}{llr}
-S_{ref}(type, B) &= S_{ref}(type, D) &= 0.55 \cdot 10^{11} [\textsf{F}^{-1}] \\
-S_{ref}(type, A) &= C_{ref}(type, C) &= 0.63 \cdot 10^{11} [\textsf{F}^{-1}]
-\end{array}
-\end{equation}
-
-What is the error than was done until now on the sensitivity, you ask ? Well, it is:
-
-\begin{equation}
-\begin{array}{llr}
-E_(bulk, B) &= E(bulk, D) &= \frac{0.55-0.66}{0.66} = -17\% \\
-E_(veto top, B) &= E_(veto bottom, D) &= \frac{0.55-0.42}{0.42} = +31\% \\
-E_(veto top, A) &= E_(veto bottom, C) &= \frac{0.63-0.31}{0.31} = +103\% \\
-E_(equator, A) &= E_(equator, C) &= \frac{0.63-0.52}{0.52} = +21\%
-\end{array}
-\end{equation}
-
-It seems like for the moment, we are underestimating the resolution of the main collecting electrode B,D in the case of bulk recoils. However, we are overestimating the sensitivity in the case of the auxiliary electrode A,C and the other type of recoil. Maybe, this will all be absorbed with the correct calculation of the noises for the computation of the resolution.
 
 There is a specific cross-talk and sensitivity for each type of events. When analyzing the detector data, there should therefore be a specific calibration and cross-talk correction associated to each of this type of signal.
 However, to this day, the EDELWEISS and R\&D experiments have only use a single analysis pipeline with a single calibration value for each electrodes and a single cross-talk correction matrix, independently of the type of event. Furthermore, the analysis seemed valid and no significant deviation was observed from the simple, yet wrong, ionization model where events creating the same amounts of electron-hole pairs presents the same electrode sensitivity and capacitive cross-talk. This can be explained by the fact that the capacitances of the detector are dominated by the greater capacitance of the cabling. It is important to recall that this work is focused on the capacitance of the electrodes of a detector, and did not considered the capacitance of the cabling between the electrodes and the amplifying electronics. In the experimental setup, the electrodes are cabled to the electronics with coaxial cables. While a coaxial cable shield the signal from the exterior interferences, it also create a significant capacitive coupling between the ground and the core (in this case, the electrode). Let's assume a of $50$pF capacitance between the ground and each electrodes, the elastance matrix is now evaluated to:
@@ -839,54 +987,94 @@ However, to this day, the EDELWEISS and R\&D experiments have only use a single 
 \cdot 10^{11}
 \end{equation}
 
-The electric charge perturbations $\vec{q}$ induces in this case the electric potential signal:
+In the case of the Planar38 with the capacitive cabling:
 
 \begin{equation}
-\begin{array}{rcl}
-\vec{v}_{bulk} =& \bm{P}^{cabling} \cdot \vec{q}_{bulk} &= 
+\vec{V}_{event}
+=
 \begin{bmatrix}
--0.01 \\ -0.15 \\ 0.01 \\ 0.15
+0.71 \\
+-0.71
 \end{bmatrix}
-\cdot e \cdot 10^{11}
-\\
-\vec{v}_{veto,top} =& \bm{P}^{cabling} \cdot \vec{q}_{veto,top} &= 
-\begin{bmatrix}
-0.13 \\ -0.14 \\ 0 \\ 0
-\end{bmatrix}
-\cdot e \cdot 10^{11}
-\\
-\vec{v}_{veto,bottom} =& \bm{P}^{cabling} \cdot \vec{q}_{veto,bottom} &= 
-\begin{bmatrix}
-0 \\ 0 \\ -0.13 \\ 0.14
-\end{bmatrix}
-\cdot e \cdot 10^{11}
-\\
-\vec{v}_{equator} =& \bm{P}^{cabling} \cdot \vec{q}_{equator} &= 
-\begin{bmatrix}
-0.14 \\ 0.01 \\ -0.14 \\ -0.01
-\end{bmatrix}
-\cdot e \cdot 10^{11}
-\end{array}
+[\mu V/keV]
 \end{equation}
 
-The cross-talk ratio and electrode sensitivity are now:
+
+In the case of the FID38 with the capacitive cabling:
 
 \begin{equation}
-\begin{array}{cc}
-X_{bulk} = \frac{-0.01}{-0.15} = 0.07 & S_{bulk}^{B} = S_{bulk}^{D} = 0.15 \cdot e \cdot 10^{11}
+\begin{array}{rr}
+\vec{V}_{bulk}
+=
+\begin{bmatrix}
+-0.05 \\ -0.80 \\ 0.05 \\ 0.80
+\end{bmatrix}
+[\mu V/keV]
+\quad \quad
+&
+\quad \quad
+\vec{V}_{veto,top}
+=
+\begin{bmatrix}
+0.69 \\ -0.75 \\ 0 \\ 0
+\end{bmatrix}
+[\mu V/keV]
 \\
-X_{veto,top} = \frac{0}{0.13} = 0 & S_{veto,top}^{B} = 0.14 \cdot e \cdot 10^{11} \quad S_{veto,top}^{A} = 0.13 \cdot e \cdot 10^{11}
-\\
-X_{veto,bottom} = \frac{0}{0.13} = 0 & S_{veto,bottom}^{D} = 0.14 \cdot e \cdot 10^{11} \quad S_{veto,bottom}^{C} = 0.13 \cdot e \cdot 10^{11}
-\\
-X_{equator} = \frac{0.01}{0.14} = 0.07 & S_{equator}^{A} = S_{equator}^{C} = 0.14 \cdot e \cdot 10^{11}
+\vec{V}_{veto,bottom}
+=
+\begin{bmatrix}
+0 \\ 0 \\ -0.69 \\ 0.75
+\end{bmatrix}
+[\mu V/keV]
+\quad \quad
+&
+\quad \quad
+\vec{V}_{equator}
+=
+\begin{bmatrix}
+0.75 \\ 0.05 \\ -0.75 \\ -0.05
+\end{bmatrix}
+[\mu V/keV]
 \end{array}
 \end{equation}
 
 We see that by adding the capacitance of the cabling, the cross-talk phenomenon is significantly lessened and that the electrode sensitivities are very close to 0.14 in absolute value for all the types of events. The small variation of cross-talk and sensitivities were surely "absorbed" in the resolution of the ionization channel in the previous EDELWEISS and IP2I R\&D analysis, leading to an overall very correct result. As a complement, let's add that as the capacitive coupling with the ground through the coaxial cabling is increased, the cross-talk and difference in sensitivity vanish. In the case of EDELWEISS-III with a cabling of capacitance $>100$pF, the simple ionization signal generation model holds.
 
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/predict_corner_plot.png}
+\caption{Simulation of the expected signal with a FID38 detector with cabling (black point) and without capacitive cabling (color points). There are 1000 points for each event types, and each channel is modeled by a gaussian distribution of variance 100eV.)}
+\label{fig:lumped-capacitance}
+\end{figure}
 
+\begin{landscape}
 
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/scheme_fid38_fat.png}
+\caption{Electric scheme of the FID38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
+\label{fig:lumped-capacitance}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/scheme_planar38.png}
+\caption{Electric scheme of the Planar38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
+\label{fig:lumped-capacitance}
+\end{figure}
+
+\end{landscape}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/scan_capacitance.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/scan_alpha.png}
+\caption{
+\textbf{Left:} Resolution of electrode B as a function of the extra-detector capacitance.
+\textbf{Right:} Resolution of the electrode B as a function of a multiplicative factor of the Maxwell capacitance matrix.
+}
+\label{fig:fid38-fiducial}
+\end{figure}
 
 %\subsection{Axy-symmetrical} 
 %
