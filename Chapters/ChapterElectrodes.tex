@@ -19,6 +19,7 @@ But hey, I could obtain some nice plots and tables, check them out.
 \section{Electrodes as Sensors for the Ionization Channel}
 
 \subsection{Basics of the Ionization channel}
+\label{par:basic-ion-channel}
 
 The ionization channels aims at converting the ionization of the germanium into a voltage signal.
 This is done with the use of aluminium electrodes acting as the terminals of a capacitor of capacitance $C$. When collecting an electric charge $\Delta Q$, a voltage $\Delta U$ is created across the capacitor such as:
@@ -28,9 +29,36 @@ C = Q \times U \quad \Leftrightarrow \quad U \times = \frac{C}{Q}
 \label{eq:capacitor-basic}
 \end{equation}
 
-A high sensitivity of the ionization channel means that the created voltage $\Delta V$ is maximized. The equation \label{eq:capacitor-basic} shows that a low capacitance $C$ of the electrodes and a high collection of electric charge $\Delta Q$ increase the ionization channel response. While the amount of electric charge $\Delta Q$ can depend of the electric field shape, in the case of a theoretically perfect charge collection, the number of electron-hole pairs created and collected only depends on the recoil energy $E_R$ of the interacting particle $i$ and the associated quenching factor $Q^i(E_R)$. This factor depends only on the material used as absorber, in our case Germanium.
+A high sensitivity of the ionization channel means that the created voltage $\Delta V$ is maximized. The equation \label{eq:capacitor-basic} shows that a low capacitance $C$ of the electrodes and a high collection of electric charge $\Delta Q$ increase the ionization channel response. While the amount of electric charge $\Delta Q$ can depend of the electric field shape, in the case of a theoretically perfect charge collection, the number of electron-hole pairs created and collected only depends on the recoil energy $E_R$ of the interacting particle $i$ and the associated quenching factor $Q^i(E_R)$ which is plotted in the figure \ref{fig:quenching-germanium}. This factor depends only on the material used as absorber, in our case Germanium.
 The capacitance depends on the design of the detector, and is the one of the main quantities used to quantify the performance of a detector design.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/quenching_germanium.png}
+\caption{Quenching factor in the Germanium and Silicon as a function of the recoil energy $E_R$.}
+\label{fig:quenching-germanium}
+\end{figure}
+
+\subsection{Reference detector designs}
+
+The reference detector designs are used to illustrate the different concepts of the ionization channel. They are the result of the optimization of the ionization channel (presented later in this chapter) and thus presents very good performances. There are two reference design based on a 38g Germanium crystal of height 10mm and diameter 30mm: 
+
+\begin{itemize}
+	\item \textbf{Planar38}, with two collecting electrodes fully covering the planar faces and a part of the lateral face.
+	\item \textbf{FID38}, with four interleaved circular electrodes (see the Fully InterDigitized design of EDELWEISS, if explained earlier). 
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_3d.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_3d.png}
+\caption{
+\textbf{Left:} Simulated geometry of the Planar38 detector. Electrodes are in grey, bare germanium crystal is colored purple.
+\textbf{Right:} Simulated geometry of the FID38 detector. Electrodes are in black while the bare germanium crystal is colored cyan.
+}
+\label{fig:reference-design-3d}
+\end{figure}
 
 \subsection{Germanium as Semiconductor}
 
@@ -40,7 +68,7 @@ This paragraph focuses on its characteristics and also compares it to materials 
 The use of semi-conducting Germanium as an absorber was first proposed by Taverdale? and Evvan [80, Emeline].
 Along with an increase in temperature, a semi-conducting germanium also features a phenomenon of ionization caused by a particle interaction. Such electronic and nuclear recoils form electron-hole pairs of average energy $\epsilon = 3 eV/pair$. This energy corresponds to the gap energy separating the valence and conduction electronic bands in the germanium in its semi-conducting state accessible for temperature below 77K.
 
-In order to understand the physical properties of a semi-conductor, we can consider the theory of energy bands. In a solid material, at rest electrons are occupying the lowest state of energy according to their fermion nature. This lowest state of energy are strongly linked to the nucleus, forming the valence electronic band of energy. Higher energy states are able to interact with neighboring atoms and compose the conduction electronic band of energy.
+In order to understand the physical properties of a semi-conductor, we can consider the theory of energy bands. In a solid material, at rest electrons are occupying the lowest state of energy according to their fermion nature. This lowest state of energy are strongly linked to the nucleus, forming the valence electronic band of energy. Higher energy states are able to interact with neighboring atoms and compose the conduction electronic band of energy.global
 conducting, not conducting, semi-conductor. Small gap. blablabla
 
 The semi-conducting properties of a germanium crystal heavily depends on the impurities affecting it. With the Germanium element being of valence 4, there exist two kind of impurities:
@@ -80,10 +108,7 @@ Comparing the germanium to silicium:
 
 \subsection{Electric Charge Drifting in Crystal}
 
-{\color{red}
-Alex B. biblio here.
-Also explainin trapping, charge collection.
-}
+%{\color{red} Alex B. biblio here. Also explainin trapping, charge collection.}
 
 The study of charge migration in EDELWEISS germanium crystal is presentend in [ref Emeline 82] taking into account the crystallographic structure of the germanium crystal. In this study, Alex.B simulates numerically the drifting of eletrons and holes in a 200g FID Edelweiss detector with bulk interaction of gamma-rays of energy 348keV. The charge trajectories are presented in the figure \ref{fig:charge-drifting}. He also follows the generation of the voltage signal on the electrodes. This is consistent with Ramo field theory which will be described later.
 
@@ -126,6 +151,7 @@ Also, the electrons tends to travel following inter-valleys in the crystal with 
 
 
 \subsection{DAQ and electronics for ionization}
+\label{par:electronics-ionization}
 
 The electronics used for the ionization and the heat channel uses Junction Field Effect Transistor (JFET) which are operated at a low temperature of 100K inside the cryostat.
 Some mumbo jumbo about the bolo-box (is it necessary ?).
@@ -133,8 +159,9 @@ The figure \ref{fig:electronics-scheme} show the scheme of the cold electronics 
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Figures/Electrodes/electronics_scheme.pdf}
-\caption{Scheme of the cold electronics readout for the heat channel (left) and the ionization channel (right)}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/electronic_ion_ip2i.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/electronic_ion_hemt.png}
+\caption{Scheme of the cold electronics readout for the ionization channel currently used at IP2I (left) and in development with HEMT technology (right). One of the main difference is the floating state of the current electronic (heaviside signal) versus the polarization resistance of the HEMT (decaying exponential signal).}
 \label{fig:electronics-scheme}
 \end{figure}
 
@@ -180,18 +207,27 @@ the correction. Left: frequencies below 500 Hz. Right: high frequency part. [Eme
 The ionization channel readout is sampled at an initial 100kHz. This means the period of the  measurement points is 10$\mu$s which greater than the estimated time span of an ionization signal of a few $\mu$s [ref necessary Alex.B ?]. As a result, an ionization signal is recorded as an Heaviside function. No information can be obtained on the shape of the signal.
 The high readout sampling was historically chosen in EDELWEISS for the purpose of triggering on the ionization channel with a good temporal resolution (is it true ?). The highly sampled ionization signal is then averaged in order to produce a signal of frequency $f_s$ of about 400Hz. This lower sampling is able to record the information contained in the ionization Heaviside signal (its amplitude mainly) while being lightweight in term of disk space, which is essential considering the recording and processing resources at our disposal. The saved ionization signal of sampling frequency $f_s$ is composed of points which are averages of $100kHz/f_s$ points. The saved signal is therefore a skewed Heaviside-like function (more info needed? Is this work using this fact?).
 
-Should I talk about the HEMT technology ? The expected resolution and noise level ?
+{\color{blue} Discussion on the Hemt (see JB notes or Alex paper. Expected resolution and noise.}
+Explaining how to propagate the noise through the hemt line (superposition theorem, thevenin-norton transformation). Presented and illustrated in the figure \ref{fig:hemt-performances}.
+Simple model: Single hemt/electrode with a single detector capacitance (previously thought to be the diagonal term of the Maxwell capacitance matrix).
 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Figures/Electrodes/noise_jb.png}
+\caption{Performances of the hemt technology.}
+\label{fig:hemt-performances}
+\end{figure}
 
 \subsection{Aluminum Deposition}
 
-*Stefanos biblio here.*
+%*Stefanos biblio here.*
 
 The electrodes of the detectors are made by depositing aluminium on the surface of the germanium crystal. The aluminium deposition is carried out by the research group at CSNSM at Orsay. The deposition processes are still being improved.
-
+% commet
 The germanium crystal is placed in vacuum chamber where its surface is altered with beams of vaporized atoms (hydrogen, aluminium, xenon…). 
 In order to prevent the surface leakage, a highly resistive layer is created under the aluminium electrodes. It is a 60 to 80 nm deep amorphous layer of hydrogenated germanium.
-
+% test comment
 Two techniques are used for the detectors presented in this work: evaporation with mask and the (photo)lithography.
 A solid mask can set between the beam source and the crystal in order to shape the altered surface. In the case of concentric circular electrode, the mask (presented in figure {fig:mask-evaporation}) consists in several curved slits which allow the passage of vaporized aluminium. By rotating the mask during the process, the aluminium is deposited in a ring pattern on the germanium.
 Another method to control the shape of the electrode is to use photolitography. First, the whole surface of the crystal is covered with a layer of aluminium. Then, the aluminium is coated with a chemically-protective wax. The negative of the electrode pattern is carved in the wax coating with the use of lasers (hence the name of the procedure). Once done, the germanium crystal face is immersed in chemical solution reactive with aluminium. Only the aluminium protected by the wax (patterned as the desired electrode design) is left on the surface. Finally, the wax coating is removed with an other chemical.
@@ -297,7 +333,7 @@ Q_T = Q_A + Q_B + Q_C + Q_D = -q
 When considering $N$ electron-holes pairs, the Faraday cage imposes the charge conservation:
 \begin{equation}
 \label{eq:charge-conservation}
-Q_T = Q_A + Q_B + Q_C + Q_D = \sum_{n=1}^{N} e (1 – 1) = 0
+Q_T = Q_A + Q_B + Q_C + Q_D = \sum_{n=1}^{N} e (1 - 1) = 0
 \end{equation}
 
 Should I include the study of the trapping by Quentin ? Some studies [103 and 104 quentin ref] were done on the dependance of the electric charge  trapping in germanium crystals. Electrons are more prone to be trapped than hole. According ti Quentin, 10 to 20\% of the carriers are trapped (?). He then calculates the signal induced with trapping and also the effect of trapping as a function of the trap localization. And the impact of trapping on the heat channel.
@@ -464,7 +500,7 @@ The Comsol software propose several choices of space dimension for the modelizat
 A geometry in 2D-axisymmetry and in 3D. On the left, the geometry is built on a plane (in two dimensions) and around the axis of symmetry situated at r=0. The germanium crystal (inner rectangle) is equipped with electrodes on each planar face, and is installed is a copper chassis (outer ractangle) where the air was vaccumed.
 The same geometry can be obtained with a 3D modelization, without taking into account the symmetry of the system. As a result, a more complex meshing is needed to solve the problem which translate to a longer calculation time. However, it is possible to add non-symmetric features such as non-centered rectangular NTD, or the wire-bonding bridge between the electrodes (not featured in this study). 
 }
-\label{fig:fid38-mesh-potential}
+\label{fig:space-dimension-geometry}
 \end{figure}
 
 The figure [fig] presents the modelization of a the same detector using both space dimension. It was checked (justification needed) that both space dimension result in the same solutions. (variations between the two are negligible). The advantage of the 2D-axisymmetry lies in the solving of the electric equations in a 2D plane with pertinent variable changes to consider the axisymmetry. This needs for a simple 2D meshing. On the contrary the 3D modelization do not benefit from the symmetry and solve the equations in the whole volume. This requires a more complex meshing with more vertexes (number?). The calculation time is therefore longer. However, when adding non-symmetrical features to the system, the 3D modelization is the only way to solve the equations with a precise geometry. Non-symmetrical features can be the NTD thermal sensor, the wire-bond bridge cabling the electrodes or even the Teflon pad fixing in place the germanium crystal in the copper chassis.
@@ -473,30 +509,42 @@ As this work aims at studying multplie geometry by scanning over different param
 
 \subsection{Meshing choice}
 
-When solving a problem with the finite element method, the choice of the meshing is essential. As the FEM is essentially approximating the analytical solution with a numerical approach over the vertexes, the meshing should be well constructed to assure a precise simulation. For a given physic system, the analytical solution can be more precisely approximate as the number of vertexes is increased. However, a high number of vertexes induces an equal number of local numerical solving. COMSOL propose a automatic optimization of the meshing which adapts the size of meshing to the geometry of the system. With this optimized meshing, there are a lot of vertexes near small geometric features assuring that a rapidly varying electric field is correctly mapped. At the same time, there are only few vertexes at location where the electric field is almost uniform. This optimization of the meshing is possible with the “Physics-based” option of COMSOL which still accept a global scale parameter. [ref to table with global mesh scale]
+When solving a problem with the finite element method, the choice of the meshing is essential. As the FEM is essentially approximating the analytical solution with a numerical approach over the vertexes, the meshing should be well constructed to assure a precise simulation. For a given physic system, the analytical solution can be more precisely approximate as the number of vertexes is increased. However, a high number of vertexes induces an equal number of local numerical solving. COMSOL propose a automatic optimization of the meshing which adapts the size of meshing to the geometry of the system. With this optimized meshing, there are a lot of vertexes near small geometric features assuring that a rapidly varying electric field is correctly mapped. At the same time, there are only few vertexes at location where the electric field is almost uniform. This optimization of the meshing is possible with the “Physics-based” option of COMSOL which still accept a mesh scale parameter. Simulation of the reference designs Planar38 and FID38 were ran with different mesh scales and the results are presented in the table \ref{tab:mesh-scale}. There are nine mesh scales proposed by COMSOL, starting from the "Extremely Coarse" scale with a low number of simplex, a low accuracy and very quick run time, and continuing with increasingly refined scale to the "Normal" scale, which should result in a trade-off between simulation time and precision, eventually reaching the "Extremely Fine" scale with a very high precision obtained after a long calculation time. As expected, the more refined the scale is and the more triangles are used for the simulation (except for Extremely Coarse, maybe it is a non-optimized mesh generating algorithm in use). As the FID38 design has more electrodes of small size than the other Planar38 design, the mesh is generated with more simplex. It is consistent with the fact that the simulation of the Planar38 design run quicker than for the FID38.
+In order to estimate the accuracy of the simulation scanning over the different scales, a capacitance value corresponding to the first diagonal term of the Maxwell capacitance matrix (see the later paragraph \ref{par:capacitance-matrix}) is evaluated. Additionally, a percentage of the relative error on the capacitance calculation is calculated. The capacitance of the "Extremely Fine" scale is chosen to be the reference for this relative error. Thus, by definition, the relative error of the "Extremely Fine" is zero. The table \ref{tab:mesh-scale} shows that as the scale is more refined, the capacitance is getting closer to the reference capacitance.
+In the case of the Planar38, the relative error starts at 0.78\% and eventually reaches zero for the "Normal" scale. Concerning the FID38 design, the relative error is greater for all scales compared to the Planar38. This may be due to the more complex geometry. Although the error is superior to 1\% for the less refined scales, from the "Normal" scales the error is inferior to 0.1\%.
+Considering that the "Normal" and "Fine" possesses a similar number of simplex and runtime, the simulation presented in this work are ran with the "Fine" scale. The capacitance calculation are affected by a relative error of about 0.1\%. 
 
-{\color{red}TABLE PLACEHOLDER}
-%Table with the scale parameter: [Very coarse to Normal to Extremely fine] + statistics of the meshing, and maybe some illustrating images. Ligne pour la capcitance du condesatuer plan (avec reference analytique) et ligne pour le FID38 avec pour reference la maille la plus fine.
-
-We want to simulate the detectors with enough precision while having acceptable solving times. A well-known electrostatic system with a known analytical solution is constructed and serve as a reference. The numerical solution obtained with the FEM is checked and compared with the analytical solution for different global meshing scales. This chosen system is the planar capacitor without edge effects. The associated analytical solution is known and the electric capacitance $C$ is expressed as:
-
-\begin{equation}
-C = \epsilon_0 \epsilon_r \frac{A}{d}
-\label{eq:planar-capacitor}
-\end{equation}
-
-With $\epsilon_r$ is the relative permittivity, $A$ the area of the electrodes and $d$ the distance separating the electrodes. The figures [fig capa vs Area] and figure [fig capa vs Distance] shows the analytical value of the capacitance in function of the area of the electrodes and the distance of separation, respectively. The different curves represents the single analytical solution and the multiple numerical solution with a scan on the mesh scale. The FEM solution clearly succeed in simulating the planar capacitor with its capacitance being proportional to the area of the electrodes and inversely proportional to the separation distance. 
-Some sentences about the discrepancies between the analytical and the numerical solutions. And which mesh scale is chosen for this thesis.
-
-{\color{red}PLACEHOLDER: GRAPH PLANAR CAPACITOR}
-%Figure of the Capacitance vs Area (Analytical vs Numerical COMSOL)
-%Figure of the Capacitance vs the Distance between the electrode (Analytical vs Numerical COMSOL)
-
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{c|rrr|rrr}
+\multirow{2}{*}{Mesh Scale} & \multicolumn{3}{c|}{Planar38} & \multicolumn{3}{c}{FID38} \\ \cline{2-7} 
+ &
+  \multicolumn{1}{c}{\# Triangles} &
+  \multicolumn{1}{c}{Capacitance {[}pF{]}} &
+  \multicolumn{1}{c|}{Relative Error {[}\%{]}} &
+  \multicolumn{1}{c}{\# Triangles} &
+  \multicolumn{1}{c}{Capacitance {[}pF{]}} &
+  \multicolumn{1}{c}{Relative Error {[}\%{]}} \\ \hline
+Extremely Fine              & 37837    & 14.923   & 0      & 106028   & 19.217  & 0     \\
+Extra Fine                  & 11721    & 14.923   & 0      & 41991    & 19.223  & 0.03  \\
+Finer                       & 6306     & 14.923   & 0      & 29996    & 19.222  & 0.02  \\
+Fine                        & 4368     & 14.923   & 0      & 22504    & 19.232  & 0.08  \\
+Normal                      & 4258     & 14.923   & 0      & 22340    & 19.232  & 0.08  \\
+Coarse                      & 2472     & 14.924   & 0.01   & 15288    & 19.263  & 0.24  \\
+Coarser                     & 1303     & 14.934   & 0.07   & 7596     & 19.475  & 1.34  \\
+Extra Coarse                & 1260     & 14.964   & 0.27   & 7915     & 19.693  & 2.47  \\
+Extremely Coarse            & 1937     & 15.037   & 0.76   & 19714    & 19.625  & 2.12 
+\end{tabular}%
+}
+\caption{Scanning the mesh scale of the simulated Planar38 and FID38 design. The control values are the number of triangles in the mesh, the first diagonal term of the Maxwell capacitance matrix and the relative error on the capacitance calculation with the "Extremely Fine" scale chosen as reference.}
+\label{tab:mesh-scale}
+\end{table}
 
 \subsection{Modelization of a RED detector}
 
 This work aims at discovering and quantifying the impact of the design of the electrodes upon the ionization channel performance. Multiple geometries were simulated with common parameters and sometimes their own specific parameters. As a result, the study of the common parameters is illustrated with a reference electrode geometry “FID38”, and the impact of specific parameters are discussed with their associated geometry.
-The “FID38” geometry stands for a detector composed of a 38g germanium crystal with Fully InterDigitized (FID) electrodes. The absorber is simulated as a cylinder of height 10mm and radius 15mm composed of germanium crystal of relative electric permittivity 16.3. It is surrounded by a cylindrical copper chassis leaving a distance $d_{chassis}=3mm$ between the chassis and the surface of the absorber. The copper chassis is electrically grounded at a potential $V_chassis=0V$. It is assumed that the influence of the Teflon clamps holding the absorber is negligible considering their size and the low relative electric permittivity of the material ($epsilon_r=2.1$). As such, Teflon clamps are ignored in the simulation. The space between the germanium crystal and the copper chassis is considered to be vacuum of relative permittivity 1. The electrodes are simulated by extruded annuli, resembling thin rings, composed of aluminium of height $h_{Al}=0.01[mm]$ and width $w_{Al}=0.08mm$. Real electrodes possess a much lower height of about 50nm. However, this value is so low that the meshing is invariably messed up. For a FID geometry, there are 4 electrodes labeled ‘A’, ‘B’ ‘C’, and ‘D’ composed of multiple rings linked by wire-bound bridges. Inside COMSOL, multiple electrodes can be assigned to the same electric terminal, which means that they are electrically linked and share their potential and charges. It is therefore possible to avoid the simulation of the wire-bonding bridges between the different FID rings. (at least for now, see later in bonus study if it is really impacting something). Each physical electrodes ‘A’, ‘B’, ‘C’, ‘D’ represented by terminals in COMSOL are polarized at a fixed voltage $V_i \, \textsf{with} \, i \in {A,B,C,D}$. The terminals ‘B’ and ‘D’ corresponds to the main electrodes, labeled “Collect”, which collect the electric charges produced in the bulk of the detector. The terminal ‘A’ and ‘C’ corresponds to auxiliary electrodes, labeled “Veto”, which collect the charges produces near the surface of the absorber. The polarization of the electrodes is controlled by three parameters :
+The “FID38” geometry stands for a detector composed of a 38g germanium crystal with Fully InterDigitized (FID) electrodes. The absorber is simulated as a cylinder of height 10mm and radius 15mm composed of germanium crystal of relative electric permittivity 16.3. It is surrounded by a cylindrical copper chassis leaving a distance $d_{chassis}=3mm$ between the chassis and the surface of the absorber. The copper chassis is electrically grounded at a potential $V_chassis=0V$. It is assumed that the influence of the Teflon clamps holding the absorber is negligible considering their size and the low relative electric permittivity of the material ($\epsilon_r=2.1$). As such, Teflon clamps are ignored in the simulation. The space between the germanium crystal and the copper chassis is considered to be vacuum of relative permittivity 1. The electrodes are simulated by extruded annuli, resembling thin rings, composed of aluminium of height $h_{Al}=0.01[mm]$ and width $w_{Al}=0.08mm$. Real electrodes possess a much lower height of about 50nm. However, this value is so low that the meshing is invariably messed up. For a FID geometry, there are 4 electrodes labeled ‘A’, ‘B’ ‘C’, and ‘D’ composed of multiple rings linked by wire-bound bridges. Inside COMSOL, multiple electrodes can be assigned to the same electric terminal, which means that they are electrically linked and share their potential and charges. It is therefore possible to avoid the simulation of the wire-bonding bridges between the different FID rings. (at least for now, see later in bonus study if it is really impacting something). Each physical electrodes ‘A’, ‘B’, ‘C’, ‘D’ represented by terminals in COMSOL are polarized at a fixed voltage $V_i \, \textsf{with} \, i \in {A,B,C,D}$. The terminals ‘B’ and ‘D’ corresponds to the main electrodes, labeled “Collect”, which collect the electric charges produced in the bulk of the detector. The terminal ‘A’ and ‘C’ corresponds to auxiliary electrodes, labeled “Veto”, which collect the charges produces near the surface of the absorber. The polarization of the electrodes is controlled by three parameters :
 \begin{itemize}
 	\item $V_{bias}=8V$, which is the main voltage bias of the detectors
 	\item $R_{veto}=-0.25$, which is the ratio of the voltage bias of the veto electrodes over the main voltage bias
@@ -551,10 +599,11 @@ Symmetric factor of the voltage bias        & $S_{bias}$    & 0.5
 
 \subsection{Stationnary Study}
 
-The stationary study consists in solving the electrostatic equations for the given parameters and voltage bias. The FEM solution consists in the electric potential value for each vertex of the mesh. This values are interpolated and used to represent the potential on a radial slice of the detector (as seen in figure [fig potential]). It is possible to apply a gradient function to obtain the electric field in the detector (as seen in figure [fig enorm]) along with the streamline of the electric field. The streamlines are useful to visualize the direction of the electric field in the crystal and predict the trajectory of the drifting charges in the detector.
+The stationary study consists in solving the electrostatic equations for the given parameters and voltage bias. The FEM solution consists in the electric potential value for each vertex of the mesh. This values are interpolated and used to represent the potential on a radial slice of the detector (as seen in figure [fig potential]). It is possible to apply a gradient function to obtain the electric field in the detector (as seen in figure \ref{fig:fid38-enorm}) along with the streamline of the electric field. The streamlines are useful to visualize the direction of the electric field in the crystal and predict the trajectory of the drifting charges in the detector.
 
+The electric potential is presented on the right figure \ref{fig:fid38-mesh} and the electric field norm is presented on the left figure \ref{fig:fid38-enorm} along with the streamlines. As expected from a FID design, the electric potential is rapidly changing near the electrodes in order to shape the electric field which is thus rather high near the electrodes. The streamlines shows the expected trajectories for the drifting charges and thus the collecting electrodes for each type of recoils. In the bulk of the crystal, the electric field is quite uniform although it suffers from a loss in intensity due to the influence of the veto electrodes. Concerning the norm of the electric field, we observe that the veto electrodes are creating low-norm regions (in black on figure \ref{fig:fid38-enorm}) at the frontier between the veto and the bulk region. Event though these low-norm regions could increase the chance of trapping or unwanted recombination, we note that streamlines are diverging from these regions.
 
-{\color{blue} Discussion on the Electric potential needed here.}
+In order to monitor the norm of the electric field in the whole crystal, its volumetric density is recorded and presented on the right figure \ref{fig:fid38-enorm}. The majority of the crystal seems to be subject to a electric field of norm $\approx 200 V/cm$. Each peak can be link to specific region in the crystal with equal norm. The low-norm regions appears to be negligible in proportion.
 
 \begin{figure}
 \centering
@@ -567,8 +616,6 @@ The stationary study consists in solving the electrostatic equations for the giv
 \label{fig:fid38-enorm}
 \end{figure}
 
-{\color{blue} Discussion on the Electric field norm needed here.}
-
 \begin{figure}
 \centering
 \includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_fiducial_streamlines.png}
@@ -580,7 +627,8 @@ The stationary study consists in solving the electrostatic equations for the giv
 \label{fig:fid38-fiducial}
 \end{figure}
 
-{\color{blue} Discussion on the fiducial streamlines needed here.}
+The left figure \ref{fig:fid38-fiducial} presents the streamlines in the crystal with controlled starting points with a height set at 0 (starting from the middle of the crystal). These streamlines belongs to the bulk region and equatorial regions. With some processing, it is possible to discard the streamlines linking two veto electrodes and to keep only a contour of the fiducial streamlines. A correction taking into account the revolution of the 2d-axisymmetry is needed to calculate volumes. The right figure \ref{fig:fid38-fiducial} presents the fiducial contour (in green) and a whole crystal contour (in red) proportionnal to the fiducial and crystal volume. Graphically comparing the area of the two contours yields the fiducial volume fraction of the detector. With default parameters, The FID38 design has a fiducial volume fraction of 69.5\%. Also with default parameters, the Planar38 has a fiducial volume fraction of 98\%.
+
 
 \subsection{Weighted Potential Study}
 
@@ -591,10 +639,16 @@ This paragraph is linked to a previous one introducing the signal generation on 
 \includegraphics[width=0.48\textwidth]{Figures/Electrodes/weighted_potential_collect.png}
 \includegraphics[width=0.48\textwidth]{Figures/Electrodes/weighted_potential_total.png}
 
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/weighted_potential_top.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/weighted_potential_total_planar38.png}
+
+
 \includegraphics[width=0.48\textwidth]{Figures/Electrodes/ramo_potential.png}
 \caption{
-\textbf{Top Left:} Graph of the weighting potential for the main top collect electrode.
-\textbf{Top Right:} Graph of the total weighting potential. It corresponds to the sum of the weighting potential of all the electrodes.
+\textbf{Top Left:} Graph of the weighting potential for the main top collect electrode, for the FID38 design.
+\textbf{Top Right:} Graph of the total weighting potential. It corresponds to the sum of the weighting potential of all the electrodes, for the FID38 design.
+\textbf{Center Left:} Graph of the weighting potential for the main top collect electrode, for the Planar38 design.
+\textbf{Center Right:} Graph of the total weighting potential. It corresponds to the sum of the weighting potential of all the electrodes, for the Planar38 design.
 \textbf{Bottom Center:} Graph of the weighting potential of different electrodes as a function of the position in the crystal.
 }
 \label{fig:weighting-potential}
@@ -604,8 +658,10 @@ While the red color indicate a total weighted potential $\phi_T$ which tends to 
 
 { color{blue} Discussion on the loss of energy in the case of trapping as a result of a total weighted potential inferior to 1. Rough estimation of the limit on the intrinsic resolution of the ionization resolution for several fraction of trapping per recoil.}
 
+For the Planar38 design, the average total weighted potential in the crystal is 98\%
 
 \subsection{Capacitance calculation with the Source Sweep Study}
+\label{par:capacitance-matrix}
 
 The sensitivity of the ionization channel is inversely proportional to the capacitance of the electrodes. Therefore, the capacitance is a performance indicator for the different design of electrodes.
 The common form of a capacitance is a parallel-plate capacitor: two conductive plates separated by a dielectric material of relative electric permittivity $\epsilon_r$. For the ideal case of this system, the capacitance $C$ is proportional to the surface area of the electrodes $A$ and inversely proportional to the distance between the terminals $d$ such that:
@@ -678,12 +734,26 @@ P_{N1} & P_{N2} & \cdots & P_{NN}
 \end{equation}
 It was demonstrated [ref?] that the coefficients of potential are symmetrical such that  $\bm{P}_{ij} = \bm{P}_{ji}$ which induces that the Maxwell capacitance matrix is symmetric as well.
 
+A key observation when comparing the two-plates capacitance equation \ref{eq:capacitance-definition-simple} to the multiple plates capacitance equation \ref{eq:capacitance-definition-matrix} is that the electric charge $Q_i$ and potential $V_i$ of a given electrode $i$ are no longer proportional with multiple plates. With the generalized view, adding a charge on a single electrode changes the potential of all the electrodes in the system.
+
 While the Maxwell capacitance matrix is useful to study the generation of signal from charge collected by the electrodes with the equation \ref{eq:capacitance-definition-matrix}, there are no readily available interpretation for its term. An alternative to the Maxwell capacitance matrix is the mutual capacitance matrix $\bm{C}^m$. This terms of the mutual capacitance terms hold the benefit of being easily illustrated as lumped capacitance between the electrodes of a system. The figure [scheme mutual capacitance] presents a scheme of the four electrodes of the FID38 design in the grounded copper chassis.
 
 \begin{figure}
-\centering
-\includegraphics[width=\linewidth]{Figures/Electrodes/lumped_capacitance_scheme.png}
-\caption{Scheme representing the terms of the Mutual capacitance matrix. FEATURE THE MUTUAL CAPACITANCE MATRIX PLIZ}
+\begin{minipage}{0.58\textwidth}
+    \includegraphics[width=\linewidth]{Figures/Electrodes/lumped_capacitance_scheme_better.png}
+\end{minipage}
+\begin{minipage}{0.38\textwidth}
+	\begin{equation*}
+	\Leftrightarrow
+	\bm{C}^m = 
+	\begin{pmatrix}
+	C_{11}^m & C_{12}^m & C_{13}^m \\ 
+	C_{21}^m & C_{22}^m & C_{23}^m \\
+	C_{31}^m & C_{32}^m & C_{33}^m
+	\end{pmatrix}
+	\end{equation*}
+\end{minipage}
+\caption{Scheme representing an hypothetical electric modeling a system composed 3 electrodes $\{1,2,3\}$ surrounded by an electric ground $GND$. Each capacitance coupling corresponds to a term of the associated Mutual capacitance matrix. The diagonal terms $C_{ii}^m$ of the mutual capacitance matrix is called the self-capacitance and is modeled by a capacitance linking an electrode $i$ to the ground.}
 \label{fig:lumped-capacitance}
 \end{figure}
 
@@ -709,12 +779,60 @@ C_{N1} & C_{N2} & \cdots & C_{NN}
 
 With the interpretation of the mutual matrix as lumped capacitances, we see that the diagonal terms $\bm{C}_{ii}$ of the Maxwell capacitance matrix are simply the equivalent capacitance to all the lumped mutual capacitance $\bm{C}_{ij}$ put in parallel $C_{ii} = \sum_{j=1}^N C_{ij}^m$. As the non-diagonal terms of the Maxwell and the mutual capacitance matrix are opposite, the mutual capacitance matrix is also symmetric.
 
-COMSOL offers a functionality called Stationary Source Sweep to evaluate the elastance and the capacitance matrices. Considering the equation \ref{eq:elastance-matrix}, a terminal $j$ is excited with an electric charge $Q_j$ with the charges of all the other terminals are set to $Q_i=0 , i!=j$. The electrostatic system is numerically solved and the coefficient of potential can be deduced from the electric potential of the terminals $V_i$:
+COMSOL offers a functionality called Stationary Source Sweep to evaluate the elastance and the capacitance matrices. Considering the equation \ref{eq:elastance-matrix}, a terminal $j$ is excited with an electric charge $Q_j$ with the charges of all the other terminals are set to $Q_i=0 , i\neq j$. The electrostatic system is numerically solved and the coefficient of potential can be deduced from the electric potential of the terminals $V_i$:
 \begin{equation}
 \bm{P_{ij}} = \frac{V_i}{Q_j}
 \end{equation}
-This procedure is repeated for each terminal until the full elastance matrix $\bm{P}$ is evaluated. Using the equations \ref{eq:maxwell-capacitance-matrix} and \ref{eq:mutual-to-maxwell}, the capacitance matrices can also be evaluated. In order to facilitate the discussion, the indexes of the matrices are swapped with the label of the electrodes as: $$\{A,B,C,D\} = \{1,2,3,4\}$$
-In the case of the FID38 design with default parameters, all these matrices are :
+This procedure is repeated for each terminal until the full elastance matrix $\bm{P}$ is evaluated. Using the equations \ref{eq:maxwell-capacitance-matrix} and \ref{eq:mutual-to-maxwell}, the capacitance matrices can also be evaluated. In order to facilitate the discussion, the indexes of the matrices are swapped with the label of the electrodes. 
+
+In the case of the Planar38 design, the correspondence between indexes and label is:
+$$\{ top, bottom \} = \{A,B\} = \{ 1, 2\}$$
+With the default parameters, the elastance and capacitance matrices are evaluated to:
+\begin{equation} 
+\label{eq:planar38-matrix-evaluation}
+\begin{array}{rrccclc}
+ & \bm{P} = &
+ \begin{pmatrix}
+P_{AA} & P_{AB} \\ 
+P_{BA} & P_{BB}
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+1.42 & 1.04 \\
+1.04 & 1.42
+\end{pmatrix}
+& \cdot 10^{11} & [\textsf{F}^{-1}] \\
+\Rightarrow & \bm{C} = &
+\begin{pmatrix}
+C_{AA} & C_{AB} \\ 
+C_{BA} & C_{BB}
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+14.92 & -10.86 \\
+-10.86 & 14.92
+\end{pmatrix}
+& \cdot 10^{-12} & [\textsf{F}] \\
+\Rightarrow & \bm{C}^m = &
+\begin{pmatrix}
+C_{AA}^m & C_{AB}^m \\ 
+C_{BA}^m & C_{BB}^m
+\end{pmatrix}
+&=&
+\begin{pmatrix}
+4.06 & 10.86 \\
+10.86 & 4.06
+\end{pmatrix}
+& \cdot 10^{-12} & [\textsf{F}]
+\end{array}
+\end{equation}
+ 
+As expected from a similarly designed parallel-plate capacitor using the equation \ref{eq:capacitor-basic}, the Mutual capacitance are close the tens of picoFarad. As expected from the interpretation of the Mutual capacitance matrix, all of its terms are positive. Observing the Mutual capacitance matrix, we note that the capacitance between the electrodes $C_{AB}^m=10.86pF$ is greater than the self-capacitance of the electrodes $C_{AA}^m = C_{BB}^m = 4.06pF$. According to the parallel-plate capacitor equation \ref{eq:capacitor-basic}, there are multiple arguments pointing towards an opposite observation: the grounded chassis is surrounding the electrodes, presenting very large area and the distance electrode-chassis is smaller than the height of the crystal. However, the self-capacitance is mainly formed in the vacuum between the absorber and the chassis, with a relative electric permittivity $\epsilon_r(vaccum)=1$ whereas the mutual capacitance between the electrodes $A$ and $B$ is forming in the germanium crystal which imposes a relative permittivity of $\epsilon_r(Germanium)=16.3$. This  significant difference in material permittivity explains the hierarchy of the mutual capacitance for the Planar 38 design.
+
+In the case of the FID38 design, the correspondence between indexes and labels is:
+$$\{A,B,C,D\} = \{1,2,3,4\}$$
+$$\{ Top Veto, Top Collect, Bottom Veto, Bottom Collect \} = \{A,B,C,D\} = \{ 1,2,3,4\}$$
+With default parameters, the elastance and capacitance matrices are evaluated to:
 
 \begin{equation} 
 \label{eq:fid38-matrix-evaluation}
@@ -767,54 +885,9 @@ C_{DA}^m & C_{DB}^m & C_{DC}^m & C_{DD}^m
 \end{array}
 \end{equation}
 
-{ \color{blue} 
-Discussion on the matrix evaluation (this logical, blablabla).
-}
+The observations made previously for the Planar38 design still holds for the FID38 design: capacitances are close to tens of picoFarad and the self-capacitance term are dominated. In particular, we note that the Mutual capacitance is dominated by the terms $C_{AB}^m=C_{BA}^m=C_{CD}^m=C_{DC}^m=10.19pF$. Indeed, as the electrodes $A,B$ and $C,D$ are interleaved, their capacitive coupling is high as it emulates a situation with two close plates. The next higher term is $C_{AC}^m=4.02pF$ coming from the two veto electrodes which are facing each other and coming very close to one another near the equator leading to an increase in coupling. The hierarchy of the remaining term can be explained by the fact that their are more veto electrode rings than collect electrode rings, thus emulating a higher electrode area in the equation \ref{eq:capacitor-basic}.
 
-In the case of the Planar38 design with default parameters, the matrices are evaluated to:
-
-\begin{equation} 
-\label{eq:planar38-matrix-evaluation}
-\begin{array}{rrccclc}
- & \bm{P} = &
- \begin{pmatrix}
-P_{AA} & P_{AB} \\ 
-P_{BA} & P_{BB}
-\end{pmatrix}
-&=&
-\begin{pmatrix}
-1.42 & 1.04 \\
-1.04 & 1.42
-\end{pmatrix}
-& \cdot 10^{11} & [\textsf{F}^{-1}] \\
-\Rightarrow & \bm{C} = &
-\begin{pmatrix}
-C_{AA} & C_{AB} \\ 
-C_{BA} & C_{BB}
-\end{pmatrix}
-&=&
-\begin{pmatrix}
-14.92 & -10.86 \\
--10.86 & 14.92
-\end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}] \\
-\Rightarrow & \bm{C}^m = &
-\begin{pmatrix}
-C_{AA}^m & C_{AB}^m \\ 
-C_{BA}^m & C_{BB}^m
-\end{pmatrix}
-&=&
-\begin{pmatrix}
-4.06 & 10.86 \\
-10.86 & 4.06
-\end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}]
-\end{array}
-\end{equation}
-
-\subsection{Sensitivity and Figure of Merits}
-
-{\color{red} Lot of calculus ahead. Not formatted for manuscript !}
+\subsection{Sensitivity Calculation}
 
 In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters (A,B,C,D = -1,+4,+1,-4 V) with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{Q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}. The electric potential signal $\vec{V}$ created by the electric charge perturbation $\vec{Q}$ with the application of the equation \ref{eq:capacitance-definition-matrix} along with the evaluation of the Maxwell capacitance matrix \ref{eq:fid38-matrix-evaluation}. The electric charge perturbation is assumed to be created by a 1keV electronic recoil, creating a number $N_p = 1000/3 = 333$ of electron-hole pairs.
 In the case of the Planar38, we refer to the equation \ref{eq:plana38-induced-charges} for the electric charge perturbation vector. The voltage signal vector is thus:
@@ -979,12 +1052,23 @@ However, to this day, the EDELWEISS and R\&D experiments have only use a single 
 \quad \Rightarrow \quad
 \bm{P}^{cabling} = 
 \begin{bmatrix}
-  0.15 & 0.02 & 0.01 & 0.01\\
-  0.02 & 0.16 & 0.01 & 0.01\\
-  0.01 & 0.01 & 0.15 & 0.02\\
-  0.01 & 0.01 & 0.02 & 0.16\\
+  0.151 & 0.024 & 0.011 & 0.008\\
+  0.024 & 0.156 & 0.008 & 0.007\\
+  0.011 & 0.008 & 0.151 & 0.024\\
+  0.008 & 0.007 & 0.024 & 0.156\\
 \end{bmatrix}
 \cdot 10^{11}
+\end{equation}
+
+\begin{equation}
+\bm{P}_{PL38}^{cabling}
+=
+\begin{bmatrix}
+  0.158 & 0.027 \\
+  0.027 & 0.158 \\
+\end{bmatrix}
+\cdot
+10^{11}
 \end{equation}
 
 In the case of the Planar38 with the capacitive cabling:
@@ -993,28 +1077,46 @@ In the case of the Planar38 with the capacitive cabling:
 \vec{V}_{event}
 =
 \begin{bmatrix}
+0.131 \\
+-0.131
+\end{bmatrix}
+\cdot 10^{11}
+=
+\begin{bmatrix}
 0.71 \\
 -0.71
 \end{bmatrix}
 [\mu V/keV]
 \end{equation}
 
+\begin{equation}
+C_{top, bottom}^{ref}
+= 0.131 \cdot 10^{11}
+= 76 \cdot 10^{-12} [F]
+\end{equation}
 
 In the case of the FID38 with the capacitive cabling:
 
-\begin{equation}
-\begin{array}{rr}
+\begin{align}
 \vec{V}_{bulk}
 =
+\begin{bmatrix}
+  -0.016 \\ -0.149 \\ 0.016 \\ 0.149\\
+\end{bmatrix}
+\cdot 10^{11}
+= &
 \begin{bmatrix}
 -0.05 \\ -0.80 \\ 0.05 \\ 0.80
 \end{bmatrix}
 [\mu V/keV]
-\quad \quad
-&
-\quad \quad
+\\
 \vec{V}_{veto,top}
 =
+\begin{bmatrix}
+  0.127 \\ -0.132 \\ 0.003 \\ 0.001\\
+\end{bmatrix}
+\cdot 10^{11}
+= &
 \begin{bmatrix}
 0.69 \\ -0.75 \\ 0 \\ 0
 \end{bmatrix}
@@ -1023,47 +1125,166 @@ In the case of the FID38 with the capacitive cabling:
 \vec{V}_{veto,bottom}
 =
 \begin{bmatrix}
+  -0.003 \\ -0.001 \\ -0.127 \\ 0.132\\
+\end{bmatrix}
+\cdot 10^{11}
+= &
+\begin{bmatrix}
 0 \\ 0 \\ -0.69 \\ 0.75
 \end{bmatrix}
 [\mu V/keV]
-\quad \quad
-&
-\quad \quad
+\\
 \vec{V}_{equator}
 =
+\begin{bmatrix}
+  0.140 \\ 0.016 \\ -0.140 \\ -0.016\\
+\end{bmatrix}
+\cdot 10^{11}
+= &
 \begin{bmatrix}
 0.75 \\ 0.05 \\ -0.75 \\ -0.05
 \end{bmatrix}
 [\mu V/keV]
-\end{array}
-\end{equation}
+\end{align}
+
+
+\begin{align}
+C_{A, veto}^{ref} = C_{C, veto}^{ref}
+= 0.127 \cdot 10^{11}
+&= 78.7 \cdot 10^{-12} [F]
+\\
+C_{A, equator}^{ref} = C_{C, equator}^{ref}
+= 0.140 \cdot 10^{11}
+&= 71.4 \cdot 10^{-12} [F]
+\\
+C_{B, bulk}^{ref} = C_{D, bulk}^{ref}
+= 0.149 \cdot 10^{11}
+&= 67.1 \cdot 10^{-12} [F]
+\end{align}
 
 We see that by adding the capacitance of the cabling, the cross-talk phenomenon is significantly lessened and that the electrode sensitivities are very close to 0.14 in absolute value for all the types of events. The small variation of cross-talk and sensitivities were surely "absorbed" in the resolution of the ionization channel in the previous EDELWEISS and IP2I R\&D analysis, leading to an overall very correct result. As a complement, let's add that as the capacitive coupling with the ground through the coaxial cabling is increased, the cross-talk and difference in sensitivity vanish. In the case of EDELWEISS-III with a cabling of capacitance $>100$pF, the simple ionization signal generation model holds.
+
+In order to fully appreciate the impact of the cabling capacity, the figure \ref{fig:predict-corner-plot} presents the corner plot of the simulation of 1000 events of each recoil type in a FID38 detector with (black points) and without (colored points) 50pF cabling capacitance. Each event is associated to a voltage signal vector $\vec{V}$. Each term is plotted on the corner plot similarly to the analysis of real events. The events were simulated with a normal distribution centered on the sensitivities calculated in equation \ref{eq:fid38-sensitivity} and with a standard deviation of $1\mu V/keV$.
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Figures/Electrodes/predict_corner_plot.png}
-\caption{Simulation of the expected signal with a FID38 detector with cabling (black point) and without capacitive cabling (color points). There are 1000 points for each event types, and each channel is modeled by a gaussian distribution of variance 100eV.)}
-\label{fig:lumped-capacitance}
+\caption{Simulation of the expected signal with a FID38 detector with cabling (black circles) and without capacitive cabling (color squares). There are 1000 points for each event types, and each channel is modeled by a gaussian distribution of variance 100eV.}
+\label{fig:predict-corner-plot}
 \end{figure}
+
+With the 50pF cabling capacitance, the 4 recoil type form the usual "square" pattern similar to what is obtained in the next Chapter \ref{ChapterNeutron} discussing analysis of the neutron run with RED80. The square pattern emerges from the low cross-talks of about $0.05/0.80=6\%$ and $0.05/0.75=7\%$.
+
+Without any cabling capacitance, the recoil types are more distant from the origin, which illustrates the greater sensitivities in this case. The 4 recoil populations do not form a square pattern anymore and presents the high cross-talk obtained in the previous equations, $1.23/3.52=35\%$ and $1.23/2.77=44\%$.
+
+
+\subsection{Noise and Resolution Calculation}
+
+The previous paragraph presented how, with low cabling capacitance, the capacitive coupling between each electrodes affects the sensitivity of the ionization channel. This paragraph discusses the impact of this capacitive coupling on the noise affecting the measurement and eventually the resolution of the ionization channel.
+
+A previous paragraph \ref{par:electronics-ionization} already presented the noise propagation and resolution calculation for the future HEMT electronics. These calculations were based on a single HEMT line cabled on a single capacitance $C_d$ representing an electrode of the detector. We will now study how the noise calculation is affected by the coupling of multiple HEMT lines.
+
+In order to motivate this study, the noise calculation is first done on a very simple model: the Planar38 design with a heavily simplified HEMT line featuring only the polarization resistor and its associated Johnson noise. The scheme of this simplified model is presented in the figure \ref{fig:scheme-planar38-simplified}. Thanks to the superposition theorem and Thevenin-Norton transformations of the electric circuit, it is possible to propagate the two Johnson noise source $e_{J,A}$ and $e_{J,B}$ to the measurement point $S_B$. The total noise and its components measured at $S_B$ are plotted as functions of the frequency on the left figure \ref{fig:planar38-analytical-results}. Event though the original Johnson voltage noise source are modeled as white noise whose levels are independent from the frequency, the total voltage noise affecting the measurement at node $S_B$ presents a low-pass filter profile. This is consistent with the studied electric system as the node $S_B$ is linked to the electric ground through the two capacitors $C_{22}$ and $C_{11}$: at high frequency, the electric potential of the node $S_B$ tends be null. The dominant component of the noise is the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ where the measurement is made. It is less dampened than the other Johnson noise source $e_{J,A}$ which is filtered by the capacitance $C_{12}$ coupling the two electrodes $A$ and $B$. The right figure \ref{fig:planar38-analytical-results} shows the ratio of the two Johnson noise components $e_{J,A}/e_{J,B}$ as a function of the frequency.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_johnson_propagation.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_comparison_johnson.png}
+\caption{
+\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
+\textbf{Right:} Ratio of two Johnson noise components at the node $S_B$ as a function of the frequency.
+}
+\label{fig:planar38-analytical-results}
+\end{figure}
+
+This ratio is consistent with a high-pass filtering assured by the coupling capacitance $C_{12}$. Analytically, the ratio is expressed as:
+
+\begin{equation}
+\label{eq:planar38_analytical}
+\frac{e_{J,A}(S_B)}{e_{J,B}(S_B)}
+=
+  \frac{ j \omega R_{polar} C_{12}^m }{ 1 + j \omega R_{polar} \left( C_{12}^m + C_{11}^m \right) } \
+\xrightarrow[{f\to \infty}]{}
+  \frac{ C_{12}^m }{ C_{12}^m + C_{11}^m }
+=
+  \frac{ -C_{12} }{ C_{11} }
+=
+  \frac{ 10.86 \cdot 10^{-12} }{ 14.92 \cdot 10^{-12} }
+\approx
+  0.73
+\end{equation}
+
+Above the cutoff frequency of about $3.3$Hz, the ratio tends to $0.73$. According to the previous equation \ref{eq:planar38_analytical}, the ratio depends on the ratio of the non-diagonal over the diagonal terms of the Maxwell capacitance matrix of the Planar38 detector (from equation \ref{eq:planar38-matrix-evaluation}). This ratio of Maxwell capacitance is comprised between 0 and 1, and reaches its maximum if the capacitive coupling $C_{12}^m$ between the two electrodes $A$ and $B$ is much greater than the self-capacitance $C_{11}^m$ of the electrode $A$.
+
+As the two Johnson noise are not correlated, their squared noise level is added to form the total noise level which is tends to be $\sqrt{1^2 + (0.73)^2} = 1.24$ times the original Johnson noise level caused by $e_{J,B}$. With the given Planar38 design with the simplified HEMT line, the noise level is increased by $24\%$ from approximately $10$Hz. The effect of the coupling between the electrodes is far from negligible and should be properly studied for the two reference design FID38 and Planar38 with a full Hemt line model.
 
 \begin{landscape}
-
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figures/Electrodes/scheme_fid38_fat.png}
+\includegraphics[height=0.25\textheight, width=\linewidth, keepaspectratio]{Figures/Electrodes/scheme_planar38_analytical.png}
 \caption{Electric scheme of the FID38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
-\label{fig:lumped-capacitance}
+\label{fig:scheme-planar38-simplified}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figures/Electrodes/scheme_planar38.png}
+\includegraphics[height=0.25\textheight, width=\linewidth, keepaspectratio]{Figures/Electrodes/scheme_planar38.png}
 \caption{Electric scheme of the Planar38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
-\label{fig:lumped-capacitance}
+\label{fig:scheme-planar38-full}
+\end{figure}
+\end{landscape}
+
+The Planar38 detector cabled with the full Hemt line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the three mutual capacitance $C_{ij}^m$ linked to the nodes $A,B$. There is a measurement node for each electrode $S_A$ and $S_B$, acting as an ideal voltmeter with the electric ground as reference. There is a total of 6 noise sources coming from the Hemt lines. The signal induced by an event is modeled as a transient current source $I_{event}=N_p \cdot e \cdot \delta(t)$ between $A$ and $B$. The multiple noise source and the event signal are propagated to the measurement node $S_B$ using the numerical circuit resolution (see Lcapy module for Python).
+% Noise propagation plot
+The left figure \ref{fig:planar38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ at low frequency and the intrinsic current noise $i_{n,B}$ at high frequency. The Johnson noise $e_{J,A}$ from the other Hemt line of the electrode $A$ is slightly present below 2Hz, but is quickly dominated by the intrinsic voltage source $e_{n,B}$. In the end, we observe that the noise sources from the auxiliary HEMT line are heavily filtered and does not propagate significantly to the measurement node $S_B$. When comparing to the previous simplified electric circuit where the propagation was significant, one of the main difference is now the presence of the feedback capacitance, the hemt intrinsic capacitance and the cabling capacitance (Representing in this case 5+3+5 = 13pF). These capacitances are added to the diagonal term of the Maxwell capacitance matrix and reduce the propagation of the noise source through the coupling capacitance $C_{12}^m$.
+% Noise vs Signal
+The top right figure \ref{fig:planar38-propagation} presents the total noise power spectral density compared to the power spectrum of the signal induced by an event. Their shape are quite similar to a $1/f$ profile. From this functions, the Noise Equivalent Power is calculated and represented in the bottom right figure \ref{fig:planar38-propagation}. The NEP is an increasing function, therefore the majority of the information on the signal is associated to the low frequency. When integrating between 1Hz and infinity, the resolution is evaluated to $\sigma_B=34$eV. (bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_noise_propagation.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_nep_resolution.png}
+\caption{
+\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
+\textbf{Right:} Noise Power Spectral Density compared to Signal Power Spectrum, and Noise Equivalent Power with a Resolution of $\sigma_{B} = 34$eV.
+}
+\label{fig:planar38-propagation}
 \end{figure}
 
-\end{landscape}
+% FID38 noise propagation
+The FID38 detector cabled with the full Hemt line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the ten mutual capacitance $C_{ij}^m$ linked to the nodes $A,B,C,D$. There is a measurement node for each electrode $S_A, S_B, S_c, S_D$, acting as an ideal voltmeter with the electric ground as reference. There is a total of $4\times3=12$ noise sources coming from the four Hemt lines. Signals induced by events are modeled as transient current sources $I_{event}=N_p \cdot e \cdot \delta(t)$ between two electrode nodes depending on the considered recoil type. The multiple noise source and the event signals are propagated to the measurement node $S_B$ using the numerical circuit resolution (see Lcapy module for Python).
+% Noise propagation plot
+The left figure \ref{fig:planar38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ at low frequency and the intrinsic current noise $i_{n,B}$ at high frequency. The Johnson noise $e_{J,A}$ from the other Hemt line of the electrode $A$ is slightly present below 2Hz, but is quickly dominated by the intrinsic voltage source $e_{n,B}$. All in all, the results are quite similar to what was observed with the Planar38 design: the Johnson noise from the most coupled electrode is significant at very low frequency and is quickly dominated by the intrinsic voltage noise source of the Hemt line $B$. Again, this can be explained by a boosted diagonal term in the Maxwell capacitance matrix which heavily filter the noise sources from spreading to other Hemt line efficiently.
+% Noise vs Signal
+The top right figure \ref{fig:planar38-propagation} presents the total noise power spectral density compared to the power spectrum of the signal induced by the different recoil types of 1keV. Just as what was calculated in the equation \ref{eq:fid38-sensitivity} and discussed in the associated paragraph, the main sensitivity to take into account are $A,C$ for veto and equatorial event, and $B,D$ for the bulk events. The shapes of the noise and signals are quite similar to a $1/f$ profile. From this functions, the Noise Equivalent Power is calculated and represented in the bottom right figure \ref{fig:planar38-propagation}. The NEP is an increasing function, therefore the majority of the information on the signal is associated to the low frequency. When integrating between 1Hz and infinity, the resolution is evaluated to $\sigma_B=\sigma_D=28$eV and $\sigma_A=\sigma_C=32$eV. (bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_noise_propagation.png}
+\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_nep_resolution.png}
+\caption{
+\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
+\textbf{Right:} Noise Power Spectral Density compared to Signal Power Spectrum, and Noise Equivalent Power with a Resolution of $\sigma_{B} = 28$eV.
+}
+\label{fig:fid38-propagation}
+\end{figure}
+
+% Planar38 Scan
+The performance of a detector is partly quantified by the resolution of its ionization channel. Thus, the resolutions calculated previously for the Planar38 and FID38 are figure of merits. However, these calculation are long as they necessitate to simulate a detector design into COMSOL to calculate the Mutual capacitance matrix and then simulate the detector cabled with the hemt lines with Lcapy.
+
+The resolution of the electrodes of a detector design depends on the whole Maxwell capacitance matrix (3 independent terms for the Planar38, and 10 independents terms for the FID38). It might be possible to access some basic trends by scanning over basic parameters.
+
+The left figure \ref{fig:planar38-scan} is a graph of the calculated resolution as a function of the equivalent capacitance of the HEMT lines (cabling capacitance + feedback capacitance + intrinsic hemt capacitance). The capacitance of the Hemt line are appearing on the diagonal term of the Maxwell capacitance. Therefore, this parameter scan can be interpreted as studying the resolution as a function of the diagonal terms of the Maxwell capacitance terms.
+Apart from the first point at very low capacitance, we observe that a high cabling capacitance increases the resolution of the ionization channels.
+
+%{\color{blue} (More points ? Clear legend with a scanning on each elements (cabling, fb, hemt) ? Do it for fid38 also ?)}
+
+The right figure \ref{fig:planar38-scan} is a graph of the resolution as a function of a global multiplier factor of the Maxwell capacitance matrix for the Planar38 design. A multiplier factor of 1 corresponds to a resolution calculation with the presented capacitance matrices presented in the equation \ref{eq:planar38-matrix-evaluation}. It is possible to artificially change all the capacitance terms of the capacitance matrix with this global multiplier factor. Compared to the previous scan on the diagonal term of the Maxwell matrix, this scan impact the whole matrix. In order to realistically apply this transformation, we could think of a up/down scaling of the detector size (increasing/reducing the area of the electrodes) or changing the electric permittivity with another absorber material. We observe that the resolution is almost proportional to the global multiplier factor.
+
+These two observations are consistent with what could be expected from the very basic understanding of the ionization channel presented in the paragraph \ref{par:basic-ion-channel}: the resolution decreases as the capacitances of the detector decrease. 
+In order to optimize the ionization channel, the research should be focused on lowering the capacitance of the cabling, and lowering the capacitances of the electrodes.
+The cabling links the electrodes evaporated on the germanium crystal and the HEMT electronics. Its capacitance depends on the type of cabling (shielded, material) and is proportional to its length. As a result, lowering the cabling capacitance is ultimately a geometric challenge on the cryostat configuration and the suspended tower. Currently, the cabling capacitance is guaranteed to be lower than 20pF, and with should be expected to reach 5pF with further research.
+The capacitance of the electrodes depends on the design of the detector and is heavily discussed in the next paragraph of this section.
 
 \begin{figure}
 \centering
@@ -1073,381 +1294,25 @@ We see that by adding the capacitance of the cabling, the cross-talk phenomenon 
 \textbf{Left:} Resolution of electrode B as a function of the extra-detector capacitance.
 \textbf{Right:} Resolution of the electrode B as a function of a multiplicative factor of the Maxwell capacitance matrix.
 }
-\label{fig:fid38-fiducial}
+\label{fig:planar38-scan}
 \end{figure}
 
-%\subsection{Axy-symmetrical} 
-%
-%Let's talk about the fact that I used 2D simulation which is then rotated to form a 3D simulation of cylindrical symmetry.
-%
-%2D simulations are quicker than 3D simulation.
-%According to some quick tests, the simulation of a given geometry is the same in 3D or 2D.
-%So yeah, using that.
-%
-%Maybe, search in the comsol manual and see how this is done in the equations.
-%TO BE DONE.
-%
-%\begin{figure}
-%\centering
-%\begin{subfigure}{.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/2D_simulation.png}
-%  \caption{Simulation of the concentric grid planar in 2D-axisymmetry with COMSOL.}
-%  \label{fig:2D-simulation}
-%\end{subfigure}%
-%\begin{subfigure}{0.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/3D_simulation.png}
-%  \caption{Simulation of the concentric grid planar in 3D with COMSOL.}
-%  \label{fig:3D-simulation}
-%\end{subfigure}
-%\caption{To illustrate the differences between 2D and 3D.}
-%\label{fig:2D-vs-3D}
-%\end{figure}
-%
-%\subsection{Building the geometry}
-%
-%Assomptions used for the simulation (like perfect cylindrical symmetry)
-%No simulation of the NTD, just test in 3D, no impact if put on electrode, but discussion and checking are necessary for that.
-%
-%\subsection{Meshing}
-%
-%Did I told you that comsol is a finte elements software ? no ? well, it is !
-%These finite elements are small section of the geometric space where the calculationb of the physics quantities are calculated discritely. These finite elements are defined by the meshing, which divide the space. However, there is a way to divide space more efficiently than others. Like attribuating large portion of space where the physical quantities are quite constant and small portions where they are prone to a lot of fluctuation.
-%And guess what I did with this fabulous option ?
-%yeah, I kept it on full automatic for physics. Guess I should dig a bit deeper to see what this is all about. Like, size a mesh simplex according to the smallest feature in the geometry and things like that.
-%TO BE DONE.
-%
-%\subsection{Capacitance Calculation}
-%
-%Everybody know that the capacitance $C$ links the voltage of an electrode $V$ and $Q$ the  charges accumulated in this electrode:
-%\begin{equation}
-%C \times U = Q
-%\end{equation}
-%
-%This is quite basic, but no so evident when their is more than two electrodes with different electric potential in a system. That is why it is hopefully possible to generalized the notion of capacitance to more electrodes with the lumped matrix capacity or the Maxwell capacity matrix (consider whatever suits you, they mean the same).
-%
-%INSERT MATRIX HERE
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/lumped_capacitance_scheme.png}
-%\caption{Scheme representing the capacitance between each electrodes in electric field simulation.}
-%\label{fig:lumped-capacitance}
-%\end{figure}
-%
-%How does comsol calculate this lumped capacitance matrix ?
-%Well, it considers the equation i just wrote before, and fixes all except one electrode to zero and sweep over the electrodes with 1V of potential. Just with that, the software is able to deduce all the terms of the matrix.
-%Yeah, i should read more about that in the manual to see if this is done like that. But it is. yep.
-%TO BE DONE.
-%
-%
-%CROSSTALK
-%Yep, gotta talk about the link between the crosstalk on the ionization channels and the capacitance term between those electrodes.
-%We can simply say for now that the higher the capacitance is and the higher the crosstalk will be. However, it should be very interesting to quantify the link between these two quantities.
-%Linking the crosstalk matrix and the capacitance matrix, and be able to compare that experimentally.
-%
-%ANALYSIS TO BE DONE
-%
-%
-%\subsection{Estimation of the Theoretical Fiducial Volume}
-%
-%In this subsection, i explain how to estimate the fiducial volume.
-%Draw streamlines crossing the z=0.
-%Exporting to image png.
-%Using graphical analysis with python and rescaling to take into account 2D-axisymmetry.
-%
-%\begin{figure}
-%\centering
-%\begin{subfigure}{.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_comsol.png}
-%  \caption{Drawing streamlines in COMSOL}
-%  \label{fig:streamlines-comsol}
-%\end{subfigure}%
-%\begin{subfigure}{0.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_corrected.png}
-%  \caption{for 4*4mm NTD}
-%  \label{fig:streamlines-corrected}
-%\end{subfigure}
-%\caption{Illustration of the estimation of the fiducial volume.}
-%\label{fig:fiducial-volume-estimation}
-%\end{figure}
-%
-%\subsection{General region for the charge collection in a detector}
-%
-%WITH A SCHEME
-%To illustrate the different region of the detector differing by the expected charge collection.
-%
-%\begin{itemize}
-%	\item collecting zone
-%	\item veto zone
-%	\item guard zone
-%	\item lost zone (streamlines exiting the crystal)
-%	\item in between all of them, either low electric field (bad for trapping and recombination) or unclear frontier (when thinking of the recoil as a charged firework).
-%\end{itemize}
-%
-%\section{Simulated Configurations}
-%
-%In this section, I will talk about the different configurations that were simulated.
-%These configurations can differ according to the mass of the crystal, the number of electrodes, the position and geometry of the electrodes.
-%Maybe, i should describe the configurations in a kind of general way: planar, grid, ID, FID, etc.. and put the exact simulation of each detectors in the annexes. I dont really know yet.
-%
-%\subsection{Planar Geometry}
-%
-%(Like REDN1 or RED80, with planar polarization, not much runs)
-%
-%\subsubsection{Full Planar}
-%
-%Maxwell Capacitance: $11.88 \times 10^{-12}$F
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/full_planar.png}
-%\caption{Scheme of the simulated full planar h10phi30 detector.}
-%\label{fig:full-planar}
-%\end{figure}
-%
-%\subsubsection{Concentric/Square Grid Planar}
-%
-%Maxwell Capacitance: $11.88 \times 10^{-12}$F
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/concentric_grid_planar.png}
-%\caption{Scheme of the simulated concentric grid planar h10phi30 detector.}
-%\label{fig:concentric-grid-planar}
-%\end{figure}
-%
-%\subsection{Planar with Guard}
-%
-%Like RED80, many runs.
-%
-%\subsection{Interdigitized}
-%
-%Like REDN1, many runs.
-%
-%Lot of different variants here.
-%
-%On the presented figure, the central pad is chosen to be polarized at veto potential and the NTD thermal sensor should be glued on it.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/ID_geometry.png}
-%\caption{Scheme of the simulated interdigitized detector.}
-%\label{fig:concentric-grid-planar}
-%\end{figure}
-%
-%\subsection{Fully Interdigitized}
-%
-%Like RED70 (no run, RIP)
-%
-%Presenting the FID geometry, with veto zone, collect, zone and the faraday cages effect which means that the charge collection is *really* good.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/placeholder.jpg}
-%\caption{Illustrating the veto zone and the collect zone thanks to the electric field shape induced by the FID electrodes.}
-%\label{fig:fid-illustration}
-%\end{figure}
-%
-%\subsection{Comparing the different topologies}
-%
-%\begin{table}[]
-%\centering
-%\resizebox{\linewidth}{!}{
-%	\input{Tables/Electrodes/performance_overview.tex}
-%}
-%\caption{Sum-up of the performance and specificity of each electrode topology.}
-%\label{tab:stream-glitch-time-cut}
-%\end{table}
-%
-%\section{Influence of parameters}
-%
-%For each parameter, we want to study their impact on the performances of the detector.
-%The fiducial volume, the electric field shape, the electric field norm and the capacitance.
-%
-%The fiducial volume is a number.
-%The electric field shape/norm is one or two graphs.
-%The capacitance is a matrix (non-diagonal term are useful to estimate the coupling between each electrodes)
-%
-%\subsection{Capacitance with chassis distance}
-%
-%*All topologies*
-%
-%The capacitance term between the electrodes and the ground decreases with the distance of the copper chassis. As expected by the capacitance formula of a plan capacitor.
-%The capacitance term capa-capa tends to the expected value for a plan capacitor in empty space.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_chassis_distance.png}
-%\caption{Graph of the capacitance terms in function of the distance between the Ge crystal and the copper chassis (concentric grid planar h10phi30 detector).}
-%\label{fig:capcaitance-chassis-distance}
-%\end{figure}
-%
-%\subsection{Capacitance with electrode spacing}
-%
-%*All topologies except full planar*
-%
-%The electrode spacing directly fixes the number of concentric circle on a plan face of the germanium crystal. As a result the curves show a saw-shaped profile corresponding to the discrete number of electrodes.
-%Anyway, the global trend is that with a high spacing, there is less electrodes and less capacitance.
-%
-%This tells us that we want to reduce the surface of electrode on the crystal in order to decrease the capacitance. However, a lower surface of electrodes comes with a worse charge collection eventually. So trade-off time.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
-%\caption{Graph of the capacitance terms in function of the electrode spacing (concentric grid planar h10phi30 detector).}
-%\label{fig:capacitance-electrode-spacing}
-%\end{figure}
-%
-%\begin{figure}
-%\centering
-%\begin{subfigure}{.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/2x2_distance_sweep.png}
-%  \caption{for 2*2mm NTD}
-%  \label{fig:2D-simulation}
-%\end{subfigure}%
-%\begin{subfigure}{0.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/4x4_distance_sweep.png}
-%  \caption{for 4*4mm NTD}
-%  \label{fig:3D-simulation}
-%\end{subfigure}
-%\caption{Graph of the capacitance terms in function of the electrode spacing (interdigitized).}
-%\label{fig:2D-vs-3D}
-%\end{figure}
-%
-%I could also mention the projection for the fid32 and fid38 that were simulated with different electrode spacing.
-%
-%\begin{table}[]
-%\centering
-%\resizebox{\linewidth}{!}{
-%	\input{Tables/Electrodes/fid32_parameter_sweep.tex}
-%}
-%\caption{Projection of the FID32 design performance with multiple variants (collect at $\pm4$V, veto at $\mp1.5$V)}
-%\label{tab:stream-glitch-time-cut}
-%\end{table}
-%
-%\begin{table}[]
-%\centering
-%\resizebox{\linewidth}{!}{
-%	\input{Tables/Electrodes/fid38_parameter_sweep.tex}
-%}
-%\caption{Projection of the FID38 design performance with multiple variants. (collect at $\pm4$V, veto at $\mp1.5$V)}
-%\label{tab:stream-glitch-time-cut}
-%\end{table}
-%
-%\subsection{Capacitance with the electrode width}
-%
-%*All topologies except full planar*
-%
-%As expected, increasing the width of electrodes also increases the surface of the electrodes and the capacitance of the detector.
-%Some configurations are more affected than others: planar detector less affected than the interleaved electrode configurations.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
-%\caption{Graph of the capacitance terms in function of the electrode width (concentric grid planar h10phi30 detector).}
-%\label{fig:capacitance-electrode-width}
-%\end{figure}
-%
-%\subsection{Potential of the veto/guard electrodes}
-%
-%*Planar with guard, ID and FID*
-%
-%When considering geometry with veto or guards electrodes, the potential of these electrodes in respect to the main collecting electrodes is a parameter.
-%Changing this parameter has an impact on the shape of the streamline of the electric field in the detector.
-%
-%\begin{figure}
-%\centering
-%\begin{subfigure}{.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_0.png}
-%  \caption{ratio veto/collect: 0.21}
-%  \label{fig:ratio-veto-0}
-%\end{subfigure}%
-%\begin{subfigure}{0.5\textwidth}
-%  \centering
-%  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_1.png}
-%  \caption{ratio veto/collect: 0.13}
-%  \label{fig:veto-ratio-1}
-%\end{subfigure}
-%\caption{Illustration of the estimation of the fiducial volume.}
-%\label{fig:veto-ratio}
-%\end{figure}
-%
-%\subsection{Symmetry of the polarization}
-%
-%*All topologies*
-%
-%Checking that a symmetric polarization is better than asymmetric,
-%and showing some numbers/graphs to justify that
-%($\pm1$V is better than 0,2V)
-%
-%\subsection{Central hole/pad for NTD}
-%
-%*All topologies*
-%
-%Impact of a hole/pad for the NTD. Important for electric field shape.
-%Should be decided by the experimental heat-only rate.
-%
-%\subsection{Corner of the crystal}
-%
-%*All topologies*
-%
-%No electrodes or electrodes on/near the corner.
-%Impact of the charge collection, "dead" volume in the corner.
-%
-%\subsection{Equatorial distance}
-%
-%*Planar extreme, Planar with guard, FID*
-%
-%Equatorial length, discussion on charge collection/trapping/tagging on this equatorial volume.
-%
-%\section{Experiment with REDN1}
-%
-%In this section, experiment with the ionization channel of REDN1, and analysis and results and comparison with expected performances. This is based on the run61.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/redn1_ion_vs_ion.png}
-%\caption{For each fiducial events of the run tk15l005, comparing the reconstructed ionization energy for each electrodes.}
-%\label{fig:redn1-ion-vs-ion}
-%\end{figure}
-%
-%\begin{table}[]
-%\centering
-%\resizebox{\linewidth}{!}{
-%	\input{Tables/Electrodes/redn1_fiducial_volume.tex}
-%}
-%\caption{Estimation of the experimental fiducial volume for REDN1.}
-%\label{tab:stream-glitch-time-cut}
-%\end{table}
-%
-%\subsection{Experimental fiducial volume}
-%
-%\subsection{Experimental Charge collection}
-%
-%\subsection{Experimental sensitivity and crosstalk}
-%
-%
-%\section{Experiment with RED80}
-%
-%\subsection{Experimental fiducial volume}
-%
-%\subsection{Experimental Charge collection}
-%
-%\subsection{Experimental sensitivity and crosstalk}
-%
-%
-%\section{Appendix: Catalog of Detectors fields lines}
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_red80.png}
-%\caption{Streamlines of the electric field in RED80.}
-%\label{fig:streamlines-red80}
-%\end{figure}
+
+
+\begin{landscape}
+
+\begin{figure}
+\centering
+\includegraphics[height=0.25\textheight, width=\linewidth, keepaspectratio]{Figures/Electrodes/scheme_fid38_fat.png}
+\caption{Electric scheme of the FID38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
+\label{fig:scheme-fid38-fat}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[height=0.25\textheight, width=\linewidth, keepaspectratio]{Figures/Electrodes/scheme_fid38_reduced.png}
+\caption{Electric scheme of the Planar38 with a hemt line for each electrode. The lumped capacitance model is used to represent the capacities of the electrodes. Thus, the scheme uses the term of the mutual capacitance matrix. REDO WITH BETTER FONT SIZE}
+\label{fig:scheme-fid38-redux}
+\end{figure}
+
+\end{landscape}

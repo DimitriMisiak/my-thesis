@@ -1,0 +1,387 @@
+% Chapter Electrodes
+
+\chapter{Scanning the Parameters of the Design Simulation} % Main chapter title
+
+\label{ChapterElectrodesScan} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+%----------------------------------------------------------------------------------------
+%	BEGING CHAPTER
+%----------------------------------------------------------------------------------------
+
+\section{Global section}
+
+\subsection{Axy-symmetrical} 
+
+Let's talk about the fact that I used 2D simulation which is then rotated to form a 3D simulation of cylindrical symmetry.
+
+2D simulations are quicker than 3D simulation.
+According to some quick tests, the simulation of a given geometry is the same in 3D or 2D.
+So yeah, using that.
+
+Maybe, search in the comsol manual and see how this is done in the equations.
+TO BE DONE.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/2D_simulation.png}
+  \caption{Simulation of the concentric grid planar in 2D-axisymmetry with COMSOL.}
+  \label{fig:2D-simulation}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/3D_simulation.png}
+  \caption{Simulation of the concentric grid planar in 3D with COMSOL.}
+  \label{fig:3D-simulation}
+\end{subfigure}
+\caption{To illustrate the differences between 2D and 3D.}
+\label{fig:2D-vs-3D}
+\end{figure}
+
+\subsection{Building the geometry}
+
+Assomptions used for the simulation (like perfect cylindrical symmetry)
+No simulation of the NTD, just test in 3D, no impact if put on electrode, but discussion and checking are necessary for that.
+
+\subsection{Meshing}
+
+Did I told you that comsol is a finte elements software ? no ? well, it is !
+These finite elements are small section of the geometric space where the calculationb of the physics quantities are calculated discritely. These finite elements are defined by the meshing, which divide the space. However, there is a way to divide space more efficiently than others. Like attribuating large portion of space where the physical quantities are quite constant and small portions where they are prone to a lot of fluctuation.
+And guess what I did with this fabulous option ?
+yeah, I kept it on full automatic for physics. Guess I should dig a bit deeper to see what this is all about. Like, size a mesh simplex according to the smallest feature in the geometry and things like that.
+TO BE DONE.
+
+\subsection{Capacitance Calculation}
+
+Everybody know that the capacitance $C$ links the voltage of an electrode $V$ and $Q$ the  charges accumulated in this electrode:
+\begin{equation}
+C \times U = Q
+\end{equation}
+
+This is quite basic, but no so evident when their is more than two electrodes with different electric potential in a system. That is why it is hopefully possible to generalized the notion of capacitance to more electrodes with the lumped matrix capacity or the Maxwell capacity matrix (consider whatever suits you, they mean the same).
+
+INSERT MATRIX HERE
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/lumped_capacitance_scheme.png}
+\caption{Scheme representing the capacitance between each electrodes in electric field simulation.}
+\label{fig:lumped-capacitance}
+\end{figure}
+
+How does comsol calculate this lumped capacitance matrix ?
+Well, it considers the equation i just wrote before, and fixes all except one electrode to zero and sweep over the electrodes with 1V of potential. Just with that, the software is able to deduce all the terms of the matrix.
+Yeah, i should read more about that in the manual to see if this is done like that. But it is. yep.
+TO BE DONE.
+
+
+CROSSTALK
+Yep, gotta talk about the link between the crosstalk on the ionization channels and the capacitance term between those electrodes.
+We can simply say for now that the higher the capacitance is and the higher the crosstalk will be. However, it should be very interesting to quantify the link between these two quantities.
+Linking the crosstalk matrix and the capacitance matrix, and be able to compare that experimentally.
+
+ANALYSIS TO BE DONE
+
+
+\subsection{Estimation of the Theoretical Fiducial Volume}
+
+In this subsection, i explain how to estimate the fiducial volume.
+Draw streamlines crossing the z=0.
+Exporting to image png.
+Using graphical analysis with python and rescaling to take into account 2D-axisymmetry.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_comsol.png}
+  \caption{Drawing streamlines in COMSOL}
+  \label{fig:streamlines-comsol}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_corrected.png}
+  \caption{for 4*4mm NTD}
+  \label{fig:streamlines-corrected}
+\end{subfigure}
+\caption{Illustration of the estimation of the fiducial volume.}
+\label{fig:fiducial-volume-estimation}
+\end{figure}
+
+\subsection{General region for the charge collection in a detector}
+
+WITH A SCHEME
+To illustrate the different region of the detector differing by the expected charge collection.
+
+\begin{itemize}
+	\item collecting zone
+	\item veto zone
+	\item guard zone
+	\item lost zone (streamlines exiting the crystal)
+	\item in between all of them, either low electric field (bad for trapping and recombination) or unclear frontier (when thinking of the recoil as a charged firework).
+\end{itemize}
+
+\section{Simulated Configurations}
+
+In this section, I will talk about the different configurations that were simulated.
+These configurations can differ according to the mass of the crystal, the number of electrodes, the position and geometry of the electrodes.
+Maybe, i should describe the configurations in a kind of general way: planar, grid, ID, FID, etc.. and put the exact simulation of each detectors in the annexes. I dont really know yet.
+
+\subsection{Planar Geometry}
+
+(Like REDN1 or RED80, with planar polarization, not much runs)
+
+\subsubsection{Full Planar}
+
+Maxwell Capacitance: $11.88 \times 10^{-12}$F
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/full_planar.png}
+\caption{Scheme of the simulated full planar h10phi30 detector.}
+\label{fig:full-planar}
+\end{figure}
+
+\subsubsection{Concentric/Square Grid Planar}
+
+Maxwell Capacitance: $11.88 \times 10^{-12}$F
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/concentric_grid_planar.png}
+\caption{Scheme of the simulated concentric grid planar h10phi30 detector.}
+\label{fig:concentric-grid-planar}
+\end{figure}
+
+\subsection{Planar with Guard}
+
+Like RED80, many runs.
+
+\subsection{Interdigitized}
+
+Like REDN1, many runs.
+
+Lot of different variants here.
+
+On the presented figure, the central pad is chosen to be polarized at veto potential and the NTD thermal sensor should be glued on it.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/ID_geometry.png}
+\caption{Scheme of the simulated interdigitized detector.}
+\label{fig:concentric-grid-planar}
+\end{figure}
+
+\subsection{Fully Interdigitized}
+
+Like RED70 (no run, RIP)
+
+Presenting the FID geometry, with veto zone, collect, zone and the faraday cages effect which means that the charge collection is *really* good.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/placeholder.jpg}
+\caption{Illustrating the veto zone and the collect zone thanks to the electric field shape induced by the FID electrodes.}
+\label{fig:fid-illustration}
+\end{figure}
+
+\subsection{Comparing the different topologies}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/performance_overview.tex}
+}
+\caption{Sum-up of the performance and specificity of each electrode topology.}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\section{Influence of parameters}
+
+For each parameter, we want to study their impact on the performances of the detector.
+The fiducial volume, the electric field shape, the electric field norm and the capacitance.
+
+The fiducial volume is a number.
+The electric field shape/norm is one or two graphs.
+The capacitance is a matrix (non-diagonal term are useful to estimate the coupling between each electrodes)
+
+\subsection{Capacitance with chassis distance}
+
+*All topologies*
+
+The capacitance term between the electrodes and the ground decreases with the distance of the copper chassis. As expected by the capacitance formula of a plan capacitor.
+The capacitance term capa-capa tends to the expected value for a plan capacitor in empty space.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_chassis_distance.png}
+\caption{Graph of the capacitance terms in function of the distance between the Ge crystal and the copper chassis (concentric grid planar h10phi30 detector).}
+\label{fig:capcaitance-chassis-distance}
+\end{figure}
+
+\subsection{Capacitance with electrode spacing}
+
+*All topologies except full planar*
+
+The electrode spacing directly fixes the number of concentric circle on a plan face of the germanium crystal. As a result the curves show a saw-shaped profile corresponding to the discrete number of electrodes.
+Anyway, the global trend is that with a high spacing, there is less electrodes and less capacitance.
+
+This tells us that we want to reduce the surface of electrode on the crystal in order to decrease the capacitance. However, a lower surface of electrodes comes with a worse charge collection eventually. So trade-off time.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
+\caption{Graph of the capacitance terms in function of the electrode spacing (concentric grid planar h10phi30 detector).}
+\label{fig:capacitance-electrode-spacing}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/2x2_distance_sweep.png}
+  \caption{for 2*2mm NTD}
+  \label{fig:2D-simulation}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/4x4_distance_sweep.png}
+  \caption{for 4*4mm NTD}
+  \label{fig:3D-simulation}
+\end{subfigure}
+\caption{Graph of the capacitance terms in function of the electrode spacing (interdigitized).}
+\label{fig:2D-vs-3D}
+\end{figure}
+
+I could also mention the projection for the fid32 and fid38 that were simulated with different electrode spacing.
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/fid32_parameter_sweep.tex}
+}
+\caption{Projection of the FID32 design performance with multiple variants (collect at $\pm4$V, veto at $\mp1.5$V)}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/fid38_parameter_sweep.tex}
+}
+\caption{Projection of the FID38 design performance with multiple variants. (collect at $\pm4$V, veto at $\mp1.5$V)}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\subsection{Capacitance with the electrode width}
+
+*All topologies except full planar*
+
+As expected, increasing the width of electrodes also increases the surface of the electrodes and the capacitance of the detector.
+Some configurations are more affected than others: planar detector less affected than the interleaved electrode configurations.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/capacitance_electrode_spacing.png}
+\caption{Graph of the capacitance terms in function of the electrode width (concentric grid planar h10phi30 detector).}
+\label{fig:capacitance-electrode-width}
+\end{figure}
+
+\subsection{Potential of the veto/guard electrodes}
+
+*Planar with guard, ID and FID*
+
+When considering geometry with veto or guards electrodes, the potential of these electrodes in respect to the main collecting electrodes is a parameter.
+Changing this parameter has an impact on the shape of the streamline of the electric field in the detector.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_0.png}
+  \caption{ratio veto/collect: 0.21}
+  \label{fig:ratio-veto-0}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/Electrodes/potential_veto_1.png}
+  \caption{ratio veto/collect: 0.13}
+  \label{fig:veto-ratio-1}
+\end{subfigure}
+\caption{Illustration of the estimation of the fiducial volume.}
+\label{fig:veto-ratio}
+\end{figure}
+
+\subsection{Symmetry of the polarization}
+
+*All topologies*
+
+Checking that a symmetric polarization is better than asymmetric,
+and showing some numbers/graphs to justify that
+($\pm1$V is better than 0,2V)
+
+\subsection{Central hole/pad for NTD}
+
+*All topologies*
+
+Impact of a hole/pad for the NTD. Important for electric field shape.
+Should be decided by the experimental heat-only rate.
+
+\subsection{Corner of the crystal}
+
+*All topologies*
+
+No electrodes or electrodes on/near the corner.
+Impact of the charge collection, "dead" volume in the corner.
+
+\subsection{Equatorial distance}
+
+*Planar extreme, Planar with guard, FID*
+
+Equatorial length, discussion on charge collection/trapping/tagging on this equatorial volume.
+
+\section{Experiment with REDN1}
+
+In this section, experiment with the ionization channel of REDN1, and analysis and results and comparison with expected performances. This is based on the run61.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/redn1_ion_vs_ion.png}
+\caption{For each fiducial events of the run tk15l005, comparing the reconstructed ionization energy for each electrodes.}
+\label{fig:redn1-ion-vs-ion}
+\end{figure}
+
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+	\input{Tables/Electrodes/redn1_fiducial_volume.tex}
+}
+\caption{Estimation of the experimental fiducial volume for REDN1.}
+\label{tab:stream-glitch-time-cut}
+\end{table}
+
+\subsection{Experimental fiducial volume}
+
+\subsection{Experimental Charge collection}
+
+\subsection{Experimental sensitivity and crosstalk}
+
+
+\section{Experiment with RED80}
+
+\subsection{Experimental fiducial volume}
+
+\subsection{Experimental Charge collection}
+
+\subsection{Experimental sensitivity and crosstalk}
+
+
+\section{Appendix: Catalog of Detectors fields lines}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Figures/Electrodes/streamlines_red80.png}
+\caption{Streamlines of the electric field in RED80.}
+\label{fig:streamlines-red80}
+\end{figure}
