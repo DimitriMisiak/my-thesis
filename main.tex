@@ -51,7 +51,14 @@ headsepline, % Uncomment to get a line under the header
 %\usepackage[table,xcdraw]{xcolor} % tables with good colors
 %\usepackage[table]{xcolor}
 \usepackage{pdflscape} % locally set the page to landscape layout (for big table and fig)
+\usepackage{graphbox} % easy vertically aligned figures
 
+\usepackage{siunitx} % for units formatting
+\sisetup{
+inter-unit-product = \ensuremath{{}\cdot{}},
+separate-uncertainty,
+product-units = brackets,
+}
 
 \usepackage[backend=bibtex,style=numeric,natbib=true]{biblatex} % Use the bibtex backend with the authoryearcitation style (which resembles APA)
 
@@ -283,17 +290,18 @@ headsepline, % Uncomment to get a line under the header
 % 1
 %\include{Chapters/ChapterIntro}
 % 2
-%\include{Chapters/ChapterBiblio}
-% 3
 %\include{Chapters/ChapterExperiment}
-% 4
+% 3 prime
 %\include{Chapters/ChapterEthem}
-% 5
+% 3 bis
+% \include{Chapters/ChapterEthemExperimental}
+% 4 prime
 %\include{Chapters/ChapterElectrodes}
-% 5 bis
-\include{Chapters/ChapterElectrodesScan}
-
-% 6
+% 4 bis
+%\include{Chapters/ChapterElectrodesScan}
+% 4 ter
+\include{Chapters/ChapterElectrodesExperimental}
+% 5
 %\include{Chapters/ChapterNeutron}
 % 7
 %\include{Chapters/ChapterConclusion}

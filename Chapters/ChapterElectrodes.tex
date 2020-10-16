@@ -107,7 +107,7 @@ Comparing the germanium to silicium:
 
 
 \subsection{Electric Charge Drifting in Crystal}
-
+\label{par:charge-drifting}
 %{\color{red} Alex B. biblio here. Also explainin trapping, charge collection.}
 
 The study of charge migration in EDELWEISS germanium crystal is presentend in [ref Emeline 82] taking into account the crystallographic structure of the germanium crystal. In this study, Alex.B simulates numerically the drifting of eletrons and holes in a 200g FID Edelweiss detector with bulk interaction of gamma-rays of energy 348keV. The charge trajectories are presented in the figure \ref{fig:charge-drifting}. He also follows the generation of the voltage signal on the electrodes. This is consistent with Ramo field theory which will be described later.
@@ -289,6 +289,7 @@ E_{heat} (E_R, j ) &= E_{R} + E_{Luke-Neganov} ( E_R, j) \\
 
 
 \subsection{Shockley–Ramo theorem}
+\label{par:shockley-ramo}
 
 [ref quentin 100 101 102]
 The signal induced on the electrodes of a detector does not corresponds to the collection of the drifting charges (when the charges reach the electrodes) but rather corresponds to the induced current starting from the moment the electron-pairs are created by a recoil. Indeed, when a charge is moving in the vicinity of an electrode, it induces an instantaneous electric current by affecting the electrostatic field lines ending on the electrode. 
@@ -508,6 +509,7 @@ As this work aims at studying multplie geometry by scanning over different param
 
 
 \subsection{Meshing choice}
+\label{par:mesh-scale}
 
 When solving a problem with the finite element method, the choice of the meshing is essential. As the FEM is essentially approximating the analytical solution with a numerical approach over the vertexes, the meshing should be well constructed to assure a precise simulation. For a given physic system, the analytical solution can be more precisely approximate as the number of vertexes is increased. However, a high number of vertexes induces an equal number of local numerical solving. COMSOL propose a automatic optimization of the meshing which adapts the size of meshing to the geometry of the system. With this optimized meshing, there are a lot of vertexes near small geometric features assuring that a rapidly varying electric field is correctly mapped. At the same time, there are only few vertexes at location where the electric field is almost uniform. This optimization of the meshing is possible with the “Physics-based” option of COMSOL which still accept a mesh scale parameter. Simulation of the reference designs Planar38 and FID38 were ran with different mesh scales and the results are presented in the table \ref{tab:mesh-scale}. There are nine mesh scales proposed by COMSOL, starting from the "Extremely Coarse" scale with a low number of simplex, a low accuracy and very quick run time, and continuing with increasingly refined scale to the "Normal" scale, which should result in a trade-off between simulation time and precision, eventually reaching the "Extremely Fine" scale with a very high precision obtained after a long calculation time. As expected, the more refined the scale is and the more triangles are used for the simulation (except for Extremely Coarse, maybe it is a non-optimized mesh generating algorithm in use). As the FID38 design has more electrodes of small size than the other Planar38 design, the mesh is generated with more simplex. It is consistent with the fact that the simulation of the Planar38 design run quicker than for the FID38.
 In order to estimate the accuracy of the simulation scanning over the different scales, a capacitance value corresponding to the first diagonal term of the Maxwell capacitance matrix (see the later paragraph \ref{par:capacitance-matrix}) is evaluated. Additionally, a percentage of the relative error on the capacitance calculation is calculated. The capacitance of the "Extremely Fine" scale is chosen to be the reference for this relative error. Thus, by definition, the relative error of the "Extremely Fine" is zero. The table \ref{tab:mesh-scale} shows that as the scale is more refined, the capacitance is getting closer to the reference capacitance.
@@ -551,51 +553,85 @@ The “FID38” geometry stands for a detector composed of a 38g germanium cryst
 	\item $S_{bias}=0.5$, varying between 0 and 1, it represents the vertical symmetry of the polarization.
 \end{itemize}
 With this three parameters, the fixed voltage of the terminals are:
-\begin{align}
-V_B &= V_{bias} \times S_{bias} = 4V \\
-V_D &= - V_{bias} \times (1 - S_{bias}) = -4V \\
-V_A &= V_{bias} \times (1 - S_{bias}) \times R_{veto} = -1V \\
-V_C &= - V_{bias} \times S_{bias} \times R_veto = 1V
-\end{align}
+\begin{equation}
+\label{eq:fid-polarization}
+\begin{array}{l c c c S r}
+V_B &=& V_{bias} \times S_{bias} &=& \num{1} & \si{\volt} \\
+V_D &=& - V_{bias} \times (1 - S_{bias}) &=& \num{-1} & \si{\volt} \\
+V_A &=& V_{bias} \times \left( S_{bias} - \frac{\left( 1 + R_{veto}\right)}{2}\right) &=& \num{-0.25} & \si{\volt}  \\
+V_C &=& V_{bias} \times \left( S_{bias} + \frac{\left( -1 + R_{veto}\right)}{2}\right) &=& \num{0.25} & \si{\volt} 
+\end{array}
+\end{equation}
 
 Several parameters govern the location of the ring-shaped electrodes on the top and the lateral surface of the absorber. The number of total concentric electrodes on the top (resp. lateral) surface is $n_{top}=7$ (resp. $n_{lateral}=2$). The distance separating the center of each top (resp. lateral) electrode is $d_{Al}^{top}=2.395mm$ (resp. $d_{Al}^{lateral}=1.98mm$). The innermost and outermost top electrodes are assigned to the veto terminals ‘A’ or ‘C’. The radius of the innermost electrode is $r_{inner}=0.25mm$. The radius of the outermost is limited to the radius of the germanium crystal minus a band of width $r_{edge}=0.3mm$. This comes from the limits of the aluminium deposition technique employed: it is not possible to have a thin aluminium electrode at less than $0.3mm$ from the edge of the top surface of the germanium crystal. The two most centered lateral electrodes are also assigned to the veto Terminals ‘A’ and ‘C’. These electrodes are distant from the equatorial line of the crystal by $d_{equatorial}=1mm$.
 
 \begin{figure}
 \centering
-\includegraphics[height=5cm]{Figures/Electrodes/scheme_fid38.pdf}
+\includegraphics[scale=1]{Figures/Electrodes/scheme_fid38.pdf}
 \caption{
-Scheme of the fid38, with annotated electrodes (ANNOTATION ARE MISSING)
+Scheme of the FID38 design.
 }
 \label{fig:fid38-scheme}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/Electrodes/scheme_pl38.pdf}
+\caption{
+Scheme of the PL38 design.
+}
+\label{fig:pl38-scheme}
+\end{figure}
+
 
 The electric equations are solved only in the insulators domains : the germanium absorber and the surrounding vacuum inside the copper chassis. The aluminium electrodes are set to a fixed potential and their interior is excluded from the simulation. 
 
 \begin{table}[]
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lcr}
-Parameter                                   & Symbol        & Default Value \\ \hline \hline
-Ge crystal Height                           & $H_{Ge}$      & 10{[}mm{]}    \\
-Ge crystal Radius                           & $R_{Ge}$      & 15{[}mm{]}    \\
-Distance between crystal and copper chassis & $D_{Cu}$      & 3{[}mm{]}     \\
-Electrode Thickness                         & $h_{Al}$      & 0.01{[}mm{]}  \\
-Electrode Width                             & $w_{Al}$      & 0.08{[}mm{]}  \\
-Radius of the innermost planar electrode    & $r_{inner}$   & 0.25{[}mm{]}  \\
-Distance between the outermost planar electrode and the edge of the crystal      & $d_{edge}$    & 0.3{[}mm{]} \\
-Number of planar electrodes                 & $n_{planar}$  & 7             \\
-Number of lateral electrodes                & $n_{lateral}$ & 2             \\
-Interdistance of Planar electrodes          & $d_{planar}$  & 1.98{[}mm{]}  \\
-Interdistance of Lateral electrodes         & $d_{lateral}$ & 2.03{[}mm{]}  \\
-Distance between the centermost lateral electrode and the equator of the crystal & $d_{equator}$ & 1{[}mm{]}   \\
-Main Voltage Bias                           & $V_{bias}$    & 8{[}V{]}      \\
-Ratio Veto/Main voltage bias                & $R_{veto}$    & -0.25         \\
-Symmetric factor of the voltage bias        & $S_{bias}$    & 0.5         
+%\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c S}
+Parameter                                   & Symbol        & {Default Value} \\ \hline \hline
+Ge crystal Height                           & $H_{Ge}$      & \SI{10}{\mm}  \\
+Ge crystal Radius                           & $R_{Ge}$      & \SI{15}{\mm}    \\
+Distance between crystal and copper chassis & $d_{Cu}$      & \SI{3}{\mm}     \\
+Electrode Thickness                         & $h_{Al}$      & \SI{1}{\micro\meter}   \\
+Electrode Width                             & $w_{Al}$      & \SI{80}{\micro\meter}  \\
+Radius of the innermost planar electrode    & $r_{center}$   & \SI{0.25}{\mm}   \\
+Width of bare Ge crystal on corners      & $w_{bare}$    & \SI{0.3}{\mm}  \\
+Width of the outermost veto electrode    & $w_{outer}$    & \SI{0.08}{\mm}  \\
+Number of planar electrodes                 & $n_{plan}$  & {$7$}             \\
+Number of lateral electrodes                & $n_{lat}$ & {$2$}             \\
+Interdistance of Planar electrodes          & $d_{plan}$  & \SI{1.98}{\mm}  \\
+Interdistance of Lateral electrodes         & $d_{lat}$ & \SI{2.40}{\mm}  \\
+Equatorial distance & $d_{eq}$ & \SI{2}{\mm}  \\
+Main Voltage Bias                           & $V_{bias}$    & \SI{2}{\volt}      \\
+Ratio Veto/Main voltage bias                & $R_{veto}$    & {$-0.25$}         \\
+Symmetric factor of the voltage bias        & $S_{bias}$    & {$0.5$}         
 \end{tabular}
-}%
-\caption{List and Value of the default parameters for FID38}
+%}%
+\caption{List and Value of the default parameters for the FID38 design.}
 \label{tab:fid38-default-parameters}
 \end{table}
+
+\begin{table}[]
+\centering
+%\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c S}
+Parameter                                   & Symbol        & {Default Value} \\ \hline \hline
+Ge crystal Height                           & $H_{Ge}$      & \SI{10}{\mm}  \\
+Ge crystal Radius                           & $R_{Ge}$      & \SI{15}{\mm}    \\
+Distance between crystal and copper chassis & $d_{Cu}$      & \SI{3}{\mm}     \\
+Electrode Thickness                         & $h_{Al}$      & \SI{1}{\micro\meter}   \\
+Radius of the central NTD hole    & $r_{center}$   & \SI{1.5}{\mm}   \\
+Corner length & $L_{lat}$ & \SI{2}{\mm}  \\
+Main Voltage Bias                           & $V_{bias}$    & \SI{2}{\volt}      \\
+Symmetric factor of the voltage bias        & $S_{bias}$    & {$0.5$}         
+\end{tabular}
+%}%
+\caption{List and Value of the default parameters for the PL38 design.}
+\label{tab:pl38-default-parameters}
+\end{table}
+
 
 \subsection{Stationnary Study}
 
@@ -627,10 +663,13 @@ In order to monitor the norm of the electric field in the whole crystal, its vol
 \label{fig:fid38-fiducial}
 \end{figure}
 
+\label{par:fiducial-volume}
+
 The left figure \ref{fig:fid38-fiducial} presents the streamlines in the crystal with controlled starting points with a height set at 0 (starting from the middle of the crystal). These streamlines belongs to the bulk region and equatorial regions. With some processing, it is possible to discard the streamlines linking two veto electrodes and to keep only a contour of the fiducial streamlines. A correction taking into account the revolution of the 2d-axisymmetry is needed to calculate volumes. The right figure \ref{fig:fid38-fiducial} presents the fiducial contour (in green) and a whole crystal contour (in red) proportionnal to the fiducial and crystal volume. Graphically comparing the area of the two contours yields the fiducial volume fraction of the detector. With default parameters, The FID38 design has a fiducial volume fraction of 69.5\%. Also with default parameters, the Planar38 has a fiducial volume fraction of 98\%.
 
 
 \subsection{Weighted Potential Study}
+\label{par:weighting-potential}
 
 This paragraph is linked to a previous one introducing the signal generation on the electrodes by drifting electric charges with the Shockley-Ramo theorem. A map of the weighted potential associated to each electrode is obtained by fixing the potential of the considered electrode to the unitary value of 1V and grounding all the other terminals. (see left of  figure [Weighted potential]). The total weighted potential is obtained by summing over the different electrodes. (see left of  figure [Weighted potential]).
 
@@ -888,6 +927,7 @@ C_{DA}^m & C_{DB}^m & C_{DC}^m & C_{DD}^m
 The observations made previously for the Planar38 design still holds for the FID38 design: capacitances are close to tens of picoFarad and the self-capacitance term are dominated. In particular, we note that the Mutual capacitance is dominated by the terms $C_{AB}^m=C_{BA}^m=C_{CD}^m=C_{DC}^m=10.19pF$. Indeed, as the electrodes $A,B$ and $C,D$ are interleaved, their capacitive coupling is high as it emulates a situation with two close plates. The next higher term is $C_{AC}^m=4.02pF$ coming from the two veto electrodes which are facing each other and coming very close to one another near the equator leading to an increase in coupling. The hierarchy of the remaining term can be explained by the fact that their are more veto electrode rings than collect electrode rings, thus emulating a higher electrode area in the equation \ref{eq:capacitor-basic}.
 
 \subsection{Sensitivity Calculation}
+\label{par:sensitivity-calculation}
 
 In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters (A,B,C,D = -1,+4,+1,-4 V) with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{Q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}. The electric potential signal $\vec{V}$ created by the electric charge perturbation $\vec{Q}$ with the application of the equation \ref{eq:capacitance-definition-matrix} along with the evaluation of the Maxwell capacitance matrix \ref{eq:fid38-matrix-evaluation}. The electric charge perturbation is assumed to be created by a 1keV electronic recoil, creating a number $N_p = 1000/3 = 333$ of electron-hole pairs.
 In the case of the Planar38, we refer to the equation \ref{eq:plana38-induced-charges} for the electric charge perturbation vector. The voltage signal vector is thus:
@@ -1179,6 +1219,7 @@ Without any cabling capacitance, the recoil types are more distant from the orig
 
 
 \subsection{Noise and Resolution Calculation}
+\label{par:ion-resolution-calculation}
 
 The previous paragraph presented how, with low cabling capacitance, the capacitive coupling between each electrodes affects the sensitivity of the ionization channel. This paragraph discusses the impact of this capacitive coupling on the noise affecting the measurement and eventually the resolution of the ionization channel.
 
