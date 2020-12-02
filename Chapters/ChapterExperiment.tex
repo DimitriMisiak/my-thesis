@@ -8,7 +8,68 @@
 %	BEGING CHAPTER
 %----------------------------------------------------------------------------------------
 
-Hello !
-In this chapter, we will cover the need-to-know about my experimental setup.
-Discover the most intimate secret of the Dry Cryostat, our electronics, our bolometers.
-Also, some usual workday taking data (different kind in there).
+\section{Meaning of the stream name}
+
+Each recorded stream of data is denominated by a sequence of characters. This sequence depends on the date of the run and blah blah.
+
+TO DO Explanation.
+
+
+\section{Detector principle}
+
+\begin{equation}
+\begin{cases}
+Q = Q_{ER} = 1 \\
+E_{Ion.}^{bulk} = Q \cdot E_R = E_R \\
+E_{heat} 
+=
+E_R 
+\cdot
+\frac{
+1 + Q_{ER}\frac{V_{bias}}{\epsilon_{e^--h^+}}
+}{
+1 + \frac{V_{bias}{\epsilon_{e^--h^+}}
+}
+= E_R
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+Q = Q_{NR} \left( E_R \right) \\
+E_{Ion.}^{bulk} = Q_{NR}\left( E_R \right) \cdot E_R \\
+E_{heat} 
+=
+E_R 
+\cdot
+\frac{
+1 + Q_{NR} \left( E_R \right)\frac{V_{bias}}{\epsilon_{e^--h^+}}
+}{
+1 + \frac{V_{bias}{\epsilon_{e^--h^+}}
+}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{cases}
+Q = Q_{HO} = 0 \\
+E_{Ion.}^{bulk} = Q_{NHO} \cdot E_R = 0 \\
+E_{heat} 
+=
+E_R 
+\cdot
+\frac{
+1 + Q_{HO} \left( E_R \right)\frac{V_{bias}}{\epsilon_{e^--h^+}}
+}{
+1 + \frac{V_{bias}{\epsilon_{e^--h^+}}
+}
+=
+E_R 
+\cdot
+\frac{
+1
+}{
+1 + \frac{V_{bias}{\epsilon_{e^--h^+}}
+}
+\end{cases}
+\end{equation}

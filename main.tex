@@ -59,6 +59,14 @@ inter-unit-product = \ensuremath{{}\cdot{}},
 separate-uncertainty,
 product-units = brackets,
 }
+\DeclareSIUnit{\sqrthz}{\ensuremath{\sqrt{\text{\hertz}}}}
+
+\usepackage{circuitikz} % for drawing electric circuit
+
+\usepackage{layouts} % determine textwidth
+% use following command in document
+%textwidth in cm: \printinunitsof{cm}\prntlen{\textwidth}
+%textheight in cm: \printinunitsof{cm}\prntlen{\textheight}
 
 \usepackage[backend=bibtex,style=numeric,natbib=true]{biblatex} % Use the bibtex backend with the authoryearcitation style (which resembles APA)
 
@@ -288,20 +296,26 @@ product-units = brackets,
 % Uncomment the lines as you write the chapters
 
 % 1
-%\include{Chapters/ChapterIntro}
+%\include{Chapters/ChapterIntroduction}
 % 2
 %\include{Chapters/ChapterExperiment}
 % 3 prime
 %\include{Chapters/ChapterEthem}
 % 3 bis
 % \include{Chapters/ChapterEthemExperimental}
+
+
+
 % 4 prime
-%\include{Chapters/ChapterElectrodes}
+\include{Chapters/ChapterElectrodes}
 % 4 bis
 %\include{Chapters/ChapterElectrodesScan}
 % 4 ter
-\include{Chapters/ChapterElectrodesExperimental}
-% 5
+%\include{Chapters/ChapterElectrodesExperimental},
+
+%\include{Chapters/ChapterAnalysis}
+
+% 6
 %\include{Chapters/ChapterNeutron}
 % 7
 %\include{Chapters/ChapterConclusion}

@@ -1,6 +1,6 @@
 % Chapter Electrodes
 
-\chapter{Simulation of the detectors REDN1 and RED80} % Main chapter title
+\chapter{Simulation of the detectors RED80 and REDN1} % Main chapter title
 
 \label{ChapterElectrodesExperimental} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -8,51 +8,54 @@
 %	BEGING CHAPTER
 %----------------------------------------------------------------------------------------
 
-% Intro
+% Introduction
 
-\section{Electrostatics Simulation: RED80 and REDN1}
+In this chapter, the electrostatics simulation are compared to the experimental data collected from the operation of the detectors RED80 and REDN1.
+Their designs differ from the already presented PL38 and FID38 designs.
+Consequently, the first section is dedicated to the presentation of the detectors RED80 and REDN1, their numeric simulation and their predicted performances for the ionization channel.
+The section section exposes the processing and analysis pipelines used to treat the experimental data and extract observable quantities which can be compared to the simulations.
+The actual confrontation of the results is presented in the last third section.
+
+
+\section{Description of the detectors RED80 and REDN1}
+
+The detectors RED80 and REDN1 are both based on cylindrical germanium crystals of height $H_{Ge} = \SI{10}{\mm}$ and radius $R_{Ge} = \SI{15}{\mm}$. Due to technological constraints, these germanium cylinders feature a round filet on their corners with an estimated radius between \SI{200}{\micro\metre} and \SI{300}{\micro\metre}. The figure \ref{fig:photo-redn1-red80} displays the photos of the detectors. In both cliches, the covers of the copper chassis are removed as to allow the completion of the cabling of the thermal sensor and the electrodes. The incomplete chassis visible on the photos are spaced by a distance $d_{Cu} = \SI{3}{\mm}$ from the surface of the crystals. The germanium absorber are maintained by six Teflon clamps.
+These detectors possesses the two energy measurement channels, heat and ionization, described in paragraph \ref{par:detector-principle}. The NTD thermal sensor, used by the heat channel, are glued at the center of the top surface of the crystals. The thermistances are linked with several gold wires to conductive tracks above the crystal. These gold wires assured the electric cabling of the NTD as well as the thermalization of the germanium crystal. The ionization channel consist in electrodes made out of aluminium pads and rings deposited on the germanium surface as explained in paragraph \ref{par:aluminium-deposition}. In the case of REDN1, the aluminium rings are linked using wire bridges. The electrodes are wired to conductive tracks on the chassis with aluminium wires as to prevent thermal leak through them.
 
 \begin{figure}
 \centering
-\includegraphics[align=c, width=0.48\textwidth]{Figures/ElectrodesExperimental/photo_redn1.jpg}
-\includegraphics[align=c, width=0.48\textwidth]{Figures/ElectrodesExperimental/photo_red80.pdf}
-\caption{Photos of the REDN1 detector (on the left) and the RED80 detector (on the right).}
+\includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/photo_red80_v2.pdf}
+\includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/photo_redn1_v2.pdf}
+\caption{Photos of the detector RED80 and REDN1 taken during their montage. The covers of the copper chassis are removed to finish the cabling. (Reference necessary to Stefanos ?)}
 \label{fig:photo-redn1-red80}
 \end{figure}
 
+Each detector has its own particularities which are assessed in the following paragraphs \ref{par:red80-presentation} and \ref{par:redn1-presentation} dedicated to the design and the electrostatics simulation of RED80 and REDN1 respectively.
+
 
 \subsection{RED80 detector}
+\label{par:red80-presentation}
 
-% Polarization
-The detector RED80 has four electrodes:
-\begin{itemize}
-	\item the main collect electrodes $B$ and $D$, consisting of the top and bottom central planar pads respectively,
-	\item the auxiliary guard electrodes $A$ and $C$, consisting of two top and bottom thin lateral rings respectively. 
-\end{itemize}
-Same-sided guard and collect electrodes have the same electric potential. The polarization of the detector can therefore be fixed with two parameters such that:
-\begin{equation}
-\begin{array}{cc}
-V_A = V_B = & V_{bias} * S_{bias} \\
-V_C = V_D = & - V_{bias} * \left( 1 - S_{bias} \right)
-\end{array}
-\end{equation}
-with $V_{bias}$ the bias voltage and $S_{bias}$ the polarization symmetry parameter chosen in the interval $\left[ -1, 1 \right]$.
+The description of RED80 is accompanied with the figure $\ref{fig:red80-scheme}$ displaying a cross-section scheme of the detector. This scheme is used as reference for the electrostatics simulation. The scheme is not at scale and all the dimensions used in the simulation are listed in the table \ref{tab:red80-default-parameters}.
+% copper chassis
+The copper chassis is modeled by an exterior electrically grounded rectangle. The germanium crystal is held is separated from the germanium crystal by vacuum represented by the light blue surrounding volume.
+% teflon clamps
+The Teflon clamps are not represented in the scheme and are not a part of the simulation as discussed in paragraph \ref{par:simulation-limitations}.
+% heat channel
+The heat channel of RED80 consists in the GeNTD thermistance labeled K58. Its dimensions are the larger Edelweiss standard of \SI{4 x 4 x 0.45}{\mm}. It is glued on aluminium at the center of the top surface as represented by the white rectangle. Although represented, the NTD is not simulated as discussed in paragraph \ref{par:simulation-limitations}.
+% ionization channel
+The ionization channel consists in four electrodes labeled $A$ through $D$ separated in pairs of collecting and guard electrodes. Each aluminium deposit is labeled on the scheme $\ref{fig:red80-scheme}$ according to the electrode it is attributed to.
+The main electrodes are $B$ and $D$. They consists of two planar full aluminium electrodes of radius $r_{center} = \SI{13.5}{\mm}$ centered on the top and bottom surface of the germanium crystal. The role of these electrodes is to collect the majority of the drifting charges produced in the crystal. As such, they are deemed "collect electrodes".
+The auxiliary electrodes are $A$ and $C$. They are formed by two pairs of circular rings of width $w_{Al}=\SI{100}{\micro\meter}$ deposited on the lateral surface of the germanium crystal. In each pair, the rings are separated by the lateral spacing $d_{lat}=\SI{2.4}{\mm}$, from their center. The two pairs are spaced by the equatorial distance $d_{eq} = \SI{1}{\mm}$, from the center of the center-most rings. The function of these electrodes is to collect any charges in the periphery of the crystal as to tag any surface recoil similarly to veto electrodes principles presented in paragraph \ref{par:veto-electrode-principle}. These electrodes are deemed "guard electrodes" as opposed to the veto ones. The difference holds in their polarization and in the direction of the electric field being the same between the collect and the guard electrodes.
+% Equator offset
+One should not that the guard electrodes are not centered on the equator of the crystal, represented by the finely-dashed horizontal line passing through the origin $(0,0)$ in the scheme \ref{fig:red80-scheme}. Instead, the axis of mirror symmetry for the guard electrodes is the sparsely-dashed  horizontal line passing through the coordinates $(0, z_{eq})=(0, -0.5)\si{\mm}$. This is the result of an offset in height of the mask used during the deposition of the aluminium rings. While this feature is unintentional as it induces an slight asymmetry in the design of RED80, it shall provides interesting insights considering the intrinsic asymmetry of the electron and hole drift in the semi-conducting germanium as discussed in paragraph \ref{par:charge-drift}.
 
-% Capacitance
-The Maxwell capacitance matrix of the simulated detector RED80 is:
-\begin{equation}
-\bm{C} = 
-\begin{pmatrix}
-  13.93 & -6.32 & -3.89 & -2.57\\
-  -6.32 & 17.17 & -1.91 & -6.06\\
-  -3.89 & -1.91 & 14.25 & -7.28\\
-  -2.57 & -6.06 & -7.28 & 18.61\\
-\end{pmatrix}
-\cdot \SI{e-12}{\farad}
-\end{equation}
-
-% Fiducial Volume
-The theoretical fiducial volume percentage is estimated at $\%_{fid}=\SI{80.75}{\percent}$. The percentage of the volume attributed to other regions is less precise due to the limitation of the estimation technique ($z=0$). We estimate that $\%_{guard} \approx \SI{13}{\percent}$ and $\%_{corners} \approx \SI{5}{\percent}$.
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/ElectrodesExperimental/scheme_red80.pdf}
+\caption{Cross-section scheme of the RED80 detector. This scheme is not at scale and the main dimensions are listed in the table \ref{tab:red80-default-parameters}. The dashed horizontal lines are axis of symmetry: finely-dashed through $(0,0)$ is for the crystal, sparsely-dashed through $(0, z_{eq})=(0, -0.5)\si{\mm}$  is for the guard rings $A,C$. The electrically grounded rectangle is the cooper chassis separated from the germanium crystal by vacuum in light blue. The aluminium pads and rings are represented in black at the surface of the crystal and labeled according to their electrode of attribution. The default potential of the electrodes are $(V_A, V_B, V_C, V_D) = (+1, +1, -1, -1) \si{\volt}$. The colored volumes inside the crystal are drawn from electric field lines with common start and end points.}
+\label{fig:red80-scheme}
+\end{figure}
 
 \begin{table}[]
 \centering
@@ -73,54 +76,136 @@ Main Voltage Bias                           & $V_{bias}$    & \SI{2}{\volt}     
 Symmetric factor of the voltage bias        & $S_{bias}$    & {$0.5$}         
 \end{tabular}
 %}%
-\caption{Parameter values for the default operation of the RED80 detector.}
+\caption{Parameter values for the design and default polarization of RED80.}
 \label{tab:red80-default-parameters}
 \end{table}
 
+% Capacitance
+The electrostatic simulation of the presented geometry yields the capacitance matrices  of the detector RED80. The convention regarding indexes introduced in the chapter \ref{ChapterElectrodes} is still in use. Each electrode is attributed to an index such that:
+\begin{equation}
+\label{eq:indexes-convention}
+\{ A, B, C, D \} \Leftrightarrow \{ 1, 2, 3, 4 \}
+\end{equation}
+In this light, the Maxwell capacitance matrix associated with the electrodes of RED80 is evaluated to:
+\begin{equation}
+\label{eq:redn1-maxwell}
+\bm{C} = 
+\begin{pmatrix}
+  13.93 & -6.32 & -3.89 & -2.57\\
+  -6.32 & 17.17 & -1.91 & -6.06\\
+  -3.89 & -1.91 & 14.25 & -7.28\\
+  -2.57 & -6.06 & -7.28 & 18.61\\
+\end{pmatrix}
+\times \SI{e-12}{\farad}
+\end{equation}
+Using the equations \ref{eq:maxwell-to-mutual}, the mutual capacitance matrix of RED80 is evaluated to:
+\begin{equation}
+\label{eq:redn1-mutual}
+\bm{C}^m = 
+\begin{pmatrix}
+  1.15 & 6.32 & 3.89 & 2.57\\
+  6.32 & 2.88 & 1.91 & 6.06\\
+  3.89 & 1.91 & 1.17 & 7.28\\
+  2.57 & 6.06 & 7.28 & 2.70\\
+\end{pmatrix}
+\times \SI{e-12}{\farad}
+\end{equation}
+One remarkable property of these capacitance matrix relative to RED80, compared to the other capacitance matrices of PL38, FID38 and REDN1 discussed in this work, is the absence of symmetry between top and bottom. This is a direct consequence of the asymmetrical geometry of RED80 with its offset guard electrodes.  
+According the diagonal terms of the Maxwell matrix $C_{XX}$, the main collect electrode $B,D$ displays globally more capacitive coupling than the auxiliary guard electrode $A,C$. This can be readily explained by the difference in area between the collect and guard electrodes. This interpretation is supported by the relatively high mutual capacitance term $C_{BD}^m$ associated to the opposite-sided collect electrodes $B$ and $D$. 
+The coupling terms between same-sided collect and veto electrodes $C_{AB}^m$ and  $C_{CD}^m$ are the highest terms of the mutual matrix $\bm{C}^m$. This is due to the proximity of same-sided electrode. This is confirmed by the observation that $C_{CD}^m > C_{AB}^m$: the height offset $z_{eq}$ of the guard electrodes leads to a shorter 
+distance between $C$ and $D$ than between $A$ and $B$.
+As what was observed for in the chapter \ref{ChapterElectrodesScan} for the design PL38 and FID38, the self-capacitance terms $C_{XX}^m$ are among the smallest terms in the capacitance matrix $\bm{C}^m$. This is attributed to the high difference in relative dielectric permittivity between the germanium and the vacuum.
 
-\begin{figure}
-\centering
-\includegraphics[scale=1]{Figures/ElectrodesExperimental/scheme_red80.pdf}
-\caption{Scheme of the RED80 detector.}
-\label{fig:red80-scheme}
-\end{figure}
+% Total weighting potential
+Without fixing the polarization of RED80 yet, the electrostatics can yield the map of the total weighting potential presented in the figure \ref{fig:red80-potential-twp}.  As discussed in \ref{ref:shockley-ramo}, the Shockley-Ramo theorem indicates that this total weighting potential indicates the quality of the Faraday cage formed by the RED80 electrodes, which is of paramount importance for trapped charges which does not reach the electrodes.
+The corners display a lessened total weighting potential due to the absence of aluminium deposit in these regions.
+
+% Polarization
+For standard operation, same-sided guard and collect electrodes have the same electric potential. The polarization of the detector can therefore be fixed with two parameters such that:
+\begin{align}
+V_A = V_B = & V_{bias} \cdot S_{bias} \\
+V_C = V_D = & - V_{bias} \cdot \left( 1 - S_{bias} \right)
+\end{align}
+with $V_{bias}$ being the bias voltage and $S_{bias}$ the polarization symmetry parameter.
+The default polarization is set at $\left( V_{bias}, S_{bias} \right) = (\SI{2}{\volt}, 0.5)$. In this state, the electric potential of the electrodes are:
+\begin{equation}
+(V_A, V_B, V_C, V_D) = (+1, +1, -1, -1)\ \si{\volt}
+\end{equation}
+
+% Potential and E field
+With this polarization, the electrostatic equations are numerically solved. The figure \ref{fig:red80-potential-twp} presents a map of the electric potential with isopotential contours. The  figure \ref{fig:red80-efield} displays two graph relative to the electric field. On the left is the map of the magnitude of the electric field $\| \bm{E} \|$ with a white overlay representing the electric field lines. On the right is the histogram and the cumulative distribution function of the magnitude distribution over the crystal volume.
+Apart from the periphery of the crystal, the volume of RED80 hosts neatly equally spaced isopotential contours. As a result, the electric field norm is indeed uniform in the crystal and the field lines are all parallel and vertical linking the collect electrodes $B$ and $D$. Indeed, the magnitude distribution features a neatly define peak at $\| \bm{E} \| = \SI{2}{\volt\per\centi\meter}$.
+Near the lateral surface, the field lines now link the guard electrodes and collect electrodes. The equatorial region has high electric field norm due to the close equatorial guard rings. This participates at broadening the magnitude distribution towards value greater than the median \SI{2}{\volt\per\centi\meter}.
+On the contrary, the corners show very low magnitude values which coincide with divergence points for the electric field lines. It seems like in the corners of the crystal, the field lines leave the crystal to end on the copper chassis. This observation observation leads us to expect surface trapping in the corners. It also explains the electric field magnitude extension at lowest value .
+
+% Fiducial Volume
+An advanced study of the field lines can separate the crystal volume in several regions with different collecting behavior depending on the start and the end point of the field lines. For RED80, there are four different regions which are drawn on the scheme \ref{fig:red80-scheme}. 
+The main region is the "bulk volume" also called "fiducial volume", colored in green on the scheme, and corresponds to field lines linking the two main collect electrodes $B$ ad $D$. Its volume is the important theoretical fiducial volume. At default polarization, its percentage is estimated at $\%_{fid}=\SI{80.75}{\percent}$. This value is obtained with the method discussed in paragraph \ref{par:fiducial-volume}. The percentage of the volume attributed to other regions is less precise due to the limitation of the estimation technique.
+On the lateral surface of the crystal, the electric field lines linking the two guard electrodes $A$ and $C$ form the so-called "guard volume" illustrated as the orange region on the scheme. Its volume percentage is estimated to $\%_{guard} \approx \SI{7}{\percent}$. 
+As a consequence of the height offset $z_{eq}$ of the guard electrodes, a significant portion of the electric field lines start on the top guard electrode $A$ and end on the bottom collect electrode $D$. These lines draw the blue region deemed "guard-collect volume". Its volume percentage is approximated to $\%_{guard-collect} \approx \SI{6}{\percent}$.
+The last volume corresponds to the corner regions with the field lines leaving the crystal to end on the cooper chassis. This so-called "corner volume" is colored red and has a volume percentage of about $\%_{corners} \approx \SI{5}{\percent}$.
+
+Each region has a specific electric charge signal vector $\vec{Q}$ induced by a number $N_p$ of electron-hole pairs created in the crystal such that $Q = N_p e$. Assuming an ideal charge collection following the electric field lines and without transversal component, the Shockley-Ramo is used to express the first three charge vectors:
+\begin{equation}
+\label{eq:red80-induced-charges}
+\vec{Q}_{bulk} =
+\begin{bmatrix}
+0 \\ -1 \\ 0 \\ 1
+\end{bmatrix}
+\cdot N_p \cdot e
+\quad ; \quad
+\vec{Q}_{guard} =
+\begin{bmatrix}
+-1 \\ 0 \\ 1 \\ 0
+\end{bmatrix}
+\cdot N_p \cdot e
+\quad ; \quad
+\vec{Q}_{guard-collect} =
+\begin{bmatrix}
+-1 \\ 0 \\ 0 \\ 1
+\end{bmatrix}
+\cdot N_p \cdot e
+\end{equation}
+
+The charge vector corresponding to the corner volume $Q_{corner}$ is not readily available as all the drifting charge should theoretically be subject to surface trapping.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Figures/ElectrodesExperimental/potential_red80.png}
 \includegraphics[scale=0.5]{Figures/ElectrodesExperimental/twp_red80.png}
-\caption{Potential and TWP field of RED80.}
-\label{fig:efield-red80}
+\caption{Color maps of the electric potential (on the left) and the total weighting potential (on the right) from the simulation of RED80. For the left graph, the default polarization is used.}
+\label{fig:red80-potential-twp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/efield_red80.png}
 \includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/enorm_hist_red80.pdf}
-\caption{Electric field magnitude color map and Histogram of the magnitude distribution over the crystal volume of RED80.}
-\label{fig:efield-red80}
+\caption{(On the left) Color map of the magnitude of the electric field with white representation of the electric field lines from the simulation of RED80. The default polarization is used. The colored volumes in the scheme \ref{fig:red80-scheme} are drawn from the electric field lines with common start and end points.
+(On the right) Histogram and Cumulative Distribution Function of the distribution of the magnitude of the electric field over the crystal volume from the simulation of RED80.}
+\label{fig:red80-efield}
 \end{figure}
+
+In the later paragraph \ref{par:red80-comparison}, the RED80 simulation presented here is compared to the experimental data taken during the operation of RED80. In particular, a scan over the voltage bias $V_{bias}$ is performed. As discussed in the previous chapter \ref{ChapterElectrodesScan} with the scans of the designs PL38 and FID38, a change of the voltage bias solely scale the magnitude of the electric field in the crystal. Any other quantities deduced from the simulation of RED80, like the fiducial volume and the capacitance matrices, are unaffected.
 
 
 \subsection{REDN1 detector}
+\label{par:redn1-presentation}
 
-% Polarization
-The detector REDN1 has four electrodes like the FID38 design. The main top and bottom collect electrodes are $B$ and $D$ respectively. The auxiliary top and bottom veto electrodes are $A$ and $C$ respectively. Each electrode is composed of multiples aluminium rings deposited on the planar surface of the crystal. In the same manner as the FID38, same-sided veto and collect electrodes are interleaved as according to the scheme \ref{fig:redn1-scheme}. Moreover, the polarization of the electrodes are the same as FID38 described in equation \ref{eq:fid-polarization}. The electric potential of the four electrodes $V_A, V_B, V_C, V_D$ are fixed by the same three parameters: the bias voltage $V_{bias}$, the polarization symmetry $S_{bias}$ and the polarization ratio $R_{veto}$. As such, in operation, the electric field in REDN1 forms the same volume in respect to the charge collection as the FID38 as illustrated by the colored regions in scheme \ref{fig:redn1-scheme}. With a particle recoil ionizing the medium in the bulk volume, the top veto volume or the bottom veto volume, the drifting electric charges induce the same signal as in the case of the FID38 design. The topology of the detector REDN1 only differs from the FID38 design by not having rings on the lateral surface of the crystal. As a result, the electric field lines cannot connect to the veto electrodes directly. The figure \ref{fig:efield-redn1} shows that the equatorial field lines rather exit the crystal in the vicinity of the equator, and only in the vacuum rejoin the edge veto electrodes. Assuming the electric charges exactly follows the electric field lines, all charges should be trapped on the lateral surface of the crystal. As the discussed in the paragraph ref{par:shockley-ramo}, the signal induced on the electrodes depends on their weighting potentials at the end of the charge drift, in this case the equatorial surface.
-$$ Calculation ? $$
-As the equatorial volume is small compared to the variation scale of the weighting potential field, we can consider the signal induced by electric charges to be null (rough approximation, we should have like \SI{10}{\percent} of the signal I think).
-
-% Capacitance
-The Maxwell capacitance matrix of the simulated detector REDN1 is:
-\begin{equation}
-\bm{C} = 
-\begin{pmatrix}
-  19.46 & -11.84 & -3.00 & -1.89\\
-  -11.84 & 16.17 & -1.89 & -1.26\\
-  -3.00 & -1.89 & 19.46 & -11.84\\
-  -1.89 & -1.26 & -11.84 & 16.17\\
-\end{pmatrix}
-\cdot \SI{e-12}{\farad}
-\end{equation}
+The description of REDN1 is illustrated with the figure \ref{fig:redn1-scheme} displaying a cross-section scheme of the detector. This scheme is used as reference for the electrostatics simulation. The scheme is not at scale and all the dimensions used in the simulation are listed in the table \ref{tab:redn1-default-parameters}.
+% copper chassis
+The copper chassis is modeled by an exterior electrically grounded rectangle. The germanium crystal is held is separated from the germanium crystal by vacuum represented by the light blue surrounding volume.
+% teflon clamps
+The Teflon clamps are not represented in the scheme and are not a part of the simulation as discussed in paragraph \ref{par:simulation-limitations}.
+% heat channel
+The heat channel of REDN1 consists in a NTD of small standard dimensions \SI{2 x 2 x 0.45}{\mm}. It is glued on aluminium at the center of the top surface as represented by the white rectangle. Although represented, the NTD is not simulated as discussed in paragraph \ref{par:simulation-limitations}.
+% ionization channel
+The ionization channel of REDN1 has an electrode geometry called Inter Digitized (ID) differing from the FID geometry by not having any aluminium deposit on the lateral surface. Each electrodes is composed of multiples aluminium rings or pads linked with aluminium-wire bridge. There is a central pad of radius $r_{center}=\SI{1.5}{\mm}$ on the top and bottom planar surface of the crystal. The top central pad hosts the NTD thermal sensor. Surrounding the central pads are $7$ thin concentric rings of width $w_{Al} = \SI{80}{\micro\meter}$. The crystal edges features large outer rings of width $w_{outer}=\SI{1}{\mm}$. As a result, each planar surface possesses a number $n_{plan}=9$ of distinct aluminium deposits. Each deposit, ring and pad, are centered and distanced from their neighbor by the planar spacing $d_{plan} = \SI{1.563}{\mm}$.
+% electrode attribution
+The ionization channel of REDN1 consists in four electrodes labeled $A$ through $D$. The aluminium deposits of the top (resp. bottom) surface are attributed to the electrodes $A,B$ (resp. $C,D$) according the labels on the scheme \ref{fig:redn1-scheme}.
+The main electrodes are $B$ and $D$. Their function is to collect the drifting charges produced in the bulk of the crystal. As such, they are deemed "collect electrodes".
+The auxiliary electrodes are $A$ and $C$. Their role is to collect any charges produced near the surface of the crystal. As for the FID detectors, these electrodes allow for the tagging of any surface recoil as explained in paragraph \ref{par:veto-electrode-principle}. The denomination "veto electrodes" is kept for these electrodes.
+Same-sided collect and veto electrodes have their aluminium rings interleaved as to correctly shape the electric field. As to correlate tag recoil happening on the lateral surface and under the NTD, the central pads and the outermost large rings are attributed to the veto electrodes $A$ and $C$. 
 
 \begin{table}[]
 \centering
@@ -131,281 +216,298 @@ Ge crystal Height                           & $H_{Ge}$      & \SI{10}{\mm}  \\
 Ge crystal Radius                           & $R_{Ge}$      & \SI{15}{\mm}    \\
 Distance between crystal and copper chassis & $d_{Cu}$      & \SI{3}{\mm}     \\
 Electrode Thickness                         & $h_{Al}$      & \SI{1}{\micro\meter}   \\
-Electrode Width                             & $w_{Al}$      & \SI{80}{\micro\meter}  \\
+Electrode Width                             & $w_{Al}$      & \SI{100}{\micro\meter}  \\
 Radius of the innermost planar electrode    & $r_{center}$   & \SI{1.5}{\mm}   \\
 Width of bare Ge crystal on corners      & $w_{bare}$    & \SI{0}{\mm}  \\
 Width of the outermost veto electrode    & $w_{outer}$    & \SI{1}{\mm}  \\
 Number of planar electrodes                 & $n_{plan}$  & {$9$}             \\
-Interdistance of Planar electrodes          & $d_{plan}$  & \SI{1.5625}{\mm}  \\
+Interdistance of Planar electrodes          & $d_{plan}$  & \SI{1.563}{\mm}  \\
 Main Voltage Bias                           & $V_{bias}$    & \SI{2}{\volt}      \\
-Ratio Veto/Main voltage bias                & $R_{veto}$    & {$0.375$}         \\
+Ratio Veto/Main voltage bias                & $R_{veto}$    & {$0.4$}         \\
 Symmetric factor of the voltage bias        & $S_{bias}$    & {$0.5$}         
 \end{tabular}
 %}%
-\caption{Parameter values for the default operation of the REDN1 detector.}
+\caption{Parameter values for the design and default polarization of REDN1.}
 \label{tab:redn1-default-parameters}
 \end{table}
 
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/ElectrodesExperimental/scheme_redn1.pdf}
-\caption{Scheme of the REDN1 detector.}
+\caption{Cross-section scheme of the REDN1 detector. This scheme is not at scale and the main dimensions are listed in the table \ref{tab:redn1-default-parameters}. The electrically grounded rectangle is the cooper chassis separated from the germanium crystal by vacuum in light blue. The aluminium pads and rings are represented in black at the surface of the crystal and labeled according to their electrode of attribution. The default potential of the electrodes are $(V_A, V_B, V_C, V_D) = (-0.4, +1, +0.4, -1) \si{\volt}$. The colored volumes inside the crystal are drawn from electric field lines with common start and end points.}
 \label{fig:redn1-scheme}
 \end{figure}
+
+% Capacitance
+With the now fixed electrode geometry, the electrostatics simulation is run and can output the capacitance matrices relative to REDN1. The usual equivalence between electrodes and indexes displayed in equation \ref{eq:indexes-convention} is in use. As such, the Maxwell capacitance matrix associated with the electrodes of REDN1 is evaluated to:
+\begin{equation}
+\label{eq:redn1-maxwell}
+\bm{C} = 
+\begin{pmatrix}
+  19.46 & -11.84 & -3.00 & -1.89\\
+  -11.84 & 16.17 & -1.89 & -1.26\\
+  -3.00 & -1.89 & 19.46 & -11.84\\
+  -1.89 & -1.26 & -11.84 & 16.17\\
+\end{pmatrix}
+\times \SI{e-12}{\farad}
+\end{equation}
+Using the equations \ref{eq:maxwell-to-mutual}, the mutual capacitance matrix of REDN1 is evaluated to:
+\begin{equation}
+\label{eq:redn1-mutual}
+\bm{C}^m = 
+\begin{pmatrix}
+  2.73 & 11.84 & 3.00 & 1.89\\
+  11.84 & 1.18 & 1.89 & 1.26\\
+  3.00 & 1.89 & 2.73 & 11.84\\
+  1.89 & 1.26 & 11.84 & 1.18\\
+\end{pmatrix}
+\times \SI{e-12}{\farad}
+\end{equation}
+The hierarchy of the capacitance terms of REDN1 is very similar to the one discussed for the design FID38 in paragraph \ref{par:fid38-capacitance}. The dominant capacitance terms are the one associated to same-sided collect and veto electrodes $C_{AB}^m=C_{CD}$. This is explained by same-sided electrodes having interleaved rings thus emulating a high area and low distance in regards to their capacitive coupling.
+As usual, the self-capacitance $c_{XX}^m$ are small due to the high dielectric constant of the germanium compared to vacuum.
+The only significant difference between REDN1 and FID38 is the relatively low capacitance term between the veto electrodes $C_{AC}^m$ in the case of REDN1. Indeed, as this detector has no aluminium deposit on its lateral surface, it does not have the equatorial veto rings notorious for their low equatorial distance $d_{eq}$ leading to heightened capacitance. 
+
+% Total weighting potential
+Another result independent from the polarization of REDN1 is the map of the total weighting potential presented in the figure \ref{fig:redn1-potential-twp}.  As discussed in \ref{ref:shockley-ramo}, the Shockley-Ramo theorem indicates that this total weighting potential indicates the quality of the Faraday cage formed by the REDN1 electrodes, which is of paramount importance for trapped charges which does not reach the electrodes. 
+In this graph, red colored regions corresponds to a total weighting potential tending to the unity, thus mitigating the adverse effect of charge trapping on the signal generation. These regions are mostly presents near the electrodes and near the center of the crystal. 
+Blue-colored regions indicates a lower total weighting potential and are present on the periphery of the crystal. This is due to the absence of aluminium deposit on the lateral surface of REDN1. As such, a significant portion of the signal is induced on the grounded chassis.
+%We can expect significant loss in signal is lateral surface is expected to be prone to surface trapping
+
+% Polarization
+The polarization of REDN1 is the same as the design FID38 which is displayed in equation \ref{eq:fid-polarization}. The potential of the electrodes are fixed by the same three parameters the bias voltage $V_{bias}$, the polarization symmetry $S_{bias}$ and the polarization ratio $R_{veto}$.
+The default polarization is set at $\left( V_{bias}, S_{bias}, R_{veto} \right) = (\SI{2}{\volt}, 0.5, 0.4)$. In this state, the electric potential of the electrodes are:
+\begin{equation}
+(V_A, V_B, V_C, V_D) = (-0.4, +1, +0.4, -1)\ \si{\volt}
+\end{equation}
+
+% Potential and E field
+The electrostatic equations are numerically solved using this default polarization. The figure \ref{fig:redn1-potential-twp} presents a map of the electric potential with isopotential contours. The  figure \ref{fig:redn1-efield} displays two graph relative to the electric field. On the left is the map of the magnitude of the electric field $\| \bm{E} \|$ with a white overlay representing the electric field lines. On the right is the histogram and the cumulative distribution function of the magnitude distribution over the crystal volume.
+Apart from the periphery of the crystal, the electric potential and magnitude are very similar of the ones obtained with the simulation of the FID38 design. In the bulk of the crystal, the electric field is almost uniform and participates to the magnitude peak at $\| \bm{E} \| = \SI{0.4}{\volt\per\centi\meter}$. 
+On the top and bottom surface, the alternating potential volume shape the electric field line to form veto volumes. As the electric field is nullified under the veto rings, we observe associated small low magnitude regions. As for the veto central pads, they induces an apparently larger central low magnitude region whose volume is low as it does not benefit from the rotation.
+The electric field on the lateral surface of the crystal is dominated by the influence of the large outermost veto rings and the grounded chassis. The electric field is nullified close to equator at the divergence point for the field lines.
+The CDF of the magnitude distribution conform that a significant fraction of the volume has a low magnitude value.
+
+% Fiducial Volume
+A close study of the field lines separates the crystal volume in several regions with different collecting behavior depending on the start and the end point of the field lines. For REDN1, there are four different regions which are drawn on the scheme \ref{fig:redn1-scheme}. 
+The main region is the "bulk volume" also called "fiducial volume", colored in green on the scheme, and corresponds to field lines linking the two main collect electrodes $B$ ad $D$. Its volume is the important theoretical fiducial volume. At default polarization, its percentage is estimated at $\%_{fid}=\SI{51.75}{\percent}$.
+Near the top (resp. bottom) surface of the crystal, the electric field lines link the same-sided veto and collect electrodes $A$ and $B$ (resp. $C$ and $D$). Just as for the FID38 design, this regions is called the top (resp. bottom) veto volume and is colored in blue (resp. orange) on the scheme. The estimated theoretical volume percentages of the top or bottom veto volumes are $\%_{top,veto} = \%_{bottom,veto} \approx \SI{22}{\percent}$. 
+The last volume is drawn by the field lines connecting the top and bottom veto electrodes $A$ and $C$, even though a majority of these field lines leave the crystal. The denomination "equatorial volume" is in use and it is illustrated by the red region near the equator. Its volume percentage is of about $\%_{equator} \approx \SI{2}{\percent}$.
+
+% Charge vectors
+Each region has a specific electric charge signal vector $\vec{Q}$ induced by a number $N_p$ of electron-hole pairs created in the crystal such that $Q = N_p e$. We consider an ideal charge collection where electron and hole trajectories corresponds to the field lines. The charge vectors are the same as for the design FID38 displayed in equation \ref{eq:fig38-charge-vectors}.
+Assuming the electric charges exactly follows the electric field lines, the overwhelming majority of the charges produced in the equatorial volume should be trapped on the lateral surface of the crystal. As such, the charge vector $\vec{Q}_{equator}$ would depends on the weighting potential of each electrodes on the lateral surface.
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Figures/ElectrodesExperimental/potential_redn1.png}
 \includegraphics[scale=0.5]{Figures/ElectrodesExperimental/twp_redn1.png}
-\caption{Potential and TWP field of redn1.}
-\label{fig:efield-redn1}
+\caption{Color maps of the electric potential (on the left) and the total weighting potential (on the right) from the simulation of REDN1. For the left graph, the default polarization is used.}
+\label{fig:redn1-potential-twp}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/efield_redn1.png}
 \includegraphics[align=c, scale=0.5]{Figures/ElectrodesExperimental/enorm_hist_redn1.pdf}
-\caption{Electric field magnitude color map and Histogram of the magnitude distribution over the crystal volume of redn1.}
-\label{fig:efield-redn1}
+\caption{(On the left) Color map of the magnitude of the electric field with white representation of the electric field lines from the simulation of REDN1. The default polarization is used. The colored volumes in the scheme \ref{fig:redn1-scheme} are drawn from the electric field lines with common start and end points.
+(On the right) Histogram and Cumulative Distribution Function of the distribution of the magnitude of the electric field over the crystal volume from the simulation of REDN1.}
+\label{fig:redn1-efield}
 \end{figure}
+
+% Scan over R_veto
+In the later paragraph \ref{par:redn1-comparison}, the REDN1 simulation is compared to the experimental data taken during the operation of REDN1. Specifically, two distinct scans were conducted over the the voltage bias $V_{bias}$ and the polarization ratio $R_{veto}$. As discussed in the previous chapter \ref{ChapterElectrodesScan}, leaves all the quantities evaluated from the simulation of REDN1 unaffected except for a scaling of the magnitude of the electric field.
+However, scanning over $R_{veto}$ induces changes on the fiducial volume and the electric field. Therefore, this scan was conducted with the REDN1 simulation as to compare with experimental data later. The scan is performed over a linear scale from \SIrange{0}{1}{} with the defalut configuration being $R_{veto} = 0.4$. The results are presented as graphs in the figure \ref{fig:redn1-scan}. The top graph corresponds to the fiducial volume percentage $\%_{fid}$ while the bottom graph displays some percentiles $f_x$ of the electric field magnitude distribution. 
+The grey-shaded range from $0$ to $0.375$ indicates that fiducial field lines are in contact with the lateral surface of the crystal. Such a configuration is expected to have adversarial effects on the surface tagging ability of the detector, as discussed in paragraph \ref{par:fid38-veto-ratio}.
+The red-shade range for $R_{veto} > 0.925$ indicates that the fiducial values were overestimated due to the unexpected integration of some veto volume. As such, the percentages should not be considered.
+The global trend of the fiducial percentage is a significant decrease with the rising $R_{veto}$. Indeed, as this parameter increases, the veto volumes grows deeper into the bulk of the crystal. This observation is on par with the decrease in the electric field norm in the crystal. This is due to the potential of the veto electrodes increases in absolute value with $R_{veto}$ up to $0.6$. From this point onward, the median magnitude greatly recovers while other percentiles $f_{x \leq 0.25}$ see their value lower and stabilize. Indeed, with the ever decreasing fiducial volume, the veto and equatorial volume grows significantly in size and field strength. On the contrary, the bulk volume shrinks and has a lowered field strength.
 
 \begin{figure}
 \centering
-\includegraphics[scale=1]{Figures/ElectrodesExperimental/redn1_experimental_fiducial_volume.pdf}
-\caption{Experimental Fiducial volume for REDN1.}
-\label{fig:redn1-experimental-fiducial-volume}
+\includegraphics[scale=1]{Figures/ElectrodesExperimental/redn1_scan_veto_ratio.pdf}
+\caption{Scan over the polarization ratio parameter $R_{veto}$ from the simulation of REDN1. The plotted quantities are the fiducial volume percentage $\%_{fid}$ and some percentiles $f_x$ of the electric field norm. The red area indicates an overestimation of the fiducial volume through the erroneous integration of veto volume in the used algorithm. Fiducial percentage is this area should not be considered.}
+\label{fig:redn1-scan}
 \end{figure}
 
 
+\section{Detector Operation and Analysis Pipeline}
 
-\section{Analysis Pipeline}
 
+\subsection{Experimental Setup}
 
-\section{Experimental Setup}
-
-{\color{red} Two subsections: RED80 detector (describing RED80, sensitivity, electric field, polarization), Operation in cryostat (describing the temperature, the suspended tower, the configuration Calibration and Background, the calendar of the streams)}
-
-The measurement of the neutron background at the IP2I cryogenic facility was done with a newly designed low-threshold germanium detector of the RED series called RED80 with RMS resolution of approximately 120eV on the heat channel and 200eV on the ionization channel.
-The data were taken during the run 57 which began on 03/07/2019 and ended on 01/08/2019. In this run, RED80 and RED70 were both operated on the suspended tower.
-
-\begin{figure}
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{Figures/Neutron/photo_red80.png}
-  \caption{Photo of RED80}
-  \label{fig:photo-red80}
-\end{subfigure}%
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{Figures/Neutron/scheme_red80.png}
-  \caption{Scheme of RED80}
-  \label{fig:scheme-red80}
-\end{subfigure}
-\caption{Description of RED80, with a schematic drawing of the Germanium crystal, the NTD sensor and the position and polarization of the electrodes.}
-\label{fig:description-red80}
-\end{figure}
-
-% Description of RED80
-RED80 is composed of a 38g cylindrical germanium crystal of height 10mm and diameter 30mm.
-It is equipped with a heat channel and an ionization channel (see figure \ref{fig:description-red80})
-The ionization channel consists of a pair of collecting electrodes and guard electrodes.
-The collecting electrodes are two flat full aluminium electrodes of diameter 27mm deposited on its top and bottom surface.
-The guard electrodes are four circular electrodes deposited on its side.
-The heat channel consists of a NTDGe thermistance labeled K58 with dimension 4*4*0.45 mm.
-Before being installed into the cryostat, the detector was place near a neutron source in order to activate the Germanium crystal and benefit from the intrinsic gamma calibration peak during operation. The neutron activation started on 28/06/2019 at 17h08 and ended on 02/08/2019 at 10h08 yielding 89h of activation.
-
-% Conditions of data taking
-From 08/08/2019, the detectors were characterized at 18mK. As for the actual condition of the neutron background measuremets, RED80 was operated at 16mK with an optimal NTD polarization current of 1nA and an electric potential difference of 2V on the ionization channel:
-$$ A, B, C, D = +1, +1, -1, -1.$$
-
-The data taking was divided between two configurations, "Background" and "Calibration", meant to measure the neutron background and calibrate the neutron recoil band in the detector respectively.
-The Background configuration was used to save 34 hours of data partitioned in three streams: tg18l005, tg27l000 and tg28l000.
-The Calibration configurations was used to take 78 hours of data, with an Americium-Beryllium neutron source situated 4.5m away from the cryostat and shielded with milk (acting as water) to thermalize the emitted neutron (see figure ??). The data were saved in four streams: tg17l007, tg19l010, tg20l000 and tg21l000.
-
-\begin{figure}
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth]{Figures/Neutron/photo_source_front.jpg}
-  \caption{Front view, towards the cryostat}
-  \label{fig:photo-source-frontt}
-\end{subfigure}%
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=\linewidth, angle=-90]{Figures/Neutron/photo_source_rear.jpg}
-  \caption{Rear view}
-  \label{fig:photo-source-rear}
-\end{subfigure}
-\caption{Photo of the shielded AmBe neutron source used for the neutron calibration.}
-\label{fig:photo-source}
-\end{figure}
-
-Each stream was taken during nights or week-ends to benefit from the long time with stable operation (see Table \ref{tab:neutron-streams}). The configurations were mixed in term of dates, which is of importance when measuring the rate of the Germanium calibration peaks which is decreasing with time.
+The detectors RED80 and REDN1 were studied in two separate cryostat runs: the Run 57 and 61 respectively. In each of the runs, detectors were placed in the suspended tower described in paragraph \ref{par:suspended-tower}. The germanium crystals of the detectors were activated with the AmBe neutron source as described in paragraph\ref{par:calibration-source}. As such, RED80 and REDN1 are operated with an intrinsic calibration peak of \SI{10.37}{\kilo\eV} electronic recoils with uniform distribution over the detector volume. The data collection consists in multiple streams with different ionization channel configurations. Each streams is at least 2 hours long as to explore enough configuration points while gathering enough statistics for the analysis. Some occasional streams are longer as taken during nights and weekends. Some ionization configuration were repeated and can be used to estimate the reproducibility of the measurements. The streams along with their corresponding polarization configuration are listed in the tables \ref{tab:red80-stream-list} for RED80 and \ref{tab:redn1-stream-list} for REDN1.
+The detector RED80 was operated in the Run 57 along with the detector RED70 based on the FID38 design. Although it was based on the FID38 design, RED70 showed very high leakage currents between the electrodes, even at very low voltage bias $V_{bias} \approx \SI{0.1}{\volt}$. Such currents leads to a huge increase in temperature and a quick saturation of the ionization electronics. As such, RED70 is virtually unusable with polarized electrodes, and is not studied in this work. The detector RED80 was operated with two different heat channel configuration. Before and up to the stream tg17l000, RED80 was regulated at the temperature $T_{cryo}=\SI{18}{\milli\kelvin}$ with a bias current $I_{bias} = \SI{2}{\nano\ampere}$ through its NTD of resistance $R_{NTD}=\SI{1.6}{\mega\ohm}$. From and after the stream tg17l001, the regulation temperature was decreased to $T_{cryo}=\SI{16}{\milli\kelvin}$ with a bias current $I_{bias} = \SI{1}{\nano\ampere}$ with the NTD resistance measured at$R_{NTD}=\SI{3.8}{\mega\ohm}$.
+As addressed in paragraph \ref{par:charge-drifting}, the ionization channel performances are independent from the configuration of the heat channel. So, in the case of RED80, the comparison of stream with different current bias $I_{bias}$ of the NTD is valid.
+The detector REDN1 was operated along with the detector RED90 in the Run 61. RED90 is used for NTD characterization like the RED detectors used in chapter \ref{ChapterEthemExperimental}. It consists in a germanium crystal with a bare surface and a single NTD thermal sensor and does not possess an ionization channel.
+The temperature of the detector REDN1 is regulated at the temperature $T_{cryo}=\SI{14}{\milli\kelvin}$ for the whole run with a single configuration of its heat channel: the bias current was set to $I_{bias}=\SI{0.54}{\nano\ampere}$ through the NTD of resistance $R_{NTD} = \SI{6.6}{\mega\ohm}$.
 
 \begin{table}[]
 \centering
-\begin{tabular}{l|l|r}
-Configuration                & Stream   & Started at          \\ \hline
-\multirow{3}{*}{Background}  & tg18l005 & ?? on 18/08/2019    \\
-                             & tg27l000 & 21h20 on 27/08/2019 \\
-                             & tg28l000 & 11h27 on 28/08/2019 \\ \hline
-\multirow{4}{*}{Calibration} & tg17l007 & ?? on 17/08/2019    \\
-                             & tg19l010 & 17h10 on 19/08/2019 \\
-                             & tg20l000 & ?? on 20/08/2019    \\
-                             & tg21l000 & ?? on 21/08/2019   
-\end{tabular}
-\caption{Starting hours and date of the streams for neutron background and calibration measurements.}
-\label{tab:neutron-streams}
+\begin{tabular}{c|rrr}
+\multicolumn{1}{c|}{\multirow{2}{*}{Stream}} & \multicolumn{1}{c}{\multirow{2}{*}{$V_{bias}$/ V}} & \multicolumn{2}{|c}{Polarization / V}              \\ \cline{3-4} 
+\multicolumn{1}{c|}{}                        & \multicolumn{1}{c|}{}                               & \multicolumn{1}{c|}{$A,B$} & \multicolumn{1}{c}{$C,D$} \\ \hline \hline
+tk18l001 & -4   & -2    & +2    \\ \hline
+tk19l001 & -2   & -1    & +1    \\ \hline
+tk19l000 & -1   & -0.5  & +0.5  \\ \hline
+tk18l000 & -0.5 & -0.2  & +0.2  \\ \hline
+tk15l005 & -0.2 & -0.1  & +0.1  \\ \hline
+tk15l005 & -0.1 & -0.05 & +0.05 \\ \hline
+tk20l000                                     & \multirow{2}{*}{0.1}                                & \multirow{2}{*}{0.05}    & \multirow{2}{*}{-0.05}  \\
+tk25l000 &      &       &       \\ \hline
+tk25l001 & 0.2  & +0.1  & -0.1  \\ \hline
+tk27l001 & 0.5  & +0.2  & -0.2  \\ \hline
+tk26l001 & 1    & +0.5  & -0.5  \\ \hline
+tk26l000 & 2    & +1    & -1    \\ \hline
+tk20l003 & 4    & +2    & -2   
+\end{tabular}%
+\caption{List of the streams with their polarization for the experimental study of RED80 in the Run 57.}
+\label{tab:red80-stream-list}
 \end{table}
-
-
-\section{Pre-processing and Data format}
-\label{par:data-format}
-\label{par:of-processing}
-
-The data were initially saved as streams: the voltage value of the heat channel and the four ionization channel are saved for each time step in the acquisition with a sampling frequency of 400Hz. 
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/event_example.png}
-\caption{Raw signals in ADU of a triggering event.}
-\label{fig:event-example}
-\end{figure}
-
-These voltage values are extracted by an analog-to-digital conversion system and thus expressed in \textbf{A}nalog-to-\textbf{D}igital conversion \textbf{U}nit (ADU).
-These data streams are then processed by an \textbf{O}ptimal \textbf{F}iltering (OF) software called NEPAL. A filter based on the signal PSD and the noise PSD in the bolometer is applied to the stream. Time windows of 1s centered on a triggering events are selected with an amplitude threshold on the filtered stream (see Figure \ref{fig:pulse-of}).
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/pulse_of.png}
-\caption{Optimal filtering of a 1s pulse window.}
-\label{fig:pulse-of}
-\end{figure}
-
-These time windows are processed to extract several quantities:
-\begin{itemize}
-	\item Timestamp,
-	\item Amplitude (filtered decorrelated),
-	\item Chi2 value (filtered decorrelated),
-	\item Offset (raw),
-	\item Ionization Slope (raw),
-\end{itemize}
-The figure \ref{fig:analysis-monitoring-demo} shows this characterization quantities for each triggering event as a function of their timestamp (for the considered stream, here tg17l007). Each scatter plots is understood when applying the quality cut:
-\begin{itemize}
-	\item Heat Energy vs Timestamp: Reconstruction of the energy deposited in the heat channel for each event. This graph can be linked to the heat energy spectrum presented later. One can note pronounced population of fixed energy corresponding to the abundance of 10.37keV events due to the activation of the Germanium crystal and the noise blob poulation at $\mathcal{O}(50)$eV.
-	\item Ionization Energy vs Timestamp: is quite the same as heat energy, except that with the overlap of the different channels this graph is now an useless mess
-	\item Offset Heat vs Timestamp: this curve is proportional to the resistance value of the NTD sensor and allows us to follow the baseline temperature. With this decreasing profile, we deduce that the detector has been cooling during this stream. Note that although RED80 is still slowly thermalizing, the sensitivity is stable (precision?)
-	\item Offset Ionization vs Timestamp: this curve is essentially used to discard all the events with an offset outside of the $[-14000, 14000]$ ADU (see \ref{par:quality-cuts}).
-	\item Slope Ionization vs Timestamp: this curve is proportional to the baseline current measured by each electrodes. This baseline current is explained by the presence of leakage current between the electrodes (dedicated section?) and the collection of trapped charges (especially after a maintenance).
-	\item Chi2 vs Timestamp: This describes the goodness of the fit of the template to the pulse. A stable low value indicate a fixed shape for the pulses, which is required for the chi2 cut applied later (see \ref{par:quality-cuts})
-\end{itemize}
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/analysis_monitoring_demo.png}
-\caption{Characterization quantities of triggering events as a function of their timestamp. (TO BE CHANGE !)}
-\label{fig:analysis-monitoring-demo}
-\end{figure}
-
-In the end, for each configuration of data measurements(Background and Calibration), triggering events were selected in each streams and described by several quantities.
-Among those triggering events are events of interest well reconstructed and induced by electronic recoil from the radioactive gamma background, the KLM activation lines from the germanium and the cosmic muons and neutron recoil from the AmBe neutron source and the radioactive neutron background. However, many triggering events can not be reconstructed or were induced by parasitic source, and can not yield information for the measurement of the neutron background at IP2I. To extract the events of interest from all the data, analysis cuts are applied.
-
-
-\section{Quality Cuts}
-\label{par:quality-cuts}
-
-The objective of the "Quality cut" is to keep the events induced by recoils in the germanium absorber of RED80 and with a good energy reconstruction. These events  passing the Quality cut are labeled as "quality events" and satisfy several criteria:
-\begin{itemize}
-	\item passing the Livetime Cut,
-	\item not happening during a maintenance period of the ionization channel,
-	\item offset of the ionization channel in the $[-14000, +14000] ADU$ interval,
-	\item the $\chi^2$ value, expressing the goodness of the fit of the event with the signal template.
-\end{itemize}
-
-{\color{red} Maintenance cut paragraph, will surely be moved in the section describing the electronics.}
-\label{par:reset-maintenance}
-The electrodes of the ionization channel are collecting the electron-hole pairs induced by the recoils in the germanium crystal. As a results, their electric potential is decreasing (recall $Q=CU$) as well as the electric field guiding the e-h pairs in the crystal. In order to keep a steady electric field, it is necessary to periodically recharge the electrodes, offsetting the effect of the e-h pairs collection. This process is called "Reset" and is usually set to happen every few seconds in detectors.
-An adverse effect of these resets is that they usually induce a signal on the heat and ionization channels. While these signals are easily discarded using their known frequency, they can happen close to a valid signal resulting in a pile-up, the discarding of the event from the analysis, and so a decrease in the livetime of a data stream.
-
-Another phenomenon degrading the electric field is the trapping of the charges in the crystal. Even if the electrodes are properly "resetted", the accumulating trapped charges produces a counter-field effectively reducing the electric field seen by the e-h pairs in the crystal. The method used to even the charges in the crystal is called "Maintenance". The electrodes are successively polarized at plus and minus their nominal electric potential with a frequency of $\mathcal{O}(1\textsf{Hz})$ for about a minute. The trapped charges are shaken up in the crystal and eventually recombine or are collected at the electrodes. The counter-field vanishes and the detector is ready to operate with its standard electric field (graph necessary to illustrate ?). A downside is that the detector is not available for data taking during a maintenance, representing about a minute of deadtime for several tenths of minutes of running time. 
-
-As this work uses data taken with detectors operated in an above-ground laboratory, the event rate is higher compared to an underground facility due to the abundance of cosmic rays and the natural radioactivity.
-With this higher event rate  comes a higher charge collected per unit of time. This induces a quicker decrease of the electric potential of the electrodes, which needs for more frequent resets, and a quicker appearing of the counter-field due to the charge trapping, which calls for more frequent maintenances.
-
-Thus, the frequency of the reset and the maintenance is adapted to the event rate seen by the detectors. The reset and maintenance should be frequent enough to keep up with the electric field decrease, yet spaced out to keep a reasonable livetime. Moreover, the event rate do fluctuate between each run as it depends on the mass of the absorbers (here 32g, 38g or 200g) and the possible use of calibration sources increasing the event rate (see the section \ref{par:calibration-sources}).
-In average in this work, the resets are set to a frequency of $2$Hz (?) and maintenance set to take place every 40 minutes.
-{\color{red} End of Maintenance paragraph}
-
-Quality events should not happen during a maintenance period nor a reset (introduced in section \ref{par:reset-maintenance} as they are considered electronics artifacts. The "Maintenance cut" is defined as:
-$$ bli blou bloup$$
-which discards any event happening during a maintenance period.
-The "Reset cut" is expressed as:
-$$ hello there general$$
-which discards event occurring within $5$ms (?) of a reset. 
-{\color{red} INSERT MATHEMATICAL DEFINITION of the maintenance cut and the reset cut. And implement it correctly in the analysis! }
-
-{\color{red} paragraph about the ion sensitivity degradation past 14000ADU. Dont know if this is gonna stay in this chapter or move it when describing the electronics. Feel like it should belong here, as I can illustrate that with a figure}
-
-We noticed a malfunction for the ionization channel: apparently, the sensitivity of the ionization channels depends on their offset value. This behavior is consider as faulty as we expect the electrodes to have a constant sensitivity. This phenomenon is illustrated in the figure \ref{fig:offset-problem} which plots the ionization amplitudes of events as a function of their offset values for the data stream "???".
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth, height=6cm]{Figures/Neutron/offset_cut.png}
-\caption{Graph of the reconstructed amplitude of the triggering events on the ionization channel D in function of their offset value. The dense population of 10keV calibration events with a reconstructed ionization energy of about 60ADU let us monitor the sensitivity of the electrodes. We note that past 23000 ADU of offset, the electrodes becomes half as sensitive as before with the 10keV calibration population reconstructed at 30ADU. The red overlay span illustrates the region discarded by the offset cut.The data presented corresponds to the stream "tg18l005". }
-\label{fig:offset-problem}
-\end{figure}
-
-INTERPRETATION when plot is ready.
-We decide to keep the events with the standard ionization sensitivity with low absolute offset value. Other events are discarded by the "Offset cut" which is expressed as:
-$$ mathemics here $$
-
-
-Concerning the $\chi^2$ value, the threshold depends on the energy. Indeed, because of non-linearity in the bolometer heat response, the shape of the signal do depends on the recoil energy as the first order perturbation theory becomes less and less valid.
-Good events at low energy should have a $\chi^2$ value of about:
-
-\begin{equation}
-\mathbb{E}\left( \chi^2 \right) 
-= N_{\textsf{samples in window}}
- = T_{\textsf{window}} \times f_{\textsf{sampling}}
- = 0.5 \times 400 = 200
-\end{equation}
-
-However, with a signal template based on events from the 10.37keV activation line of the germanium, the $\chi^2$ value of good events is increasing from $\mathcal{O}(10keV)$.
-Therefore, a cut parametrization function depending on the event amplitude is chosen:
-
-\begin{equation}
-Threshold(Amplitude) 
-= \gamma \times \mathbb{E}\left( \chi^2 \right)  \times \left[ 1+ \left( \frac{Amplitude}{\alpha} \right)^\beta \right]
-\end{equation}
-
-with $\alpha$, $\beta$ and $\gamma$ estimated visually for each streams and presented in table \ref{tab:chi2-cut}.
 
 \begin{table}[]
 \centering
-\input{Tables/Neutron/chi2-cut-coefficients.tex}
-\caption{Coefficient of the $chi^2$ cut for each streams. These coefficients were determined visually in order to defined the band of events of lowest $chi^2$ value on the whole energy range.}
-\label{tab:chi2-cut}
+\begin{tabular}{c|rrrrrr}
+\multicolumn{1}{c|}{\multirow{2}{*}{Stream}} &
+  \multicolumn{1}{c|}{\multirow{2}{*}{$V_{bias}$/ V}} &
+  \multicolumn{1}{c|}{\multirow{2}{*}{$R_{veto}$}} &
+  \multicolumn{4}{c}{Polarization / V} \\ \cline{4-7} 
+\multicolumn{1}{c|}{} &
+  \multicolumn{1}{c|}{} &
+  \multicolumn{1}{c|}{} &
+  \multicolumn{1}{c|}{$A$} &
+  \multicolumn{1}{c|}{$B$} &
+  \multicolumn{1}{c|}{$C$} &
+  \multicolumn{1}{c}{$D$} \\ \hline \hline
+tk18l001					  & -2                 & 0.4                  & +0.4                  & -1                  & -0.4                  & +1                  \\ \hline
+tk19l001                      & 0.25               & 0.4                  & -0.05                 & +0.125              & +0.05                 & -0.125              \\ \hline
+tk19l000                      & 0.5                & 0.4                  & -0.1                  & +0.25               & +0.1                  & -0.25               \\ \hline
+tk18l000                      & 1                  & 0.4                  & -0.2                  & +0.5                & +0.2                  & -0.5                \\ \hline
+tk15l005                      & \multirow{2}{*}{2} & \multirow{2}{*}{0.4} & \multirow{2}{*}{-0.4} & \multirow{2}{*}{+1} & \multirow{2}{*}{+0.4} & \multirow{2}{*}{-1} \\
+tk15l005                      &                    &                      &                       &                     &                       &                     \\ \hline
+tk20l000                      & \multirow{2}{*}{4} & \multirow{2}{*}{0.4} & \multirow{2}{*}{-0.8} & \multirow{2}{*}{+2} & \multirow{2}{*}{+0.8} & \multirow{2}{*}{-2} \\
+tk25l000                      &                    &                      &                       &                     &                       &                     \\ \hline
+tk25l001  & 8                  & 0.4                  & -1.6                  & +4                  & +1.6                  & -4                  \\ \hline \hline
+tk27l001                      & 4                  & 0.2                  & -0.4                  & +2                  & +0.4                  & -2                  \\ \hline
+tk26l001  & 4                  & 0.3                  & -0.6                  & +2                  & +0.6                  & -2                  \\ \hline
+tk26l000  & 4                  & 0.5                  & -1                    & +2                  & +1                    & -2                  \\ \hline
+tk20l003  & 2                  & 0.6                  & -0.6                  & +1                  & +0.6                  & -1                  \\ \hline
+tk27l002  & 4                  & 0.7                  & -1.4                  & +2                  & +1.4                  & -2                 
+\end{tabular}%
+\caption{List of the streams with their polarization for the experimental study of REDN1 in the Run 61.}
+\label{tab:redn1-stream-list}
 \end{table}
 
 
-In the end, the $\chi^2$ cut is applied on each channels (as seen in figure \ref{fig:chi2-cut}) independently. Only the events passing the cut for all the channels is kept and eligible as a quality event.
+\subsection{Quality Cuts}
+%\label{par:quality-cuts}
 
-\begin{figure}
+{\color{red} Might move the explanation of the processing and quality cuts in this chapter. To be discussed. For now, it is essential to write about the specifics of RED80 and REDN1.
+
+TO DO: merge with Quality Cuts from Chapter Neutron
+}
+
+The data collection and processing is describe in the later chapter \ref{ChapterNeutron} dedicated to the "Neutron Analysis with RED80". This paragraph presents the specific quality cuts used for the analysis of the data from RED80 and REDN1.
+
+% Livestream cut
+The live stream cut described in paragraph \ref{par:livestream-cut} is not applied in this chapter. Indeed, the comparison of the simulation of RED80 and REDN1 to the experiment is not based on the rate of events. As to ease the workload of analysis, this cut is not applied.
+
+% Maintenance and Reset Cut
+The maintenance and reset cut presented in paragraph \ref{par:maintenance-reset-cut} is used in the analysis of RED80 and REDN1 with the same tolerance parameters.
+
+% Offset Cut
+The offset cut is applied as described in the paragraph \ref{par:offset-cut}. The same threshold $A_{offset}=\SI{14000}{ADU}$ is used.
+
+% Chi2 cuts
+The $\chi^2$ cuts are applied in the same fashion as described in the paragraph \ref{par:chi2-cuts}. All the events with any estimated $\chi^2$, on the heat channel or one of the ionization channels, above a defined threshold function is discarded from the analysis.
+The threshold is a function of the signal amplitude $A_X$ of a channel $X$ in ADU. Its expression is
+\begin{equation}
+\chi_{threshold}^2 (A_X) = \chi_0^2 \cdot \left( 1 + \left( \frac{A_X}{A_0} \right)^b \right)
+\end{equation}
+depending on the three parameters: the baseline threshold $\chi_0^2$, the takeoff amplitude $A_0$ and the quadratic factor $b$.
+
+\begin{table}[]
 \centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/chi2_cut.png}
-\caption{$\chi^2$ value for each event in function of its reconstructed amplitude for the five measuring channels. The cut threshold is represented by the black line. All events are in red, passing events are in blue.}
-\label{fig:chi2-cut}
-\end{figure}
-
-With all these criteria being applied to the events passing the Livetime Cut, we have selected the events passing the Quality Cut, qualified as "quality events".
-
+\begin{tabular}{c|l|c|c|c}
+Detector               & Channel & $\chi_0^2$                & $A_0$                      & $b$ \\ \hline \hline
+\multirow{2}{*}{RED80} & Heat    & \multirow{2}{*}{400}      & \num{3e3} & 2   \\ \cline{2-2} \cline{4-5} 
+ &
+  \begin{tabular}[c]{@{}l@{}}Ionization\\ $A,B,C,D$\end{tabular} &
+   &
+  \multicolumn{1}{r|}{\num{2e3}} &
+  \multicolumn{1}{r}{2.2} \\ \hline \hline
+REDN1                  & Heat    & \multicolumn{1}{r|}{2000} & \num{3e3} & 2   \\
+tk19l000 &
+  \begin{tabular}[c]{@{}l@{}}Ionization\\ $A,B,C,D$\end{tabular} &
+  \multicolumn{1}{r|}{700} &
+  \multicolumn{1}{r|}{\num{2e3}} &
+  \multicolumn{1}{r}{2.2}
+\end{tabular}%
+\caption{Parameters for the quality cuts used in the RED80 and REDN1 data analysis.}
+\label{tab:red80-redn1-quality-cuts}
+\end{table}
 
 
 \subsection{Cross-talk correction and Cabling capacitance estimation}
 
-With the selection of the fiducial events, it is possible to estimate precisely the cross-talk correction matrix and the cabling capacitance.
+The paragraph \ref{par:sensitivity-calculation} discuss the expression of the signal induced on the ionization channel by a recoil. It is demonstrated that a recoil, creating a number $N_p$ of electron-hole pairs, generates a charge perturbation on the electrodes $A$ through $D$. This perturbation is expressed as the charge perturbation vector $\vec{Q}$. In the case of the REDN1 and RED80, there are different charge perturbation vector depending on the recoil location in the crystal. Their expression are displayed in equation \ref{eq:red80-induced-charges} for RED80 and \ref{eq:fid38-induced-charges} for REDN1, considering an ideal drift of the charges and a complete collection on the electrodes.
+The voltage signal $\vec{V}$ generated on the electrode is calculated from the charge vectors and the Maxwell capacitance matrix $C$ of the detector according to the equation \ref{eq:capacitance-definition-matrix}. It is calculated in the equations \ref{eq:planar38-sensitivity} for the PL38 design and the equations \ref{eq:fid38-sensitivity} for the FID38 design. Contrary to the charge vector $\vec{Q}$ which has 2 null component, a voltage signal is generated on all the electrodes of the detector. This phenomenon is called cross-talk.
+The cross-talk correction is an analysis step consisting in calculating an effective charge vector $\vec{Q}_{eff}$ corresponding to a measured voltage signal vector $\vec{V}_{meas.}$. With cross-talk corrected measurement, it is possible to proceed with the calibration of the detector and the rest of the analysis.
+The calculation is done with the cross-talk correction matrix $\bm{C}_{X-talk}$ such that:
+\begin{equation}
+\vec{Q}_{eff} = \bm{C}_{X-talk} \cdot \vec{V}_{meas.}
+\end{equation}
+This equation is the experimental equivalent of the equation \ref{eq:capacitance-definition-matrix} dedicated to theoretical perturbation vector $\vec{Q}$ and $\vec{V}$ on a detector of known Maxwell capacitance matrix $\bm{C}$. As a result, the cross-talk correction matrix is equal to the Maxwell capacitance matrix of the detector and the cabling such that:
+\begin{equation}
+\bm{C}_{X-talk} = \bm{C}_{total} = \bm{C}_{detector} + \bm{C}_{cabling} 
+\end{equation}
+The Maxwell capacitance matrix of the detector $\bm{C}_{detector}$ is considered known as it is yielded from the detector simulation in the equations \ref{eq:red80-maxwell} and \ref{eq:redn1-maxwell} for RED80 and REDN1 respectively.
+The paragraph \ref{par:sensitivity-calculation} explains that the cabling possesses a diagonal Maxwell capacitance matrix. Under the assumption that the properties of the cabling, like its length or its shielding, is the same for all the electrodes, all its diagonal components are equals. Their value is a single cabling capacitance $C_{cabling}$ which is unknown.
+Therefore, all the non-diagonal terms of the cross-talk correction $C_{X-talk}$ matrix are known and its diagonal terms are to be defined through the estimation of the cabling capacitance $C_{cabling}$.
 
+This estimation is based on the expected charge perturbation vector $\vec{Q}_{bulk}$ from the fully collected bulk event created in by the calibration electronic recoil at \SI{10.37}{\kilo\eV}. This estimation process is therefore iterative as cross-talk correction and energy calibration are interdependent. 
+For this analysis, the cross-talk correction is first approximated with a graphical method. The calculated effective charge signal $\vec{Q}_{eff}$ are then used in the calibration step, described in the following paragraph \ref{par:calibration-step}, and in the selection of the calibration events described in the paragraph \ref{par:calibration-events-selection}. The precise cross-talk correction is effectuated with the \SI{10.37}{\kilo\eV} calibration events only and the analysis pipeline is re-run with this additional precision.
+
+% Graphical method
+The cross-talk correction matrix $\bm{C}_{X-talk}$ and more specifically the cabling capacitance $C_{cabling}$, are approximated with a graphical method. The principle is to have the effective charge perturbation vector $\vec{Q}_{eff}$ correspond to the theoretical charge perturbation vectors $Q$ for the different collection volume: bulk, guard, veto as expressed in equations \ref{eq:red80-induced-charges} and \ref{eq:redn1-induced-charges}. As the detector is not calibrated yet, the component of the theoretical charge vector are known up to a calibration factor $a_X$ depending on the electrode $X$. Considering the bulk events of RED80 as reference, the equation that is solved graphically with $C_{cabling}$ as unknown is the following:
+\begin{equation}
+\label{eq:crosstalk-correction}
+\textsf{diag}(a_A, a_B, a_C, a_D)
+\cdot
+\vec{Q}_{bulk}
+=
+\begin{bmatrix}
+0 \\ -a_B \\ 0 \\ a_D
+\end{bmatrix} 
+=
+\left( \bm{C}_{detector} + C_{cabling} \cdot \mathbb{1} \right) \cdot \vec{V}_{meas., bulk}
+\end{equation}
+
+As the calibration coefficient $a_X$ are unknown, it is handy to consider a normalized cross-talk corrected signal vector $\vec{Y}$ expressed as:
+\begin{equation}
+\vec{Y}^{bulk} \left( C_{cabling} \right)
+=
+\frac{1}{C_{detector, 11} + C_{cabling}}
+\left( \bm{C}_{cabling} + C_{cabling} \cdot \mathbb{1} \right) \cdot \vec{V}_{meas., bulk}
+= \bm{C}_{X-talk}^N \cdot \vec{V}_{meas., bulk}
+\end{equation}
+with $\bm{C}_{X-talk}^N$ the normalized cross-talk correction matrix.
+
+With a correctly estimated $C_{cabling}$ satisfying the equation \ref{eq:crosstalk-correction}, the cross-talk corrected signal vector $\vec{Y}^{bulk}$ of the bulk event has two null components $Y_A^{bulk} = Y_C^{bulk} = 0$ and two non-null components $Y_B^{bulk}$ and $Y_D^{bulk}$.
+In order to visualize the four components of the cross-talk corrected vector $\vec{Y}$ visualization, corner plots are used . The figure \ref{fig:red80-crosstalk-correction} present such a corner plot for the detector RED80 for the stream tg09l000 in the Run 57. Only events passing the quality cuts are plotted. The dashed guide lines indicates the null signal at \SI{0}{ADU} and the full collection of the \SI{10.37}{\kilo\eV} calibration electronic recoils  at $\approx \pm \SI{55}{ADU}$ (drawn a fortiori after the calibration step).
+Each color corresponds to a different cabling capacitance value $C_{cabling}$ with the vector $\vec{Y}(\SI{125}{\nano\farad})$ colored in orange, $\vec{Y}(\SI{0}{\nano\farad})$ colored in green and $\vec{Y}(+\infty)$ colored in blue. We note that as $C_{cabling} \rightarrow +\infty, \ \bm{C}_{X-talk}^N \rightarrow \mathbb{1}$. The non-diagonal terms of the normalized cross-talk correction matrix $\bm{C}_{X-talk}^N$ are inversely proportional to the cabling capacitance $C_{cabling}$. As a result, we observe a diminishing return in the change of shape of the vector $\vec{Y}$ with increasing $C_{cabling}$.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/ElectrodesExperimental/red80_crosstalk_correction.pdf}
+\caption{Corner plot of the cross-talk corrected amplitude vector $\vec{Y}$ in ADU. The plotted events belong corresponds to the stream tg09l000 of the run 57 operating the detector RED80. Only events passing the quality cuts are displayed. Each color corresponds do a different cabling capacitance $C_{cabling}$ used to calculate the cross-talk correction matrix $\bm{C}_{X-talk}$. The guide lines indicate no collection at \SI{0}{ADU} and full collection at $\approx \pm \SI{55}{ADU}$ of the \SI{10.37}{\kilo\eV} calibration electronic recoils.}
+\label{fig:red80-crosstalk-correction}
+\end{figure}
+
+The correct cabling capacitance $C_{cabling}$ satisfying the equation \ref{eq:crosstalk-correction} is chosen when the distribution of the components of $\vec{Y}$ in the corner plots mostly corresponds to the guide lines.
+In the case of $RED80$ and $REDN1$, the cabling capacitance was first estimated to $C_{cabling} = \SI{120}{\nano\farad}$. 
+We  can check that the normalized cross-talk correction matrix $\bm{C}_{X-talk}^N$ corresponds to the identity matrix at the first order. The correction terms are in the range of few percents, going up to $5.2\%$ in the case of the case of the electrode $B$ inducing signal on the electrode $A$.
+
+% Precise estimation
+The precise estimation of the cabling capacitance $C_{cabling}$ and the cross-talk correction matrix $\bm{C}_{X-talk}$ happens after the calibration step and the selection of the full collected bulk events created by the \SI{10.37}{\kilo\eV} calibration electronic recoils.
 A fiducial recoil leads to an electric charge perturbation expresses by the vector $\vec{Q}$ such that:
 \begin{equation}
 \vec{Q}_{fid}^{REDN1} =
@@ -440,15 +542,20 @@ V_A \\ V_B \\ V_C \\ V_D
 \end{equation}
 
 In the paragraph \ref{par:sensitivity-calculation}, the Maxwell capacitance matrix associated with the cabling $\bm{C}_{cabling}$ is considered to be diagonal with $\forall i \neq j, \bm{C}_{cabling, ij} = 0$ . The previous equation \ref{eq:redn1-bulk-voltage-vector} can be translated for the terms $\bm{V}_{i}$ and $\bm{Q}_i$ of the vectors $\vec{V}_{fid}^{REDN1}=\vec{V}$ and $\vec{Q}_{fid}^{REDN1}=\vec{Q}$ respectively:
-\begin{equation}
+\begin{align}
 \bm{V}_{i}
-=
+&=
 \sum_{j=1}^4 \bm{C}_{total, ij} \bm{Q}_j
-=
+\\
+&=
 \sum_{j=1}^4 \bm{C}_{detector, ij} \bm{Q}_j + \sum_{j=1}^4 \bm{C}_{cabling, ij} \bm{Q}_j
-=
-\left( \bm{C}_{detector, i4} - \bm{C}_{detector, i2} \right) Q(\SI{10.37}{\kilo\eV}) + \bm{C}_{cabling, ii} \bm{Q}_i
-\end{equation}
+\\
+&=
+\left(
+ \bm{C}_{detector, i4} - \bm{C}_{detector, i2}
+\right)
+Q(\SI{10.37}{\kilo\eV}) + \bm{C}_{cabling, ii} \bm{Q}_i
+\end{align}
 
 We assume that the Maxwell capacitance matrix relative to the detector $\bm{C}_{detector}$ is known as it calculated from the electrostatics simulation of REDN1. The diagonal terms $\bm{C}_{cabling, ii}$ of the cabling capacitance matrix can therefore be evaluated from the voltage signal induced by the \SI{10.37}{\kilo\eV} fiducial events $\bm{V}_{i}$ :
 \begin{equation}
@@ -460,67 +567,12 @@ We assume that the Maxwell capacitance matrix relative to the detector $\bm{C}_{
 
 One should note that as $\bm{Q}_1 = \bm{Q}_3 = 0$, the equation \ref{eq:cabling-capacitance-expression} is only valid for $i \in \{ 2,4 \}$. This means that the fiducial events collected by the electrode $B$ and $D$ can only be used to determine the cabling capacitance associated with these very electrodes $\bm{C}_{cabling, 22}$ and $\bm{C}_{cabling, 44}$ respectively.
 
-
-\underline{FROM CHAPTER NEUTRON} 
-
-While the heat channel can readily be calibrated, this is not the case for the ionization channel which are affected by a phenomenon of cross-talk which should be corrected before proceeding with their calibration.
-Because of the capacitive coupling between the different electrodes of the bolometer, a signal collected by an electrode will induce another smaller signal on other electrodes. With such a coupling, the cross-talk factor between two electrodes increases with their associated capacitance term.
-As a result, for a small bolometer as RED80 with capacitance terms in $\mathcal(O)(10 pF)$, the cross-talk factors are about few percents. This is to be compared to the bigger 200g FID bolometers used in EDELWEISS-III, with an increased capacitance of $\mathcal(O)(100 pF)$, presenting cross-talk factors of about few tens of percent.
-The real ionization channels $A,B,C,D$ affected by the crosstalk can be corrected into decoupled ionization channels $A', B', C', D'$ according to the following equation:
-
-\begin{equation}
-	\left[\begin{array}{c}
-	A' \\ 
-	B' \\ 
-	C' \\ 
-	D'
-	\end{array}\right]
-	=
-	\mathcal{M}
-	\left[\begin{array}{c}
-	A \\ 
-	B \\ 
-	C \\ 
-	D
-	\end{array} \right]
-\end{equation}
-with $\mathcal{M}$ the cross-talk correction matrix being:
-\begin{equation}
-	\mathcal{M}
-	=
-	\left[\begin{array}{cccc}
-	1 & -0.052 & 0 & 0 \\ 
-	-0.03 & 1 & 0 & 0 \\ 
-	-0.012 & 0.001 & 1 & -0.025 \\ 
-	0 & 0 & -0.03 & 1
-	\end{array}\right]
-\end{equation}
-
-The terms of this correction matrix were found with the study of specific populations of events of known characteristics (as seen in figure \ref{fig:scheme-red80}):
-\begin{itemize}
-	\item Bulk events are collected by the main electrodes and no charge is collected by the guard electrodes with $$A'= C' = 0$$
-	\item Surface events are collected by the guard electrodes and no charge is collected by the main electrodes with $$B' = D' = 0$$
-\end{itemize}
-
-This correction is implemented iteratively by visually checking the plotting of the corrected ionization channels against themselves. The figure \ref{fig:crosstalk-correction} shows the signals of the events of the uncorrected ionization channels $A, B, C, D$ as black points. Superposing to this are the blue points associated with the events of the decoupled ionization channels $A', B', C', D'$.
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/crosstalk_correction.png}
-\caption{Corner plot of the reconstructed ionization energies of the quality events. Energies affected by the cross-talk are in grey/black, corrected energies are in blue. The x-axis and y-axis are plotted in red as visual guides.}
-\label{fig:crosstalk-correction}
-\end{figure}
-
-We check that the cross-talk correction matrix $\mathcal{M}$ corresponds to the identity matrix at the first order. The correction terms are in the range of few percents, going up to $5.2\%$ in the case of the case of the electrode $B$ inducing signal on the electrode $A$.
-
-
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/ElectrodesExperimental/redn1_cabling_capacitance_fitting.pdf}
 \caption{Fitting the cabling capacitance for REDN1.}
 \label{fig:red80-cabling-capacitance}
 \end{figure}
-
 
 \begin{figure}
 \centering
@@ -529,194 +581,171 @@ We check that the cross-talk correction matrix $\mathcal{M}$ corresponds to the 
 \label{fig:red80-cabling-capacitance}
 \end{figure}
 
+{\color{red} Description of the histograms, conclusion on the 125 nF, the more complex model with one cabling capacitance for each electrode of the ionization channel.
+Interpret the difference between detectors as being small variation in length of the cabling between the conductive tracks on the copper chassis in the suspended tower and the electronics on the fixed mixing chamber of the cryostat.
 
-\section{Calibration}
-\label{par:calibration}
-
-The five measurements channels are saving the voltage of their associated sensors in ADU unit specific to each considered channel. In order to proceed with physical interpretation, it is now necessary to convert the channels into a common unit.
-For this purpose, we use the activation of the KLM lines of the Germanium crystal, which emits a gamma of energy 100eV, 1.3keV and 10.37keV respectively [\cite{germanium-decay}]. This gammas of known energy produce electronic recoils depositing a known energy in the ionization channels and the heat channel, with the latter being boosted with the Luke-Neganov effect [\cite{luke-neganov-effect} and \citep{luke-neganov-interpretation}]. As the quenching of the electronic recoil is different from the one of the nuclear recoil, we use the $keV_{ee}$ which precise that the energy deposit done with an electronic recoil.
-
-Concerning the ionization channels, we use the 10.37keV line forming a multivariate normal distributed blob in the figure \ref{fig:calibration-ion} showing the signal of an event in each ionization channel in ADU unit. We estimate the center of this distribution to be $55$ ADU for each channels. We can now deduce the calibration coefficient for the ionization channels : $\pm 55 ADU \leftrightarrow 10.37 keV_{ee}$.
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/calibration_ion.png}
-\caption{Corner plot of the reconstructed ionization amplitude of the quality events, zoomed on the 10.37keV calibration peak.}
-\label{fig:calibration-ion}
-\end{figure}
-
-As for the heat channel, we use the 10.37keV line forming a normal distribution visible in the ADU amplitude spectrum of the heat channel as seen in figure \ref{fig:calibration-heat}. The estimated center of this distribution is $1200$ ADU. The calibration coefficient for the heat channel is therefore: $1200 ADU \leftrightarrow 10.37 keV_{ee}$.
-
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/calibration_heat.png}
-\caption{Heat Amplitude Spectrum for a stream. The calibration coefficient is estimated from the 10.37keV calibration peak position.}
-\label{fig:calibration-heat}
-\end{figure}
-
-With these calibration coefficient, it is now possible to reason with the reconstructed energy for each channels as
-$$
-\textsf{Reconstructed energy [keV]}
-=
-\textsf{Calibration Coefficient [keV/ADU]}
-\times
-\textsf{Event Amplitude [ADU]}
-$$
-Now that the events of all the streams are calibrated, they are expressed in the same unit and can be compared. From now on, we concatenate the calibrated streams and consider all the events for the Background and the Calibration configurations.
+TO DO: merge with X-talk from Chapter Neutron
+}
 
 
-\section{Charge conservation cut}
-\label{par:charge-conservation-cut}
+\subsection{Calibration}
 
-to be corrected vvv
-Even with the bulk cut, some events might still have charge collection issue. Drifting charges can be trapped in the germanium and may not end up being collected. On way to discard such events is to consider the "Charge Conservation" quantity, defined as:
-\begin{equation}
-\mathcal{C.C.} = \frac{-A-B+C+D}{2}
-\end{equation}
+{\color{red} Calibration is done as described in the paragraph \ref{par:calibration}.
 
-As a recoil produces electron-hole pairs, the charge of the drifting particles in the crystal should be zero as well as the total collected charges (considering their complete collection). This is characterized by a the normal distribution of the $\mathcal{C.C}$ around zero with an STD depending on the RMS resolution of the ionization channels. Events with an incomplete charge collection would stand out of this gaussian profile and can be discarded. As a result, we define the event passing this "Charge conservation cut" with a $\mathcal{C.C.}$ lower than two times the RMS resolution for the considered heat energy. This cut is represented in the figure \ref{fig:charge-conservation}.
+TO DO: merge with Calibration from Chapter Neutron}
 
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/charge_conservation.png}
-\caption{"Charge conservation" quantity as a function of the heat energy for the bulk quality events of the Background configuration. Passing events are in blue while discarded events are in red.}
-\label{fig:charge-conservation}
-\end{figure}
-
-As the RMS resolution depends on the energy associated to the event, it is once more necessary to model it with a linear law:
-\begin{equation}
-\sigma_{\mathcal{C.C.}}\left(E_{heat}\right)
-=
-a + b*E_{heat}
-\end{equation}
-with the coefficient $a$ and $b$ coming from the estimation of the RMS resolution at 0keV (noise blob) and 10.37keV (calibration peak) (precision necessary here).
+%The paragraph \ref{par:data-processing} describes how a signal amplitude is associated to each event in the stream. The unit of this signal amplitude is ADU. In the case of the heat channel, the signal amplitude is proportional to the heat energy $E_{heat}$ of an event. For the ionization channel, it is the electric charge $Q_X$ that is induced on an electrode $X$ that is proportional to the signal amplitude measured by the electrode.
+%The voltage signal $\vec{V}$ is measured as the signal amplitude in ADU with a factor conversion of \SI{67.4}{\nano\volt\per\kilo\eV}. 
 
 
 \subsection{Fiducial Cut}
-\label{par:fiducial-cut}
 
-Referring to the streamlines of the electric field in the crystal of RED80 (see Figure \ref{fig:streamlines-red80}), we expect some region of the crystal with a specific drifting behavior. Represented in the Figure \ref{fig:scheme-red80}, we have:
-\begin{itemize}
-	\item the Bulk region, where the charge will drift towards the collect electrodes B and D,
-	\item the Guard region, where the charge will be collected by the surface electrodes A and C,
-	\item the Corner regions, where and , we expect the charges to recombine on place of the recoil because of the very weak electric field or become trapped on the surface by drifting along the streamlines exiting the crystal.
-\end{itemize}
 
-Surface regions are always hazardous for charge collection. Indeed, EDELWEISS has a knowledge (ref necessary) of charges drifting close to the surface devoid of electrodes being easily trapped and not being collected. This behavior is degrading the ionization signal leading to a recoil with reduced quenching factor. This means that electronic recoils happening near the surface could be reconstructed with a lower quenching and be identified as nuclear recoils. The major source of such surface recoil are the $\beta$ radiation induced by the natural radioactivity interacting in the first $\mu$m of the germanium crystal (ref edelweiss necessary). Thus, we want to discard any event that may be induced by a surface recoil. When interacting on the lateral surface of the germanium crystal, this events should be collected by the guard electrodes A and C. Referring to the scheme \ref{fig:scheme-red80}, the objective of the "Fiducial cut" is to discard events from the Surface zones and Corners, and keep the events induced by recoil in the bulk region of the crystal. This Fiducial cut is applied by considering the reconstructed ionization energy of the events as represented in the figure \ref{fig:fiducial-cut}.
+{\color{red} The fiducial cuts are done as described in the paragraph \ref{par:fiducial-cuts}. With a broader range for the selection for the population.
 
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/fid_cut.png}
-\caption{Corner plot of the reconstructed ionization energy for each electrodes for the quality events of the Background configurations. The energy thresholds for the cuts as well as the passing events are highlighted in the associated colors: blue for "bulk cut" and red for "guard cut".}
-\label{fig:fiducial-cut}
-\end{figure}
+- Incomplete vs Full collection: 3 sigma of the resolution at 10.37 keV.
+- Bulk cut: 5 sigma of the baseline resolution.
 
-The Fiducial cut identifies events of the bulk region as events which did not deposited any signal on the guard electrodes A and C, with a tolerance of two $\sigma^{A,C}\left( \textsf{baseline} \right)$. For the bulk events, this conditions is expressed as:
-
-\begin{equation}
-mathmathmath for bulk events
-\end{equation}
-
-In a similar manner, we can also define the guard events with no signal on the collect electrodes B and D with a tolerance of two $\sigma^{B,D}\left( \textsf{baseline} \right)$. This condition then is written:
-
-\begin{equation}
-mathmathmath for guard events
-\end{equation}
-
-{\color{red}NOW, ITS GIBBERISH TIME !(yay, but to be modified)}
-This "Bulk cut" will discard any event with a reconstructed energy on the guard electrodes A and C which is greater than two times the RMS resolution.
-For this purpose, it is useful to define the reconstructed total ionization energy:
-\begin{equation}
-E_{ion., total} = \frac{A+B+C+D}{2}
-\end{equation}
-
-%\begin{itemize}
-%	\item Ionization Energy in the Bulk region: $E_{ion., bulk} = \frac{B+D}{2}$
-%	\item Ionization Energy in the Guard region: $E_{ion., guard} = \frac{A+C}{2}$
-%	\item Total Ionization Energy: $E_{ion., total} = \frac{A+B+C+D}{2}$
-%\end{itemize}
-
-As the RMS resolution $\sigma_i$ of given channel $i$ depends on the total ionization energy deposited in the crystal, it is modeled by a power law:
-\begin{equation}
-\sigma_i\left( E_{i, total} \right)
-=
-\sqrt{ 
-\left( \sigma_i(0\textsf{keV}) \right)^2 + 
-\left( \alpha E_{ion., total} \right)^2
+TO DO: merge with Fiducial-cut from Chapter Neutron
 }
-\quad \textsf{with} \quad
-\alpha = \frac{\sqrt{\sigma_i(10.37\textsf{keV})^2 - \sigma_i(0\textsf{keV})^2}}{10.37 \textsf{keV}}
-\end{equation}
-In this equation, the baseline resolution $\sigma_i(0\textsf{keV})$ is estimated with the standard deviation of the noise blob while the resolution $\sigma_i(10.37\textsf{keV})$ is estimated with the standard deviation of the events associated to the germanium calibration peak.
-{\color{red}END of GIBBERISH, i think}
 
 
-%\subsection{Review of the selected events}
+\section{Experimental Estimation of the Fiducial Volume and Comparison to the Detector Simulation}
 
-We have discarded the events with a possible bad energy reconstruction energy and calibrated the remaining ones. The experimental signal obtained with the heat and ionization channels were reconstructed into heat energy $E_{heat}$ and total ionization energy $E_{ion.}$. The figure \ref{ecei-plot} shows the scatter plot of these two values for the events of the Calibration configuration.
+\subsection{Control values definition}
 
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/ecei_plot.png}
-\caption{Reconstructed Ionization Energy in function of the Reconstructed Heat Energy, for the quality events of the Calibration configuration. The plot is zoomed up to 12keV for an easier view of the calibration peaks. }
-\label{fig:ecei-plot}
-\end{figure}
+-For each detector RED80 and REDN1
 
-We recognize the noise blob near the origin corresponding to recoils of very low energy and triggering noise windows. Expanding from this noise blob, we note two bands. 
-The electronic recoil band corresponds to events depositing the same energy in the ionization channel and the heat energy channel (both in keVee). They are characterized by a quenching factor of 1. As a matter of fact, the gamma recoil of 1.3keV and 10.37keV coming from the calibration peaks of the germanium belongs to this band. Any event below this band deposited less energy in the ionization channel than in the heat channel, and therefore possess a quenching factor inferior to one. We see that the population blob associated to the 10.37keV is smeared to lower quenching factor. This is due to events of the calibration peaks with incomplete charge collection. We note that this population is following a linear trend, which can be explained by an incomplete Luke-Neganov Boost of the heat channel according to the equation:
-\begin{equation}
-E_{heat} = 6 \textsf{keVee} + \epsilon \frac{2 \textsf{V}}{\epsilon_{Ge}} E_{ion.}
-\end{equation}
-The other major population of events below the electronic recoil band counts a lot of events in the case of the Calibration configuration. This hints that this band corresponds to the nuclear recoil induced by the AmBe neutron source.
-The presence of the two bands in this plot demonstrate the discriminating ability of the associated heat and ionization channels. Note that, although the bands are well separated at high energy, they are merging at low energy due to their width which is fixed by the energy resolution of the heat and ionization channel.
+-For each stream
 
-Another way to represent the discrimination between the electronic and the nuclear recoil is to compute the recoil energy $E_R$ and the quenching factor $Q$ for each event:
+-Selection of events passing the quality cuts produced by \SI{10.37}{\kilo\eV} calibration electronic recoils.
+
+- $n_{tot}$: total number of such events in a stream. This number is assumed to part of the Poisson distribution, thus the statistical error is $\sigma^2 (n_{tot}) = n_{top}$
+
+- $n_{incomplete}$: number of incomplete events. This number is subject to a binomial distribution. the statistical error is 
 \begin{align}
-\label{eq:quenching-from-ecei}
-	E_{NL} &= \frac{V}{\epsilon} ( E_{ion., ???} - E_{heat} )
-	\\
-	E_R = E_{heat} - E_{NL} &= E_{heat} \left( 1 + \frac{V}{\epsilon} \right) - E_{ion., ???} \frac{V}{\epsilon}
-	\\
-	Q &= \frac{E_{ion., ???}}{E_R}
+\sigma^2 (n_{incomplete} )
+&=
+n_{tot} \cdot p \cdot (1-p)
+\\
+&=
+n_{tot} \cdot \frac{n_{incomplete}}{n_{total}} \cdot \left( 1 - \frac{n_{incomplete}}{n_{total}}  \right)
+\\
+&= 
+n_{incomplete} \cdot \left( 1 - \frac{n_{incomplete}}{n_{total}}  \right)
 \end{align}
-with $E_{NL}$ being the heat energy boost coming from the Neganov-Luke effect \cite{luke-neganov-effect}.
-The recoil energy $E_R$ is expressed in the usual $keV$ energy unit, as the Luke-Neganov Boost depending on the type of recoil was substracted from the heat energy. The Quenching factor is unitless.
-The figure \ref{fig:quenching_plot} show, for each configuration, the quenching factor as a function of the recoil energy.
 
-\begin{figure}
-\centering
-\includegraphics[width=\linewidth,]{Figures/Neutron/quenching_plot.png}
-\caption{Quenching value $Q$ for each quality events of the Background (black) and Calibration (blue) configurations in function of their recoil energy $E_R$.}
-\label{fig:quenching_plot}
-\end{figure}
+- $n_{complete} = 1 - n_{incomplete} $: number of complete collection events. Same error as $n_{incomplete}$.
 
-We recognize the electronic band, centered around $Q=1$ and the nuclear recoil band with $Q<0.4$. We also note some inter-band events like the smearing of the 10.37keV events hinting at the incomplete charge collection.
+- $n_{bulk}$: number of bulk events chosen among complete collection events. Subject to binomial distribution with an error :
+\begin{equation}
+\sigma^2 (n_{bulk} )
+= 
+n_{bulk} \cdot \left( 1 - \frac{n_{bulk}}{n_{incomplete}}  \right)
+\end{equation}
 
-%HEAT ONLY EVENT
-However, there are some interesting events with a quenching factor $Q=0$ which are known as "Heat-only" events. This population is infamously known in domains in the EDELWEISS experiment [ref?] and CRESST [ref?]. This population could correspond to events with no charge collection, but this is not compatible with the lower count of inter-band events with an incomplete charge collection. An other and more realistic explanation would be the existence of energy deposit in the crystal without ionization. The source of this Heat-only event is still under investigation [ref?].
+- The incomplete percentage is expressed $\frac{n_{incomplete}}{n_{total}}$ and the statistical error on this ratio is:
+$$ error propagation $$
+%\begin{align}
+%\sigma^2 \left( \frac{n_{incomplete}}{n_{total}} \right)
+%&=
+%\frac{1}{n_{tot}^2} \cdot \sigma^2 (n_{incomplete})
+%+ 
+%\left( \frac{n_{incomplete} }{n_{tot}^2} \right)^2 \cdot \sigma^2 (n_{tot})
+%\\
+%&=
+%\left( 
+%	\frac{n_{incomplete}}{n_{total}}
+%\right)^2 
+%\cdot 
+%\left[ 
+%	\left(
+%		1 - \frac{ n_{incomplete} }{ n_{total} }
+%	\right)^2 
+%	+ \frac{ 1 }{ n_{tot} }
+%\right]
+%\end{align}
 
-The merging phenomenon of the bands at low energy is also more visible in this graph with the change of variable. We can even visually witness that the lower part of the 1.3keV event blob is leaking into the higher part of the nuclear band.
 
+- Efficiency percentage is expressed $\frac{n_{bulk}}{n_{total}}$ with the same statistical error.
 
-\subsection{Experimental Estimation of the Fiducial Volume}
-
+- Fiducial percentage is expressed $\frac{n_{bulk}}{n_{complete}}$ with the statistical error being:
+$$ error propagation $$
+%\begin{align}
+%\sigma^2 \left( \frac{n_{bulk}}{n_{complete} \right)
+%&=
+%\left( \frac{\sigma (n_{bulk})}{n_{complete}} \right)^2 + \left( \frac{n_{bulk} \cdot \sigma (n_{complete})}{n_{complete}^2} \right)^2
+%\\
+%&=
+%\left( \frac{n_{bulk}}{n_{incomplete} \right)^2 \cdot \left[ \left( 1 - \frac{n_{bulk}}{n_{complete}}  \right)^2 + \left( 1 - \frac{n_{complete}}{n_{total}}  \right)^2 \right]
+%\end{align}
+%
 
 \subsubsection{RED80}
 
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/ElectrodesExperimental/red80_experimental_fiducial_volume.pdf}
-\caption{Experimental Fiducial volume for RED80.}
-\label{fig:redn1-experimental-fiducial-volume}
+\caption{Experimental percentages of incomplete collection (in blue), of fiducial events (in orange) and of the efficiency (in green) as functions of the voltage bias $V_{bias}$ for the detector RED80. The theoretical fiducial volume percentage $\%_{fid}=\SI{80.75}{\percent}$ estimated with the RED80 simulation is indicated by the horizontal red line. \\
+{\color{red} TODO: correct the error bars}
+}
+\label{fig:red80-experimental-fiducial-volume}
 \end{figure}
+
+- All the control values are presented for RED80 as functions of the $V_{bias}$ in the figure \ref{fig:red80-experimental-fiducial-volume}. (full description...)
+
+- Apparent seagull profile shape of the curves
+
+- Symmetry between negative and positive $V_{bias}$ seems respected within the errors bars.
+
+- The experimental fiducial volume at least lower by $10\%$ from the theoretical volume estimated from the RED80 simulation. Due to frontier events with a non-negligeable (greater than 5 sigma) induced on the guard electrodes $A$ or/and $C$. Visible on the corner plot, especially for the electron-collecting electrodes (for tg09l009, $A$ and $B$) as they are effected with transversal movement in the crystal.
+
+- The experimental fiducial volume tends to the theoretical fiducial volume for the highest absolute of $V_{bias}$. A higher electric field magnitude negates the transversal movement of the charges which follow more closely the field lines.
+
+- The incomplete charge collection has a low caps for $| V_{bias} | \geq \SI{2}{\volt}$ at a percentage of about \SI{8}{\percent}. For lower absolute value of the voltage bias, the incomplete percentage significantly rises. This divergence of the incomplete percentage is consistent with the absence of collection at $V_{bias}=\SI{0}{\volt}$ as the electrodes are not polarized and the electron-hole pairs recombine in the crystal.
+
+- Good efficiency between 1 and 4 volts with an efficiency percentage between 62 and 72 percents. The default polarization at $V_{bias} = \SI{2}{\volt}$.
 
 
 \subsubsection{REDN1}
 
 \begin{figure}
 \centering
-\includegraphics[scale=1]{Figures/ElectrodesExperimental/redn1_scan_veto_ratio.pdf}
-\caption{Scan for REDN1.}
-\label{fig:red80-scheme}
+\includegraphics[scale=1]{Figures/ElectrodesExperimental/redn1_experimental_fiducial_volume.pdf}
+\caption{Experimental percentages of incomplete collection (in blue), of fiducial events (in orange) and of the efficiency (in green) as functions of the voltage bias $V_{bias}$ (on the left) or of the polarization ratio $R_{veto}$ (on the right) for the detector REDN1. The theoretical fiducial volume percentage estimated with the REDN1 simulation is indicated by the red lines. \\
+{\color{red} TODO: correct the error bars}}
+\label{fig:redn1-experimental-fiducial-volume}
 \end{figure}
+
+- All the control values are presented for REDN1 as functions of the $V_{bias}$ in the figure \ref{fig:redn1-experimental-fiducial-volume} on the left. (full description...)
+
+- The seagull profile is still present, with high fiducial volume at higher $V_{bias}$
+
+- Again, divergence of the incomplete charge collection at low voltage bias.
+
+- Good correspondence of the percentages between $2$ and $-2$ of $V_{bias}$.
+
+- For $V_{bias}=\SI{4}{\volt}$, the  experimental fiducial volume is greater than predicted by the simulation. Although, still in the error bars.
+
+- Need to investigate the high bias value $V_{bias} = \SI{8}{\volt}$ with a drop in fiducial volume and efficiency. Not explained for now.
+
+- The redundant configuration $V_{bias} = \SI{2}{\volt}$ displays a difference of almost \SI{10}{\percent} between the fiducial volume percentage. Evaluation of another source of error ?
+
+- All the control values are presented for REDN1 as functions of the $R_{veto}$ in the figure \ref{fig:redn1-experimental-fiducial-volume} on the right. The red line corresponds to the theoretical fiducial volume percentage estimated from the REDN1 simulation presented in figure \ref{fig:redn1-scan} (full description...)
+
+- Incomplete charge collection shows a light decrease, but quite stable on this scan.
+
+- Excellent agreement  (within error bars at 1-2 sigma) for the fiducial percentage between experiment and simulation up to $R_{veto} = 0.5$.
+
+- Sudden drop from $R_{veto} = 0.6$. Could be explained by the observation made on the electric field shape in the paragraph \ref{par:redn1-presentation} presenting the simulation of REDN1. For this polarization ratio, the equatorial volume greatly gains in volume and have a heightened electric field. Maybe, the equatorial value is big enough to overlap any cone of transversal electron drift in the semiconducting germanium ?
+Could be answered with the study of the frontier events !
+ 
+
+\subsection{Prospectives}
+
+- Study of the percentage of the veto/guard/equatorial volume ?
+
+- Study of the frontier event distribution ? More insight on the charge drift in the semiconducting germanium.
+
+- More statistic with longer runs is preferred.
 
