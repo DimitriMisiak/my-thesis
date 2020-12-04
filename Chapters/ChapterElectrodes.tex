@@ -435,6 +435,7 @@ As to avoid this phenomenon and correct it, both electronics circuit features a 
 
 
 \subsection{Objective of the Electrodes Study}
+\label{par:ionization-objective}
 
 Three chapters of this work are dedicated to the study of the ionization channel and the electrodes design: this chapter \ref{ChapterElectrodes} introducing the theory and the electrostatic simulation of the ionization channel,  chapter \ref{ChapterElectrodesScan} scanning over the parameters of the electrostatics simulation, and the chapter \ref{ChapterElectrodesExperimental} comparing the electrostatics simulation to experimental results.
 
@@ -701,6 +702,7 @@ The main difference between the two detector design concern the number and shape
 %PL38
 The ionization channel of the PL38 detector design consists in two collecting electrodes readily visible of the scheme \ref{fig:pl38-scheme}. Each electrode is denominated by their location on the top or bottom surface but for more clarification we can define the following convention for the electrode denomination and indexes in this work:
 \begin{equation}
+\label{eq:pl38-convention}
 \lbrace \textsf{Top}, \textsf{Bottom} \rbrace
 \Leftrightarrow 
 \lbrace A, B \rbrace
@@ -710,7 +712,16 @@ The ionization channel of the PL38 detector design consists in two collecting el
 Each electrode is basically a continuous aluminium deposit on the full surface with some extension on the lateral surface. The extension length on the lateral surface is noted $L_{lat}$ with a default value of \SI{2}{\mm}. While the bottom electrode $B$ covers the full bottom surface of the crystal, the top electrode $A$ features a central hole. This hole is meant to provide the NTD thermal sensor with a bare germanium as to increases the fraction of athermal phonon as discusses in the dedicated paragraph \ref{par:athermal-phonons}. The hole is circular of radius $r_{center}$. Its default value of \SI{1.5}{\mm} is meant to host a NTD of small standard area \SI{2 x 2}{\mm}.
 
 % FID38
-The design FID38 has a more complex ionization channel composed of four electrodes labeled $A$ through $D$. As displayed on the scheme \ref{fig:fid38-scheme}, each electrode is an association of aluminium pads and rings. 
+The design FID38 has a more complex ionization channel composed of four electrodes labeled $A$ through $D$. The denomination of these electrodes in this work follows the convention:
+\begin{equation}
+\label{eq:fid38-convention}
+\lbrace \textsf{Top Veto}, \textsf{Top Collect}, \textsf{Bottom Veto}, \textsf{Bottom Collect} \rbrace
+\Leftrightarrow 
+\lbrace A, B, C, D \rbrace
+\Leftrightarrow
+\lbrace 1, 2, 3, 4 \rbrace
+\end{equation}
+ As displayed on the scheme \ref{fig:fid38-scheme}, each electrode is an association of aluminium pads and rings. 
 % Association
 For real detectors, this association is made by linking the aluminum deposits with aluminium wires bridging over the germanium surface as discussed in the paragraph \ref{par:wire-bounding}.
 Inside the electrostatic simulation software, multiple deposits can be assigned to the same electric terminal thus sharing their potential and charges. It is therefore possible to avoid the simulation of the wire-bonding bridges between the different aluminium deposits.
@@ -784,6 +795,7 @@ V_D = -  V_{bias}/2
 \end{equation}
 The default polarization of the FID38 design corresponds to:
 \begin{equation}
+\label{eq:fid38-polarization-default}
 \left( V_A, V_B, V_C, V_D \right) = (-0.25, +1, +0.25, -1) \ \si{\volt}
 \end{equation}
 
@@ -922,14 +934,16 @@ By applying a gradient function, the electric field $\bm{E}(r,z)$ is calculated 
 % Explanation histogram and cdf
 The graphics of the last row of the figure \ref{fig:pl38-fid38-steady-state} corresponds to the density histogram of the electric field norm $||\bm{E}(r,z)||$ over the whole crystal volume. The histograms are completed with the cumulative distribution function. The histograms and cumulative are computed with the weighting function:
 \begin{equation}
-W(r,z) = 2\pi \times r$
+\label{eq:rotation-weight}
+W(r,z) = 2\pi \times r
 \end{equation}
-This is a consequence of the use of the 2D-axisymmetry: a over the whole volume of the crystal necessitate to revolve the radial slice by $2\pi$. This weighting function is used when estimating volume from the area 
+This is a consequence of the use of the 2D-axisymmetry: estimating a volume from an area of the radial slice necessitate to revolve it by $2\pi$. Similarly, the later estimation of the fiducial volume is based on this weighting function.
 
 % PL38 observation
 The design PL38 displays equally spaced equipotential lines in the crystal volume with some slight deformation on the lateral surface due to shape of the electrodes. As a result, the electric field norm is uniform on almost the whole crystal volume. Electric field lines are vertical in the bulk of the crystal with some curve on the periphery. There are some regions of low magnitude in the corners of the crystal and under the central hole of the top electrode $A$. The field lines are diverging from these low magnitude regions to join the electrodes or the grounded chassis. The density histogram of $||\bm{E}||$ is consistent with these observations: the distribution peaks at \SI{2}{\volt\per\cm} with slight broadening of the distribution at higher or lower values. The value of the peak equals the naive calculation of the electric field $E_{naive}$ between two infinite plate of potential $V_A=\SI{+1}{\volt}$ and $V_B=\SI{-1}{\volt}$ spaced by a distance $H_{Ge}=\SI{10}{\mm}$:
 \begin{equation}
-|| \bm{E}_{naive} || = \left| \frac{V_A - V_B}{H_{Ge}} \right| = \SI{2}{}
+\label{eq:pl38-naive-efield}
+|| \bm{E}_{naive}^{PL38} || = \left| \frac{V_A - V_B}{H_{Ge}} \right| = \SI{2}{\volt\per\cm}
 \end{equation}
 The higher tail of the distribution with $||\bm{E}||> \SI{2}{\volt\per\cm}$ corresponds to the peripheral volume of the crystal, on the lateral surface. Indeed, the distance between the electrodes is smaller on the lateral side due to the electrode extension of length $L_{lat} = \SI{2}{\mm}$ resulting into a higher electric field norm. The lower tail is explained by the presence of the low magnitude central and corner regions.
 
@@ -938,11 +952,17 @@ For the FID38 design, the electric potential field $V(r,z)$ is rapidly changing 
 The volumetric density distribution of the norm of the electric field $||\bm{E}||$ associated to the FID38 design is broader than the distribution of the PL38 design. Indeed, for the FID38, \SI{15}{\percent} of the volume has a magnitude superior to \SI{2}{\volt\per\cm}. This higher tail of the distribution is explained by the high intensity of the electric field near the surface due to the electric peak effects. As this tail has no clear features and asymptotically reach a density of zero it is not represented on the graphics. Indeed, the presented density histogram focuses on lower magnitude which features multiples peaks between $0.5$ and \SI{1}{\volt\per\cm}. These values corresponds to the bulk volume of the detector without the low magnitude regions. The regions of low electric field norm are associated with the lower tail of the distribution.
 %The majority of the crystal seems to be subject to a electric field of norm $\approx 200 V/cm$. Each peak can be link to specific region in the crystal with equal norm. The low-norm regions appears to be negligible in proportion.
 
-% Enorm
-FROM THE SCAN CHAPTER \\
-The magnitude of the electric field in the bulk of the crystal decreases with the rising $R_{veto}$. Far from the electrodes, the interleaved same-sided veto and collect electrode rings appears to have the influence of an equivalent planar electrode of electric potential $V=\frac{V_B + V_A}{2}$ and so the perceived electric field norm in the bulk is $E = \frac{V_B + V_A - V_D - V_C}{2 H_{Ge}}=...$ (this calculation should appears when introducing the norm of the electric field and discussing the figure at default value. The calculation explain the phenomenon observed now during the scan over $R_{veto}$).
-{\color{red} [Comparison to enorm threshold, to do later.]}
+As reference for the magnitude of the electric field, we can naively compute the expected $||\bm{E}||$ in the FID38 crystal similarly to the PL38 design in equation \ref{eq:pl38-naive-efield}. Far from the surface, the two top (resp. bottom) interleaved electrodes $A$ and $B$ (resp. $c$ and $D$) would be perceived as a planar electrode of electric potential $V_{top} = (V_B + V_A)/2 = \SI{0.375}{\volt}$ (resp. $V_{bottom} = (V_D + V_C)/2 = -\SI{0.375}{\volt}$). Assuming the center of the crystal at $z=0$ being sufficiently far from the surface, the norm of the electric field would be:
+\begin{equation}
+\label{eq:fid38-naive-efield}
+|| \bm{E}_{naive}^{FID38} || = \left| \frac{V_{top} - V_{bottom}}{H_{Ge}} \right| = \SI{0.75}{\volt\per\cm}
+\end{equation}
+This value corresponds to one of the peak of the magnitude distribution which can therefore be attributed to the central bulk of the crystal.
 
+%% Enorm
+%FROM THE SCAN CHAPTER \\
+%The magnitude of the electric field in the bulk of the crystal decreases with the rising $R_{veto}$. Far from the electrodes, the interleaved same-sided veto and collect electrode rings appears to have the influence of an equivalent planar electrode of electric potential $V=\frac{V_B + V_A}{2}$ and so the perceived electric field norm in the bulk is $E = \frac{V_B + V_A - V_D - V_C}{2 H_{Ge}}=...$ (this calculation should appears when introducing the norm of the electric field and discussing the figure at default value. The calculation explain the phenomenon observed now during the scan over $R_{veto}$).
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Electric field lines
 The electric field lines in the PL38 and FID38 deign are drawn in black on the graphics of the second row of figure \ref{fig:pl38-fid38-steady-state}. By construction, the field lines are parallel to the direction of the electric field $\bm{E}(r,z)$ and perpendicular to the equipotential of the $V(r,z)$ field. 
@@ -955,13 +975,14 @@ As explained in the paragraph \ref{par:charge-drifting}, the motion of the holes
 % Link to Shockley Ramo theorem
 This ideal drift is used to model the ionization signals in a detector. The electric charge $Q_X$ induced on an electrode $X$ of the detector is calculated from its associated weighting potential field $\phi_X(\vec{r})$ according to the equation \ref{eq:ramo-induced-charge}. This application of the Shokley-Ramo theorem discussed in the paragraph \ref{par:shockley-ramo} is based on the knowledge of the final positions of the electric charges $\vec{r}_{e^-,f}$ and $\vec{r}_{h^+,f}$. The assumption of ideal drift indicates that these final positions corresponds to the start and end points of the electric field line passing by the position of the ionizing recoil $\vec{r}$.
 
-The extremities of the electric fields in the germanium crystal are bound to be either a bare germanium surface or an electrode. While the weighting potential $\Phi_X$ associated with an electrode $X$ is variable on the whole bare surface of the germanium, its value are fixed to either 0 or 1 on the surface of the electrodes according to equation \ref{eq:ramo-electrode}. 
-We can therefore classify the electric field lines according to their start and end points and their associated weighting potential $\Phi_X$ for each of the electrode $X$. For each class of field lines, a part of the crystal volume is associated and drawn in the cross-section schemes \ref{fig:pl38-scheme} and \ref{fig:fid38-scheme}. Recoils yielding a fixed ionization energy $E_{Ion.}$ and located in the same volume derived from the electric field lines induces the same ionization signal $Q_X$ under the assumption of ideal drift. These signals are detailed considering a recoil producing a number $N_p$ of electron-hole pairs such that:
-\begin{equation}
-N_p = \frac{E_{Ion.}}{\epsilon_{e^--h^+}} = \frac{E_{ion.}}{3 \textsf{eV}}
-\end{equation}
+The extremities of the electric fields in the germanium crystal are bound to be either a bare germanium surface or an electrode. While the weighting potential $\Phi_X$ associated with an electrode $X$ is variable on the whole bare surface of the germanium, its value are fixed to either 0 or 1 on the surface of the electrodes according to the properties \ref{eq:ramo-electrode} of $\Phi_X$. 
+We can therefore classify the electric field lines according to their start and end points and their associated weighting potential $\Phi_X$ for each of the electrode $X$. For each class of field lines, a part of the crystal volume is drawn in the cross-section schemes \ref{fig:pl38-scheme} and \ref{fig:fid38-scheme}. Recoils yielding a fixed ionization energy $E_{Ion.}$ and located in the same volume derived from the electric field lines induces the same ionization signal $Q_X$ under the assumption of ideal drift. These signals are detailed considering a recoil producing a number $N_p$ of electron-hole pairs.
+
+%\begin{equation}
+%N_p = \frac{E_{Ion.}}{\epsilon_{e^--h^+}} = \frac{E_{ion.}}{3 \textsf{eV}}
+%\end{equation}
 %With the Shockley-Ramo theorem, we can express the charge induced  on the electrodes of the detectors.
-All the electrons represents a total electric charge of $- N_p \cdot e$ while all the holes represents the opposite charge $+ N_p \cdot e$.
+All the drifting electrons represents a total electric charge of $- N_p \cdot e$ while all the drifting holes carry the opposite charge $+ N_p \cdot e$.
 
 %This classification is detailed for the two designs PL38 and FID38
 %
@@ -972,30 +993,25 @@ All the electrons represents a total electric charge of $- N_p \cdot e$ while al
 %
 %As such, we can define a classification of electric field lines according to their start and end points.
 
-For the PL38 design, the scheme \ref{fig:pl38-scheme} presents two volume inside the germanium crystal. The green volume deemed "Fiducial volume" is drawn from all the electric field lines starting and ending on the two electrodes $A$ and $B$. At default polarization, the top electrode $A$ collects the electrons and the bottom electrode $B$ collects the holes. The induced charge vector associated with a recoil of ionization energy $E_{ion.}$ located in the fiducial volume is:
+% Collection volume for PL38
+For the PL38 design, the scheme \ref{fig:pl38-scheme} presents two volume inside the germanium crystal. The green volume deemed "Fiducial volume" is drawn from all the electric field lines starting on the electrode $A$ and ending on $B$. At default polarization, the top electrode $A$ collects the electrons and the bottom electrode $B$ collects the holes. The induced charge vector associated with a recoil of ionization energy $E_{ion.}$ located in the fiducial volume is:
 \begin{equation}
-\label{eq:plana38-induced-charges}
+\label{eq:pl38-induced-charges}
 \vec{Q}_{fid.}^{PL38} =
 \begin{bmatrix}
 -1 \\ 1
 \end{bmatrix}
 \cdot N_p \cdot e
 \end{equation}
-This expression is derived using the calculation of induced charge on an electrode \ref{eq:ramo-induced-charge} by the Shockley-Ramo theorem with the properties of the weighting potential in the detectors \ref{eq:ramo-electrode}. The other volume deemed "Exiting volume" and colored red corresponds to electric field lines exiting the crystal. These field lines possess at least one of their extremities on the bare surface of the germanium crystal: on the equatorial surface or on the central hole of the top electrode $A$. The weighting potential of the bare surface of the crystal is variable between 0 and 1 and not controlled. As such, the signal created by recoils produced in the exiting volume cannot be characterized and have a detrimental effect on the analysis of the data streams recorded by the detector.
 
+%This expression is derived using the calculation of induced charge on an electrode \ref{eq:ramo-induced-charge} by the Shockley-Ramo theorem with the properties of the weighting potential in the detectors \ref{eq:ramo-electrode}. 
 
+The other volume deemed "Exiting volume" and colored red corresponds to electric field lines leaving the germanium crystal volume. These field lines possess at least one of their extremities on the bare surface of the germanium crystal. The exiting points are located on the equatorial surface or on the central hole of the top electrode $A$. The weighting potential of the bare surface of the crystal is variable between 0 and 1 and is not controlled. As such, the signal created by recoils produced in the exiting volume cannot be characterized and have a detrimental effect on the analysis of the data streams recorded by the detector.
 
-In the case of the FID38 detector, the polarization scheme is usually
-$$ \{ A, B, C, D \} = \{ -0.2, +1, +0.2, -1 \} $$
-Now, the electrodes upon which are collected the charges depends of the location of the recoil in the crystal. We can see on the scheme [ref scheme fid38], that the electric field forms four regions with specific collecting signatures:
-\begin{itemize}
-	\item bulk region, electrons collected by $B$ and holes by $D$
-	\item top veto region, electrons collected by $B$ and holes by $A$
-	\item bottom veto region, electrons collected by $C$ and holes by $D$
-	\item equator region, electrons collected by $C$ and holes by $A$
-\end{itemize}
-Considering the charge collection, the FID38 thus presents four type of events with specific electric charge perturbation vectors:
+% Collection volume for FID38
+In the case of the FID38 detector, the electric field lines draw five types of collection volume presented in the scheme \ref{fig:fid38-scheme}. The bigger volume colored green is the "Bulk volume" also designated "Fiducial Volume". It regroups all the electric field lines starting on the top collect electrode $B$ and ending on the bottom collect electrode $D$. The blue volume is deemed "Top Veto volume". It contains all the field lines starting on the electrode $B$ and ending on the top veto electrode $A$. The bottom equivalent is the "Bottom Veto volume" colored orange. Its field lines starts on the bottom veto electrode $C$ and end on the bottom collect electrode $D$. Situated on the equator of the crystal is the "Equatorial volume" colored purple. It is drawn by the field lines starting on $C$ and ending on $A$.
 
+According to the default polarization \ref{eq:fid38-polarization-default} of the FID38 design, the electrons are collected by the electrode $B$ and $C$ while the holes are collected by $A$ and $D$. As such, the induced charge vector associated with these four collection volume are expressed:
 \begin{equation}
 \label{eq:fid38-induced-charges}
 \begin{array}{rr}
@@ -1029,23 +1045,40 @@ Considering the charge collection, the FID38 thus presents four type of events w
 \end{array}
 \end{equation}
 
+Recoils located in different collection volume of the FID38 have different signal signatures. Therefore, the FID38 can locate and classify the events according to their ionization signal. This localization ability is especially useful to discard the surface events classified as either veto or equatorial events. Indeed, these surfaces events often present a problematic energy reconstruction which could lead to false nuclear recoil.
 
+The last type of collection volume of of the FID38 design are the "Corner volumes" colored in red. Similarly to the exiting volumes of the PL38 design, these volume are drawn by field lines leaving the germanium crystal. The weighting potential on the bare germanium surface is not controlled. As the top and bottom veto volumes encompass the corner volumes, the signal signature of the corner events should be similar to the veto events with perhaps problematic energy reconstruction.
+
+% Measure of the fiducial volume
+For both the PL38 and the FID38 designs, the fiducial volume should yields events with good energy reconstruction. These fiducial events are selected during the data analysis and used for the scientific goal of the experiments. This process called the "Bulk cut" is explained in the paragraph \ref{par:bulk-cut} and applied in the IP2I neutron background measurement described in the chapter \ref{ChapterNeutron}. For this reason, the fiducial volume constitute the actual effective volume of the detector. In this work, this volume efficiency is quantified with the fiducial volume percentage $\%_{fid}$ defined by:
+\begin{equation}
+\%_{fid} = 100 \times \frac{V(\textsf{Fiducial})}{V(\textsf{Ge Crystal})}
+\end{equation} 
+ 
+In order to estimate the fiducial volume fraction from the detector electrostatics simulation, a graphical method is used. The goal is to estimate the area of the "fiducial volume" on the radial section and convert this into an actual volume with the $2\pi$ rotation weighting function of equation \ref{eq:rotation-weight}. This method is illustrated with the figure \ref{fig:fid38-fiducial} in the case of the FID38 design. 
 
 \begin{figure}
 \centering
 \includegraphics[scale=0.5]{Figures/Electrodes/fid38_fiducial_streamlines.png}
 %\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_fiducial_contour.png}
-\caption{Illustration of the bulk volume of the FID38 design in its default configuration. Electric field lines crossing the equator $z=0$ are plotted with a very high density. The background corresponds to a color map of the electric potential in the FID38 detector $V$.}
+\caption{Illustration of the fiducial volume (and equatorial volume) of the FID38 design in its default configuration. Electric field lines crossing the equator $z=0$ are plotted with a very high density. The background corresponds to a color map of the electric potential $V$ in the FID38 simulation.}
 \label{fig:fid38-fiducial}
 \end{figure}
 
-The left figure \ref{fig:fid38-fiducial} presents the streamlines in the crystal with controlled starting points with a height set at 0 (starting from the middle of the crystal). These streamlines belongs to the bulk region and equatorial regions. With some processing, it is possible to discard the streamlines linking two veto electrodes and to keep only a contour of the fiducial streamlines. A correction taking into account the revolution of the 2d-axisymmetry is needed to calculate volumes. The right figure \ref{fig:fid38-fiducial} presents the fiducial contour (in green) and a whole crystal contour (in red) proportionnal to the fiducial and crystal volume. Graphically comparing the area of the two contours yields the fiducial volume fraction of the detector. With default parameters, The FID38 design has a fiducial volume fraction of \SI{69.5}{\percent}. Also with default parameters, the Planar38 has a fiducial volume fraction of \SI{98}{\percent}.
+Electric field lines crossing the $r$-axis at $z=0$ are calculated with a high density. These field lines corresponds to the fiducial lines in majority but also some exiting lines of the PL38 and equatorial lines of the FID38 design. These unwanted lines are discarded thanks to conditions on their start and end points. Now only a dense pack of fiducial field lines is remaining and the coordinates of their points is saved. An algorithm then processes the coordinates and extract the 2D contour encompassing the fiducial field lines. This fiducial contour is corrected with the $2\pi$ rotation weighting function \ref{eq:rotation-weight}. With this step, the area of the corrected fiducial contour now proportional to the fiducial volume. Normalizing this fiducial area with the rectangular area of the crystal yields an estimation of the fiducial volume fraction. With default parameters, the fiducial percentage associated to the PL38 and FID38 designs are evaluated to:
+\begin{align}
+\%_{fid}^{PL38} &= \SI{98}{\percent} \\
+\%_{fid}^{FID38} &= \SI{69.5}{\percent}
+\end{align}
+
+Almost the whole crystal volume of the PL38 is fiducial with only some loss due to the exiting volumes. This high volume is the major advantage of using a simple two planar electrode design. Concerning the FID38 design, a third of the volume is lost in the veto, equatorial and corner volumes. This fiducial volume loss is one of the price to pay for the ability to tag surface events of the FID electrode design.
 
 
 \subsection{Capacitance calculation with the Source Sweep Study}
 \label{par:capacitance-matrix}
 
-The sensitivity of the ionization channel is inversely proportional to the capacitance of the electrodes. Therefore, the capacitance is a performance indicator for the different design of electrodes.
+%The sensitivity of the ionization channel is inversely proportional to the capacitance of the electrodes. Therefore, the capacitance is a performance indicator for the different design of electrodes.
+
 The common form of a capacitance is a parallel-plate capacitor: two conductive plates separated by a dielectric material of relative electric permittivity $\epsilon_r$. For the ideal case of this system, the capacitance $C$ is proportional to the surface area of the electrodes $A$ and inversely proportional to the distance between the terminals $d$ such that:
 \begin{equation}
 C = \epsilon_0 \epsilon_r \frac{A}{d}
@@ -1055,7 +1088,7 @@ For this system composed of only two electrodes, the capacitance $C$ governs the
  \label{eq:capacitance-definition-simple}
 C = \frac{Q}{V}
 \end{equation}
-In the case of germanium bolometers, the capacitance is more complex as it takes into accounts the grounded copper chassis, two main collecting electrodes and, depending on the considered design, two auxiliary electrodes (guard or veto). The previous equation does not apply in system with more than two terminals and should be generalized to any electric system with a number $N$ of electrodes. For such a system, the charge and electric potential of all the electrodes are represented by the the charge vector $\vec{Q}$ and the potential vector $\vec{V}$ as:
+In the case of the electrodes of the germanium detectors, the capacitance is more complex as it takes into accounts the grounded copper chassis, two main collecting electrodes and, depending on the considered design, two auxiliary electrodes (guard or veto). The previous equation does not apply in system with more than two terminals and should be generalized to any electric system with a number $N$ of electrodes. For such a system, the charge and electric potential of all the electrodes are represented by the the charge vector $\vec{Q}$ and the potential vector $\vec{V}$ as:
 
 \begin{equation} 
 \label{eq:vector-charge-potential}
@@ -1091,7 +1124,7 @@ C_{N1} & C_{N2} & \cdots & C_{NN}
 \bm{C}_{ij} = \frac{\partial Q_i}{\partial V_j}
 \end{equation}
 
-This matrix describes the relation between the charge $Q_i$ and the voltage $V_i$ of all the conductors in the system, and generalize the \ref{eq:capacitance-definition-simple} as:
+This matrix describes the relation between the charge $Q_i$ and the voltage $V_i$ of all the conductors in the system, and generalize the \ref{eq:capacitance-definition-simple} to higher dimensions such that:
 
 \begin{equation} 
 \label{eq:capacitance-definition-matrix}
@@ -1101,7 +1134,7 @@ This matrix describes the relation between the charge $Q_i$ and the voltage $V_i
 \vec{V} =
 \bm{C}^{-1} \vec{Q} = \bm{P} \vec{Q}
 \end{equation}
-with $\bm{P}$ being the inverse of the Maxwell capacitance matrix named the elastance matrix. Its terms $\bm{P}_{ij}$ are called the coefficients of potential such that:
+with $\bm{P}$ being the inverse of the Maxwell capacitance matrix named the elastance matrix. Its terms $\bm{P}_{ij}$ are called the coefficients of potential with:
 \begin{equation}
 \label{eq:elastance-matrix}
 \bm{P} =
@@ -1114,11 +1147,12 @@ P_{N1} & P_{N2} & \cdots & P_{NN}
 \quad \textsf{with} \quad
 \bm{P}_{ij} = \frac{\partial V_i}{\partial Q_j}
 \end{equation}
-It was demonstrated [ref?] that the coefficients of potential are symmetrical such that  $\bm{P}_{ij} = \bm{P}_{ji}$ which induces that the Maxwell capacitance matrix is symmetric as well.
+%It was demonstrated [ref?] that
+The coefficients of potential are symmetrical such that  $\bm{P}_{ij} = \bm{P}_{ji}$ which induces that the Maxwell capacitance matrix is symmetric as well.
 
 A key observation when comparing the two-plates capacitance equation \ref{eq:capacitance-definition-simple} to the multiple plates capacitance equation \ref{eq:capacitance-definition-matrix} is that the electric charge $Q_i$ and potential $V_i$ of a given electrode $i$ are no longer proportional with multiple plates. With the generalized view, adding a charge on a single electrode changes the potential of all the electrodes in the system.
 
-While the Maxwell capacitance matrix is useful to study the generation of signal from charge collected by the electrodes with the equation \ref{eq:capacitance-definition-matrix}, there are no readily available interpretation for its term. An alternative to the Maxwell capacitance matrix is the mutual capacitance matrix $\bm{C}^m$. This terms of the mutual capacitance terms hold the benefit of being easily illustrated as lumped capacitance between the electrodes of a system. The figure [scheme mutual capacitance] presents a scheme of the four electrodes of the FID38 design in the grounded copper chassis.
+While the Maxwell capacitance matrix is useful to study the generation of signal from charge collected by the electrodes with the equation \ref{eq:capacitance-definition-matrix}, there is no clear interpretation for its term. An alternative to the Maxwell capacitance matrix is the mutual capacitance matrix $\bm{C}^m$. The terms of this mutual capacitance hold the benefit of being easily illustrated as single capacitances between the electrodes of a system. The figure \ref{fig:lumped-capacitance} presents a scheme of the four electrodes of the FID38 design enclosed in the grounded copper chassis $GND$.
 
 \begin{figure}
 \begin{minipage}{0.48\textwidth}
@@ -1141,7 +1175,7 @@ While the Maxwell capacitance matrix is useful to study the generation of signal
 \label{fig:lumped-capacitance}
 \end{figure}
 
-Each term $\bm{C}_{ij}^m$ can be interpreted as a lumped capacitance between two electrodes $i$ and $j$ and as such, are represented with the common parallel-plate capacitor symbol. One can note that the diagonal mutual capacitance terms $\bm{C}_{ii}^m$ are interpreted as the capacitance between the electrode $i$ and the ground (here the copper chassis). It is important to note that this matrix does not represent the relation between the electric charge $\vec{Q}$ and potential $\vec{V}$ of the electrodes of the system and therefore the equation \ref{eq:capacitance-definition-matrix} cannot be applied with the mutual capacitance matrix. Instead, the mutual capacitance matrix should be used as a modelization and interpretation tool. It is possible to obtain the Maxwell capacitance matrix from the mutual capacitance matrix according to:
+Each term $\bm{C}_{ij}^m$ can be interpreted as a single lumped capacitance between two electrodes $i$ and $j$ and as such, are represented with the common parallel-plate capacitor symbol. One can notice that the diagonal mutual capacitance terms $\bm{C}_{ii}^m$ are interpreted as the capacitance between the electrode $i$ and the ground (here the copper chassis). It is important to note that this matrix does not represent the relation between the electric charge $\vec{Q}$ and potential $\vec{V}$ of the electrodes of the system and therefore the equation \ref{eq:capacitance-definition-matrix} cannot be applied with the mutual capacitance matrix. Instead, the mutual capacitance matrix should be used as a modelization and interpretation tool. It is possible to obtain the Maxwell capacitance matrix from the mutual capacitance matrix according to the relations:
 
 %\begin{equation} 
 %\label{eq:mutual-to-maxwell}
@@ -1180,21 +1214,21 @@ Each term $\bm{C}_{ij}^m$ can be interpreted as a lumped capacitance between two
 
 With the interpretation of the mutual matrix as lumped capacitances, we see that the diagonal terms $\bm{C}_{ii}$ of the Maxwell capacitance matrix are simply the equivalent capacitance to all the lumped mutual capacitance $\bm{C}_{ij}$ put in parallel $C_{ii} = \sum_{j=1}^N C_{ij}^m$. As the non-diagonal terms of the Maxwell and the mutual capacitance matrix are opposite, the mutual capacitance matrix is also symmetric.
 
-COMSOL offers a functionality called Stationary Source Sweep to evaluate the elastance and the capacitance matrices. Considering the equation \ref{eq:elastance-matrix}, a terminal $j$ is excited with an electric charge $Q_j$ with the charges of all the other terminals are set to $Q_i=0 , i\neq j$. The electrostatic system is numerically solved and the coefficient of potential can be deduced from the electric potential of the terminals $V_i$:
+COMSOL offers a functionality called Stationary Source Sweep to evaluate the elastance and the capacitance matrices. Considering the equation \ref{eq:elastance-matrix}, a terminal $j$ is excited with an electric charge $Q_j$ while the charges of all the other terminals $i\neq j$ are maintained to $Q_i=0$. The electrostatic system is numerically solved and the coefficient of potential can be deduced from the electric potential of the terminals $V_i$:
 \begin{equation}
 \bm{P_{ij}} = \frac{V_i}{Q_j}
 \end{equation}
-This procedure is repeated for each terminal until the full elastance matrix $\bm{P}$ is evaluated. Using the equations \ref{eq:maxwell-capacitance-matrix} and \ref{eq:mutual-to-maxwell}, the capacitance matrices can also be evaluated. In order to facilitate the discussion, the indexes of the matrices are swapped with the label of the electrodes. 
+This procedure is repeated for each terminal until the full elastance matrix $\bm{P}$ is evaluated. The capacitance matrices are then calculated using the equations \ref{eq:maxwell-capacitance-matrix} and \ref{eq:mutual-to-maxwell}. In order to facilitate the discussion, the indexes of the matrices are swapped with the label of the electrodes. 
 
-In the case of the Planar38 design, the correspondence between indexes and label is:
-$$
-\{ \textsf{top}, \textsf{bottom} \} 
-\Leftrightarrow
-\{A,B\}
-\Leftrightarrow
-\{ 1, 2\}
-$$
-With the default parameters, the elastance and capacitance matrices are evaluated to:
+%In the case of the Planar38 design, the correspondence between indexes and label is:
+%$$
+%\{ \textsf{top}, \textsf{bottom} \} 
+%\Leftrightarrow
+%\{A,B\}
+%\Leftrightarrow
+%\{ 1, 2\}
+%$$
+For the PL38 detector design in its default configuration, the elastance and capacitance matrices are evaluated to:
 \begin{equation} 
 \label{eq:planar38-matrix-evaluation}
 \begin{array}{rrccclc}
@@ -1208,7 +1242,7 @@ P_{BA} & P_{BB}
 1.42 & 1.04 \\
 1.04 & 1.42
 \end{pmatrix}
-& \cdot 10^{11} & [\textsf{F}^{-1}] \\
+& \cdot \SI{e11}{\per\farad} \\
 \Rightarrow & \bm{C} = &
 \begin{pmatrix}
 C_{AA} & C_{AB} \\ 
@@ -1219,7 +1253,7 @@ C_{BA} & C_{BB}
 14.92 & -10.86 \\
 -10.86 & 14.92
 \end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}] \\
+& \cdot \SI{e-12}{\farad} \\
 \Rightarrow & \bm{C}^m = &
 \begin{pmatrix}
 C_{AA}^m & C_{AB}^m \\ 
@@ -1230,21 +1264,21 @@ C_{BA}^m & C_{BB}^m
 4.06 & 10.86 \\
 10.86 & 4.06
 \end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}]
+& \cdot \SI{e-12}{\farad}
 \end{array}
 \end{equation}
  
-As expected from a similarly designed parallel-plate capacitor using the equation \ref{eq:capacitor-basic}, the Mutual capacitance are close the tens of picoFarad. As expected from the interpretation of the Mutual capacitance matrix, all of its terms are positive. Observing the Mutual capacitance matrix, we note that the capacitance between the electrodes $C_{AB}^m=10.86pF$ is greater than the self-capacitance of the electrodes $C_{AA}^m = C_{BB}^m = 4.06pF$. According to the parallel-plate capacitor equation \ref{eq:capacitor-basic}, there are multiple arguments pointing towards an opposite observation: the grounded chassis is surrounding the electrodes, presenting very large area and the distance electrode-chassis is smaller than the height of the crystal. However, the self-capacitance is mainly formed in the vacuum between the absorber and the chassis, with a relative electric permittivity $\epsilon_r(vaccum)=1$ whereas the mutual capacitance between the electrodes $A$ and $B$ is forming in the germanium crystal which imposes a relative permittivity of $\epsilon_r(Germanium)=16.3$. This  significant difference in material permittivity explains the hierarchy of the mutual capacitance for the Planar 38 design.
+As expected from a similarly designed parallel-plate capacitor using the equation \ref{eq:capacitor-basic}, the Mutual capacitance are close the tens of \si{\pico\farad}. As expected from the interpretation of the Mutual capacitance matrix, all of its terms are positive. Observing the Mutual capacitance matrix, we note that the capacitance between the electrodes $C_{AB}^m=\SI{10.86}{\pico\farad}$ is greater than the self-capacitance of the electrodes $C_{AA}^m = C_{BB}^m = \SI{4.06}{\pico\farad}$. According to the parallel-plate capacitor equation \ref{eq:capacitor-basic}, there are multiple arguments pointing towards an opposite observation: the grounded chassis is surrounding the electrodes, presenting very large area and the distance electrode-chassis is smaller than the height of the crystal. However, the self-capacitance is mainly formed in the vacuum between the absorber and the chassis, with a relative electric permittivity $\epsilon_r(\textsf{Vacuum})=1$ whereas the mutual capacitance between the electrodes $A$ and $B$ is forming in the germanium crystal which imposes a relative permittivity of $\epsilon_r(\textsf{Ge})=16.3$. This  significant difference in material permittivity explains the hierarchy of the mutual capacitance for the PL38 design.
 
-In the case of the FID38 design, the correspondence between indexes and labels is:
-$$
-\{ \textsf{Top Veto}, \textsf{Top Collect}, \textsf{Bottom Veto}, \textsf{Bottom Collect} \}
-\Leftrightarrow
-\{A,B,C,D\}
-\Leftrightarrow
-\{ 1,2,3,4\}
-$$
-With default parameters, the elastance and capacitance matrices are evaluated to:
+%In the case of the FID38 design, the correspondence between indexes and labels is:
+%$$
+%\{ \textsf{Top Veto}, \textsf{Top Collect}, \textsf{Bottom Veto}, \textsf{Bottom Collect} \}
+%\Leftrightarrow
+%\{A,B,C,D\}
+%\Leftrightarrow
+%\{ 1,2,3,4\}
+%$$
+For the FID38 design with default parameters, the elastance and capacitance matrices are evaluated to:
 
 \begin{equation} 
 \label{eq:fid38-matrix-evaluation}
@@ -1263,7 +1297,7 @@ P_{DA} & P_{DB} & P_{DC} & P_{DD}
 1.71 & 1.69 & 2.23 & 1.92 \\
 1.69 & 1.68 & 1.92 & 2.34 \\
 \end{pmatrix}
-& \cdot 10^{11} & [\textsf{F}^{-1}] \\
+& \cdot \SI{e11}{\per\farad} \\
 \Rightarrow & \bm{C} = &
 \begin{pmatrix}
 C_{AA} & C_{AB} & C_{AC} & C_{AD} \\ 
@@ -1278,7 +1312,7 @@ C_{DA} & C_{DB} & C_{DC} & C_{DD}
 -4.02 & -2.58 & 18.25 & -10.19 \\
 -2.58 & -1.98 & -10.19 & 15.94 \\
 \end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}] \\
+& \cdot \SI{e-12}{\farad} \\
 \Rightarrow & \bm{C}^m = &
 \begin{pmatrix}
 C_{AA}^m & C_{AB}^m & C_{AC}^m & C_{AD}^m \\ 
@@ -1293,21 +1327,24 @@ C_{DA}^m & C_{DB}^m & C_{DC}^m & C_{DD}^m
 4.02 & 2.58 & 1.46 & 10.19 \\
 2.58 & 1.98 & 10.19 & 1.18 \\
 \end{pmatrix}
-& \cdot 10^{-12} & [\textsf{F}]
+& \cdot \SI{e-12}{\farad} 
 \end{array}
 \end{equation}
 
-The observations made previously for the Planar38 design still holds for the FID38 design: capacitances are close to tens of picoFarad and the self-capacitance term are dominated. In particular, we note that the Mutual capacitance is dominated by the terms $C_{AB}^m=C_{BA}^m=C_{CD}^m=C_{DC}^m=10.19pF$. Indeed, as the electrodes $A,B$ and $C,D$ are interleaved, their capacitive coupling is high as it emulates a situation with two close plates. The next higher term is $C_{AC}^m=4.02pF$ coming from the two veto electrodes which are facing each other and coming very close to one another near the equator leading to an increase in coupling. The hierarchy of the remaining term can be explained by the fact that their are more veto electrode rings than collect electrode rings, thus emulating a higher electrode area in the equation \ref{eq:capacitor-basic}.
+The observations made previously for the PL38 design still holds for the FID38 design: capacitances are close to tens of \si{\pico\farad} and the self-capacitance term are the smaller terms. In particular, we note that the Mutual capacitance is dominated by the terms $C_{AB}^m=C_{BA}^m=C_{CD}^m=C_{DC}^m=\SI{10.19}{\pico\farad}$. Indeed, as the electrodes $A,B$ and $C,D$ are interleaved, their capacitive coupling is high as it emulates a situation with two close plates. The next higher term is $C_{AC}^m=\SI{4.02}{\pico\farad}$ coming from the two veto electrodes which are facing each other and coming very close to one another near the equator leading to an increase in coupling. The hierarchy of the remaining term can be explained by the fact that their are more veto electrode rings than collect electrode rings, thus emulating a higher electrode area in the equation \ref{eq:capacitor-basic}.
+
 
 \subsection{Sensitivity Calculation}
 \label{par:sensitivity-calculation}
 
-In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{Q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}. The electric potential signal $\vec{V}$ created by the electric charge perturbation $\vec{Q}$ with the application of the equation \ref{eq:capacitance-definition-matrix} along with the evaluation of the Maxwell capacitance matrix \ref{eq:fid38-matrix-evaluation}. The electric charge perturbation is assumed to be created by a 1keV electronic recoil, creating a number $N_p = 1000/3 = 333$ of electron-hole pairs.
-In the case of the Planar38, we refer to the equation \ref{eq:plana38-induced-charges} for the electric charge perturbation vector. The voltage signal vector is thus:
+%In the case of the FID38, we try to model the generation of the ionization signal. We consider an ideal detector with default parameters with no trapping and a single electron-hole pair created at a desired location. We assume that the electric charges will drift following exactly the electric field lines. The disposition of the electrodes for the FID38 design illustrated in the scheme \ref{fig:fid38-scheme} mentions four possible locations for the recoils to happen. Each location will have charges drifting towards a specific combination of electrodes inducing an electric charge perturbation $\vec{Q}$ according to the integration of the Shockley-Ramo theorem \ref{eq:ramo-theorem-integrated}.
 
+The sensitivity of an electrode $X$ designated the amplitude of its voltage signal $V$ normalized by the ionization energy $E_{Ion.}$ created by a recoil. The unit of the sensitivity is the \si{\volt \per \kilo\eV}. In this paragraph, the sensitivities of each electrodes of the PL38 and FID38 design is calculated. The ionization signal is considered to be generated by an electronic recoil depositing an ionization energy $E_{Ion.} = E_R = \SI{1}{\kilo\eV}$. With application of the equation \ref{eq:number-pairs}, we deduce the average number of electron-hole pairs created $N_p = 1000/2.97 = 337$. The induced charge vectors $\vec{Q}$ were discussed in the paragraph \ref{par:stationnary-study}. The voltage signal vector $\vec{V}$ is computed using the relation \ref{eq:capacitance-definition-matrix}. For the sake of simplicity, this voltage signal $\vec{V}$ is normalized by \SI{1}{\kilo\eV} so that it equals the sensitivity.
+
+In the case of the PL38 design, we refer to the equation \ref{eq:pl38-induced-charges} for the induced charge vectors. The sensitivity of the electrodes $A$ and $B$ to a recoil in the fiducial volume is:
 \begin{equation}
 \label{eq:planar38-sensitivity}
-\vec{V}_{event} = \bm{P} \vec{Q}_{event} =
+\vec{V}_{fid} = \bm{P} \vec{Q}_{fid} =
 \begin{bmatrix}
 - P_{AA} + P_{AB} \\ - P_{BA} + P_{BB}
 \end{bmatrix}
@@ -1321,10 +1358,10 @@ In the case of the Planar38, we refer to the equation \ref{eq:plana38-induced-ch
 \begin{bmatrix}
 -2.08 \\ 2.08 
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \end{equation}
 
-In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges} for the four possible electric charges perturbation vector. There are four corresponding voltage signal vectors:
+In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges} for the four signature charge vectors. There are four corresponding voltage signal vectors:
 
 \begin{align}
 \label{eq:fid38-sensitivity}
@@ -1345,7 +1382,7 @@ In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges
 \begin{bmatrix}
 -1.23 \\ -3.52 \\ 1.23 \\ 3.52
 \end{bmatrix}
-[\mu V/ keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{veto, top} = \bm{P} \vec{Q}_{veto,top} &=
 \begin{bmatrix}
@@ -1364,7 +1401,7 @@ In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges
 \begin{bmatrix}
 1.65 \\ -2.24 \\ 0.11 \\ 0.05
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{veto,bottom} = \bm{P} \vec{Q}_{veto,bottom} &=
 \begin{bmatrix}
@@ -1383,7 +1420,7 @@ In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges
 \begin{bmatrix}
 0.11 \\ 0.05 \\ -1.65 \\ 2.24
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{equator} = \bm{P} \vec{Q}_{equator} &=
 \begin{bmatrix}
@@ -1402,90 +1439,136 @@ In the case of the FID38, we refer to the equation \ref{eq:fid38-induced-charges
 \begin{bmatrix}
 2.77 \\ 1.23 \\ -2.77 \\ -1.23
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \end{align}
 
-The first thing one can note is that even though for each case the electron and hole were collected by two electrode, an electric potential perturbation was created on all the electrodes. This phenomenon is referred as "capacitive cross-talk". Then, we note that the amplitude of the signal, referred as "electrode sensitivity" $S_{type}^{A} = |\vec{v}/e|$ is not equal among the collecting electrodes comparing different events. We can quantify this cross-talk by calculating the ratio $X_{type}$ between the signal induced on a non-collecting electrode over the signal induced on a collecting electrode:
+The first thing one can note is that even though for each case the electron and hole were collected by two electrode, an electric potential perturbation was created on all the electrodes. This phenomenon is referred as "capacitive cross-talk". Then, we note that the amplitude of the signal depends on the electrode and depends of the event type.
 
-The sensitivity of an electrode corresponds to the amplitude of the voltage signal weighted by the input energy and is expressed in $\mu V/keV$. Considering the results of the equation \ref{eq:planar38-sensitivity} and \ref{eq:fid38-sensitivity}, for an electrode $X$ and a kind of event $type$, the sensitivity is expressed as:
+% , referred as "electrode sensitivity" $S_{type}^{A} = |\vec{v}/e|$
+% We can quantify this cross-talk by calculating the ratio $X_{type}$ between the signal induced on a non-collecting electrode over the signal induced on a collecting electrode:
+%
+%The sensitivity of an electrode corresponds to the amplitude of the voltage signal weighted by the input energy and is expressed in $\mu V/keV$. Considering the results of the equation \ref{eq:planar38-sensitivity} and \ref{eq:fid38-sensitivity}, for an electrode $X$ and a kind of event $type$, the sensitivity is expressed as:
+%
+%\begin{equation}
+%S_{X, type} = | V_{X,type} | \quad \textsf{in} \quad [\mu V/keV]
+%\end{equation}
 
+%We can compare the FID38 design "efficiency" by comparing the Maxwell capacitance matrix, obtained in equations \ref{eq:planar38-matrix-evaluation} and \ref{eq:fid38-matrix-evaluation}, to a reference ideal two plate capacitance $C_{X, type}^{ref}$ of equal sensitivity that the considered event $type$ and electrode $X$. This reference capacitance is composed of a ground and a unique terminal such that the charge perturbation is $q_{ref}=-e$ and the induced electric potential $v_{ref}(type)$ is expressed as:
+
+The sensitivity vector associated to the PL38 and FID38 designs possessing multiples electrodes are calculated. We can discuss the "efficiency" of the multiple electrodes design compared to a single equivalent reference capacitor. This reference capacitance $C_{X, type}^{ref}$ corresponds to a two-plate capacitor of same sensitivity as the electrode $X$ for a given event $type$. By applying the formula \ref{eq:capacitor-basic} for this reference capacitor, its capacitance is expressed as:
 \begin{equation}
-S_{X, type} = | V_{X,type} | \quad \textsf{in} \quad [\mu V/keV]
+C_{X,type}^{ref} = \frac{N_p \cdot e}{| V_{X,type} |}
 \end{equation}
 
-We can compare the FID38 design "efficiency" by comparing the Maxwell capacitance matrix, obtained in equations \ref{eq:planar38-matrix-evaluation} and \ref{eq:fid38-matrix-evaluation}, to a reference ideal two plate capacitance $C_{ref}(type, A)$ of the same sensitivity that the considered recoil $type$ and electrode $A$. This reference capacitance is composed of a ground and a unique terminal such that the charge perturbation is $q_{ref}=-e$ and the induced electric potential $v_{ref}(type)$ is expressed as:
+%With the value of the sensitivity now calculated, we can define
+%
+%\begin{equation}
+%C_{X,type}^{ref} = \left( \frac{| V_{X,type} |}{N_p \cdot e} \right)^{-1}
+%\end{equation}
 
-\begin{equation}
-C_{X,type}^{ref} = \left( \frac{S_{X,type}}{N_p \cdot e} \right)^{-1}
-\end{equation}
-
-In the case of the Planar38 detector, there is only one type of event for two electrodes with equal sensitivities. The reference capacitance is expressed as:
+In the case of the PL38 detector, there is only one type of event (fiducial events) for two electrodes with equal sensitivities. The common reference capacitance is:
 
 \begin{equation}
 \label{eq:planar38-reference-capacitance}
 C_{top}^{ref}
 = C_{bottom}^{ref}
 = \left( | -P_{AA} + P_{AB} |\right)^{-1}
-= \left( | -P_{AB} + P_{BB} |\right)^{-1}
-= 0.39 \cdot 10^{11}
-= 26 \cdot 10^{-12} [F]
+= (0.39 \cdot 10^{11})^{-1}
+= \SI{26e-12}{\farad}
 \end{equation}
 
-The equivalent reference capacitance is 26 pF. It is greater than any term of the capacitance matrices for the Planar38, which indicates that this design as worse efficiency than the two-plate capacitor design. The calculation of the sensitivity in equation \ref{eq:planar38-sensitivity} and the reference capacitance in equation \ref{eq:planar38-reference-capacitance} shows that the sensitivity is proportional to the term $| -P_{AA} + P_{AB} | = | -P_{AB} + P_{BB} |$. This term can be interpreted as the difference between the diagonal terms, $P_{AA}$ and $P_{BB}$, of the elastance matrix and the non-diagonal term $P_{AB}$ expressing the coupling between the two collecting electrodes (here $A$ and $B$). (Should be discussed with the fid38, this structure is confirmed there).
+%The equivalent reference capacitance is 26 pF. 
+It is greater than any term of the Maxwell or mutual capacitance matrices \ref{eq:planar38-matrix-evaluation} for the PL38 design. This indicates that this design has a worse efficiency than the two-plate capacitor design. The calculation of the sensitivity in equation \ref{eq:planar38-sensitivity} and the reference capacitance in equation \ref{eq:planar38-reference-capacitance} shows that the sensitivity is proportional to the term $| -P_{AA} + P_{AB} | = | -P_{AB} + P_{BB} |$. This term can be interpreted as the difference between the diagonal terms, $P_{AA}$ and $P_{BB}$, of the elastance matrix and the non-diagonal term $P_{AB}$ expressing the coupling between the two collecting electrodes.
 
-In the case of the FID38 detector, there are four types of events and four electrodes, resulting to a total of 16 sensitivities as seen in equation \ref{eq:fid38-sensitivity}. Among all this values, some are more relevant to the ionization channel operation than the others.
+As a \num{2 x 2} matrix, expressing the elastance $\bm{P}$ with the capacitance terms is relatively straightforward:
+\begin{equation}
+\bm{P} = \bm{C}^{-1} = 
+\frac{1}{C_{11} C_{22} - (C_{12}^m)^2}
+ \begin{pmatrix}
+C_{22} & -C_{12} \\ 
+-C_{12} & C_{11}
+\end{pmatrix}
+\end{equation}
+The expression of the reference capacitance becomes:
+\begin{equation}
+C_{top}^{ref} = \left( | -P_{AA} + P_{AB} |\right)^{-1}
+=  \frac{C_{11} C_{22} - (C_{12}^m)^2}{C_{22} + C_{12}}
+= C_{11}^m + C_{12}^m \left( 1 + \frac{C_{11}^m}{C_{22}^m} \right)
+\end{equation}
+Considering the self-capacitance of $A$ and $B$ are almost equals, $C_{11}^m \approx C_{22}^m$, these expressions are simplified to:
+\begin{equation}
+\label{eq:pl38-ref-capa-expr}
+C_{top}^{ref} = C_{22} - C_{12} = C_{22}^m + 2 C_{12}^m = \SI{25.78}{\pico\farad}
+\end{equation}
+In the end, in term of sensitivity, the electrodes $A$ and $B$ are equivalent to their self-capacitance $C_{22}^m$ in parallel with two coupling capacitance $C_{12}^m$. In a sens, this coupling capacitance has two times more effect on the sensitivity than the self-capacitance, which is detrimental here as the $C_{12}^m$ is the highest term of the mutual capacitance $\bm{C}^m$ of the PL38 design.
 
-The auxiliary electrodes $A,C$ are as veto and their signal is used to determine if an event is a bulk or veto event (see fiducial cut in Chapter Neutron). Therefore, the sensitivities of these veto electrodes are relevant in the case of $veto$, $S_{A, veto}=S_{C, veto}$, and $equator$ recoils, $S_{A, equator}=S_{C, equator}$. The main electrodes $B,D$ are used to reconstruct the ionization energy of the $bulk$ events. Thus, their sensitivities are relevant for $bulk$ recoils, $S_{B, bulk}=S_{D, bulk}$. From these sensitivities, the equivalent reference capacitances are deduced:
+In the case of the FID38 detector, there are four types of events and four electrodes, resulting in a total of 16 sensitivities \ref{eq:fid38-sensitivity}. Among all these values, some are more relevant for the ionization channel performance than the others. The auxiliary veto electrodes $A,C$ are used to determine if an event is a bulk or veto event (see paragraph \ref{par:bulk-cut}). Therefore, the sensitivities of these veto electrodes are relevant in the case of $veto$ events of sensitivity $|V_{\textsf{veto top}, A}|=|V_{\textsf{veto bottom}, C}|$, and $equator$ events with $|V_{\textsf{equator}, A}|=|V_{\textsf{equator}, C}|$. The main electrodes $B,D$ are used to reconstruct the ionization energy $E_{Ion.}$ of the $bulk$ events. Thus, their sensitivities are relevant for $bulk$ recoils, $|V_{\textsf{bulk}, B}|=|V_{\textsf{bulk}, D}|$. From these sensitivities, the equivalent reference capacitances are deduced:
 
 \begin{align}
 C_{A, veto}^{ref} = C_{C, veto}^{ref}
 = \left( | P_{AA} - P_{AB} |\right)^{-1}
 = \left( | -P_{CC} + P_{CB} |\right)^{-1}
-= 0.31 \cdot 10^{11}
-&= 32 \cdot 10^{-12} [F]
+= (0.31 \cdot 10^{11})^{-1}
+&= \SI{32e-12}{\farad}
 \\
 C_{A, equator}^{ref} = C_{C, equator}^{ref}
 = \left( | P_{AA} - P_{AC} |\right)^{-1}
 = \left( | -P_{CC} + P_{AC} |\right)^{-1}
-= 0.52 \cdot 10^{11}
-&= 19 \cdot 10^{-12} [F]
+=(0.52 \cdot 10^{11})^{-1}
+&= \SI{19e-12}{\farad}
 \\
 C_{B, bulk}^{ref} = C_{D, bulk}^{ref}
 = \left( | -P_{BB} + P_{BD} |\right)^{-1}
 = \left( | P_{DD} - P_{BD} |\right)^{-1}
-= 0.66 \cdot 10^{11}
-&= 15 \cdot 10^{-12} [F]
+= (0.66 \cdot 10^{11})^{-1}
+&= \SI{15e-12}{\farad}
 \end{align}
 
+With a reference capacitance of \SI{32}{\pico\farad}, the same observation as for the FID38 can be made for the veto electrode $A$ and $C$ in their sensitivity to $veto$ events. The reference capacitance is higher than any term of the mutual capacitance $\bm{C}^m$ or the diagonal term of the Maxwell capacitance $\bm{C}$. The efficiency of these electrodes is worse than a basic two-plate capacitor.
+
+In the case of the $equator$ events however, the reference capacitance $C_{A, equator}^{ref}$ seems to corresponds to the diagonal term of the Maxwell matrix $C_{AA}=\SI{18.25}{\pico\farad}$. Similarly, the reference capacitance $C_{B, bulk}^{ref}$ associated with the electrode $B$ and $D$ for $bulk$ events is close to $C_{BB} = \SI{15.94}{\pico\farad}$. In other words, for these two instances, an electrodes is as sensitive as the parallel association  of all of its associated mutual capacitances.
+
+Further interpretation of the reference capacitance and sensitivity is hampered due to the higher dimensions \num{4 x 4} of the elastance matrix $\bm{P}$ of the FID38 design. An analytical expression of the reference capacitance like for PL38 in equation \ref{eq:pl38-ref-capa-expr} is not easily accessible and should prove to be much more complex.
+
+
+% Comment these values
+
 There is a specific cross-talk and sensitivity for each type of events. When analyzing the detector data, there should therefore be a specific calibration and cross-talk correction associated to each of this type of signal.
-However, to this day, the EDELWEISS and R\&D experiments have only use a single analysis pipeline with a single calibration value for each electrodes and a single cross-talk correction matrix, independently of the type of event. Furthermore, the analysis seemed valid and no significant deviation was observed from the simple, yet wrong, ionization model where events creating the same amounts of electron-hole pairs presents the same electrode sensitivity and capacitive cross-talk. This can be explained by the fact that the capacitances of the detector are dominated by the greater capacitance of the cabling. It is important to recall that this work is focused on the capacitance of the electrodes of a detector, and did not considered the capacitance of the cabling between the electrodes and the amplifying electronics. In the experimental setup, the electrodes are cabled to the electronics with coaxial cables. While a coaxial cable shield the signal from the exterior interferences, it also create a significant capacitive coupling between the ground and the core (in this case, the electrode). Let's assume a of $50$pF capacitance between the ground and each electrodes, the elastance matrix is now evaluated to:
-
+However, to this day, the EDELWEISS and R\&D experiments have only use a single analysis pipeline with a single calibration value for each electrodes and a single cross-talk correction matrix, independently of the type of event. Furthermore, the analysis seemed valid and no significant deviation was observed from the simple, yet wrong, ionization model where events creating the same amounts of electron-hole pairs presents the same electrode sensitivity and capacitive cross-talk. This can be explained by the fact that the capacitances of the detector are dominated by the greater capacitance of the cabling. It is important to recall that this work is focused on the capacitance of the electrodes of a detector, and did not considered the capacitance of the cabling between the electrodes and the amplifying electronics. In the experimental setup, the electrodes are cabled to the electronics with coaxial cables. While a coaxial cable shield the signal from exterior interferences, it also creates a significant capacitive coupling between the ground and the core (in this case, the electrode). Let's consider a of \SI{50}{\pico\farad} capacitance between the ground and each electrodes, the associated cabling capacitance matrix are:
 \begin{equation}
-\bm{C}^{cabling} = \bm{C} + \mathbb{1} \cdot 50 \cdot 10^{-12} [\textsf{F}]
-\quad \Rightarrow \quad
-\bm{P}^{cabling} = 
-\begin{bmatrix}
-  0.151 & 0.024 & 0.011 & 0.008\\
-  0.024 & 0.156 & 0.008 & 0.007\\
-  0.011 & 0.008 & 0.151 & 0.024\\
-  0.008 & 0.007 & 0.024 & 0.156\\
-\end{bmatrix}
-\cdot 10^{11}
+\bm{C}_{cabling} = \bm{C}_{cabling}^m = \mathbb{1} \SI{50e12}{\farad}
 \end{equation}
+As the Maxwell matrix $\bm{C}_{cabling}$ is diagonal, it is equal to the mutual matrix $\bm{C}_{cabling}^m$. The total Maxwell and mutual capacitance matrices of the detector and cabling are given by:
+\begin{equation}
+\begin{cases} 
+\bm{C}_{cabling} &= \bm{C}_{detector} + \bm{C}_{cabling} \\
+\bm{C}_{cabling}^m &= \bm{C}_{detector}^m + \bm{C}_{cabling}^m
+\end{cases}
+\end{equation}
+where $\bm{C}_{detector}$ and $\bm{C}_{detector}^m$ are the Maxwell and mutual capacitance matrices of the detector designs PL38 and FID38 evaluated in the equations \ref{eq:planar38-matrix-evaluation} and \ref{eq:fid38-matrix-evaluation} respectively.
+The elastance matrices of the detectors and the cabling is now evaluated to:
 
 \begin{equation}
-\bm{P}_{PL38}^{cabling}
+\bm{P}_{tot}^{PL38}
 =
 \begin{bmatrix}
   0.158 & 0.027 \\
   0.027 & 0.158 \\
 \end{bmatrix}
 \cdot
-10^{11}
+\SI{e11}{\per\farad}
+\quad \quad
+\bm{P}_{tot}^{FID38} = 
+\begin{bmatrix}
+  0.151 & 0.024 & 0.011 & 0.008\\
+  0.024 & 0.156 & 0.008 & 0.007\\
+  0.011 & 0.008 & 0.151 & 0.024\\
+  0.008 & 0.007 & 0.024 & 0.156\\
+\end{bmatrix}
+\cdot \SI{e11}{\per\farad}
 \end{equation}
 
-In the case of the Planar38 with the capacitive cabling:
-
+For the PL38 design with the capacitive cabling, the sensitivity and associated reference capacitance are now:
 \begin{equation}
 \vec{V}_{event}
 =
@@ -1499,18 +1582,19 @@ In the case of the Planar38 with the capacitive cabling:
 0.71 \\
 -0.71
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \end{equation}
 
 \begin{equation}
 C_{top, bottom}^{ref}
 = 0.131 \cdot 10^{11}
-= 76 \cdot 10^{-12} [F]
+= \SI{76e-12}{\farad}
 \end{equation}
 
 In the case of the FID38 with the capacitive cabling:
 
 \begin{align}
+\label{eq:fid38-cabling-sensitivity}
 \vec{V}_{bulk}
 =
 \begin{bmatrix}
@@ -1521,7 +1605,7 @@ In the case of the FID38 with the capacitive cabling:
 \begin{bmatrix}
 -0.05 \\ -0.80 \\ 0.05 \\ 0.80
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{veto,top}
 =
@@ -1533,7 +1617,7 @@ In the case of the FID38 with the capacitive cabling:
 \begin{bmatrix}
 0.69 \\ -0.75 \\ 0 \\ 0
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{veto,bottom}
 =
@@ -1545,7 +1629,7 @@ In the case of the FID38 with the capacitive cabling:
 \begin{bmatrix}
 0 \\ 0 \\ -0.69 \\ 0.75
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \\
 \vec{V}_{equator}
 =
@@ -1557,61 +1641,58 @@ In the case of the FID38 with the capacitive cabling:
 \begin{bmatrix}
 0.75 \\ 0.05 \\ -0.75 \\ -0.05
 \end{bmatrix}
-[\mu V/keV]
+\si{\micro\volt\per\kilo\eV}
 \end{align}
-
 
 \begin{align}
 C_{A, veto}^{ref} = C_{C, veto}^{ref}
 = 0.127 \cdot 10^{11}
-&= 78.7 \cdot 10^{-12} [F]
+&= \SI{78.7e-12}{\farad}
 \\
 C_{A, equator}^{ref} = C_{C, equator}^{ref}
 = 0.140 \cdot 10^{11}
-&= 71.4 \cdot 10^{-12} [F]
+&= \SI{71.4e-12}{\farad}
 \\
 C_{B, bulk}^{ref} = C_{D, bulk}^{ref}
 = 0.149 \cdot 10^{11}
-&= 67.1 \cdot 10^{-12} [F]
+&= \SI{67.1e-12}{\farad}
 \end{align}
 
-We see that by adding the capacitance of the cabling, the cross-talk phenomenon is significantly lessened and that the electrode sensitivities are very close to 0.14 in absolute value for all the types of events. The small variation of cross-talk and sensitivities were surely "absorbed" in the resolution of the ionization channel in the previous EDELWEISS and IP2I R\&D analysis, leading to an overall very correct result. As a complement, let's add that as the capacitive coupling with the ground through the coaxial cabling is increased, the cross-talk and difference in sensitivity vanish. In the case of EDELWEISS-III with a cabling of capacitance $>100$pF, the simple ionization signal generation model holds.
+We see that by adding the capacitance of the cabling, the cross-talk phenomenon is significantly lessened: the self-capacitance term $\bm{C}^m_{tot}$ dominates the mutual matrix and heavily influence the calculation of the elastance matrix $\bm{P}_{tot}$. The electrode sensitivities all tends to a unique value of $\approx \SI{75}{\pico\farad}$ in absolute value for all the types of events. This unified sensitivity is characteristic of the results yielded by the ionization channel of the EDELWEISS-II experiment and IP2I R\&D. The high cabling capacitance muffles the cross-talk phenomenon and the differences in sensitivity. Indeed as the capacitive coupling with the ground through the coaxial cabling is increased, the cross-talk and difference in sensitivity vanish.
 
-In order to fully appreciate the impact of the cabling capacity, the figure \ref{fig:predict-corner-plot} presents the corner plot of the simulation of 1000 events of each recoil type in a FID38 detector with (black points) and without (colored points) 50pF cabling capacitance. Each event is associated to a voltage signal vector $\vec{V}$. Each term is plotted on the corner plot similarly to the analysis of real events. The events were simulated with a normal distribution centered on the sensitivities calculated in equation \ref{eq:fid38-sensitivity} and with a standard deviation of $1\mu V/keV$.
+In order to fully appreciate the impact of the cabling capacity, the figure \ref{fig:predict-corner-plot} presents the corner plot of the sensitivity vectors in a FID38 detector with (black points) and without (colored points) \SI{150}{\pico\farad} cabling capacitance.
 
 \begin{figure}
 \centering
 %\includegraphics[width=\linewidth]{Figures/Electrodes/predict_corner_plot.png}
 \includegraphics[width=\linewidth]{Figures/Electrodes/pl38_predictive_sensitivity.pdf}
-\caption{Simulation of the expected signal with a FID38 detector with cabling (black circles) and without capacitive cabling (color squares). There are 1000 points for each event types, and each channel is modeled by a gaussian distribution of variance 100eV.}
+\caption{Illustration of the expected sensitivities with a FID38 detector with ("w/ \SI{150}{\pico\farad}" black circles) and without ("w/ \SI{0}{\pico\farad}" color squares) capacitive cabling. The rectangular-like shape formed by the sensitivities of the FID38 with cabling is characteristic of the current IP2I R\&D results.}
 \label{fig:predict-corner-plot}
 \end{figure}
+%There are 1000 points for each event types, and each channel is modeled by a gaussian distribution of variance 100eV.
 
-With the 50pF cabling capacitance, the 4 recoil type form the usual "square" pattern similar to what is obtained in the next Chapter \ref{ChapterNeutron} discussing analysis of the neutron run with RED80. The square pattern emerges from the low cross-talks of about $0.05/0.80=6\%$ and $0.05/0.75=7\%$.
+The first major observation is that the cabling capacitance drastically reduce the sensitivities of the electrodes. Then, the sensitivities of the FID38 with cabling forms a square-like pattern in the $V_B(V_D), V_C(V_D), V_B(V_A), V_C(V_A)$ subplots illustrating that all electrode have almost the same sensitivity.  The square pattern emerges from the low cross-talks of about $0.05/0.80=\SI{6}{\percent}$ and $0.05/0.75=\SI{7}{\percent}$. This pattern is redundant in the data analysis of the EDELWEISS-III and IP2I R\&D data streams (see later chapter \ref{ChapterElectrodesExperimental} discussing the data analysis). 
+In the case of EDELWEISS-III with a cabling of capacitance $>\SI{150}{\pico\farad}$, the simple ionization signal generation model of this chapter introduction \ref{eq:capacitor-basic} is sufficient to explain their experimental observations. The eventual low cross-talks phenomenon were absorbed in the ionization resolution or attributed to unknown parasite capacitance in the electronics.
 
-Without any cabling capacitance, the recoil types are more distant from the origin, which illustrates the greater sensitivities in this case. The 4 recoil populations do not form a square pattern anymore and presents the high cross-talk obtained in the previous equations, $1.23/3.52=35\%$ and $1.23/2.77=44\%$.
+The new HEMT-based electronics in development is situated very close to the detector load in the cryostat. This implies a reduced coaxial cable length and a lowered cabling capacitance. The major advantage is a significant gain in sensitivity, which was expected and now demonstrated in this study. The novelty brought with this theorization of the ionization channel is that with low cabling capacitance, the signal on the electrodes will differ. The 4 events populations do not form a square pattern anymore and presents the high cross-talk phenomenon $1.23/3.52=\SI{35}{\percent}$ and $1.23/2.77=\SI{44}{\percent}$.
 
 
 \subsection{Noise and Resolution Calculation}
 \label{par:ion-resolution-calculation}
 
-The previous paragraph presented how, with low cabling capacitance, the capacitive coupling between each electrodes affects the sensitivity of the ionization channel. This paragraph discusses the impact of this capacitive coupling on the noise affecting the measurement and eventually the resolution of the ionization channel.
+The previous paragraph presented how, with low cabling capacitance, the capacitive coupling between each electrodes affects the sensitivity of the ionization channel. This paragraph discusses the impact of this capacitive coupling on the noise affecting the measurement and eventually the resolution of the ionization channel. A discussed in the previous paragraph \ref{par:electronics-ionization}, the dominating noise source affecting the ionization energy measurement is the electronics noise. By combining the electric circuit of the HEMT-based electronics line and the lumped capacitance model \ref{fig:lumped-capacitance} of the PL38 and FID38 designs, we can predict the noise affecting the ionization channel. The method of noise propagation is the same as used in the chapter \ref{ChapterEthem} with the modelization of the heat channel.
 
-A previous paragraph \ref{par:electronics-ionization} already presented the noise propagation and resolution calculation for the future HEMT electronics. These calculations were based on a single HEMT line cabled on a single capacitance $C_d$ representing an electrode of the detector. We will now study how the noise calculation is affected by the coupling of multiple HEMT lines.
+%A previous paragraph \ref{par:electronics-ionization} already presented the noise propagation and resolution calculation for the future HEMT electronics. These calculations were based on a single HEMT line cabled on a single capacitance $C_d$ representing an electrode of the detector. We will now study how the noise calculation is affected by the coupling of multiple HEMT lines.
+%
+%{\color{blue} Discussion on the Hemt (see JB notes or Alex paper. Expected resolution and noise.}
+%Explaining how to propagate the noise through the hemt line (superposition theorem, thevenin-norton transformation). Presented and illustrated in the figure \ref{fig:hemt-performances}.
+%Simple model: Single hemt/electrode with a single detector capacitance (previously thought to be the diagonal term of the Maxwell capacitance matrix).
 
-In order to motivate this study, the noise calculation is first done on a very simple model: the Planar38 design with a heavily simplified HEMT line featuring only the polarization resistor and its associated Johnson noise. The scheme of this simplified model is presented in the figure \ref{fig:scheme-planar38-simplified}. Thanks to the superposition theorem and Thevenin-Norton transformations of the electric circuit, it is possible to propagate the two Johnson noise source $e_{J,A}$ and $e_{J,B}$ to the measurement point $S_B$. The total noise and its components measured at $S_B$ are plotted as functions of the frequency on the left figure \ref{fig:planar38-analytical-results}. Event though the original Johnson voltage noise source are modeled as white noise whose levels are independent from the frequency, the total voltage noise affecting the measurement at node $S_B$ presents a low-pass filter profile. This is consistent with the studied electric system as the node $S_B$ is linked to the electric ground through the two capacitors $C_{22}$ and $C_{11}$: at high frequency, the electric potential of the node $S_B$ tends be null. The dominant component of the noise is the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ where the measurement is made. It is less dampened than the other Johnson noise source $e_{J,A}$ which is filtered by the capacitance $C_{12}$ coupling the two electrodes $A$ and $B$. The right figure \ref{fig:planar38-analytical-results} shows the ratio of the two Johnson noise components $e_{J,A}/e_{J,B}$ as a function of the frequency.
-
-\begin{figure}
-\centering
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_johnson_propagation.png}
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_comparison_johnson.png}
-\includegraphics[scale=1]{Figures/Electrodes/pl38_analytical_noise_propagation.pdf}
-\caption{
-\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
-\textbf{Right:} Ratio of two Johnson noise components at the node $S_B$ as a function of the frequency.
-}
-\label{fig:planar38-analytical-results}
-\end{figure}
+In order to motivate this study, the noise calculation is first done on a very simple model: the PL38 design with a heavily simplified HEMT line featuring only the polarization resistor $R_{polar.}$ and its associated Johnson noise $e_J$. The LPSD associated with the Johnson noise is expressed as:
+\begin{equation}
+e_J = \sqrt{4 \cdot T \cdot R_{polar.}}
+\end{equation}
+with the temperature of the polarization resistor set to $T=\SI{20}{\milli\kelvin}$. The scheme of this simplified model is presented in the figure \ref{fig:scheme-planar38-simplified}. Thanks to the superposition theorem and successive Thevenin-Norton transformations of the electric circuit, it is possible to propagate the two Johnson noise source $e_{J,A}$ and $e_{J,B}$ to the measurement point $S_B$. 
 
 The voltage noise affecting the measurement at the node $S_B$ is characterized by the LPSD $e_{tot}^{S_B}$ in \si[per-mode=symbol]{\volt\per\sqrthz}. It is expressed as:
 \begin{equation}
@@ -1647,10 +1728,6 @@ e_J^A
 \cdot
 \left( R_{polar.} \parallel (j\omega C_{22}^m)^{-1} \parallel Z_{eq} \right)
 \end{align}
-with the Johnson noise $e_J$ being a function of the polarization resistor $R_{polar.}$ and its temperature $T$ in  Kelvin:
-\begin{equation}
-e_J^A = e_J^B = \sqrt{4 \cdot T \cdot R_{polar.}}
-\end{equation}
 
 and with the equivalent impedance $Z_{eq}$ expressed as:
 \begin{equation}
@@ -1749,10 +1826,19 @@ f_c = \frac{\omega_c}{2\pi} = \SI{1.067}{\Hz}
 \end{split}
 \end{equation}
 
+The total noise and its components measured at $S_B$ are plotted as functions of the frequency in the top subplot of figure \ref{fig:planar38-analytical-results}. Event though the original Johnson voltage noise source are modeled as white noise whose levels are independent from the frequency, the total voltage noise affecting the measurement at node $S_B$ presents a low-pass filter profile. This is consistent with the studied electric system as the node $S_B$ is linked to the electric ground through the two capacitors $C_{22}$ and $C_{11}$: at high frequency, they act as closed circuit and the electric potential of the node $S_B$ tends to \SI{0}{\volt}. The dominant component of the noise is the Johnson noise $e_{J,B}$ of the HEMT line of the electrode $B$ where the measurement is made. It is less dampened than the other Johnson noise source $e_{J,A}$ which is filtered by the capacitance $C_{12}$ coupling the two electrodes $A$ and $B$. The bottom subplot of figure \ref{fig:planar38-analytical-results} shows the ratio of the two Johnson noise components $e_{J,A}/e_{J,B}$ as a function of the frequency.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/Electrodes/pl38_analytical_noise_propagation.pdf}
+\caption{The top subplot presents the total voltage noise LPSD measured at the node $S_B$ along with its to propagated Johnson noise components as functions of the frequency. The bottom subplots compares these two components by plotting their ratio as a function of the frequency.
+}
+\label{fig:planar38-analytical-results}
+\end{figure}
+
 Above the cutoff frequency $f_c = \SI{1.067}{\Hz}$, the ratio tends to $0.73$. As the time windows is \SI{1}{\s}, the lowest frequency explored is \SI{1}{\Hz} which is very close to $f_c$. As such, the ratio is its asymptotic behavior on almost the whole frequency space. According to the previous equation \ref{eq:planar38_analytical}, the ratio depends on the ratio of the non-diagonal over the diagonal terms of the Maxwell capacitance matrix of the Planar38 detector (from equation \ref{eq:planar38-matrix-evaluation}). This ratio of Maxwell capacitance is comprised between 0 and 1, and reaches its maximum if the capacitive coupling $C_{12}^m$ between the two electrodes $A$ and $B$ is much greater than the self-capacitance $C_{11}^m$ of the electrode $A$.
 
-As the two Johnson noise are not correlated, their squared noise level is added to form the total noise level which is tends to be $\sqrt{1^2 + (0.73)^2} = 1.24$ times the original Johnson noise level caused by $e_{J,B}$. With the given Planar38 design with the simplified HEMT line, the noise level is increased by $24\%$ from approximately $10$Hz. The effect of the coupling between the electrodes is far from negligible and should be properly studied for the two reference design FID38 and Planar38 with a full Hemt line model.
-
+As the two Johnson noise are not correlated, their squared noise level is added to form the total noise level which is tends to be $\sqrt{1^2 + (0.73)^2} = 1.24$ times the original Johnson noise level caused by $e_{J,B}$ alone. With the given PL38 design with the simplified HEMT line, the noise level is increased by \SI{24}{\percent} on the majority of the frequency space. This demonstrates that the effect of the coupling between the electrodes is far from negligible and should be properly studied for the two reference designs FID38 and PL38 with a full model with a complete HEMT line on each of the electrode.
 
 \begin{landscape}
 
@@ -1772,7 +1858,6 @@ As the two Johnson noise are not correlated, their squared noise level is added 
 
 \end{landscape}
 
-
 \begin{table}[]
 \centering
 %\resizebox{\textwidth}{!}{%
@@ -1791,83 +1876,38 @@ Feedback Capacitance                        & $C_{fb}$      & \SI{3e-12}{\farad}
 \label{tab:lcapy-components}
 \end{table}
 
-The Planar38 detector cabled with the full Hemt line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the three mutual capacitance $C_{ij}^m$ linked to the nodes $A,B$. There is a measurement node for each electrode $S_A$ and $S_B$, acting as an ideal voltmeter with the electric ground as reference. There is a total of 6 noise sources coming from the Hemt lines. The signal induced by an event is modeled as a transient current source $I_{event}=N_p \cdot e \cdot \delta(t)$ between $A$ and $B$. The multiple noise source and the event signal are propagated to the measurement node $S_B$ using the numerical circuit resolution (see Lcapy module for Python).
+The PL38 detector cabled with the full HEMT line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the three mutual capacitance $C_{ij}^m$ linked to the nodes $A,B$. There is a measurement node for each electrode $S_A$ and $S_B$, acting as an ideal voltmeter with the electric ground as reference. There is a total of 6 noise sources coming from the HEMT lines. The signal induced by an event is modeled as a transient current source $I_{event}=N_p \cdot e \cdot \delta(t)$ between $A$ and $B$. The intrinsic current $i_n$ and voltage $e_n$ source of the amplifying electronic have their LSPD modeled as:
+\begin{equation}
+\begin{cases}
+i_n(f) &= \sqrt{ i_0^2 +(i_a \cdot \sqrt{f})^2 } \\
+i_0 &= \SI{4.0e-23}{\ampere} \\
+i_a &= \SI[per-mode=symbol]{2.6e-18}{\ampere\per\sqrthz} \\
+e_n(f) &= \sqrt{ e_0^2 +(\frac{e_a}{\sqrt{f}})^2 } \\
+e_0 &= \SI{2.2e-10}{\volt} \\
+e_a &= \SI[per-mode=symbol]{3.6e-8}{\volt\per\sqrthz}
+\end{cases}
+\end{equation}
+with $f$ the frequency, based on experimental measurements.
+% ref JB, Young
+The multiple noise source and the event signal are propagated to the measurement node $S_B$ using the analytical circuit resolution algorithm from the Python module "Lcapy".
+% (see Lcapy module for Python).
 % Noise propagation plot
-The left figure \ref{fig:planar38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ at low frequency and the intrinsic current noise $i_{n,B}$ at high frequency. The Johnson noise $e_{J,A}$ from the other Hemt line of the electrode $A$ is slightly present below 2Hz, but is quickly dominated by the intrinsic voltage source $e_{n,B}$. In the end, we observe that the noise sources from the auxiliary HEMT line are heavily filtered and does not propagate significantly to the measurement node $S_B$. When comparing to the previous simplified electric circuit where the propagation was significant, one of the main difference is now the presence of the feedback capacitance, the hemt intrinsic capacitance and the cabling capacitance (Representing in this case 5+3+5 = 13pF). These capacitances are added to the diagonal term of the Maxwell capacitance matrix and reduce the propagation of the noise source through the coupling capacitance $C_{12}^m$.
-% Noise vs Signal
-The top right figure \ref{fig:planar38-propagation} presents the total noise power spectral density compared to the power spectrum of the signal induced by an event. Their shape are quite similar to a $1/f$ profile. From this functions, the Noise Equivalent Power is calculated and represented in the bottom right figure \ref{fig:planar38-propagation}. The NEP is an increasing function, therefore the majority of the information on the signal is associated to the low frequency. When integrating between 1Hz and infinity, the resolution is evaluated to $\sigma_B=34$eV. (bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
+The figure \ref{fig:planar38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noises are the Johnson noise $e_{J}^B$ of the Hemt line of the electrode $B$ at low frequency and the intrinsic current noise $i_n^B$ at high frequency. The Johnson noise $e_J^A$ from the other HEMT line of the electrode $A$ is slightly present below \SI{2}{\Hz}, but is surpassed by the intrinsic voltage source $e_n^B$. In the end, we observe that the noise sources from the auxiliary HEMT line on $A$ are heavily filtered and does not propagate significantly to the measurement node $S_B$. When comparing to the previous simplified electric circuit where the propagation was significant, one of the main difference is now the presence of the feedback capacitance, the HEMT intrinsic capacitance and the cabling capacitance (representing in this case 5+3+5 = \SI{13}{\pico\farad}. These capacitances are added to the diagonal term of the Maxwell capacitance matrix and reduce the propagation of the noise source through the coupling capacitance $C_{12}^m$.
 
 \begin{figure}
 \centering
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_noise_propagation.png}
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/planar38_nep_resolution.png}
 \includegraphics[scale=1]{Figures/Electrodes/pl38_noise_propagation.pdf}
-\caption{
-\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
-\textbf{Right:} Noise Power Spectral Density compared to Signal Power Spectrum, and Noise Equivalent Power with a Resolution of $\sigma_{B} = 34$eV.
-}
+\caption{Representation of the total voltage noise LPSD the node $S_B$ along with its components as functions of the frequency. The signal power spectrum represented with the the alternative right. The calculation and integration from \SI{1}{\Hz} of the noise equivalent power yields the ionization energy resolution $\sigma_{B} = \SI{34}{\eV}$.}
 \label{fig:planar38-propagation}
 \end{figure}
 
-% FID38 noise propagation
-The FID38 detector cabled with the full Hemt line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the ten mutual capacitance $C_{ij}^m$ linked to the nodes $A,B,C,D$. There is a measurement node for each electrode $S_A, S_B, S_c, S_D$, acting as an ideal voltmeter with the electric ground as reference. There is a total of $4\times3=12$ noise sources coming from the four Hemt lines. Signals induced by events are modeled as transient current sources $I_{event}=N_p \cdot e \cdot \delta(t)$ between two electrode nodes depending on the considered recoil type. The multiple noise source and the event signals are propagated to the measurement node $S_B$ using the numerical circuit resolution (see Lcapy module for Python).
-% Noise propagation plot
-The left figure \ref{fig:planar38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the Hemt line of the electrode $B$ at low frequency and the intrinsic current noise $i_{n,B}$ at high frequency. The Johnson noise $e_{J,A}$ from the other Hemt line of the electrode $A$ is slightly present below 2Hz, but is quickly dominated by the intrinsic voltage source $e_{n,B}$. All in all, the results are quite similar to what was observed with the Planar38 design: the Johnson noise from the most coupled electrode is significant at very low frequency and is quickly dominated by the intrinsic voltage noise source of the Hemt line $B$. Again, this can be explained by a boosted diagonal term in the Maxwell capacitance matrix which heavily filter the noise sources from spreading to other Hemt line efficiently.
 % Noise vs Signal
-The top right figure \ref{fig:planar38-propagation} presents the total noise power spectral density compared to the power spectrum of the signal induced by the different recoil types of 1keV. Just as what was calculated in the equation \ref{eq:fid38-sensitivity} and discussed in the associated paragraph, the main sensitivity to take into account are $A,C$ for veto and equatorial event, and $B,D$ for the bulk events. The shapes of the noise and signals are quite similar to a $1/f$ profile. From this functions, the Noise Equivalent Power is calculated and represented in the bottom right figure \ref{fig:planar38-propagation}. The NEP is an increasing function, therefore the majority of the information on the signal is associated to the low frequency. When integrating between 1Hz and infinity, the resolution is evaluated to $\sigma_B=\sigma_D=28$eV and $\sigma_A=\sigma_C=32$eV. (bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
-
-\begin{figure}
-\centering
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_noise_propagation.png}
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/fid38_nep_resolution.png}
-\includegraphics[scale=1]{Figures/Electrodes/fid38_noise_propagation.pdf}
-\caption{
-\textbf{Left:} Total voltage noise measured at the node $S_B$ along with its components as functions pf the frequency.
-\textbf{Right:} Noise Power Spectral Density compared to Signal Power Spectrum, and Noise Equivalent Power with a Resolution of $\sigma_{B} = 28$eV.
-}
-\label{fig:fid38-propagation}
-\end{figure}
-
-% Planar38 Scan
-The performance of a detector is partly quantified by the resolution of its ionization channel. Thus, the resolutions calculated previously for the Planar38 and FID38 are figure of merits. However, these calculation are long as they necessitate to simulate a detector design into COMSOL to calculate the Mutual capacitance matrix and then simulate the detector cabled with the hemt lines with Lcapy.
-
-The resolution of the electrodes of a detector design depends on the whole Maxwell capacitance matrix (3 independent terms for the Planar38, and 10 independents terms for the FID38). It might be possible to access some basic trends by scanning over basic parameters.
-
-The left figure \ref{fig:planar38-scan} is a graph of the calculated resolution as a function of the equivalent capacitance of the HEMT lines (cabling capacitance + feedback capacitance + intrinsic hemt capacitance). The capacitance of the Hemt line are appearing on the diagonal term of the Maxwell capacitance. Therefore, this parameter scan can be interpreted as studying the resolution as a function of the diagonal terms of the Maxwell capacitance terms.
-Apart from the first point at very low capacitance, we observe that a high cabling capacitance increases the resolution of the ionization channels.
-
-%{\color{blue} (More points ? Clear legend with a scanning on each elements (cabling, fb, hemt) ? Do it for fid38 also ?)}
-
-The right figure \ref{fig:planar38-scan} is a graph of the resolution as a function of a global multiplier factor of the Maxwell capacitance matrix for the Planar38 design. A multiplier factor of 1 corresponds to a resolution calculation with the presented capacitance matrices presented in the equation \ref{eq:planar38-matrix-evaluation}. It is possible to artificially change all the capacitance terms of the capacitance matrix with this global multiplier factor. Compared to the previous scan on the diagonal term of the Maxwell matrix, this scan impact the whole matrix. In order to realistically apply this transformation, we could think of a up/down scaling of the detector size (increasing/reducing the area of the electrodes) or changing the electric permittivity with another absorber material. We observe that the resolution is almost proportional to the global multiplier factor.
-
-These two observations are consistent with what could be expected from the very basic understanding of the ionization channel presented in the paragraph \ref{par:basic-ion-channel}: the resolution decreases as the capacitances of the detector decrease. 
-In order to optimize the ionization channel, the research should be focused on lowering the capacitance of the cabling, and lowering the capacitances of the electrodes.
-The cabling links the electrodes evaporated on the germanium crystal and the HEMT electronics. Its capacitance depends on the type of cabling (shielded, material) and is proportional to its length. As a result, lowering the cabling capacitance is ultimately a geometric challenge on the cryostat configuration and the suspended tower. Currently, the cabling capacitance is guaranteed to be lower than 20pF, and with should be expected to reach 5pF with further research.
-The capacitance of the electrodes depends on the design of the detector and is heavily discussed in the next paragraph of this section.
-
-\begin{figure}
-\centering
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/scan_capacitance.png}
-%\includegraphics[width=0.48\textwidth]{Figures/Electrodes/scan_alpha.png}
-\includegraphics[scale=1]{Figures/Electrodes/pl38_scanplot.pdf}
-\caption{
-\textbf{Left:} Resolution of electrode B as a function of the extra-detector capacitance.
-\textbf{Right:} Resolution of the electrode B as a function of a multiplicative factor of the Maxwell capacitance matrix.
-}
-\label{fig:planar38-scan}
-\end{figure}
+The figure \ref{fig:planar38-propagation} also compares the total noise power spectral density to the power spectrum of the signal induced by the transient $I_{bulk}$. The noise follows a $1/\sqrt{f}$ trend while the signal has $1/f$ profile. As such, the majority of the information of the signal is contained in the low frequency of the data stream. When integrating between \SI{1}{\Hz} and infinity, the ionization energy resolution is evaluated to $\sigma_B=\SI{33.97}{\eV}$. There is factor 3 between this predicted resolution and the naive objective resolution of \SI{10}{\eV} discussed in the paragraph \ref{par:ionization-objective}. By combining the signal of the two electrodes, a lower resolution $\sigma_{A+B} = \sigma_B / \sqrt{2} = \SI{24.02}{\eV}$ is reached. 
+%(bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
 
 
-{\color{blue} Discussion on the Hemt (see JB notes or Alex paper. Expected resolution and noise.}
-Explaining how to propagate the noise through the hemt line (superposition theorem, thevenin-norton transformation). Presented and illustrated in the figure \ref{fig:hemt-performances}.
-Simple model: Single hemt/electrode with a single detector capacitance (previously thought to be the diagonal term of the Maxwell capacitance matrix).
-%\begin{figure}
-%\centering
-%\includegraphics[width=\textwidth]{Figures/Electrodes/noise_jb.png}
-%\caption{Performances of the hemt technology.}
-%\label{fig:hemt-performances}
-%\end{figure}
-
+% FID38 noise propagation
+The FID38 detector cabled with the full HEMT line is illustrated in the scheme \ref{fig:scheme-planar38-full}. The detector is composed of the ten mutual capacitance $C_{ij}^m$ linked to the nodes $A,B,C,D$. There is a measurement node for each electrode $S_A, S_B, S_c, S_D$, acting as an ideal voltmeter with the electric ground as reference. There is a total of $4\times3=12$ noise sources coming from the four HEMT lines. Signals induced by the $bulk$, $veto$ and $equator$ events are modeled as transient current sources $I=N_p \cdot e \cdot \delta(t)$ between two electrode nodes. Once again, the multiple noise source and the event signals are propagated to the measurement node $S_B$.
 
 \begin{landscape}
 
@@ -1887,4 +1927,41 @@ Simple model: Single hemt/electrode with a single detector capacitance (previous
 
 \end{landscape}
 
+% Noise propagation plot
+The figure \ref{fig:fid38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the HEMT line of the electrode $B$ at low frequency and the intrinsic current noise $i_n^B$ at high frequency. The Johnson noise $e_J^A$ from the other HEMT line of the electrode $A$ is slightly present below \SI{2}{\Hz}, but is quickly dominated by the intrinsic voltage source $e_n^B$. All in all, the results are quite similar to what was observed with the PL38 design: the Johnson noise from the most coupled electrode is significant at very low frequency and is quickly dominated by the intrinsic voltage noise source of the HEMT line $B$. Again, this can be explained by a boosted diagonal term in the Maxwell capacitance matrix which heavily filter the noise sources from spreading to other HEMT line efficiently.
+% Noise vs Signal
+In the case of the FID38, there are three possible signal power spectrum associated with the $bulk$, $veto$ and $equator$ events. All this power spectrum have the same $1/f$ profile and only differ by a multiplicative factor.
+Once again, due to the $1/\sqrt{f}$ shape of the total noise, most of the information is held in the low frequency of the data stream. The ionization energy resolution are calculated from the three event types. For the bulk and veto events, the resolutions are pretty similar around \SI{30}{\eV} while the resolution associated with the equator events is very high \SI{151}{\eV}. This indicates that the performance of the FID38 ionization channel drops for equatorial events. This might be problematic in tagging surface events near the equator. The lowest resolution concerns the bulk events with $\sigma_{bulk}^B = \SI{28.4}{\eV}$. By combining the two collecting signal of the collecting electrodes $B$ and $D$, it is possible to lower the ionization energy resolution to  $\sigma_{bulk}^{B+D} = \SI{20.1}{\eV}$. Even if this resolution is two times superior to the objective \SI{10}{\pico\farad}, it is still very close.
 
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/Electrodes/fid38_noise_propagation.pdf}
+\caption{Representation of the total voltage noise LPSD the node $S_B$ along with its components as functions of the frequency. The signal power spectrum associated with the $bulk$, $veto$ and $equator$ events are represented with the the alternative right. The calculation and integration from \SI{1}{\Hz} of the noise equivalent power yields the ionization energy resolutions.
+}
+\label{fig:fid38-propagation}
+\end{figure}
+
+% Planar38 Scan
+The performance of a detector is partly quantified by the resolution of its ionization channel. Thus, the resolutions calculated previously for the PL38 and FID38 are figure of merits. However, these calculation are long as they necessitate to simulate a detector design in the FEM software to compute the Mutual capacitance matrix and then simulate the detector cabled with the HEMT lines with a separate Python script using the Lcapy module.
+
+The resolution of the electrodes of a detector design depends on the whole Maxwell capacitance matrix (3 independent terms for the PL38, and 10 independents terms for the FID38). It might be possible to access some basic trends of the resolution by scanning over basic parameters.
+
+The left figure \ref{fig:planar38-scan} is a graph of the calculated resolution as a function of the cabling capacitance $C_p$ of the HEMT lines while keeping fixed all the other component values \ref{tab:lcapy-components}. This parameter scan can be interpreted as studying the resolution as a function of the diagonal terms of the Maxwell capacitance terms. We observe that a high cabling capacitance increases the resolution of the ionization channel. As the cabling capacitance decreases, the resolutions seem to cap. This indicates that $C_p$ is not the limiting component in the detector under $\approx \SI{5}{\pico\farad}$
+
+The right figure \ref{fig:planar38-scan} is a graph of the resolution as a function of a global multiplier factor of the Maxwell capacitance matrix for the PL38 design. The Maxwell capacitance $\bm{C}_{new}$ used for the resolution calculation is:
+\begin{equation}
+\bm{C}_{new} = \bm{C} \times \alpha
+\end{equation}
+with $\alpha$ the multiplicative factor. A multiplier factor of 1 corresponds to a resolution calculation with the presented capacitance matrices presented in the equation \ref{eq:planar38-matrix-evaluation}. It is possible to artificially change all the capacitance terms of the capacitance matrix with this global multiplier factor. Compared to the previous scan on the diagonal term of the Maxwell matrix, this scan impact the whole matrix. In order to realistically apply this transformation, we could think of a up or down-scaling of the detector size or changing the electric permittivity with another absorber material. We observe that the resolution is proportional to the global multiplier factor.
+
+\begin{figure}
+\centering
+\includegraphics[scale=1]{Figures/Electrodes/pl38_scanplot.pdf}
+\caption{Ionization energy resolutions of the PL38 design as functions of the cabling capacitance $C_p$ of the HEMT line and the global multiplicative factor $\alpha$ of the detector Maxwell matrix. The blue curve corresponds to the resolution of the single collect electrode $B$. The orange curves corresponds to the combination of the signal from $B$ and $D$ inducing a gain of factor $1/\sqrt{2}$ on the initial resolution.
+}
+\label{fig:planar38-scan}
+\end{figure}
+
+These two observations are consistent with what could be expected from the very basic understanding of the ionization channel presented in the paragraph \ref{par:basic-ion-channel}: the resolution decreases as the capacitances of the detector decrease. 
+In order to optimize the ionization channel, the research should be focused on lowering the capacitance of the cabling, and lowering the capacitances of the electrodes.
+The cabling links the electrodes evaporated on the germanium crystal and the HEMT electronics. Its capacitance depends on the type of cabling (shielded, material) and is proportional to its length. As a result, lowering the cabling capacitance is ultimately a geometric challenge on the cryostat configuration and the suspended tower. Currently, the cabling capacitance is guaranteed to be lower than \SI{20}{\pico\farad}. As discussed, this would still limit the ionization resolution. With further research on the placement of the HEMT-based electronics in the cryostat lower could be reached. If the cabling capacitance goes to \SI{5}{\pico\farad}, it is not the limiting factor for the resolution anymore, the capacitance of the electrodes become limiting. These capacitance depends on the design of the detector and is heavily discussed in the chapter \ref{ChapterElectrodesScan}.

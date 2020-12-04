@@ -99,7 +99,7 @@ The heightened influence of the copper chassis is also observed for the total we
 
 % Enorm
 The behavior of the magnitude of the electric field $\| \mathbf{E} \|$ differs between the PL38 and FID38 designs. For the former, the magnitude is almost constant in the crystal save for slight variation on the bare lateral surface and the under the central NTD hole. For the latter design, the last subplot of the figure \ref{fig:capacitance-fiducial-cu-distance} shows a global increase of the electric field norm with the chassis distance as all the percentiles of the distribution are concerned by the growth.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Conclusion
 The results points towards better detector performances with a high chassis distance. Indeed, for both designs, the fiducial fraction increases, the capacitance terms globally decreases, the total weighting potential tends to 1 and the electric field norm even grows for the FID38. The constraint on the chassis distance is imposed by the maximal dimensions of the detector load in the cryostat. As all the control quantities asymptotically reach a plateau with high chassis distance starting from $d_{Cu} \gtrsim \SI{1}{\mm}$, the value $d_{Cu} = \SI{3}{\mm}$ is chosen for the detector designs. At this value, the contribution to the Maxwell capacitance $C_{XX}$ from the chassis through the self-capacitance $C_{XX}^m$ represents approximately \SI{30}{\percent} for the PL38 and \SI{10}{\percent} for the FID38 design.
@@ -131,7 +131,7 @@ By default, it set to \SI{2}{\volt} in order to apply the standard electric fiel
 As the bias voltage solely affect the polarization of the electrodes, the capacitance terms and the total weighting potential are unaffected for this scan. Moreover, according to the equations \ref{eq:voltage-bias-pl38} and \ref{eq:voltage-bias-fid38} , the electric potential of all the electrodes are proportional to the parameter $V_{bias}$. As such, the electric field lines as well as the theoretical fiducial volume are unchanged for this scan. 
 % enorm
 For both designs, the electric field in the crystal scales proportionally with the voltage bias $V_{bias}$. At lower voltage, the magnitude could be lower than the critical threshold.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Conclusion
 A high magnitude is preferred for a good charge collection. However, according to the discussion in the paragraph \ref{par:double-energy-measurement}, a low voltage bias yields a better discrimination between electronic and nuclear recoils thanks to the lowered Luke-Neganov effect. Balancing this two aspect, we choose the lowest bias voltage possible while keeping a reasonable fraction of the volume above the critical magnitude threshold. For now, the bias voltage $V_{bias} = \SI{2}{\volt}$ is selected for the PL38 and the FID38 designs.
@@ -155,7 +155,7 @@ For the PL38 design, the fiducial volume percentage $\%_{fid}$ and some percenti
 % PL38
 The symmetry parameter $S_{bias}$ has more influence for the PL38 design. As shown in the figure \ref{fig:capacitance-fiducial-V-symmetry-pl38}, asymmetrical polarization feature a slightly lowered fiducial volume percentage compared to the optimum for the symmetrical polarization. As the electric potential of the top or bottom electrode goes to \SI{0}{\volt}, same as the grounded copper chassis, more field lines near the surface are exiting the crystal. Additionally, the electrode with nullified potential sees its low electric field magnitude corner gain in volume. As a result, the magnitude distribution over the crystal volume is broaden towards lower value as shown by the significant decrease of the percentiles $f_1$ and $f_5$ for asymmetrical polarization value.
 The influence of the parameter $S_{bias}$ is mitigated by the lateral corners of the electrodes and theri length $L_{lat}$. The observed trends are expected to be exacerbated for PL38 designs with lower or non-existent lateral corners.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Conclusion
 It seems that the effects of the parameter $S_{bias}$ are minors. While there exists an optimum in performances for a symmetric polarization at $S_{bias}=\num{0.5}$, operating the PL38 and FID38 with asymmetrical electrode potential is viable and could potentially alleviate some future issues with the influence of the NTD thermal sensor on the electric field or unexpected leakage currents.
@@ -185,7 +185,8 @@ The figure shows that all the capacitance terms decreases with $r_{center}$ exce
 % Fiducial and enorm
 The growing central hole in the electrode induces a greater low electric field magnitude region under it. Electric field lines are diverging from this low magnitude region resulting in a lower theoretical fiducial volume. However, according to the figure \ref{fig:capacitance-fiducial-r-center-pl38}, this reduction is almost negligible with just about \SI{0.3}{\percent} between the extrema.
 % Electric field
-This negligible impact is also showed by the percentiles of the electric field norm $f_x$ which seem rather constant with a perceptible decreasing trends for high value values of $r_{center}$. Indeed, as the change induced by the central radius $r_{center}$ is located on the central axis of the crystal, it affects only a marginal fraction of the total volume. In line with this remark, the distribution of the electric field magnitude on the volume is negligibly affected by the scan over $r_{center}$. Even though the impacted volume is very low, the central hole creates a surface bare aluminium electrode with a very low electric field. As a result, recoils in this region should be prone to surface trapping. {\color{red} [Comparison to experiment with hole in electrode, NbSi ?]}
+This negligible impact is also showed by the percentiles of the electric field norm $f_x$ which seem rather constant with a perceptible decreasing trends for high value values of $r_{center}$. Indeed, as the change induced by the central radius $r_{center}$ is located on the central axis of the crystal, it affects only a marginal fraction of the total volume. In line with this remark, the distribution of the electric field magnitude on the volume is negligibly affected by the scan over $r_{center}$. Even though the impacted volume is very low, the central hole creates a surface bare aluminium electrode with a very low electric field. As a result, recoils in this region should be prone to surface trapping. 
+%{\color{red} [Comparison to experiment with hole in electrode, NbSi ?]}
 
 % TWP
 As for the total weighting potential, there is a slight decrease on the surface in the central hole from $1$, with a non-existent hole, to \num{0.94}, with the largest value $r_{center}=\SI{5}{\mm}$.
@@ -212,7 +213,7 @@ The planar electrodes of the PL38 design extends on the lateral surfaces on a le
 As the corner length increases, the area of the top and bottom electrode grows. The self-capacitance terms $C_{XX}^m$ increases as the coupling with the ground rises but eventually seem to reach a plateau. The inter-electrode coupling term $C_{AB}^m$ increases with $L_{lat}$ especially at the highest values. Indeed, at high value of $L_{lat}$, the electrodes $A$ and $B$ are larger and also closer near the equator. As the corner length tends to \SI{5}{\mm}, with virtually touching top and bottom electrodes, the diagonal Maxwell terms diverge. On the same line, the electric field at the equator also diverge with ever closer top and bottom electrode, broadening the magnitude distribution toward higher values.
 % Enorm
 On the contrary, the electric field norm is lessened in the corners as the corner length increases and these low magnitude corner regions grow in size. As a result, the magnitude distribution expands toward lower values. This is illustrated with the decreasing percentiles $f_1$ to $f_{25}$ on the figure \ref{fig:capacitance-fiducial-corner-length}. As a side note, the median magnitude of the electric field $f_{50}$ is constant for this scan. In the case of very short corner electrodes $L_{lat} \leq \SI{0.5}{\mm}$, the electric field norm is almost homogeneously equal to \SI{2}{\volt\per\cm} in the crystal.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 % Fiducial
 In fact, the electric field is almost uniform with the surface electric field lines bending towards the outside and eventually exiting the crystal, resulting in a loss of fiducial volume at low $L_{lat}$ values. With larger corner length, the fiducial volume fraction increases and caps at \SI{99.4}{\percent}. This limit is set by the streamlines which are exiting the crystal at the surface of the central NTD hole.
 % TWP
@@ -220,7 +221,7 @@ The total weighting potential on the bare lateral surface of the crystal increas
 
 % Conclusion
 This scan over the corner length $L_{lat}$ features a performance balance: at low corner length, the capacitance terms are lowered and a high electric field norm is achieved, while for a high corner length, the fiducial volume is greater. As the variation on the fiducial volume is small, the control values points towards a performance optimization for the lowest value of the corner length $L_{lat}=\SI{0}{\mm}$. However, with this minimal value, the whole lateral surface of the germanium crystal is bare and prone to surface trapping due to the transversal trajectory of the electron in the crystal, as discussed in paragraph \ref{par:charge-drifting}. A conservative trade-off value is the default value $L_{lat}=\SI{2}{\mm}$.
-{\color{red} [Comparison with experimental data with no corner electrode, REDN1 ?]}
+%{\color{red} [Comparison with experimental data with no corner electrode, REDN1 ?]}
 
 % bonus observation 
 % The non-diagonal capacitance term is drastically increased, which can be explained by the electrode A and B getting closer with the increasing corner length. For large corenr length, the area of the electrode facing the crystal are facing almost entirely the oppsite electrode and can only perceive the electric ground through the tight bare equator. This could explain the capping in the self-capacitance of A and B.
@@ -249,7 +250,8 @@ With a rising ring width $w_{Al}$, all electrodes gets closer to each other and 
 % Fiducial
 There is a significant decrease of the fiducial volume with increasing ring width until approximately \SI{1}{\mm} where a lower cap seems to be reached. As the electrode ring gets larger, the veto regions gain in depth, reducing the fiducial volume. 
 % Enorm
-This is consistent with the position of the low electric field magnitude regions under the veto rings getting deeper into the crystal. As the veto and collect electrodes are getting closer, the electric field in the veto regions greatly increase and grows more gently in the bulk of the crystal. Overall, the electric field norm globally rise with the ring width $w_{Al}$ and approach a plateau at high value. {\color{red} [Comparison to enorm threshold, to do later.]}
+This is consistent with the position of the low electric field magnitude regions under the veto rings getting deeper into the crystal. As the veto and collect electrodes are getting closer, the electric field in the veto regions greatly increase and grows more gently in the bulk of the crystal. Overall, the electric field norm globally rise with the ring width $w_{Al}$ and approach a plateau at high value. 
+%{\color{red} [Comparison to enorm threshold, to do later.]}
  %TWP
 With higher $w_{Al}$, the total weighting potential on bare germanium surface slightly rise from $0.94$ for the thinnest ring, to $0.98$ for the largest ring possible before contact. Indeed, the grounded chassis is overshadowed by the large electrode and receive a reduced induced signal from the drifting electric charge.
 
@@ -275,7 +277,7 @@ The variation of the capacitance terms are modest for this scan. Therefore, the 
 Concerning the fiducial volume, its percentage decreases with increasing central pad radius $r_{center}$. In fact, this loss is attributed to the growth of the veto region under the central pad. As this loss is centered on the rotational axis of the crystal, the loss is very light for low value of $r_{center}$. The remarkable value $r_{center} = \SI{1.5}{\mm}$, allowing for the gluing of a \SI{2 x 2}{\mm} NTD, shows a negligible decrease. However, the diminution in fiducial volume gets significant with higher radius.
 % Enorm
 Only the electric field norm in the center of the crystal is lowered by rising scanned parameter $r_{center}$. While the median $f_{50}$ of the magnitude distribution (not represented on figure \ref{fig:capacitance-fiducial-r-center}) is constant, the distribution is expanded towards lower values. This illustrated by the decreasing values of the percentiles $f_{1}$ to $f_{10}$. The explanation is the growth of the top and bottom low magnitude regions under the central veto pads which eventually merge for \SI{3}{\mm}. At this point, the electric field is nullified at the center of the crystal. With greater $r_{center}$, the electric field changes in direction with field lines connecting the top and bottom central veto pads.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Conclusion
 The result shows that all aspects of the performance of the ionization channel would profit from a small central pad radius $r_{center}$. The minimal value corresponds to the width of the electrode rings $r_{center}=\SI{0.08}{\mm}$. This study also demonstrates that at the cost of a small increase in capacitance, it would be viable to use a radius of \SI{1.5}{\mm} to fit a small NTD thermal sensor if need be.
@@ -312,7 +314,8 @@ The variation of the capacitance terms are very low, in the range of \SI{5}{\per
 The coupling term of same-sided veto collect $C_{AB}^m=C_{CD}^m$ decreases for low or high value of $w_{bare}$ with a maximum near \SI{0.6}{\mm}. For low $w_{bare}$ value, the planar spacing $d_{plan}$ is high which explains the lowered capacitance between same-sided veto and collect electrode $C_{AB}^m=C_{CD}^m$. For high $w_{bare}$, the planar spacing $d_{plan}$ diminishes, explaining the maximum, but is eventually dominated by the loss of coupling due to the larger distance between the planar rings and the lateral rings. The coupling term of the veto electrodes $C_{AC}^m$ increases and cap with $w_{bare}$: the veto edge electrode rings are no longer overshadowed by the lateral collect electrodes. The coupling term of the collect electrodes $C_{BD}^m$ decreases with $w_{bare}$ as their effective facing area is lowered by their contracting rings. The self-capacitance of the veto electrodes $C_{AA}^m = C_{CC}^m$ shows a maximum around \SI{0.3}{\mm}. The self-capacitance of the collect electrodes $C_{BB}^m = C_{DD}^m$ features a minimum around \SI{0.4}{\mm}. In the end, the diagonal terms of the Maxwell capacitance matrix $C_{XX}$ follows the trend of the dominant term $C_{AB}^m$ with smooth maximum between 
 \SI{0.3}{\mm} and \SI{0.8}{\mm}.
 % Fiducial
-The bare germanium width slightly changes the shape of the electric field lines in the crystal corners. The veto regions are growing near the corners As a result, the fiducial volume is slightly decreasing with rising $w_{bare}$. We also note that with $w_{bare} > \SI{0}{\mm}$, there is appearance of the corner regions with uncertain charge collection, as discussed in the previous chapter \ref{ChapterElectrodes}. {\color{red} [Estimation of the Corners regions volume ?]}
+The bare germanium width slightly changes the shape of the electric field lines in the crystal corners. The veto regions are growing near the corners As a result, the fiducial volume is slightly decreasing with rising $w_{bare}$. We also note that with $w_{bare} > \SI{0}{\mm}$, there is appearance of the corner regions with uncertain charge collection, as discussed in the previous chapter \ref{ChapterElectrodes}. 
+%{\color{red} [Estimation of the Corners regions volume ?]}
 % TWP
 In the vicinity if the corners, the total weighting potential on the surface is lighlty affected. I decreases from $0.94$ at default configuration to $0.86$ with $w_{bare} = \SI{2}{\mm}$.
 % Enorm
@@ -339,7 +342,8 @@ The influence of $w_{outer}$ on the capacitance terms is subtle. The result on c
 % Fiducial
 The fiducial volume decreases with $w_{outer}$ because the veto region on the corners are getting bigger. As this growth in veto volume is located on the periphery of the crystal, it represents a significant decrease in volume.
 % enorm
-This is also in agreement with the observation on the electric field. The low electric field norm regions situated below the outer veto electrode rings gets deeper and closer to the center with increasing outer width $w_{outer}$. Consequently, the bulk and surface region see their electric field magnitude globally decrease. This is illustrated by all the diminishing percentiles of the magnitude distribution. {\color{red} [Comparison to enorm threshold, to do later.]}
+This is also in agreement with the observation on the electric field. The low electric field norm regions situated below the outer veto electrode rings gets deeper and closer to the center with increasing outer width $w_{outer}$. Consequently, the bulk and surface region see their electric field magnitude globally decrease. This is illustrated by all the diminishing percentiles of the magnitude distribution. 
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 %Conclusion
 The influence on the capacitance term is noticeable but not that significant. On the contrary, the fiducial volume is significantly impacted by the parameter $w_{outer}$. The best design solution would be to have a minimal width of $w_{outer}=\SI{0}{\mm}$ which is not technically feasible. Thus, for now, the best configuration would be to consider the lowest possible width of \SI{1}{\mm}.
@@ -347,16 +351,18 @@ The influence on the capacitance term is noticeable but not that significant. On
 
 \subsubsection{Comparing the Two Geometries}
 
-With the insights gathered from the scan over $w_{bare}$ and $w_{outer}$, we discuss and compare the two geometries from the edge veto electrodes. Both studies points towards the same ideal best solution: having a thin $w_{Al} = \SI{0.08}{\mm}$ outer veto electrode ring in contact $w_{bare}=\SI{0}{\mm}$ with the edge of the crystal for low capacitance values and higher fiducial volume. This configuration is not possible technically for now. Now, comparing the best compromise offered by the two next best geometries:
+With the insights gathered from the scan over $w_{bare}$ and $w_{outer}$, we discuss and compare the two geometries from the edge veto electrodes. Both studies points towards the same ideal best solution: having a thin $w_{Al} = \SI{0.08}{\mm}$ outer veto electrode ring in contact $w_{bare}=\SI{0}{\mm}$ with the edge of the crystal for low capacitance values and higher fiducial volume. This configuration is not possible technically for now. As discussed in the previous paragraph, the best compromise offered by the two next best geometries are
 \begin{itemize}
 	\item Thin Outer Ring Spaced from the Crystal Edge, $\{ w_{outer} = \SI{0.08}{\mm}, w_{bare} = \SI{0.3}{\mm} \}$
 	\item Large Outer Ring on the Crystal Edge, $\{ w_{outer} = \SI{1}{\mm}, w_{bare} = \SI{0}{\mm} \}$
 \end{itemize}
 
-{\color{red} [table with capacitance values and fiducial volume, and other bonus category: danger zone volume !]}
+%{\color{red} [table with capacitance values and fiducial volume, and other bonus category: danger zone volume !]}
+The lowest capacitance value and highest fiducial volume are obtained with the thin outer electrode. With this geometries, it is expected for the ionization resolution to lower and to have the best ionization channel performances. The main drawback associated is the uncontrolled corner volumes. This could result in surface trapped charges inducing events with problematic event reconstruction. Although these corner volumes are encompasses in the top and bottom veto volumes, which could lead to a good surface event tagging (see the paragraph \ref{par:stationnary-state}), there is still uncertainties.
+For the time being, the thin outer geometry is favored and should be tested on its charge collection in the corner volumes. The large outer ring geometry constitute a backup design which should solve eventual charge collection problems at the cost of a moderate increase in capacitance and some loss of fiducial volume.
 
-Conclusion: thin electrode favored for now, but backup design is with large electrode for now.
-Waiting for experimentations with danger corner region to have more insights on the danger corner region.
+%Conclusion: thin electrode favored for now, but backup design is with large electrode for now.
+%Waiting for experimentations with danger corner region to have more insights on the danger corner region.
 
 
 \subsection{Equatorial Distance, $d_{eq}$}
@@ -378,7 +384,7 @@ This explains the augmentation of the capacitance term coupling same-sided veto 
 Scanning over the equatorial distance strongly affects the shape of the electric field lines near the equator. At low values, the equatorial region defined on scheme \ref{fig:sheme-fid38} is clearly defined. With increasing equatorial distance, the lateral veto regions grow deeper and fiducial volume as well as the equatorial region shrink. According to the fiducial graph, the fiducial fraction gets a minimum for \SI{2.2}{\mm}. Starting from \SI{2.8}{\mm}, there are no more equatorial field lines and the ever growing fraction of fiducial field lines comes into contact with the equatorial surface of the crystal. This transition is illustrated by the shaded on the figure \ref{fig:capacitance-fiducial-equatorial-distance} featuring a rise in the fiducial volume. This configuration of the field lines nullify the use of the FID design aiming at discarding any surface event. Any surface event happening in the vicinity of the equator would not be tagged by the veto electrodes and would be heavily prone to surface trapping on the equator surface.
 % Enorm
 In this regime of high $d_{eq}$ values, the low electric field magnitude regions associated with the veto equatorial electrodes are large and covers a majority of the peripheral volume of the crystal. As a result, the median $f_{50}$ of the magnitude distribution shifts towards lower values. However, the lower percentiles $f_{x \leq 25}$ are less affected.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 % TWP
 Concerning the generation of the signal for electric charge possibly trapped on the equatorial surface, the total weighting potential is negatively affected by the rising $d_{eq}$ with a value of $0.99$ of the equator at $d_{eq}=\SI{0.2}{\mm}$ dropping to $0.90$ with the maximal equatorial distance of \SI{6}{\mm}.
 
@@ -418,7 +424,7 @@ In the range $[0, 0.2]$, veto regions along with the low $|\vec{E}|$ associated 
 In the remaining range, for $R_{veto} \in [0.2, 1]$, the equatorial volume comes back to existence. Now, its electric field has an opposite direction to the one in the bulk region. The electric field structure is standard for a FID operation as presented in the scheme \ref{fig:scheme-fid38}. As the polarization ratio $R_{veto}$ increases, the veto regions and the equatorial region grow in size, reducing the fiducial volume. Eventually, the regions of low electric field magnitude under the veto electrodes are big and deep enough to merge and hold the bulk of the crystal.
 % Enorm
 The magnitude of the electric field in the bulk of the crystal decreases with the rising $R_{veto}$. Far from the electrodes, the interleaved same-sided veto and collect electrode rings appears to have the influence of an equivalent planar electrode of electric potential $V=\frac{V_B + V_A}{2}$ and so the perceived electric field norm in the bulk is $E = \frac{V_B + V_A - V_D - V_C}{2 H_{Ge}}=...$ (this calculation should appears when introducing the norm of the electric field and discussing the figure at default value. The calculation explain the phenomenon observed now during the scan over $R_{veto}$).
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 
 % Conclusion
 $R_{veto}$ should be high enough to be in a polarization mode compatible with the tagging of surface events, while being low enough to keep a good fiducial volume fraction. The lower threshold on a valid $R_{veto}$ is imposed by the existence of an equatorial region of sufficient size with an electric field of opposite direction to the bulk electric field. As described before, these conditions can be met for a polarization ratio $R_{veto}$ in the $[0.2, 1]$ range. The fiducial streamlines should not contact with the equatorial surface. The default value $0.25$ is chosen as the equatorial volume reaches \SI{1}{\mm} deep into the crystal. This minimal depth is useful has to form a buffer between the bulk volume and the bare germanium surface and avoid surface trapping due to the transversal trajectories of the electrons in the semi-conducting germanium crystal.
@@ -513,7 +519,7 @@ Almost all the capacitance terms increase with the higher number of electrode ri
 The fiducial volume demonstrate a behavior similar to the uni-dimensional scan over $n_{plan}$ and $n_{lat}$. Its percentage grows significantly with the number of electrodes, with a gain of \SI{12.5}{\percent} between the extrema. 
 % Enorm
 Indeed, with closer collect and veto electrodes, the veto regions lose depth and volume. However, the veto regions also gains in electric field norm with smaller low electric field magnitude regions. As a result, the electric field is more uniform in the crystal as illustrated by the stable median $f_{50}$ of the magnitude distribution and increasing lower percentiles.
-{\color{red} [Comparison to enorm threshold, to do later.]}
+%{\color{red} [Comparison to enorm threshold, to do later.]}
 % Particular point
 The first point with $n_{plan} = 3$ remains an exception in the trend of the fiducial volume. Fiducial field lines occupy a larger portion of the volume at the cost of a low electric field magnitude in the planar veto regions. Indeed, all the percentiles of the magnitude distribution drop. Moreover, the discussion of paragraph \ref{par:n-plan} is still valid: with field lines parallel to the planar surface and low electric field, electrons are more prone to surface trapping because of their transversal trajectory in the germanium.
 % TWP
