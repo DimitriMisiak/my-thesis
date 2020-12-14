@@ -61,7 +61,26 @@ product-units = brackets,
 }
 \DeclareSIUnit{\sqrthz}{\ensuremath{\sqrt{\text{\hertz}}}}
 
-\usepackage{circuitikz} % for drawing electric circuit
+%\usepackage{circuitikz} % for drawing electric circuit
+
+%Tikz Libraries
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark, positioning, fit, shapes.misc}
+\usepackage[siunitx, european, straightvoltages]{circuitikz}
+\usepackage{schemabloc}
+\usetikzlibrary{decorations.pathreplacing, calc}
+\usetikzlibrary{decorations.pathmorphing,patterns}
+\usetikzlibrary{circuits}
+
+%Tikz commands
+\tikzset{brace/.style={decorate, decoration={brace}},
+  brace mirrored/.style={decorate, decoration={brace,mirror}},
+}
+\newcommand{\sbNomLienCustom}[3][0.4]{
+\node[above of=#2, node distance=#1em, sbStyleLien] (#2nom) at (#2) {#3};
+}
 
 \usepackage{layouts} % determine textwidth
 % use following command in document
@@ -74,6 +93,14 @@ product-units = brackets,
 
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+
+\usepackage{pdfpages} % input a pdf document (for the front page)
+
+
+% other commands
+\newcommand{\Ricochet}{\textsc{Ricochet}}
+\newcommand{\Edelweiss}{\textsc{Edelweiss}}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -123,7 +150,14 @@ product-units = brackets,
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
 
+
 %%----------------------------------------------------------------------------------------
+%%	FRONT PAGE FROM UCBL UNIVERSITY
+%%----------------------------------------------------------------------------------------
+%
+%\includepdf[pages=-]{FrontPage/front_page.pdf}
+
+%%%----------------------------------------------------------------------------------------
 %%	TITLE PAGE
 %%----------------------------------------------------------------------------------------
 %
@@ -160,13 +194,13 @@ product-units = brackets,
 %\vfill
 %
 %{\large \today}\\[4cm] % Date
-%%\includegraphics{Logo} % University/department logo - uncomment to place it
+%\includegraphics{Logo} % University/department logo - uncomment to place it
 % 
 %\vfill
 %\end{center}
 %\end{titlepage}
-%
-%%----------------------------------------------------------------------------------------
+
+%%%----------------------------------------------------------------------------------------
 %%	DECLARATION PAGE
 %%----------------------------------------------------------------------------------------
 %
@@ -191,7 +225,7 @@ product-units = brackets,
 %\end{declaration}
 %
 %\cleardoublepage
-%
+
 %%----------------------------------------------------------------------------------------
 %%	QUOTATION PAGE
 %%----------------------------------------------------------------------------------------
@@ -201,7 +235,7 @@ product-units = brackets,
 %\noindent\enquote{\itshape INSERT FUNNY AND DEEP QUOTE HERE.}\bigbreak
 %
 %\hfill Famous Person or Obscure Reference
-%
+
 %%----------------------------------------------------------------------------------------
 %%	ABSTRACT PAGE
 %%----------------------------------------------------------------------------------------
@@ -210,7 +244,7 @@ product-units = brackets,
 %\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 %The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
 %\end{abstract}
-%
+
 %%----------------------------------------------------------------------------------------
 %%	ACKNOWLEDGEMENTS
 %%----------------------------------------------------------------------------------------
@@ -219,17 +253,17 @@ product-units = brackets,
 %\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 %The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
 %\end{acknowledgements}
-%
-%%----------------------------------------------------------------------------------------
-%%	LIST OF CONTENTS/FIGURES/TABLES PAGES
-%%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
 
 \tableofcontents % Prints the main table of contents
 
 %\listoffigures % Prints the list of figures
-%
+
 %\listoftables % Prints the list of tables
-%
+
 %%----------------------------------------------------------------------------------------
 %%	ABBREVIATIONS
 %%----------------------------------------------------------------------------------------
@@ -245,7 +279,7 @@ product-units = brackets,
 %\textbf{OF} & \textbf{O}ptimal \textbf{F}iltering \\
 %
 %\end{abbreviations}
-%
+
 %%----------------------------------------------------------------------------------------
 %%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %%----------------------------------------------------------------------------------------
@@ -260,7 +294,7 @@ product-units = brackets,
 %%Constant Name & $Symbol$ & $Constant Value$ with units\\
 %
 %\end{constants}
-%
+
 %%----------------------------------------------------------------------------------------
 %%	SYMBOLS
 %%----------------------------------------------------------------------------------------
@@ -277,7 +311,7 @@ product-units = brackets,
 %$\omega$ & angular frequency & \si{\radian} \\
 %
 %\end{symbols}
-%
+
 %%----------------------------------------------------------------------------------------
 %%	DEDICATION
 %%----------------------------------------------------------------------------------------
@@ -295,30 +329,32 @@ product-units = brackets,
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-% 1
-%\include{Chapters/ChapterIntroduction}
-% 2
-%\include{Chapters/ChapterExperiment}
-% 3 prime
+% Introduction, Theory
+%\include{Chapters/ChapterIntro}
+
+% Experimental Set-up
+\include{Chapters/ChapterExperiment}
+
+% Heat Channel Study
 %\include{Chapters/ChapterEthem}
-% 3 bis
-% \include{Chapters/ChapterEthemExperimental}
 
-
-
-% 4 prime
+% Ionization Theory
 %\include{Chapters/ChapterElectrodes}
-% 4 bis
+
+% Ionization Scan
 %\include{Chapters/ChapterElectrodesScan}
-% 4 ter
-\include{Chapters/ChapterElectrodesExperimental},
 
-%\include{Chapters/ChapterAnalysis}
+% Ionization Experimental
+%\include{Chapters/ChapterElectrodesExperimental}
 
-% 6
+% Neutron Analysis
 %\include{Chapters/ChapterNeutron}
-% 7
+
+% Conclusion
 %\include{Chapters/ChapterConclusion}
+
+%%% old
+%\include{Chapters/ChapterAnalysis}
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES

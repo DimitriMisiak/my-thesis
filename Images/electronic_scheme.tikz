@@ -1,0 +1,16 @@
+  	\draw
+	 (0.5,6) node [ground, rotate=-90] {} 
+	 to [european voltage source, v=$V_B$, -*] (2,6)
+	 to [european voltage source, l={\color{red} $e_{J_{RL}}$}, color=red] (2,4.5)	 
+	 to [R, l_=$R_L$, -] (2,2.5)
+	 to [thR, l_=$R(T_e)$, -] (2,0.5)
+	 to [european voltage source, l={\color{red} $e_{J_{NTD}}$}, color=red]
+	  (2,-0.5) node [ground] {}
+	 (2,2.5) to [short, -o] (4,2.5) node [anchor=south] {$V$}
+	 to [C, l_=$C_{fil}$] (4,-0.5) node [ground] {} 
+	 (4,2.5) to [european voltage source, l={\color{red} $e_{ampli.}$}, color=red] (6,2.5) 
+	 to [ioosource, l={\color{red} $i_{ampli.}$}, color=red] (6,-0.5) node [ground] {} 
+	 (6,2.5) node [anchor=south] {$U$}
+	 to [short, i_={\small $i \approx 0$}, *-] (7,2.5)
+	 to [amp, l=Suiveur, -] (8,2.5)
+	;

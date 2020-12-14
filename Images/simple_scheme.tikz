@@ -1,0 +1,11 @@
+	\draw
+	 (0,0) node [ground] {}
+	 to [R, l_=$Z_{eq}$, -] (0,2)
+	 (0,2) to [short, -o] (2,2) node [anchor=south] {$V$}
+	 to [ioosource, l=$\color{red} i_{bruit}$,color=red, -] 
+	 (2,0) node [ground] {}
+	 (2,2) to [european voltage source, l={\color{red} $e_{ampli.}$}, color=red, -] (4,2) node [anchor=south] {$U$}
+	 to [short, i_={\small $i \approx 0$}, *-] (5,2)
+	 to [amp, l=Suiveur, -] (6,2)
+	 (0,-1.5) node [right]{$\color{red} \displaystyle i_{bruit}^2=\left(\frac{e_{J_{NTD}}}{R(T_e)}\right)^2+\left(\frac{e_{J_{R_L}}}{R_L}\right)^2+i_{ampli.}^2$}
+	;

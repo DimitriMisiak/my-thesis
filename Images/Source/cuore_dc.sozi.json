@@ -1,0 +1,80 @@
+{
+  "aspectWidth": 4,
+  "aspectHeight": 3,
+  "frames": [
+    {
+      "frameId": "frame9128",
+      "title": "New frame",
+      "timeoutMs": 0,
+      "timeoutEnable": false,
+      "transitionDurationMs": 1000,
+      "showInFrameList": true,
+      "showFrameNumber": true,
+      "layerProperties": {
+        "figure_1": {
+          "link": false,
+          "referenceElementId": "Cmmi10-48",
+          "outlineElementId": "Cmmi10-48",
+          "outlineElementAuto": true,
+          "transitionTimingFunction": "linear",
+          "transitionRelativeZoom": 0,
+          "transitionPathId": ""
+        },
+        "__sozi_auto__": {
+          "link": false,
+          "referenceElementId": "",
+          "outlineElementId": "",
+          "outlineElementAuto": true,
+          "transitionTimingFunction": "linear",
+          "transitionRelativeZoom": 0,
+          "transitionPathId": ""
+        }
+      },
+      "cameraStates": {
+        "figure_1": {
+          "cx": 408.0494109544323,
+          "cy": 240.6190197348131,
+          "width": 873.1800000000011,
+          "height": 655.4765853658545,
+          "opacity": 1,
+          "angle": 0,
+          "clipped": true,
+          "clipXOffset": 102.92057050592048,
+          "clipYOffset": -15.909625858394527,
+          "clipWidthFactor": 1.2588075880758807,
+          "clipHeightFactor": 1.115523465703971
+        },
+        "__sozi_auto__": {
+          "cx": 396,
+          "cy": 287.1000061035156,
+          "width": 792,
+          "height": 574.2000122070312,
+          "opacity": 1,
+          "angle": 0,
+          "clipped": false,
+          "clipXOffset": 0,
+          "clipYOffset": 0,
+          "clipWidthFactor": 1,
+          "clipHeightFactor": 1
+        }
+      },
+      "cameraOffsets": {
+        "figure_1": {
+          "deltaX": 362.04943765731315,
+          "deltaY": 206.4627697348131,
+          "widthFactor": 10.32586017987204,
+          "heightFactor": 9.595265659518455,
+          "deltaAngle": 0
+        }
+      }
+    }
+  ],
+  "elementsToHide": [],
+  "selectedFrames": [
+    "frame9128"
+  ],
+  "selectedLayers": [
+    "figure_1"
+  ],
+  "editableLayers": []
+}
