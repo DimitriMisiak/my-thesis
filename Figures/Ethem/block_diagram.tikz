@@ -1,0 +1,62 @@
+    \sbEntree{W}
+    \sbCompSum{C1}{W}{-}{+}{+}{}
+    	\sbRelier{W}{C1}
+        \sbNomLien[0.8]{W}{$W$}
+    \sbBloc{a}{$a$}{C1}
+        \sbRelier{C1}{a}
+    \sbBloc[3]{b}{$b$}{a}
+        \sbRelier[$\Delta T_a$]{a}{b}  
+    \sbCompSum{C2}{b}{+}{+}{+}{}
+        \sbRelier{b}{C2}      
+    \sbBlocL{c}{$c$}{C2}
+    \sbBloc[3]{d}{$d$}{c}
+    	\sbRelier[$\Delta T_p$]{c}{d}
+    \sbCompSum{C3}{d}{-}{+}{+}{}
+    	\sbRelier{d}{C3}		
+    \sbBlocL{e}{$e$}{C3}	      
+    \sbBloc[3]{f}{$f$}{e}
+    	\sbRelier[$\Delta T_e$]{e}{f}
+    \sbCompSum{C4}{f}{+}{}{+}{}
+        \sbRelier{f}{C4}
+    \sbBlocL{Z}{$Z_{eq}$}{C4}
+    \sbCompSum[5]{C5}{Z}{+}{}{+}{}
+        \sbRelier[$\Delta V$]{Z}{C5}
+    \sbSortie{V}{C5}
+        \sbRelier{C5}{V}
+        \sbNomLien[0.8]{V}{$\Delta U$}
+    
+    \sbDecaleNoeudy[5]{a-b}{down1}
+	\sbBlocr{g}{$g$}{down1}
+		\sbRelieryx{c-d}{g}
+    	\sbRelierxy{g}{C1}
+    \sbDecaleNoeudy[8]{c-d}{down2}
+	\sbBlocr{h}{$h$}{down2}
+		\sbRelieryx{e-f}{h}
+    	\sbRelierxy{h}{C2}
+	\sbDecaleNoeudy[10]{d}{down5}
+	\sbCompSum{C6}{down5}{}{+}{}{+}
+	\sbBloc{k}{$k$}{C6}
+	\sbDecaleNoeudy[13]{C4-Z}{down4}
+	\sbBlocr{l}{$\ell$}{down4}
+		\sbRelier[$\Delta P_J$]{C6}{C3}
+		\sbRelieryx{e-f}{k}
+    	\sbRelier{k}{C6}	
+		\sbRelieryx{Z-C5}{l}
+    	\sbRelierxy{l}{C6}
+    
+    \sbStyleLien{red,text=red}
+    \sbDecaleNoeudy[-4]{C1}{Pap}
+    	\sbRelier{Pap}{C1}
+    	\sbNomLienCustom[0.3]{Pap}{$P_{ap}$}
+    \sbDecaleNoeudy[-4]{C2}{sumP}
+    	\sbRelier{sumP}{C2}
+    	\sbNomLienCustom[0.3]{sumP}{$P_{ap}+P_{ep}+P_{bp}$}
+    \sbDecaleNoeudy[-4]{C3}{Pep}
+    	\sbRelier{Pep}{C3}
+    	\sbNomLienCustom[0.3]{Pep}{$P_{ep}$}
+    \sbDecaleNoeudy[-4]{C4}{i}
+    	\sbRelier{i}{C4}
+    	\sbNomLienCustom[0.3]{i}{$i_{bruit}$}  
+    \sbDecaleNoeudy[-3]{C5}{eA}
+    	\sbRelier{eA}{C5}
+    	\sbNomLienCustom[0.3]{eA}{$e_{ampli.}$}   
