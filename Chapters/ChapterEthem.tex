@@ -28,9 +28,9 @@ The major difference between these detectors lies in the thermal sensor. The NTD
 The NTD of RED10 is characterized later in this work thanks to experimental data.
 
 \section{Electro-Thermal Modelization of the RED Dectectors}
+\label{sec:electro-thermal-model}
 
-In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method.
-% \cite{matrix}. 
+In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method \cite{Figueroa:2006}. 
 It is then possible to simulate the behavior of a detector in the steady state, in the time regime and in the frequency regime, which gives access to the complete characterization of the detector.
 
 \subsection{Describing the Detector with a System of Equation}
@@ -122,9 +122,7 @@ with simplification in the frequency-domain:
 \label{fig:ethem-electric-scheme}
 \end{figure}
 
-On the left it the schematic of the polarization electronics with noise sources represented in red voltage and current sources. The capacity of the cabling $C_{cabling}$ of the electronics is taken into account. The right scheme corresponds to the simplification with multiple Thevenin-Norton transformation
-%\cite{mather}
-in the context of the frequency study, which is addressed later.
+On the left it the schematic of the polarization electronics with noise sources represented in red voltage and current sources. The capacity of the cabling $C_{cabling}$ of the electronics is taken into account. The right scheme corresponds to the simplification with multiple Thevenin-Norton transformation \cite{Mather:1982} in the context of the frequency study, which is addressed later.
 A constant bias voltage $V_B$ is applied to the load resistance $R_L$, of a few \si{\giga\ohm}, in series with the NTD resistance $R(T_e)$ depending on the temperature of the electron bath $T_e$ according to the law:
 \begin{equation}
 R (T_e) = R_0 \exp \left( \sqrt{ \frac{T_e}{T_0} } \right)
@@ -340,7 +338,7 @@ To set the normalization constants $A_i$, the initial conditions of the system a
 \sum_i P_{vi} A_i
 \end{array} \right) = \bm{P} \bm{A}
 \qquad \longrightarrow \qquad \bm{A}=\bm{P}^{-1} \bm{\phi} (0)
-\label{normal}
+\label{eq:ethem-initial-value}
 \end{equation}
 with $\bm{A}$ the vector containing the constants $A_i$.
 
@@ -461,9 +459,7 @@ By reading the block diagram from left to right, we can follow the propagation o
 
 The response of the system to an event is characterized by the sensitivity $s_V$. In the case of a particle interaction depositing all the recoil energy in the absorber, the sensitivity is expressed ${s}_V(\omega) = Z_{va}^{-1}\hat{p}(\omega)$ with $\hat{p}(\omega)$ the Fourier transform of the signal into power $W$. The approximation of an instantaneous recoil energy deposit gives $\hat{p}(\omega) = \hat{\delta} = 1$, which tremendously simplifies the calculations.
 The variant where we consider the phonon relaxation time requires to multiply by the low-pass function $\hat{p}(\omega) = 1/(1+i\omega \tau_P)$ with $\tau_P$ the time constant corresponding to the phonon relaxation time within the detector.
-Other direct detection experiments, such as CDMS 
-%\cite{julian}
-, work by detecting athermal phonons that can transfer between the different components of the detector before relaxing. Thus, it is possible to have a fraction $\epsilon$ of the phonons, produced during an event, leaving the absorber to the NTD and relax there. We would then observe a temperature rise directly in the NTD sensor, in addition to the temperature rise in the absorber. Taking this possibility into account, the sensitivity of the system is rewritten:
+Other direct detection experiments, such as CDMS \cite{Billard:2012}, work by detecting athermal phonons that can transfer between the different components of the detector before relaxing. Thus, it is possible to have a fraction $\epsilon$ of the phonons, produced during an event, leaving the absorber to the NTD and relax there. We would then observe a temperature rise directly in the NTD sensor, in addition to the temperature rise in the absorber. Taking this possibility into account, the sensitivity of the system is rewritten:
 \begin{equation}
 \label{sv}
 \hat{s}_V(\omega) = \left[(1-\epsilon) Z_{va}^{-1} + \epsilon Z_{ve}^{-1}\right]\hat{p}(\omega) \qquad [V/W]
@@ -471,11 +467,10 @@ Other direct detection experiments, such as CDMS
 The $\epsilon$ fraction of so-called "athermic" phonons depends very strongly on the geometry of the germanium crystal, its polishing, the glue used between the absorber and the NTD, and surely other parameters of the experiment that are not yet identified. The presence of athermic phonons is detected thanks to the signal shape: the temperature rise of the NTD is faster and an exponential contribution appears characterized by the time constant $\tau_P$. We will see later in this chapter that the RED10 detector has a relatively large fraction of athermic phonons which is estimated by the signal shape.
 
 The resolution of the block-diagram \ref{fig:block-diagram} ensures that the feedback loop associated with the Joule power $\Delta P_J$ is negative, allowing the stability of the NTD resistor polarization. Indeed, the temperature rise $\Delta T_e$ created by the bias current in the NTD decreases its resistance $R$ due to its resistivity characteristic \ref{eq:ntd-resistivity} being monotically decreasing. This, in turn, reduces the Joule effect $P_J \propto R$ assuming the bias current $I_P$ being almsot constant.
-This negative feedback is characteristic from the thermal sensor technology used: the resistance of the NTDs decreases with temperature. The other main thermal sensor technology used in cryogenic bolometers, the Transition Edge Sensors (TES) based on the superconductive transition of a material have %\cite{julien} \cite{matrix}
-an increasing resistance with the temperature. In this situation, this would result in a positive feedback which would eventually lead to the thermal sensor heating itself out of its sensitivity range. To obtain negative feedback and polarization stability, these experiments use voltage polarization and not current polarization. Indeed, we are in the case $P_J=V^2/R$ with $V$ kept constant.
+This negative feedback is characteristic from the thermal sensor technology used: the resistance of the NTDs decreases with temperature. The other main thermal sensor technology used in cryogenic bolometers, the Transition Edge Sensors (TES) based on the superconductive transition of a material have 
+an increasing resistance with the temperature \cite{Billard:2012} \cite{Figueroa:2006}. In this situation, this would result in a positive feedback which would eventually lead to the thermal sensor heating itself out of its sensitivity range. To obtain negative feedback and polarization stability, these experiments use voltage polarization and not current polarization. Indeed, we are in the case $P_J=V^2/R$ with $V$ kept constant.
 
-Another advantage of this negative feedback is the attenuation of some disturbances: we can then reduce the impact of noise in general and in particular thermal noises
-%\cite{mather}. 
+Another advantage of this negative feedback is the attenuation of some disturbances: we can then reduce the impact of noise in general and in particular thermal noises \cite{Mather:1982}. 
 The thermal noises are the intrinsic limiting phenomenon interfering with the measurement. Generally speaking, the only way to reduce them is to lower the temperature of the cryostat further, which is difficult because we then come up against the limit of cryogenic technology.
 
 It is now possible to access the noise spectral density referred to the voltage at the terminals of the NTD by quadratically summing the different noise sources, considering that they are not correlated with each other. The total noise power spectral density is expressed in \si{\volt^2\per\Hz} as,
@@ -485,9 +480,8 @@ S_{V,total} = \sum_i^{sources} \left\vert \sum_j^{a,p,e,v} Z_{v,j}^{-1} (\omega)
 \end{equation}
 where the quadratic summation is performed on all noise sources, and the $v$ index refers to the coefficients of the inverted coupling matrix relative to the voltage across the NTD.
 
-The different noise sources and the level at which they occur are shown in red on the figure \ref{fig:block-diagram}. First of all we have the presence of TFN heat power presents for each thermal link in the system: $P_{ap}, P_{pb}, P_{ep}$. The PSD of these power fluctuations in the link connecting a bath at $T_i$ and a bath at $T_j$ is expressed in \si{\watt^2\per\Hz} as:
-% \cite{alex} \cite{ashcroft}
-:
+The different noise sources and the level at which they occur are shown in red on the figure \ref{fig:block-diagram}. First of all we have the presence of TFN heat power presents for each thermal link in the system: $P_{ap}, P_{pb}, P_{ep}$. The PSD of these power fluctuations in the link connecting a bath at $T_i$ and a bath at $T_j$ is expressed in \si{\watt^2\per\Hz} as
+\cite{Juillard:1999} \cite{Ashcroft:1976} :
 \begin{equation}
 S_{P,ij} = 2k_B(T_i^2 + T_j^2) G_{ij}
 \end{equation}
@@ -527,9 +521,7 @@ Now that we have expressed the spectral noise density on the measured voltage an
 \label{eq:nep}
 NEP^2(\omega) =  \frac{S_{V,total}}{|\hat{s}_V|^2}
 \end{equation}
-The NEP can be interpreted as the inverse of the signal-to-noise ratio, taking into account the system bandwidth. It can therefore be expected that the energy resolution $\sigma_E$ of the detector will be related to this value. Calculations described in
-%\cite{cpd}
-, then gives the expression of the energy resolution in \si{\joule} as a function of the NEP:
+The NEP can be interpreted as the inverse of the signal-to-noise ratio, taking into account the system bandwidth. It can therefore be expected that the energy resolution $\sigma_E$ of the detector will be related to this value. Calculations described in \cite{Enss:2005md} gives the expression of the energy resolution in \si{\joule} as a function of the NEP:
 
 \begin{equation}
 \label{eq:resolution}
@@ -558,8 +550,7 @@ These two electronics are based on the action of a field effect transistor calle
 
 \subsection{Noise Characterization}
 
-Although there are no precise expressions for the PSDs of current and voltage noise, several models have already been proposed to describe different transistor technologies
-% \cite{low-low-noise-electronic} \cite{alex}.
+Although there are no precise expressions for the PSDs of current and voltage noise, several models have already been proposed to describe different transistor technologies \cite{Motchenbacher:1993low} \cite{Juillard:1999}.
 Based on PSD measurements and the literature, the following noise model is proposed for the current and voltage sources associated with the amplification electronics:
 \begin{equation}
 \label{eq:i-amplifier}
@@ -600,16 +591,14 @@ This information on the noise PSD   allows to rigorously construct a likelihood 
 \end{equation}
 where we sum over all the frequency bins $N_{bin}$ and over the set of measurement temperatures $N_{Temp}$. Indeed, the model is simultaneously adjusted on several PSD measurements carried out for temperatures ranging from \SI{18}{\milli\kelvin} to \SI{40}{\milli\kelvin}. We thus hope to obtain better constraints on the parameters, firstly because more points are analyzed, but above all because the change in temperature modifies system parameters (in particular the resistance of the NTD $R(T_e)$) and removes the problems of degeneration between the different free parameters.
 
-Motivated by a Bayesian approach
-% \cite{julian}
-, the likelihood function to be maximized with the model adjustment to the experimental data is expressed as,
+Motivated by a Bayesian approach \cite{Billard:2012}, the likelihood function to be maximized with the model adjustment to the experimental data is expressed as,
 \begin{equation}
 \label{likelihood}
 \mathcal{L}(\Theta | \mathcal{D}) = \exp{\left(\frac{-\chi ^2 (\Theta|\mathcal{D})}{2}\right)}
 \end{equation}
 
 \subsection{Monte Carlo Markov Chain Analysis }
-
+\label{par:mcmc}
 
 We look for the set of parameter $\Theta$ that maximizes the likelihood function $\mathcal{L}(\Theta | \mathcal{D})$. To do this, we apply a Markov Chain Monte Carlo (MCMC) analysis. It is a method based on random walk with condition of one (or more) Markov chain, a set containing the free parameters, in the dimensional space $N=7$ corresponding to the number of free parameters. It has been shown that with a correct likelihood function, the Markov chain allows to sample this function in a neighborhood of the optimal solution. The advantages of the MCMC method are that it can probe a large part of the free parameter space and its converges quickly to the neighborhood of the optimal solution which can then be explored and analyzed with histograms of Markov chain positions. Figure \ref{fig:triangle-mcmc} displays such histograms in the case of the adjustment to the noise PSD of the EDELWEISS electronics.
 \begin{figure}
@@ -684,7 +673,7 @@ From \SI{10}{\Hz} to \SI{100}{\Hz}, the total noise is based on the intrinsic no
 
 
 \subsection{Calculation of the NEP and Resolution}
-\label{nep-res}
+\label{par:nep-res}
 
 Now that we have constrained all the parameters of the noise model, it is possible to finalize the computation of the resolution \ref{eq:resolution} with the computation of the NEP \ref{eq:nep}. Figure \ref{fig:nep-fig} shows the simulated sensitivity and NEP graphs of the detector with for the EDELWEISS electronics at \SI{18}{\milli\kelvin} for a bias current $I_P = \SI{1}{\nano\ampere}$. The sensitivity is consistent with the transfer function of a thermal system: it is indeed a low-pass. The simulation of the NEP is obtained from the sensitivity and the total noise PSD according to the formula \ref{eq:nep}. It which presents its lowest values between \SI{1}{\Hz} and \SI{100}{\Hz}. 
 
@@ -711,17 +700,18 @@ Note that the NEP takes its minimum values around \SI{10}{\Hz}: most of the heat
 % HERE
 \subsection{Thermal Characterization of the RED10 Detector}
 
-The RED10 detector has only recently come into the possession of the Manor group. Its design is identical to that of RED1. The difference with the latter lies in the type of glue used (glue from the CRESST experiment) and the dimensions of the NTD used. Some thermal parameters are then modified compared to RED1. It is thus necessary to characterize these thermal parameters for a new detector. One will be able to study its response to an event as it was done with RED1 in the previous parts.
+At the time of this study of the heat channel, the RED10 detector had only recently come into the possession of the Manoir group. It shares its design with the prototype RED1. The difference with the latter lies in the glue composition used and the dimensions of the NTD used. Some thermal parameters are therefore modified compared to RED1. It is thus necessary to characterize these thermal parameters for this new detector. One will be able to study its response to an event as it was done with RED1 in the previous section.
 
-\subsection{Current-voltage characteristic and signal shape}
+\subsection{Current-Voltage Characteristic and Signal Shape}
 
-The characterization of the thermal parameters uses the electro-thermal model that was built previously. We will want to adjust the unconstrained parameters to the experimental data with an MCMC analysis as for the characterization of the electronics. This time, the set of free parameters is :
+The characterization of the thermal parameters uses the electro-thermal model that was built in the section \ref{sec:electro-thermal-model}. We want to adjust the unconstrained parameters to the experimental data with an MCMC analysis similarly to the characterization of the electronics in the subsection \ref{par:mcmc}. This time, the set of free parameters is :
 \begin{equation}
 \Theta = (R_0, T_0, g_{ep}, g_k, g_{glue}, \epsilon, \tau_P)
 \label{theta-red10}
 \end{equation}
-Indeed, the new glue used has a different conductivity $g_{glue}$. The new geometry of the NTD (and also its slightly different neutron doping) will lead to a modification of the resistance $R_0$ and characteristic temperature $T_0$ present in the equation (\ref{ntd}). The change in dimension also impacts the electron-phonon coupling $g_{ep}$ and the Kapitza conduction coefficient $g_k$. A priori, the volumetric thermal capacities of the absorber and the NTD remain unchanged, which makes it possible to recalculate the new thermal capacities from the known dimensions of the NTD. It would have been possible to include these in the free parameters, but the choice to fix them was favored in order to avoid degeneration problems and thus better constrain the parameters.
-A preliminary study of the signal shape (shown on the right of figure \ref{v2i-red10}) of RED10 revealed that the pulse decay has two characteristic time constants. This type of signal has never been observed on signal measurements performed with RED1: there is only one characteristic decay time explained by the thermal leakage to the cryostat from the electron bath with a recoil energy deposit in the absorber. The presence of a second characteristic time for RED10 can only be explained by the presence of athermic phonons as introduced in section \ref{omega}. These are phonons that do not immediately relax in the absorber, but pass through the NTD sensor before relaxing. They thus create a temperature rise directly within the NTD. The source term $\bm{F}$ in the equation (\ref{ode-mat}) is then rewritten:
+Indeed, the new glue has a different conductivity $g_{glue}$. The new geometry of the NTD (and also its uncertainty of neutron doping) will lead to a modification of the resistance $R_0$ and characteristic temperature $T_0$ present in the equation \ref{eq:ntd-resistivity}. The change in dimension also impacts the electron-phonon coupling $g_{ep}$ and the Kapitza conduction coefficient $g_k$. In principle, the volumetric thermal capacities of the absorber and the NTD remain unchanged, which makes it possible to recalculate the new thermal capacities from the known dimensions of the NTD. It would have been possible to include these in the free parameters, but the choice to fix them was favored in order to avoid degeneration problems and thus better constrain the set of parameters $\Theta$.
+
+A preliminary study of the signal shape (shown on the right of figure \ref{fig:v2i-red10} of RED10 reveals that the pulse decay has two characteristic time constants. This type of signal has never been observed on signal measurements performed with RED1: there is only one characteristic decay time explained by the thermal leakage to the cryostat from the electron bath with a recoil energy deposit in the absorber. The presence of a second characteristic time for RED10 can only be explained by the presence of athermic phonons as introduced in section \ref{par:ethem-frequency-domain}. These are phonons that do not immediately relax in the absorber, pass into the NTD sensor before relaxing. They thus create a temperature rise directly within the NTD. The source term $\bm{F}$ in the equation \ref{eq:ethem-coupling-mat} is then rewritten:
 \begin{equation}
 \bm{F}(t-t_0) = 
 \left( \begin{array}{c}
@@ -731,12 +721,13 @@ A preliminary study of the signal shape (shown on the right of figure \ref{v2i-r
 0
 \end{array} \right) \delta (t-t0)
 \end{equation}
-with $\epsilon$ the fraction of recoil energy converted into athermic phonons. The normalization constants of the general time solution (\ref{eigein-solc-expr}) depend on the source term $\bm{F}$ according to (\ref{normal}) and therefore differ from the case of RED1 without athermal phonons. This has the effect of better expressing a new exponential, and thus a new characteristic time, contained in the general solution. This observation of two characteristic times for the signal motivates the addition of the fraction of athermic phonons $\epsilon$ and their characteristic relaxation time $\tau_P$ to the free parameters of the model.
+with $\epsilon$ the fraction of recoil energy converted into athermic phonons, and $C_a$ and $C_e$ the thermal capacity of the absorber and the electron bath respectively.
 
-The current-voltage characteristics and the shape of the signal at an event of the natural radioactivity with a fixed bias current $I_P=4$nA are measured on RED10 for different temperatures ranging from $18$mK to $30$mK. Thus, we study the behavior of RED10 in the steady state (section \ref{steady-section}) and in the time regime (section \ref{temporal}).
-The likelihood function analysis is performed with the MCMC method as in section \ref{caract}. Experimental data with the fitted models are presented in the figure (\ref{v2i-red10}).
+The normalization constants of the general time solution \ref{eq:eigein-solution-expr} depend on the source term $\bm{F}$ according to \ref{eq:ethem-initial-value} and therefore differ from the case of RED1, devoid of athermal phonons. This has the effect of better expressing a new exponential, and thus a new characteristic time, contained in the general solution. This observation of two characteristic times for the signal motivates the addition of the fraction of athermic phonons $\epsilon$ and their characteristic relaxation time $\tau_P$ to the free parameters of the model.
 
-\begin{figure}[!ht]
+The electro-thermal model is adjusted to the experimental data collected with RED10. The detector RED10 is polarized with a fixed bias current $I_P = \SI{4}{\nano\ampere}$ for different temperatures ranging from \SI{18}{\milli\kelvin} to \SI{30}{\milli\kelvin}. We study the behavior of RED10 in the steady state (see section \ref{par:staionnary-state}), with its experimental current-voltage characteristic, and its temporal response (section \ref{par:time-domain}) with experimental heat signals generated by electronic recoils induced by the natural radioactivity. The likelihood function analysis is performed with the MCMC method as in section \ref{par:mcmc}. Experimental data with the adjusted models are presented in the figure \ref{fig:v2i-red10}.
+
+\begin{figure}
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/v2i_red10.pdf}
 \end{minipage}
@@ -744,16 +735,16 @@ The likelihood function analysis is performed with the MCMC method as in section
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/pulse_red10.pdf}
 \end{minipage}
-\caption{Experimental measurement and model fitting of the current-voltage characteristic (left) and a signal created by an ambient radioactivity event (right) for the RED10 detector.}
-\label{v2i-red10}
+\caption{Experimental measurement and model fitting of the current-voltage characteristic (left) and normalized heat signals (right) for the RED10 detector.}
+\label{fig:v2i-red10}
 \end{figure}
 
-The fit seems good for both types of measurement with $\chi^2/ddl=1,612$. However, there is a difficulty in adjusting the pulse for a temperature of $30$mK. The current-voltage characteristic makes it possible to constrain the free parameters involved in the steady state equations: $R_0, T_0, g_{ep}, g_k$. The analysis of these equations (\ref{steady}) gives us that the linear part of the characteristic constrains mainly the resistance value of the NTD, and thus $R_0, T_0$. The voltage plateau at higher bias current comes from an excessive Joule effect which is then no longer compensated by the thermal leakage to the cryostat. The NTD then increases in temperature, losing electrical resistance with a constant bias current, which causes the voltage plateau to appear. Its adjustment thus constrains the values of conductivity $g_k$ and electron-phonon coupling $g_{ep}$.
+The fit seems good for both types of measurement with a $\chi^2/ddl=1.612$. However, the model has some difficulty in adjusting the pulse for at a temperature of \SI{30}{\milli\kelvin}. The current-voltage characteristic, also called V(I) curve, makes it possible to constrain the free parameters involved in the steady state equations \ref{eq:ethem-system-stationnary}: $R_0, T_0, g_{ep}, g_k$. The experimental points in the linear part of the V(I) curves below \SI{1}{\nano\ampere} mainly constrains the resistance value of the NTD, and thus $R_0, T_0$. The voltage plateau at higher bias current above \SI{1}{\nano\ampere} comes from an excessive Joule effect in the NTD which is then no longer compensated by the thermal leakage to the cryostat. The temperature of the NTD increases and its resistivity decreases with constant bias current $I_P$, which causes the voltage plateau to appear. Its adjustment thus constrains the values of conductivity $g_k$ and electron-phonon coupling $g_{ep}$.
 
-As for the shape of the signal, the model shows two slopes and thus two characteristic times. The adjustment of these two decay slopes constrains the athermic phonon fraction $\epsilon$, and more generally, all the parameters involved in the calculation of the normalization constants of the eigen-base of the solutions (\ref{eigen-soluc}).
+As for the shape of the signal, the model shows two slopes and thus two characteristic times. The adjustment of these two decay slopes constrains the athermic phonon fraction $\epsilon$, and more generally, all the parameters involved in the calculation of the normalization constants of the basis of the eigenvector of the solutions \ref{eq:eigen-solution}.
 The rise in tension allows to constrain the relaxation time of the phonons $\tau_P$. Indeed, for an immediate relaxation of the phonons, the rise time would be infinitely large (modulo the cutoff frequency $(RC_{fil})^{-1]}$).
 
-The MCMC method then gives the following constraints for RED10:
+The MCMC method then gives the fitting parameters for RED10:
 
 \begin{align}
 R_0 &= (11.6 \pm 0.4)&[\Omega] \\
@@ -765,45 +756,45 @@ g_{glue} &= (7.46 \pm 1.67) \times 10^{-4} &[W/K^{n_g}/mm^2] \\
 \tau_P &= (4.03 \pm 0.03) \times 10^{-3} &[s]
 \end{align}
 
+These values are of the same order of magnitude as those corresponding to RED1. It is important to highlight the high portion heat energy expressed as athermal phonons of about \SI{20}{\percent} which is to be compared to their complete absence within the RED1 detector. This is a new observation for this type of detector. Their high presence results in an acceleration of the voltage signal and thus an increase of the frequency range of interest of the signal introduced in the paragraph \ref{par:nep-res}. In addition, athermic phonons are not affected by the capacity of the absorber, and transmit all their energy directly to the NTD. Understanding and increasing the rate of athermal phonons will thus allow to increase the sensitivity leading to better lowered energy resolution of the detector. A new way of optimizing the detectors has been discovered, which has not yet considered within the R\&D program.
 
-These thermal parameter values are of the same order of magnitude as those corresponding to RED1. It is important to highlight the high portion of athermal phonons of about $20\%$ which is to be compared to their complete absence with the RED1 detector. This is a new observation for this type of detector. Their high presence results in an acceleration of the voltage signal and thus an increase of the frequency range of interest of the signal introduced in the section \ref{nep-res}. In addition, athermic phonons are not affected by the capacity of the absorber, and transmit all their energy directly to the NTD. Understanding and increasing the rate of athermal phonons will thus allow the resolution of the detector to be lowered. A new way of optimizing the detectors has been discovered, which is not yet considered within the EDELWEISS collaboration.
 
-\subsection{Red10 noise and resolution}
+\subsection{Noise Levels and Energy Resolution of RED10}
 
-Since RED10 is fully characterized from the thermal point of view, and the CUORE electronics used for the measurements are also characterized, we are able to simulate the noise spectrum related to RED10 compared to the experimental measurement. Figure (\ref{noise-red10}) shows the modeling and experimental measurement of the PSD of RED10 noise at a bias current of $4$nA for a temperature of $22$mK. Note that a Bessel filter is applied to the measurement, and to the model, which explains the cutoff appearing from $2$kHz.
+Since RED10 is fully characterized from the thermal point of view, and the JFET-based electronics used for the measurements is also characterized, we are able to simulate the noise spectrum related to RED10 compared to the experimental measurement. Figure \ref{fig:noise-red10} shows the adjusted model and the experimental measurement of the noise PSD of RED10 for a bias current of \SI{4}{\nano\ampere} and an operating temperature of \SI{22}{\milli\kelvin}. Note that a Bessel filter is applied to the measurement, and to the model, which explains the cutoff appearing from \SI{2}{\kilo\Hz}.
 
-\begin{figure}[!ht]
+\begin{figure}
 \begin{center}
 \includegraphics[width=0.55\textwidth]{Figures/Ethem/modexp.pdf}
 \end{center}
-\caption{Experimental measurement of a spectral density at $22 mK$ with RED10 compared to a simulation of the built model.}
-\label{noise-red10}
+\caption{Experimental measurement of the noise PSD at $22 mK$ with RED10 compared to its simulation with the electro-thermal model.}
+\label{fig:noise-red10}
 \end{figure}
 
-The model and the measurement describe very similar developments. We do find the presence of high low frequency noise that dominates up to $15$Hz. It is then the current noise that predominates over the rest of the frequency range. It should be noted that a measurement of noise with bias current is performed here, so it would be incorrect to compare the presented current noise of RED10 with the current noise of RED1 obtained without bias current. However, there is a slight shift in the model from the experimental data to the low frequencies. This can be explained by the underestimation of the low-frequency noise already observed for CUORE electronics in the figure (\ref{rainbow-plot}). The excess of low-frequency noise also comes from the high rate of muon events during the measurements: despite the cuts made in the analysis, part of the signal decay is always recovered, which helps to amplify the low frequencies of the measured spectrum.
+The model and the measurement describe very similar developments. We do find the presence of a low frequency noise of high level dominating the total noise PSD up to \SI{15}{\Hz}. It is then the current noise that predominates over the rest of the frequency range.
+It should be noted that this PSD measurement is performed with the polarization of the NTD as opposed to the characterization of the noise of the JFET-based and EDELWEISS electronics which was done with $I_P = \SI{0}{A}$. As such, it would be incorrect to compare the presented current noise of RED10 with the current noise of RED1 obtained without bias current.
+There is a slight shift in the model from the experimental data to the low frequencies. This can be explained by the underestimation of the low-frequency noise already observed for the JFET-based electronics in the figure \ref{fig:rainbow-plot}. The excess of low-frequency noise also comes from the high rate of muon events during the measurements: despite the cuts made in the analysis, part of the signal decay is always recovered, which helps to amplify the low frequencies of the measured spectrum.
 
-The experimental resolution measurement is carried out from the noise PSD and the measurement of a signal. Indeed, renormalizing the amplitude of the signal and applying a Welch method allows to estimate the signal sensitivity of the RED10 detector. The renormalization also requires to know the conversion between the energy deposited in the absorber by an event and the amplitude of the measured signal. This calibration is performed using the interaction of cosmic muons with the absorber. The energy they deposit in the absorber is equal to $18$MeV. Measuring the voltage amplitude of a muon signal therefore allows to deduce the conversion factor necessary for the renormalization of a signal. The application of the discrete analogue of the formula (\ref{resolution}) to a noise spectrum and the previously calculated sensitivity allows the evaluation of an experimental resolution. 
+The experimental resolution measurement is carried out from the noise PSD and the measurement of a heat signal. Indeed, renormalizing the amplitude of the signal and applying a Welch method allows to estimate the signal power spectrum, equivalent to the sensitivity $s_V$ of the RED10 detector. The renormalization also requires to know the conversion between the energy deposited in the absorber by an event and the amplitude of the measured signal. This calibration is performed using the interaction of cosmic muons with the absorber. The energy they deposit in the absorber is equal to \SI{18}{\mega\eV}. Measuring the voltage amplitude of a muon signal therefore allows to deduce the conversion factor necessary for the renormalization of a signal. The experimental heat energy resolution $\sigma_E$ is calculated using the discrete analogue of the formula \ref{eq:resolution}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=0.55\textwidth]{Figures/Ethem/resamp_fin_fin.pdf}
 \end{center}
-\caption{Resolution-Signal amplitude characteristic for the RED10 detector for a bias current of $4$nA with temperatures ranging from $18$mK to $30$mK.}
-\label{amp-res-red10}
+\caption{Heat resolution $\sigma_E$ versus the normalized signal amplitude for the detector RED10 polarized with a bias current of \SI{4}{\nano\ampere}  with temperatures ranging from \SI{18}{\milli\kelvin} to \SI{30}{\milli\kelvin}.}
+\label{fig:amp-res-red10}
 \end{figure}
 
+Figure \ref{fig:amp-res-red10} shows the energy resolutions $\sigma_E$ as a function of the normalized heat signal amplitudes in \si{\nano\volt\per\kilo\eV} for different temperatures at a fixed bias current. The experimental resolutions are higher than the simulated resolutions. This is explained by the deviation between model and noise measurement observed in figure \ref{fig:noise-red10}: the modeled low-frequency noise is lower than in reality, hence the simulation of lower resolutions. The pulse amplitude is used to estimate the sensitivity of RED10 to the signal. Except for the \SI{30}{\milli\kelvin} measurement where the signal was already poorly modeled, the simulated and real amplitude values are almost identical. Moreover, since the two sets of dots show a very similar evolution of the resolution as a function of amplitude, it is deduced that the model is in good adequacy with the experimental reality. A study of the noise difference is still necessary to obtain a complete adequacy of model and experiment.
 
-The figure (\ref{amp-res-red10}) shows the resolutions as a function of the signal amplitude for different temperatures at a fixed bias current. The experimental resolutions are higher than the simulated resolutions. This is explained by the deviation between model and noise measurement observed in figure (\ref{noise-red10}): the modeled low-frequency noise is lower than in reality, hence the prediction of lower resolutions. The pulse amplitude is used to estimate the sensitivity of RED10 to the signal. Except for the $30$mK measurement where the signal was already poorly modeled, the simulated and real amplitude values are almost identical. Moreover, since the two sets of dots show a very similar evolution of the resolution as a function of amplitude, it is deduced that the model is in good adequacy with the experimental reality. A study of the noise difference is still necessary to obtain a complete adequacy of model and experiment.
+It should be noted that the measurements were performed with the JFET-based electronics. The simulation of the resolution-amplitude characteristic is plotted for both the JFET-based and the EDELWEISS electronics. It should be noted that the latter makes it possible to gain almost a factor of 2 on the value of the resolution as the amplitude remains unchanged. This is consistent with the low noise level of EDELWEISS compared to the noise level of the common JFET-based electronics.
 
-It should be noted that the measurements were performed with CUORE electronics. The simulation of the resolution-amplitude characteristic is plotted for both CUORE and EDELWEISS electronics. It should be noted that the latter makes it possible to gain almost a factor of 2 on the value of the resolution (the amplitude remains unchanged). This is consistent with the low noise level of EDELWEISS compared to that of CUORE.
 
-\subsection{Optimization of the RED10 detector and perspectives}
+\subsection{Optimization of the RED10 Detector and Perspectives}
 
-An electro-thermal model was built and tested with RED10. Even if some parameters need to be further refined to have a better fit, we can perform a preliminary optimization of the RED10 detector. A simulation of the resolution of RED10 as a function of the bias current flowing through its NTD for different cryostat temperatures is presented in figure \ref{optim}. The simulation is performed with the EDELWEISS electronics which has the lowest noise level, and the temperature of the load resistor is lowered to the temperature of the mixing chamber to reduce its Johnson noise (which will be realized in the next few months).
+An electro-thermal model was built and tested with RED10. Even if some parameters need to be further refined to have a better fit, we can perform a preliminary optimization of the RED10 detector. A simulation of the resolution of RED10 as a function of the bias current $I_P$ in the NTD thermistance for different cryostat temperatures is presented in figure \ref{fig:optim}. The simulation is performed with the EDELWEISS electronics which has the lowest noise level, and the temperature of the load resistor is lowered to the temperature of the mixing chamber to reduce its Johnson noise.
 
-It is observed that there is an optimum current corresponding to each temperature to minimize the resolution. Indeed, if the NTD thermistor is polarized too much, the heat produced by Joule effect can no longer be evacuated efficiently by the thermal leakage. The temperature of the NTD becomes high and therefore its value drops, which affects the sensitivity of the system. The same effect is observed when plotting the current-voltage characteristic in figure \ref{v2i-red10}. At too low a current, the NTD sensor is no longer polarized enough to efficiently convert the heat signal into a voltage signal: the sensitivity drops as well. No matter what bias current is used, the lowest resolution is always obtained at the lowest temperature. The NTD's resistance formula (\ref{ntd}) explains why the signal is more sensitive at low temperatures: the derivative of the resistance with respect to the temperature takes its maximum values there (in absolute terms). Moreover, lowering the temperature reduces all TFN noise, and the Johnson noise of the NTD thermistor, which further improves the resolution.
-
-\begin{figure}[!ht]
+\begin{figure}
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/red10_i.pdf}
 \end{minipage}
@@ -811,13 +802,22 @@ It is observed that there is an optimum current corresponding to each temperatur
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/red10_mass.pdf}
 \end{minipage}
-\caption{(left) Simulation of the resolution of RED10 as a function of the bias current for different temperatures. \\ (right) Simulation of the resolution with optimized bias current as a function of the absorber mass for different temperatures. The design considered is the same as that of RED10, only the mass of the absorber is changed by adjusting the bias current to obtain the lowest resolution.}
-\label{optim}
+\caption{On the left, Simulation of the resolution of RED10 as a function of the bias current for different temperatures. On the right, Simulation of the resolution with optimized bias current as a function of the absorber mass for different temperatures. The design considered is the same as that of RED10, only the mass of the absorber is changed by adjusting the bias current to obtain the lowest resolution.}
+\label{fig:optim}
 \end{figure}
 
-The RED10 study was fully realized for a bias current of $4$nA, which corresponds to the optimal current at a temperature of about $24$mK. It would therefore have been possible to obtain better resolution values by adjusting the bias current for each temperature. Thus, it will be important, in the future, to properly determine the optimum polarization current of a detector according to the measurement conditions.
+It is observed that there is an optimum bias current $I_P$ corresponding to each temperature to minimize the energy resolution $\sigma_E$. Indeed, if the NTD thermistor is polarized too much, the heat produced by Joule effect can no longer be evacuated efficiently by the thermal leakage. The temperature of the NTD becomes high and therefore its value drops, which affects the sensitivity of the system. This effect is observed in the current-voltage characteristic as the plateau at high bias current in figure \ref{fig:v2i-red10}. At too low bias current, the NTD sensor is no longer polarized enough to efficiently convert the heat signal into a voltage signal: the sensitivity drops as well.
 
-The search for light dark matter requires the development of a new generation of detector with very low detection threshold. For this, it is necessary to work on the design of the detectors. For example, it is necessary to study the behavior of the detector according to the geometry of the NTD, the mass of the absorber or the location of thermal leaks. A simulation of the resolution of a detector as a function of the absorber mass is shown in the graph on the right side of figure \ref{optim}. Note that the polarization current is adjusted for each point to draw an already optimized resolution curve. According to the formula (\ref{capa}), it would be interesting to reduce the thermal capacity of the absorber $C$, by lowering its mass, in order to cause a greater temperature rise $\Delta T$, and thus amplify the heat signal. According to the simulation, this amplification of the heat signal would appear only for very small detector masses, and would remain very modest for low temperatures. 
+No matter what bias current is used, the lowest resolution is always obtained at the lowest temperature. The NTD resistivity formula \ref{eq:ntd-resistivity} explains why the signal is more sensitive at low temperatures: the derivative of the resistance with respect to the temperature takes its maximum values there. Moreover, lowering the temperature reduces all TFN noise, and the Johnson noise of the NTD thermistor, which further improves the energy resolution.
 
-It is now understood that we remain limited for the moment by another aspect of the detector. In the future, the optimization of the detector will involve the study of the behavior as a function of the dimensions of the NTD thermistor and the thermal conduction surfaces. It already appears that it would be necessary to reduce the thermal capacities of the different baths while maximizing the thermal bonds. 
+The RED10 study was fully realized for a bias current of \SI{4}{\nano\ampere}, which corresponds to the optimal current at a temperature of about \SI{24}{\milli\kelvin}. It would therefore have been possible to obtain better resolution values by adjusting the bias current for each temperature. Thus, it will be important, in the future, to properly determine the optimum polarization current of a detector according to the measurement conditions.
 
+The precision measurement of the CENNS requires the development of a new generation of detector with very low detection threshold. For this, it is necessary to work on the design of the detectors. For example, it is necessary to study the behavior of the detector according to the geometry of the NTD, the mass of the absorber
+%or the location of thermal leaks.
+A simulation of the resolution of a detector as a function of the absorber mass is shown in the graph on the right side of figure \ref{fig:optim}. Note that the polarization current is adjusted for each point to draw an already optimized resolution curve. According to the formula \ref{eq:capa}, it would be interesting to reduce the thermal capacity of the absorber $C$, by lowering its mass, in order to increase the temperature pulse $\Delta T$, and thus amplifying the heat signal. According to the simulation, this amplification of the heat signal would appear only for very small detector masses, and would remain very modest for low temperatures. 
+
+The results of this study of the heat channel lead to a decrease of the mass of the germanium crystal used in the RED detectors. From the \SI{250}{\g} crystal of the detectors RED1 and RED10, the newest RED detectors such as RED80 and REDN1 (presented in the chapter \ref{ChapterElectrodesExperimental}) possesses smaller \SI{38}{\g} germanium crystals. 
+
+
+%It is now understood that we remain limited for the moment by another aspect of the detector. In the future, the optimization of the detector will involve the study of the behavior as a function of the dimensions of the NTD thermistor and the thermal conduction surfaces. It already appears that it would be necessary to reduce the thermal capacities of the different baths while maximizing the thermal bonds. 
+%
