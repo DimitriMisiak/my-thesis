@@ -12,8 +12,8 @@ This chapter is dedicated to the study of the heat channel of the cryogenic germ
 
 The first section explains the development of an electro-thermal model to simulate a detector. This is followed by a description of the analysis used to characterize the electronics from experimental data obtained with the already characterized RED1 detector. Then is presented the characterization of a new RED10 detector based on the constructed model and new experimental measurements. Finally, the comparison between the resolutions of the experiment and the simulation allows to verify the validity of the model and to define the next research tracks.
 
-RED1 and RED10 have the same clear design with only a heat channel. A picture of the RED10 detector is presented in figure (\ref{fig:red10-photo}).
-Each if these detector is based on a polished \SI{250}{\g} Ge crystal which is devoid of any electrode. The crystal is held fixed inside the copper chassis with six Teflon clamps not conducting heat. A single NTD thermistance is glued near the center of the top planar surface. This thermal sensor is cabled to the polarization and readout electronics with 8 gold wires of width \SI{25}{\micro\meter} which also act as the thermal leakage of the detector.
+RED1 and RED10 have the same clear design with only one heat channel. A picture of the RED10 detector is presented in figure \ref{fig:red10-photo}.
+Each of these detector is based on a polished \SI{200}{\g} Ge crystal which is devoid of any electrode. The crystal is held fixed inside the copper chassis with six insulating Teflon clamps. A single NTD thermistance is glued near the center of the top planar surface. This thermal sensor is cabled to the polarization and readout electronics with 8 gold wires of width \SI{25}{\micro\meter} which also act as the thermal leak of the detector.
 
 \begin{figure}[!h]
 \centering
@@ -30,15 +30,13 @@ The NTD of RED10 is characterized later in this work thanks to experimental data
 \section{Electro-Thermal Modelization of the RED Dectectors}
 \label{sec:electro-thermal-model}
 
-In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method \cite{Figueroa:2006}. 
-It is then possible to simulate the behavior of a detector in the steady state, in the time regime and in the frequency regime, which gives access to the complete characterization of the detector.
+In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method \cite{Figueroa:2006} \cite{Billard:2016apk}.
+It is then possible to simulate the behavior of a detector in the steady state, in the time domain and in the frequency domain, which gives access to the complete characterization of the detector.
 
 \subsection{Describing the Detector with a System of Equation}
 
-
-
-In this subsection, we define the system of equation ruling a RED10 like detector with a single NTD thermal sensor. The detector is considered as a thermal system composed of multiple thermal baths of homogeneous, each characterized by a thermal capacity $C$ in \si{\joule\per\kelvin} and a temperature $T$ in \si{kelvin}.
-This approximation of thermal baths with homogeneous temperature is motivated by the cryogenic temperature of few tens of \si{\milli\kelvin} of the detector: in this situation, all the difference in temperature are located on the interfaces between each of the thermal component of the detector.
+In this subsection, we define the system of equations ruling a RED10 like detector with a single NTD thermal sensor. The detector is considered as a thermal system composed of multiple thermal baths of homogeneous temperature $T$, each characterized by a thermal capacity $C$ in \si{\joule\per\kelvin}.
+This approximation of thermal baths with homogeneous temperature is motivated by the cryogenic temperature of few tens of \si{\milli\kelvin} of the detector: in this situation, all the differences in temperature are located on the interfaces between each of the thermal components of the detector.
 %\cite{note}.
 The thermal scheme of the detector RED10 is presented in the figure \ref{fig:thermal-scheme} which features four thermal baths:
 \begin{itemize}
@@ -56,22 +54,22 @@ The thermal scheme of the detector RED10 is presented in the figure \ref{fig:the
 \label{fig:thermal-scheme}
 \end{figure}
 
-They are connected by thermal links characterized by thermal conductivity $G$ in $\si{\watt\per\kelvin}=\si{\joule\per\s\per\kelvin}$, which allows a power transfer $P$ between the baths.
-At cryogenic temperatures, all heat power are modeled using the Kapitza conduction formula for non-diffusive processes.
+They are connected by thermal links characterized by thermal conductivity $G$ in \si{\watt\per\kelvin}, which allows a power transfer $P$ between the baths.
+At cryogenic temperatures, all heat powers are modeled using the non-linear conduction formula for non-diffusive processes \cite{Galeazzi:2003pe}.
 % citation needed
 The heat power from a thermal bath "1" to a thermal bath "2" is expressed as:
 \begin{equation}
 \label{eq:kaptiza-conduction}
 P_{12} = g_{12} \left( T_2^{n_{12}} - T_1^{n_{12}}\right)
 \end{equation}
-with $g_{12}$ the Kapitza conductance in \si{\watt\per\kelvin^{-n_{12}}} and $n_{12}$ the Kapitza exponent. Both parameters depends on the interface between the thermal baths and were mainly determined experimentally.
+with $g_{12}$ the conductance in \si{\watt\per\kelvin^{-n_{12}}} and $n_{12}$ an exponent. Both parameters depend on the interface between the thermal baths and were mainly determined experimentally.
 
-The NTD thermistance is modeled as two separate thermal bath: the phonon bath (index $p$) and the electron bath (index $e$). Indeed at ambient temperature, the phonons and conduction electrons are in constant thermal equilibrium with the same apparent temperature $T_p = T_e$. However, at cryogenic temperature, this thermal equilibrium is reached much later and has significant impact on the thermal response of the detector. The heat power transferred from the electronic bath to the phonon bath depends on theirs temperatures as:
+The NTD thermistance is modeled as two separate thermal baths: the phonon bath (index $p$) and the electron bath (index $e$). Indeed at ambient temperature, the phonons and conduction electrons are in constant thermal equilibrium with the same apparent temperature $T_p = T_e$. However, at cryogenic temperature, this thermal equilibrium is reached much later and has significant impact on the thermal response of the detector. The heat power transferred from the electron bath to the phonon bath depends on their temperatures as:
 \begin{equation}
 \label{eq:ep-heat-power}
 P_{ep}= \mathcal{V}_{NTD} g_{ep} (T_e^n - T_p^n)
 \end{equation}
-where $\mathcal{V}_{NTD}$ is the volume of the NTD sensor in \si{\mm^3}, $g_{ep}$ is the electron-phonon coupling constant per volume unit unit and $n$ is a material dependent exponent that is typically equal to 6 for thermistors such as germanium NTDs.
+where $\mathcal{V}_{NTD}$ is the volume of the NTD sensor in \si{\mm^3}, $g_{ep}$ is the electron-phonon coupling constant per volume unit and $n$ is a material dependent exponent that is typically equal to 6 for thermistors such as GeNTDs.
 
 
 The thermal bath associated with the absorber (index $a$) represents the phonon system of the germanium crystal. Indeed, since this material is a semiconductor at these operating temperatures, there are no free electrons in the conduction band. The absorber only exchanges heat power with the phonon system of the NTD through the thin layer of epoxy glue (with negligible thermal capacity). The heat power transferred from the absorber bath to the phonon bath is expressed as:
@@ -90,8 +88,10 @@ P_{pb}= S_{Au} g_k (T_p^{n_k} - T_b^{n_k})
 with $g_k$ the Kapitza conductance per unit area and the exponent $n_k=4$. The term $S_{Au}$ corresponds to the effective gold surface connecting the NTD to the copper chassis.
 %two gold surfaces $S_{Au}$ (one on the NTD, one on the support) connected by gold wires. We neglect this time the thermal capacity of the surfaces and gold wires, while considering an infinite thermal capacity of the copper support, allowing to keep a fixed temperature $T_b$ at all times.
 
-The heat channel derives the heat energy $E_{heat}$ created by a recoil in the absorber from a variation of the voltage $\Delta V$ of the NTD thermistance. In order to maintain the proportionality between the voltage $V$ and the resistivity $R$ of the NTD in the Ohm's law \ref{eq:ohm-law}, it is polarized with a constant current $I_P$. This is realized by adding a very high load resistance $R_L$ in series with a constant voltage source $V_B$.
-The electronic schematic that allows the polarization and the measurement of the voltage at the terminals of the NTD resistor is shown in figure \ref{electric-scheme}.
+The heat channel derives the heat energy $E_{heat}$ created by a recoil in the absorber from a variation of the voltage $\Delta V$ of the NTD thermistance.
+In order to maintain the proportionality between the voltage $V$ and the resistivity $R$ of the NTD in the Ohm's law \ref{eq:ohm-law}, it is polarized with a constant current $I_P$.
+This is realized by adding a very high load resistance $R_L$ in series with a constant voltage source $V_B$.
+The electronics schematic that allows the polarization and the measurement of the voltage at the terminals of the NTD resistor is shown in figure \ref{fig:ethem-electric-scheme}.
 
 \begin{figure}
 \begin{minipage}[c]{0.45\textwidth}
@@ -118,18 +118,18 @@ with simplification in the frequency-domain:
 %\shorthandon{:!}
 }%
 \end{minipage}
-\caption{On the left, Diagram of the polarization and readout electronics. On the right, simplified diagram in the frequency-space with the use of Thevenin-Norton transformation. The NTD resistor $R(T_e)$, the load resistor $R_L$ and the cabling capacitance $C_{cabling}$ become the equivalent complex impedance $Z_{eq}$. Noise sources appear in red. Johnson noise, $e_{J_{RL}}$ and $e_{J_{NTD}}$, and amplifier current noise $i_{ampli.}$ are grouped into a current noise $i_{noise}$ whose expression is specified.}
+\caption{On the left, Diagram of the polarization and readout electronics. On the right, Simplified diagram in the frequency-space with the use of Thevenin-Norton transformation. The NTD resistor $R(T_e)$, the load resistor $R_L$ and the cabling capacitance $C_{cabling}$ become the equivalent complex impedance $Z_{eq}$. Noise sources appear in red. Johnson noise, $e_{J_{RL}}$ and $e_{J_{NTD}}$, and amplifier current noise $i_{ampli.}$ are grouped into a current noise $i_{noise}$ whose expression is specified.}
 \label{fig:ethem-electric-scheme}
 \end{figure}
 
-On the left it the schematic of the polarization electronics with noise sources represented in red voltage and current sources. The capacity of the cabling $C_{cabling}$ of the electronics is taken into account. The right scheme corresponds to the simplification with multiple Thevenin-Norton transformation \cite{Mather:1982} in the context of the frequency study, which is addressed later.
+On the left is the schematic of the polarization electronics with voltage and current noise sources represented in red. The capacity of the cabling $C_{cabling}$ of the electronics is taken into account. The right scheme corresponds to the simplification with multiple Thevenin-Norton transformation \cite{Mather:1982} in the context of the frequency study, which is addressed later.
 A constant bias voltage $V_B$ is applied to the load resistance $R_L$, of a few \si{\giga\ohm}, in series with the NTD resistance $R(T_e)$ depending on the temperature of the electron bath $T_e$ according to the law:
 \begin{equation}
 R (T_e) = R_0 \exp \left( \sqrt{ \frac{T_e}{T_0} } \right)
 \end{equation}
-with $R_0$ and $T_0$ a characteristic resistivity and temperature of the NTD.
+with $R_0$ and $T_0$ a characteristic resistivity and temperature of the NTD \cite{Mathimalar:2014sfa}.
 
-The electrical system takes into account the variation of the polarization current (second-order effect as $R_L \ll R_{NTD}$). The associated equation is,
+The electrical system takes into account the variation of the polarization current (second-order effect as $R_L \gg R_{NTD}$).
 The differential equation associated with the voltage of the NTD is:
 \begin{equation}
 \label{eq:electric-eq}
@@ -143,14 +143,13 @@ P_J= I_P^2 \cdot R(T_e)= \frac{V^2}{R(T_e)}
 \end{equation}
 
 The heat equations associated with each thermal bath is derived from all the previously defined heat powers. 
-
-For the electron system of the NTD, we first have a power from the Joule effect $P_J= I_P^2 R(T_e)=\frac{V^2}{R(T_e)}$. Then we have the power transfer from the phonon system of the NTD expressed as: $P_{ep}=V_{NTD} g_{ep} (T_e^n - T_p^n)$ where ,  and  The thermal equilibrium equation for the electron bath is obtained from the NTD Joule heating \ref{eq:joule-ntd} and the thermal coupling to the phonon bath \ref{eq:ep-heat-power} such that:
+The thermal equation for the electron bath is obtained from the NTD Joule heating (eq. \ref{eq:joule-ntd}) and the thermal coupling to the phonon bath (eq. \ref{eq:ep-heat-power}) such that:
 \begin{equation}
 \label{eq:heat-eq-electron}
  C_e \frac{\mathrm{d} T_e}{\mathrm{d} t} = \frac{V^2}{R(T_e)} - \mathcal{V}_{NTD} g_{ep} \left( T_e^{n} - T_p^{n} \right)
 \end{equation}
 
-For the NTD phonon system, we have the power from the phonon-electron coupling $P_{ep}$, the power transfer with the absorber \ref{eq:ap-heat-power}, and the thermal leakage \ref{eq:pb-heat-transfer} to the cryostat. This phonon bath is described by the heat equation :
+For the NTD phonon system, we have the power from the phonon-electron coupling $P_{ep}$, the power transfer with the absorber (eq. \ref{eq:ap-heat-power}), and the thermal leakage (eq. \ref{eq:pb-heat-transfer}) to the cryostat. This phonon bath is described by the heat equation:
 \begin{equation}
 \label{eq:heat-eq-phonon}
 C_p \frac{\mathrm{d} T_p}{\mathrm{d} t}
@@ -160,13 +159,13 @@ C_p \frac{\mathrm{d} T_p}{\mathrm{d} t}
 - g_k S_{Au} \left( T_p^{n_k} - T_b^{n_k} \right)
 \end{equation}
 
-The thermal equilibrium equation for the absorber bath is simply derived from the heat conduction through the glue \ref{eq:ap-heat-power}:
+The thermal equation for the absorber bath is simply derived from the heat conduction through the glue (eq. \ref{eq:ap-heat-power}):
 \begin{equation}
 \label{eq:heat-eq-absorber}
 C_a \frac{\mathrm{d} T_a}{\mathrm{d} t} = g_{glue} S_{NTD} \left( T_p^{n_g} - T_a^{n_g} \right)
 \end{equation}
 
-By bringing together the three heat equations \ref{eq:heat-eq-absorber}, \ref{eq:heat-eq-electron} and \ref{eq:heat-eq-phonon} as well as the differential equation \ref{eq:electric-eq} associated with the polarization electronics, we can compose a system of coupled differential equations that completely describes the electro-thermal model of the detector RED10 schematized in the figures \ref{thermal-scheme} and \ref{electric-scheme}:
+By bringing together the three heat equations \ref{eq:heat-eq-absorber}, \ref{eq:heat-eq-electron} and \ref{eq:heat-eq-phonon} as well as the differential equation \ref{eq:electric-eq} associated with the polarization electronics, we can compose a system of coupled differential equations that completely describes the electro-thermal model of the detector RED10 schematized in the figures \ref{fig:thermal-scheme} and \ref{fig:ethem-electric-scheme}:
 
 \begin{equation}
 \begin{cases}
@@ -183,23 +182,25 @@ By bringing together the three heat equations \ref{eq:heat-eq-absorber}, \ref{eq
 \end{equation}
 
 
-\subsection{Stationary State Solution}
-\label{par:staionnary-state}
+\subsection{Steady State Solution}
+\label{par:stationnary-state}
+\label{par:steady-state}
 
-The study of the steady state allows to obtain the physical quantities around which the disturbances of the system will occur. It is essential to calculate it in order to obtain the values of NTD resistance, thermal capacities and thermal conductivity. It is also necessary to perform a linearization step afterwards. The steady state is experimentally defined by the cryostat temperature $T_b$ and the bias voltage $V_B$. 
+The study of the steady state allows to obtain the physical quantities around which the disturbances of the system will occur. It is essential to calculate it in order to obtain the values of the NTD resistance, thermal capacities and thermal conductivities. It is also necessary to perform a linearization step afterwards. The steady state is experimentally defined by the cryostat temperature $T_b$ and the bias voltage $V_B$. 
 
-It is sufficient to cancel the time derivative terms in the system of equations (\ref{ode}) to obtain the system of equations in the stationary state with ($\bar{T}_a, \bar{T}_p, \bar{T}_e, \bar{V}$) being the solutions of the stationary state:
+It is sufficient to cancel the time derivative terms in the system of equations \ref{eq:ethem-system} to obtain the system of equations in the stationary state with ($\bar{T}_a, \bar{T}_p, \bar{T}_e, \bar{V}$) being the solutions of the stationary state:
 \begin{equation}
 \begin{cases}
 \label{eq:ethem-system-stationnary}
-0 &= g_{glue} S_{NTD} \left( \bar{T}_p^{n_g} - \bar{T}_a^{n_g} \right) \nonumber \\
-0 &= -g_{glue} S_{NTD} \left( \bar{T}_p^{n_g} - \bar{T}_a^{n_g} \right) + \mathcal{V}_{NTD}  g_{ep} \left( \bar{T}_e^{n} - \bar{T}_p^{n} \right) - g_k S_{Au} \left( \bar{T}_p^{n_k} - \bar{T}_b^{n_k} \right) \nonumber \\
-0 &= \frac{V^2}{R(\bar{T}_e)} - \mathcal{V}_{NTD} g_{ep} \left( \bar{T}_e^{n} - \bar{T}_p^{n} \right) \nonumber \\
+0 &= g_{glue} S_{NTD} \left( \bar{T}_p^{n_g} - \bar{T}_a^{n_g} \right)  \\[8pt]
+0 &= -g_{glue} S_{NTD} \left( \bar{T}_p^{n_g} - \bar{T}_a^{n_g} \right) + \mathcal{V}_{NTD}  g_{ep} \left( \bar{T}_e^{n} - \bar{T}_p^{n} \right) - g_k S_{Au} \left( \bar{T}_p^{n_k} - \bar{T}_b^{n_k} \right)  \\[8pt]
+0 &= \frac{V^2}{R(\bar{T}_e)} - \mathcal{V}_{NTD} g_{ep} \left( \bar{T}_e^{n} - \bar{T}_p^{n} \right)  \\[8pt]
 0 &= \frac{V_B - V}{R_L} - \frac{V}{R(\bar{T}_e)}
  \end{cases}
 \end{equation}
 
-The algebraic equations are non-linear due to the Kapista modelization \ref{eq:kaptiza-conduction} of the heat transfer and the expression of the NTD resistance \ref{eq:ntd-resistivity}. It is necessary to use a numerical resolution to solve this system. 
+These algebraic equations are non-linear due to the expressions of the heat power (eq. \ref{eq:kaptiza-conduction}) and of the NTD resistance \ref{eq:ntd-resistivity}. It is therefore necessary to use a numerical resolution to solve this system. 
+
 
 \subsection{Response in the Time Domain}
 \label{par:time-domain}
@@ -207,41 +208,42 @@ The algebraic equations are non-linear due to the Kapista modelization \ref{eq:k
 Solving the system of equations \ref{eq:ethem-system} would give the exact expressions of the temporal evolution of the temperatures of the different baths $T_a(t), T_p(t), T_e(t)$ and of the voltage at the terminals of the NTD $V(t)$.
 However, the very strong non-linearity of the system does not allow an analytical resolution.
 Nevertheless, only the response of the system to an event is of interest. As reference, a particle depositing a heat energy of \SI{1}{\kilo\eV} in the absorber induces a temperature increase of the order of $\mathcal{O}(100)\ \si{\micro\kelvin}$, which in turn, gives a voltage variation at the terminals of the NTD of the order of $\mathcal{O}(100)\ \si{\nano\volt}$. 
-It is thus a question of studying the response of the system to small signals. We propose to apply a first-order perturbation theory to the system of equations \ref{eq:ethem-system} with:
+It is thus a question of studying the response of the system to small signals. We propose to apply a first-order perturbation theory \cite{Pyle:2015pya} to the system of equations \ref{eq:ethem-system} with:
 \begin{equation}
 \label{eq:linearization}
 \begin{cases}
-T_a &= \bar{T}_a + \Delta T_a \\
-T_p &= \bar{T}_p + \Delta T_p \\
-T_e &= \bar{T}_e + \Delta T_e \\
-V &= \bar{V} + \Delta V \\
+T_a(t) &\simeq \bar{T}_a + \Delta T_a (t) \\
+T_p(t) &\simeq \bar{T}_p + \Delta T_p (t) \\
+T_e(t) &\simeq \bar{T}_e + \Delta T_e (t) \\
+V(t) &\simeq \bar{V} + \Delta V (t) \\
 \end{cases}
 \end{equation}
 With this linearization of the physical quantities, it is possible to define thermal conductivities $G$ for the different thermal links :
 \begin{itemize}
-\item glue crystal-NTD : \begin{equation}\label{eq:g1} G_{ap}^a  = n_g g_{glue} S_{NTD} \bar{T}_a^{n_g-1} \qquad \textrm{et} \qquad G_{ap}^p  = n_g g_{glue} S_{NTD} \bar{T}_p^{n_g-1}
+\item glue crystal-NTD: \begin{equation}\label{eq:g1} G_{ap}^a  = n_g g_{glue} S_{NTD} \bar{T}_a^{n_g-1} \qquad \textrm{and} \qquad G_{ap}^p  = n_g g_{glue} S_{NTD} \bar{T}_p^{n_g-1}
 \end{equation}
-\item electrons-phonon coupling : \begin{equation}\label{eq:g2} G_{ep}^e  = n g_{ep} \mathcal{V}_{NTD} \bar{T}_e^{n-1} \qquad \textrm{et} \qquad G_{ep}^p  = n g_{ep} \mathcal{V}_{NTD} \bar{T}_p^{n-1}
+\item electrons-phonon coupling: \begin{equation}\label{eq:g2} G_{ep}^e  = n g_{ep} \mathcal{V}_{NTD} \bar{T}_e^{n-1} \qquad \textrm{and} \qquad G_{ep}^p  = n g_{ep} \mathcal{V}_{NTD} \bar{T}_p^{n-1}
 \end{equation}
 \item thermal leakage through gold wires: \begin{equation}\label{eq:g3} G_{pb} = n_k g_{k} S_{Au} \bar{T}_p^{n_k-1}
 \end{equation}
 \end{itemize}
-Note that the conductivities have a "direction" of use as they depend on the temperature of the baths. By subtracting the steady state equation \ref{eq:ethem-system-stationnary} from the original system \ref{eq:ethem-system}, we then obtain a system of coupled linear equations :
+%Note that the conductivities have a "direction" of use as they depend on the temperature of the baths.
+ By subtracting the steady state equation \ref{eq:ethem-system-stationnary} from the original system \ref{eq:ethem-system}, we then obtain a system of coupled linear equations:
 \begin{equation}
 \label{eq:ethem-system-temp}
 \begin{cases}
 \displaystyle C_a \frac{d \Delta T_a}{d t}
 	&= -G_{ap}^a \Delta T_a + G_{ap}^p \Delta T_p 
-	\nonumber \\[10pt]
+	 \\[10pt]
 \displaystyle C_p \frac{d \Delta T_p}{d t} 
 	&= +G_{ap}^a \Delta T_a - G_{ap}^p \Delta T_p
 	+ G_{ep}^e \Delta T_e - G_{ep}^p \Delta T_p
 	- G_{pb}^p \Delta T_p
-	\nonumber \\[10pt]
+	 \\[10pt]
 \displaystyle C_e \frac{d \Delta T_e}{d t}
 	&= - G_{ep}^e \Delta T_e + G_{ep}^p \Delta T_p
 	+2\frac{\bar{V}}{R(\bar{T}_e)} \Delta V - \frac{\bar{V}^2}{R(\bar{T}_e)^2} \left.\frac{d R}{d T}\right\vert_{T_e} \Delta T_e
- 	\nonumber \\[10pt]
+ 	 \\[10pt]
 \displaystyle C_{cabling} \frac{d \Delta V}{d t} &= - \left( \frac{1}{R_L} + \frac{1}{R(\bar{T}_e)} \right) \Delta V + \frac{\bar{V}}{R(\bar{T}_e)^2} \left.\frac{d R}{d T}\right\vert_{\bar{T}_e} \Delta T_e
 \end{cases}
 \end{equation}
@@ -251,14 +253,14 @@ This can be simplified to:
 \begin{cases}
 \displaystyle \frac{d \Delta T_a}{d t}
 	&= -\frac{G_{ap}^a}{C_a} \Delta T_a + \frac{G_{ap}^p}{C_a} \Delta T_p 
-	\nonumber \\[10pt]
+	 \\[10pt]
 \displaystyle \frac{d \Delta T_p}{d t} 
 	&= \frac{G_{ap}^a}{C_p} \Delta T_a - \frac{G_{ap}^p+G_{ep}^p+G_{pb}^p}{C_p} \Delta T_p	+ \displaystyle \frac{G_{ep}^e }{C_p}\Delta T_e
-	\nonumber \\[10pt]
+	 \\[10pt]
 \displaystyle \frac{d \Delta T_e}{d t}
 	&= \frac{G_{ep}^p}{C_e} \Delta T_p - \frac{1}{C_e} \left(G_{ep}^e + \frac{\bar{V}^2}{R(\bar{T}_e)^2} \left.\frac{d R}{d T}\right\vert_{\bar{T}_e}\right) \Delta T_e 
 	+2 \frac{1}{C_e} \frac{\bar{V}}{R(\bar{T}_e)} \Delta V
- 	\nonumber \\[10pt]
+ 	 \\[10pt]
 \displaystyle \frac{d \Delta V}{d t} &= \frac{1}{C_{cabling}} \frac{\bar{V}}{R(\bar{T}_e)^2} \left.\frac{d R}{d T}\right\vert_{\bar{T}_e} \Delta T_e - \frac{1}{C_{cabling}}\left( \frac{1}{R_L} + \frac{1}{R(\bar{T}_e)} \right) \Delta V
 \end{cases}
 \end{equation}
@@ -279,15 +281,15 @@ The simplified system of equation \ref{eq:ethem-system-temp-simplified} is now s
 \label{eq:ethem-matrix-eq}
 \frac{d \bm{\phi}}{d t}= - \bm{M} \bm{\phi} + \bm{F}(t-t_0)
 \end{equation}
-where $\bm{M}$ is the matrix regrouping the electro-thermal coupling terms. It is directly derived from the previous equations \ref{eq:ethem-system-temp-simplified}, and is expressed as :
+where $\bm{M}$ is the matrix regrouping the electro-thermal coupling terms. It is directly derived from the previous equations \ref{eq:ethem-system-temp-simplified}, and is expressed as:
 \begin{equation}
 \label{eq:ethem-coupling-mat}
 \bm{M} = 
 \left( \begin{array}{cccc}
  \frac{G_{ap}^a}{C_a}&-\frac{G_{ap}^p}{C_a}&0&0 \\
  -\frac{G_{ap}^a}{C_p}&\frac{G_{ap}^p+G_{ep}^p+G_{pb}^p}{C_p}&-\frac{G_{ep}^e}{C_p}&0 \\
-0&-\frac{G_{ep}^p}{C_e}&\frac{1}{C_e}\left(G_{ep}^e + \frac{V^2}{R(T_e)^2}  \left.\frac{d R}{d T}\right\vert_{T_e} \right)&-2\frac{V}{R(T_e)}\\
-0&0&-\frac{1}{C_{cabling}}\frac{V}{R(T_e)^2} \left.\frac{d R}{d T}\right\vert_{T_e} &\frac{1}{C_{cabling}}\left( \frac{1}{R_L} + \frac{1}{R(T_e)} \right)
+0&-\frac{G_{ep}^p}{C_e}&\frac{1}{C_e}\left(G_{ep}^e + \frac{\bar{V}^2}{R(T_e)^2}  \left.\frac{d R}{d T}\right\vert_{\bar{T}_e} \right)&-\frac{2}{C_e}\frac{\bar{V}}{R(T_e)}\\
+0&0&-\frac{1}{C_{cabling}}\frac{\bar{V}}{R(T_e)^2} \left.\frac{d R}{d T}\right\vert_{\bar{T}_e} &\frac{1}{C_{cabling}}\left( \frac{1}{R_L} + \frac{1}{R(T_e)} \right)
 \end{array} \right)
 \end{equation}
 A source term $\bm{F}$ has also been added to contain the energy perturbation in the detector and the various sources of interference noise. In the case of a particle depositing a heat energy $E$ in the absorber, this term is expressed as,
@@ -302,12 +304,12 @@ E/C_a \\
 \end{equation}
 The deposition of the recoil energy, the relaxation of the phonons created in the absorber, and the temperature rise of the absorber are considered instantaneous processes, hence the use of the Dirac function $\delta (t-t_0)$. A variant of this model consists in assigning a relaxation time to the phonons and taking into account the temperature rise of the thermal baths during phonon relaxation.
 
-The general solution of the equation \ref{eq:ethem-coupling-mat} is a linear combination of exponential $N$, with $N=4$ corresponding to the dimensions of the system, each characterized by a time constant. Their expression is obtained by diagonalizing the coupling matrix $\bm{M}$, which shift the framework to the basis formed by the eigenvectors of the system solutions. We consider, for $i \in \{1,2,3,4\}$, the eigenvectors $\bm{v}_i$ and the associated eigenvalues $f_i(t)$ to write these solutions:
+The general solution of the equation \ref{eq:ethem-coupling-mat} is a linear combination of $N$ exponential, with $N=4$ corresponding to the dimensions of the system, each characterized by a time constant. Their expressions are obtained by diagonalizing the coupling matrix $\bm{M}$, which shifts the framework to the basis formed by the eigenvectors of the system solutions. We consider, for $i \in \{1,2,3,4\}$, the eigenvectors $\bm{v}_i$ and the associated eigenvalues $f_i(t)$ to write these solutions:
 \begin{equation}
 \label{eq:eigen-solution}
 \bm{f}_i(t) = f_i(t) \bm{v}_i
 \end{equation}
-Without considering the source term, we introduce these expressions into the matrix equation (\ref{ode-mat}) to give
+Without considering the source term, we introduce these expressions into the matrix equation \ref{eq:ethem-matrix-eq} to give
 \begin{equation}
 \label{eq:eigen-solution-ode}
 \frac{d \bm{f}_i(t)}{d t} = -f_i(t) \bm{M} \bm{v}_i = -\lambda_i f_i(t) \bm{v}_i
@@ -321,7 +323,7 @@ with $A_i$ the normalization constant and $\tau_i=1/\lambda_i$ the characteristi
 \label{eq:eigein-solution-expr}
 \bm{f}(t) = \sum_i A_i e^{-t/\tau_i} \bm{v}_i
 \end{equation}
-To make the link between the basis of the eigenvectors and temperature and voltage fluctuations, the $\bm{f}$ solution must be projected onto the 4 orthogonal vectors forming the vector$\bm{\phi}$ such that :
+To make the link between the basis of the eigenvectors and the temperature and voltage fluctuations, the $\bm{f}$ solution must be projected onto the 4 orthogonal vectors forming the vector $\bm{\phi}$ such that :
 \begin{equation}
 \label{eq:gen-solution}
 \phi_j = \bm{f} \cdot \bm{\phi}_j = \sum_i^4 f_i(t) \bm{v}_i \cdot \bm{\phi}_j = \sum_i P_{ij} f_i(t) = \sum_i P_{ij} A_i e^{-t/\tau_i}
@@ -348,8 +350,8 @@ The study of a detector in time is equivalent to solving the matrix equation \re
 \subsection{Response in Frequency Domain}
 \label{par:ethem-frequency-domain}
 
-The study of noise leading to the calculation of the resolution of the detector requires to describe now the behavior in frequency domain. Indeed, the noises of a system are characterized from their power spectral density (PSD).
-We consider the Fourier transform of the matrix equation \ref{eq:ethem-matrix-eq},
+The study of noise leading to the calculation of the resolution of the detector requires to describe now the behavior in frequency domain. Indeed, the noises of a system are characterized from their power spectral densities (PSD).
+We consider the Fourier transform of the matrix equation \ref{eq:ethem-matrix-eq}:
 \begin{equation}
 \bm{C} (i\omega + \bm{M})  \bm{\tilde{\phi}}  (\omega) = \bm{Z} (\omega) \bm{\tilde{\phi}} (\omega)  = \bm{C} \bm{\tilde{F}} (\omega) \qquad \textrm{with} \qquad \bm{C} = \left( \begin{array}{cccc}
  C_a&0&0&0 \\
@@ -383,11 +385,11 @@ W\begingroup\color{red} - P_{ap}\endgroup\\
 \end{array} \right)
 =  \bm{C} \bm{\tilde{F}} (\omega)
 \end{equation}
-The term of the vector $\bm{C} \bm{\tilde{F}} (\omega)$ corresponds to the perturbation sources in the form of heat power or current source. The heat power $W$ comes from the recoil induced by an interacting particle.
+The terms of the vector $\bm{C} \bm{\tilde{F}} (\omega)$ corresponds to the perturbation sources in the form of heat power or current source. The heat power $W$ comes from the recoil induced by an interacting particle.
 % Noise power
-All the red terms corresponds to the various noise source affecting the detector. The heat powers $P_{xy}$ with $x,y \in \{ a,p,e,b \}$ are generated by the thermodynamic fluctuation noise (TFN) at the interface between two thermal baths. The current source $i_{noise}$ corresponds to the propagation of all the electronics noise sources propagated to the terminals of the NTD.
+All the red terms corresponds to the various noise sources affecting the detector performance. The heat powers $P_{xy}$ with $x,y \in \{ a,p,e,b \}$ are generated by the thermodynamic fluctuation noise (TFN) at the interface between two thermal baths. The current source $i_{noise}$ corresponds to the propagation of all the electronics noise sources propagated to the terminals of the NTD.
 
-The coefficients of the matrix $\bm{Z}$ are derived from the system of linearized equations (\ref{ode}) such as :
+The coefficients of the matrix $\bm{Z}$ are derived from the system of linearized equations \ref{eq:ethem-system-temp-simplified} such as :
 \begin{equation}
 \begin{aligned}[c]
 a &=(i C_a \omega + G_{ap}^a)^{-1} \\
@@ -406,11 +408,11 @@ k &=- \frac{(dR/dT) V^{2}}{R^{2}} \\
 \end{aligned}
 \label{coef}
 \end{equation}
-and with the complex impedance $Z_{eq}$ containing the electrical components of the bias circuit according to the figure (\ref{electric-scheme}) :
+and with the complex impedance $Z_{eq}$, containing the electrical components of the bias circuit according to the figure \ref{fig:ethem-electric-scheme}, expressed as:
 \begin{equation}
 Z_{eq} = \left(\frac{1}{R_L} + \frac{1}{R(T_e)} + i\omega C_{cabling}\right)^{-1}
 \end{equation}
-The expression of the vector of fluctuations $\bm{\phi}$ is obtained by inverting the coupling matrix $\bm{Z}$ as, 
+The expression of the vector of fluctuations $\bm{\phi}$ is obtained by inverting the coupling matrix $\bm{Z}$ as,:
 \begin{equation}
 \bm{\tilde{\phi}} (\omega) =
 \left( \begin{array}{c}
@@ -434,10 +436,10 @@ The expression of the vector of fluctuations $\bm{\phi}$ is obtained by invertin
 \end{array} \right)
 = \bm{Z}^{-1}(\omega) \bm{\tilde{F}} (\omega)
 \end{equation}
-We note here that the matrix formalism coupled with a numerical calculation tool allows easy access to the temperature and voltage perturbations from the coupling matrix $\bm{M}$ and external power sources contained in the $\bm{\tilde{F}}(w)$ vector.
+We note here that the matrix formalism coupled with a numerical calculation tool allows an easy access to the temperature and voltage perturbations from the coupling matrix $\bm{M}$ and external power sources contained in the $\bm{\tilde{F}}(w)$ vector.
 
 % Block diagram
-In spite of this simplification of the calculations, the understanding of the couplings between the different physical quantities is not very easy. A better understanding is possible by converting the system of equations \ref{eq:ethem-coupling-mat} into a block diagram formalism. 
+In spite of this simplification of the calculations, the understanding of the couplings between the different physical quantities is not so easy. A better understanding is possible by converting the system of equations \ref{eq:ethem-coupling-mat} into a block diagram formalism. 
 An illustration of the matrix equation is displayed in figure \ref{fig:block-diagram} as a block diagram. This representation is useful to understand the localization of the different signal-induced or noise-induced perturbations in the electro-thermal system. We find there the coupling coefficients used in the coupling matrix $\bm{Z}$ as well as the external power sources. It is easier to visualize the coupling between the different baths as well as the diffusion of the power deposited by a particle in the absorber $W$.
 
 \begin{figure}
@@ -448,25 +450,33 @@ An illustration of the matrix equation is displayed in figure \ref{fig:block-dia
 \end{tikzpicture}
 }%
 \end{center}
-\caption{Block diagram of the electro-thermal model with power injection of an event $W$, power noise $P_{ap}, P_{ep}, P_{pb}$, current noise $i_{noise}$ and voltage noise $e_{ampli.}$. The block coefficients are specified in (\ref{coef}). Block diagram formalism and matrix formalism are equivalent and result in identical expressions for sensitivity and noise calculations.
+\caption{Block diagram of the electro-thermal model with the power injection of an event $W$, power noise $P_{ap}, P_{ep}, P_{pb}$, current noise $i_{noise}$ and voltage noise $e_{ampli.}$. The block coefficients are specified in (\ref{coef}). Block diagram formalism and matrix formalism are equivalent and result in identical expressions for sensitivity and noise calculations.
 }
 \label{fig:block-diagram}
 \end{figure}
 
-By reading the block diagram from left to right, we can follow the propagation of the signal in the detector and the different feedback mechanism between each node. The power $W$ is injected in the absorber bath from the heat energy $E_{heat}$ released by a recoil. This bath is also affected with the TFN heat power $-P_{ap}$, associated with its thermal link with the NTD phonon bath, and the heat transfer $g \Delta T_p$ coming from the NTD phonon bath. The term $a$ converts all the heat powers incoming in the absorber bath (first node on the block diagram) into the temperature fluctuation $\Delta T_a$. The latter is in turn converted back with the term $b$ into a heat power incoming on the NTD phonon bath (seccond node of the bock diagram). The subsequent propagation of the signal and noises in the system eventually reaches the end node on the right of the block diagram corresponding to the measured voltage signal $\Delta U$ amplified by the electronics (see the circuit scheme \ref{fig:ethem-electric-scheme} for reference).
+By reading the block diagram from left to right, we can follow the propagation of the signal in the detector and the different feedback mechanisms between each node. The power $W$ is injected in the absorber bath from the heat energy $E_{heat}$ released by a recoil. This bath is also affected with the TFN heat power $-P_{ap}$, associated with its thermal link with the NTD phonon bath, and the heat transfer $g \Delta T_p$ coming from the NTD phonon bath. The term $a$ converts all the heat powers incoming in the absorber bath (first node on the block diagram) into the temperature fluctuation $\Delta T_a$. The latter is in turn converted back with the term $b$ into a heat power incoming on the NTD phonon bath (second node of the block diagram). The subsequent propagation of the signal and noises in the system eventually reaches the end node on the right of the block diagram corresponding to the measured voltage signal $\Delta U$ amplified by the electronics (see the circuit scheme \ref{fig:ethem-electric-scheme} for reference).
 
 % This bath is affected by the TFN noises of all its thermal links $P_{ap}$, $P_{ep}$ and $P_{pb}$
 
-The response of the system to an event is characterized by the sensitivity $s_V$. In the case of a particle interaction depositing all the recoil energy in the absorber, the sensitivity is expressed ${s}_V(\omega) = Z_{va}^{-1}\hat{p}(\omega)$ with $\hat{p}(\omega)$ the Fourier transform of the signal into power $W$. The approximation of an instantaneous recoil energy deposit gives $\hat{p}(\omega) = \hat{\delta} = 1$, which tremendously simplifies the calculations.
+The response of the system to an event is characterized by the sensitivity $s_V$. In the case of a particle interaction depositing all the recoil energy in the absorber, the sensitivity is expressed as ${s}_V(\omega) = Z_{va}^{-1}\hat{p}(\omega)$ with $\hat{p}(\omega)$ the Fourier transform of the signal into power $W$. The approximation of an instantaneous recoil energy deposit gives $\hat{p}(\omega) = \hat{\delta} = 1$, which tremendously simplifies the calculations.
 The variant where we consider the phonon relaxation time requires to multiply by the low-pass function $\hat{p}(\omega) = 1/(1+i\omega \tau_P)$ with $\tau_P$ the time constant corresponding to the phonon relaxation time within the detector.
 Other direct detection experiments, such as CDMS \cite{Billard:2012}, work by detecting athermal phonons that can transfer between the different components of the detector before relaxing. Thus, it is possible to have a fraction $\epsilon$ of the phonons, produced during an event, leaving the absorber to the NTD and relax there. We would then observe a temperature rise directly in the NTD sensor, in addition to the temperature rise in the absorber. Taking this possibility into account, the sensitivity of the system is rewritten:
 \begin{equation}
 \label{sv}
 \hat{s}_V(\omega) = \left[(1-\epsilon) Z_{va}^{-1} + \epsilon Z_{ve}^{-1}\right]\hat{p}(\omega) \qquad [V/W]
 \end{equation}
-The $\epsilon$ fraction of so-called "athermic" phonons depends very strongly on the geometry of the germanium crystal, its polishing, the glue used between the absorber and the NTD, and surely other parameters of the experiment that are not yet identified. The presence of athermic phonons is detected thanks to the signal shape: the temperature rise of the NTD is faster and an exponential contribution appears characterized by the time constant $\tau_P$. We will see later in this chapter that the RED10 detector has a relatively large fraction of athermic phonons which is estimated by the signal shape.
+The $\epsilon$ fraction of so-called "athermal" phonons depends very strongly on the geometry of the germanium crystal, its polishing, the glue used between the absorber and the NTD, and surely other parameters of the experiment that are not yet identified. The presence of athermal phonons is detected thanks to the signal shape: the temperature rise of the NTD is faster and an exponential contribution appears characterized by the time constant $\tau_P$. We will see later in this chapter that the RED10 detector has a relatively large fraction of athermal phonons which is estimated by the signal shape.
 
-The resolution of the block-diagram \ref{fig:block-diagram} ensures that the feedback loop associated with the Joule power $\Delta P_J$ is negative, allowing the stability of the NTD resistor polarization. Indeed, the temperature rise $\Delta T_e$ created by the bias current in the NTD decreases its resistance $R$ due to its resistivity characteristic \ref{eq:ntd-resistivity} being monotically decreasing. This, in turn, reduces the Joule effect $P_J \propto R$ assuming the bias current $I_P$ being almsot constant.
+The resolution of the block-diagram \ref{fig:block-diagram} ensures that the feedback loop associated with the Joule power $\Delta P_J$ is negative,
+%\begin{equation}
+%\Delta P_J 
+%= k \cdot \Delta T_e + \ell \cdot \Delta V
+%= -\frac{(dR/dT) V^{2}}{R^{2}} \Delta T_e + 2 \frac{V}{R} \Delta V
+%= \frac{V}{R} \left( 2 \Delta V - \frac{dR}{dT} \Delta T_e \frac{V}{R} \right)
+%\end{equation}
+ allowing the stability of the NTD resistor polarization.
+Indeed, the temperature rise $\Delta T_e$ created by the bias current in the NTD decreases its resistance $R$ due to its resistivity characteristic (eq. \ref{eq:ntd-resistivity}) being monotically decreasing. This, in turn, reduces the Joule effect $P_J \propto R$ assuming the bias current $I_P$ being almost constant.
 This negative feedback is characteristic from the thermal sensor technology used: the resistance of the NTDs decreases with temperature. The other main thermal sensor technology used in cryogenic bolometers, the Transition Edge Sensors (TES) based on the superconductive transition of a material have 
 an increasing resistance with the temperature \cite{Billard:2012} \cite{Figueroa:2006}. In this situation, this would result in a positive feedback which would eventually lead to the thermal sensor heating itself out of its sensitivity range. To obtain negative feedback and polarization stability, these experiments use voltage polarization and not current polarization. Indeed, we are in the case $P_J=V^2/R$ with $V$ kept constant.
 
@@ -486,7 +496,7 @@ The different noise sources and the level at which they occur are shown in red o
 S_{P,ij} = 2k_B(T_i^2 + T_j^2) G_{ij}
 \end{equation}
 with the thermal conductivity of the link $G_{ij}$.
-Thanks to the perturbation theory, we have obtained expressions of the conductivities \ref{eq:g1},\ref{eq:g2},\ref{eq:g3} depending on the direction of heat transfer considered. Since the behavior of TFN noise with such conductivities is not properly defined, an effective thermal conductivity for TFN noise is approximated as the average of these two conductivities relative to the thermal link. Since TFN noise is associated with a thermal bond, it affects two thermal baths. In order to respect the principle of energy conservation, the anti-correlation of the contributions of a TFN noise in the two baths must be taken into account. By adapting the equation \ref{eq:ethem-psd-total}, one can obtain an intermediate PSD in \si{\volt^2\per\Hz} that includes all the TFN noise terms:
+Thanks to the perturbation theory, we have obtained expressions of the conductivities (eq. \ref{eq:g1},\ref{eq:g2} and \ref{eq:g3}) depending on the direction of heat transfer considered. Since the behavior of TFN noise with such conductivities is not properly defined, an effective thermal conductivity for TFN noise is approximated as the average of these two conductivities relative to the thermal link. Since TFN noise is associated with a thermal bond, it affects two thermal baths. In order to respect the principle of energy conservation, the anti-correlation of the contributions of a TFN noise in the two baths must be taken into account. By adapting the equation \ref{eq:ethem-psd-total}, one can obtain an intermediate PSD in \si{\volt^2\per\Hz} that includes all the TFN noise terms:
 \begin{multline}
 S_{V,TFN} = 2k_B \times  \left[ (T_a^2 + T_p^2) G_{ap} \left\vert Z_{vp}^{-1} - Z_{va}^{-1} \right\vert^2 \right. \\ \left. + (T_e^2 + T_p^2) G_{ep} \left\vert Z_{vp}^{-1} - Z_{ve}^{-1} \right\vert^2 + (T_p^2 + T_b^2) G_{pb} \left\vert Z_{vp}^{-1}\right\vert^2 \right]
 \end{multline}
@@ -495,7 +505,7 @@ Following the noises indicated on the block diagram \ref{fig:block-diagram}, we 
 \label{i-bruit}
 i_{noise}^2 = i_{ampli}^2 + \left( \frac{e_{J_{R_L}}}{R_L} \right)^2 + \left( \frac{e_{J_{NTD}}}{R(T_e)} \right)^2
 \end{equation}
-An electrical resistance of value $R$ at temperature $T$ has its terminal voltage fluctuate randomly due to the Johnson noise whose PSD is expressed in \si{\volt^2\per\Hz}:
+An electrical resistance of value $R$ at temperature $T$ has its terminal voltage fluctuating randomly due to the Johnson noise whose PSD is expressed in \si{\volt^2\per\Hz}:
 \begin{equation}
 e_{J_R}^2 = 4k_B T R
 \end{equation}
@@ -507,7 +517,7 @@ S_{V,R_L} &= \frac{4 k_B T_{R_L} R_L}{R_L^2} \left\vert Z_{vv}^{-1}\right\vert^2
 \end{align}
 The contribution of the Johnson noise is weighted by the corresponding resistance, which is ultimately a voltage divider. Thus, the voltage fluctuations at the terminals of the load resistor $R_L$ are 2 to 3 orders higher than the voltage fluctuations at the terminals of the NTD sensor $R(T_e)$ but the division by $R_L$ allows the Johnson noise of the NTD to dominate in the calculation.
 
-The last two current noise terms $i_{ampli}$ and $e_{ampli}$ come from the amplification electronics simply represented by an amplifier follower on the figure \ref{electric-scheme}. They are dependent on the type of electronics used and must be determined experimentally. Their contribution to the total PSD is expressed in \si{\volt^2\per\Hz}as :
+The last two current noise terms $i_{ampli}$ and $e_{ampli}$ come from the amplification electronics simply represented by an amplifier follower on the figure \ref{fig:ethem-electric-scheme}. They are dependent on the type of electronics used and must be determined experimentally. Their contribution to the total PSD is expressed in \si{\volt^2\per\Hz} as :
 \begin{align}
 \label{eq:ethem-noise-ampli}
 S_{V,i_{ampli.}} &= i_{ampli.}^2 \left\vert Z_{vv}^{-1}\right\vert^2
@@ -516,12 +526,12 @@ S_{V,e_{ampli.}} &= e_{ampli.}^2
 \end{align}
 Indeed, there is no current leakage to the amplifier electronics, so the amplifier voltage noise term $e_{ampli.}$ affects the measurement independently of the upstream circuit.
 
-Now that we have expressed the spectral noise density on the measured voltage and the sensitivity of the system to the signal, it is possible to perform the calculation of the detector resolution. To do this, we introduce the Noise-Equivalent Power (NEP). This value corresponds to the PSD of the noise produced in the absorber (and the electron system, if athermic phonons are considered) which would induce a voltage noise PSD identical to the total noise PSD already calculated by the formula \ref{eq:ethem-psd-total}. In a simpler way, it is a "tool" to compare the sensitivity of the system and the spectral density of noise affecting the measurement, independently of the signal and noise sources. In this system with the signal being a power, the NEP is expressed in \si{\watt\per\sqrthz}. Its expression is given by the formula:
+Now that we have expressed the spectral noise density on the measured voltage and the sensitivity of the system to the signal, it is possible to perform the calculation of the detector resolution. To do this, we introduce the Noise-Equivalent Power (NEP). This value corresponds to the PSD of the noise produced in the absorber (and the electron system, if athermal phonons are considered) which would induce a voltage noise PSD identical to the total noise PSD already calculated by the formula \ref{eq:ethem-psd-total}. In a simpler way, it is a "tool" to compare the sensitivity of the system and the spectral density of noise affecting the measurement, independently of the signal and noise sources. In this system with the signal being a power, the NEP is expressed in \si{\watt\per\sqrthz}. Its expression is given by the formula:
 \begin{equation}
 \label{eq:nep}
 NEP^2(\omega) =  \frac{S_{V,total}}{|\hat{s}_V|^2}
 \end{equation}
-The NEP can be interpreted as the inverse of the signal-to-noise ratio, taking into account the system bandwidth. It can therefore be expected that the energy resolution $\sigma_E$ of the detector will be related to this value. Calculations described in \cite{Enss:2005md} gives the expression of the energy resolution in \si{\joule} as a function of the NEP:
+The NEP can be interpreted as the inverse of the signal-to-noise ratio, taking into account the system bandwidth. It can therefore be expected that the energy resolution $\sigma_E$ of the detector will be related to this value. Calculations described in \cite{Enss:2005md} gives the expression of the energy resolution in Joules as a function of the NEP:
 
 \begin{equation}
 \label{eq:resolution}
@@ -533,19 +543,19 @@ Considering the recoil energy range associated with the recoils in a cryogenic d
 
 \section{Application of the Model to Experimental Data}
 
-In the previous section, we have set up the electro-thermal model of a RED detector with a single thermal sensor, like RED1 and RED10. This model is now applied to characterize the noise affecting the measurement of the heat channel as well as to the characterization of the RED10 detector. It will thus be possible to compare the constructed model with the experimental data from the RED1 and RED10 detector acquisitions.
+In the previous section, we have set up the electro-thermal model of a RED detector with a single thermal sensor, like RED1 and RED10. Thus this model can now be applied to characterize the noise affecting the measurement of the heat channel as well as to the characterization of the RED10 detector. It will thus be possible to compare the constructed model with the experimental data from the RED1 and RED10 detector acquisitions.
 
 \subsection{Presentation of the two Electronics}
 %\label{par:character}
 
- The electro-thermal model gives access to the calculation of the resolution from the sensitivity to the signal and the power spectral densities of the various noise sources. Among the sources of noise in the system are the current and voltage noises coming from the amplification electronics \ref{eq:ethem-noise-ampli}. Indeed, this is the noise resulting from all the components contained in the amplification assembly, and there are no associated theoretical expressions. This part focuses on the characterization of two amplification electronics available to the laboratory. It will thus be possible to evaluate the total noise PSD and to obtain numerical values for the resolution.
+ The electro-thermal model gives access to the calculation of the resolution from the sensitivity to the signal and the power spectral densities of the various noise sources. Among the sources of noise in the system are the current and voltage noises coming from the amplification electronics (eq. \ref{eq:ethem-noise-ampli}). Indeed, this is the noise resulting from all the components contained in the amplification assembly, and there are no associated theoretical expressions. This part focuses on the characterization of two amplification electronics available to the laboratory. It will thus be possible to evaluate the total noise PSD and to obtain numerical values for the resolution.
 
 The two available electronics are:
 \begin{itemize}
-\item a common "JFET-based" polarization and readout electronics,
-\item an "EDELWEISS" polarization and readout electronics,
+\item a warm "JFET-based" polarization and readout electronics,
+\item an "\Edelweiss{}" polarization and readout electronics, also using J-FET but at \SI{100}{\kelvin}.
 \end{itemize}
-These two electronics are based on the action of a field effect transistor called FET (Field Effect Transistor). The major difference between JFET-absed and EDELWEISS comes from the difference in the FET used. In the case of JFET-based, the operating temperature of the FET corresponds to the ambient temperature. For EDELWEISS, the FET needs to be placed in the cryostat to reach its optimum operating temperature of \SI{150}{\kelvin}. In addition, a capacity of \SI{10}{\nano\farad} replace the load resistor in the polarization circuit of the EDELWEISS electronics. This component was already present from the previous use of EDELWEISS electronics and does not add any additional noise. It only slightly increases the capacity of the cabling  $C_{cabling}$ which does not hinder the characterization and comparison of the two electronics.
+These two electronics are based on the action of a field effect transistor called FET (Field Effect Transistor). The major difference between JFET-based and \Edelweiss{} comes from the difference in the FET used. In the case of JFET-based, the operating temperature of the FET corresponds to the ambient temperature. For \Edelweiss{}, the FET needs to be placed in the cryostat to reach its optimum operating temperature of \SI{100}{\kelvin}. In addition, a capacity of \SI{10}{\nano\farad} replaces the load resistor in the polarization circuit of the \Edelweiss{} electronics. This component was already present from the previous use of \Edelweiss{} electronics and does not add any additional noise. It only slightly increases the capacity of the cabling  $C_{cabling}$ which does not hinder the characterization and comparison of the two electronics.
 
 
 \subsection{Noise Characterization}
@@ -567,7 +577,7 @@ The objective is to fit the proposed model to experimental PSD measurements in o
 \Theta=(C_{fil}, i_A, i_B, i_C, e_A, e_B, e_C)
 \end{equation}
 
-We want to implement a likelihood function analysis to fit the model to the experimental data. This requires knowledge of the noise distribution. It is necessary to make a measurement of the noise of the system. To do this, we do not polarize the NTD resistor ($I_P=\SI{0}{\ampere}$), and we remove the load resistor $R_L$ from the circuit shown in figure \ref{fig:ethem-electric-scheme} so as not to be dominated by its Johnson noise. We choose to work with a \SI{1}{\s} time windows with a sampling frequency $f_s=\SI{10}{\kilo\Hz}$. A Welch aglgorithm is applied to these windows to estimate the PSD of the noise affecting the measure. Acquisitions of $\SI{120}{\s}$ allow us to perform an average of the measured noise PSD.
+We want to implement a likelihood function analysis to fit the model to the experimental data. This requires knowledge of the noise distribution. It is necessary to make a measurement of the noise of the system. To do this, we do not polarize the NTD resistor ($I_P=\SI{0}{\ampere}$), and we remove the load resistor $R_L$ from the circuit shown in figure \ref{fig:ethem-electric-scheme} so as not to be dominated by its Johnson noise. We choose to work with a \SI{1}{\s} time windows with a sampling frequency $f_s=\SI{10}{\kilo\Hz}$. A Welch algorithm is applied to these windows to estimate the PSD of the noise affecting the measure. Acquisitions of $\SI{120}{\s}$ allow us to perform an average of the measured noise PSD.
 
 \begin{figure}
 \begin{center}
@@ -577,19 +587,19 @@ We want to implement a likelihood function analysis to fit the model to the expe
 \label{fig:noise-form}
 \end{figure}
 
-In a first step, the histogram of the measured PSD value for different frequencies is plotted. Such a histogram is presented as an illustration for a bin in frequency at \SI{200}{\Hz} on the figure \ref{eq:noise-form}. Regardless of the frequency probed, the temperature of the cryostat, or the electronics used, a similar distribution pattern is observed. An exponential distribution is successfully fitted to these histograms. A property of the exponential distribution can be applied to the noise: the mean PSD level $\mathcal{D}_i$ in the $i$-th frequency bin is equal to its standard deviation $\sigma_{\mathcal{D}_i}$. Indeed, the experimental values of the mean and the standard deviation are close to the term $1/\lambda$.
+In a first step, the histogram of the measured PSD value for different frequencies is plotted. Such a histogram is presented as an illustration for a bin in frequency at \SI{200}{\Hz} on the figure \ref{fig:noise-form}. Regardless of the frequency probed, the temperature of the cryostat, or the electronics used, a similar distribution pattern is observed. An exponential distribution is successfully fitted to these histograms. A property of the exponential distribution can be applied to the noise: the mean PSD level $\mathcal{D}_i$ in the $i$-th frequency bin is equal to its standard deviation $\sigma_{\mathcal{D}_i}$. Indeed, the experimental values of the mean and the standard deviation are close to the term $1/\lambda$.
 Thus, on a measure averaged over $N=120$ windows of $1$ second, the Central Limit Theorem expresses the standard deviation on the averaged measure $\sigma_{\bar{\mathcal{D}}_i}$ such that:
 \begin{equation}
 \label{eq:sigma-psd}
 \sigma_{\bar{\mathcal{D}_i}} = \frac{\sigma_{\mathcal{D}_i}}{\sqrt{N}} = \frac{\bar{\mathcal{D}_i}}{\sqrt{120}}
 \end{equation}
 
-This information on the noise PSD   allows to rigorously construct a likelihood function based on the $\chi^2$ function related to the noise model with the set pf parameters $\Theta$ and the experimental data $\mathcal{D}$.The expression of the $\chi^2$ function is:
+This information on the noise PSD   allows to rigorously construct a likelihood function based on the $\chi^2$ function related to the noise model with the set of parameters $\Theta$ and the experimental data $\mathcal{D}$.The expression of the $\chi^2$ function is:
 \begin{equation}
 \label{chi2}
 \chi ^2 (\Theta|\mathcal{D}) = \sum^{N_{Temp}}_{j} \sum^{N_{bin}}_{i} \left[ \frac{\bar{\mathcal{D}_{ij}} - \mathcal{M}(f_{ij}; \Theta)}{\sigma_{\bar{\mathcal{D}_{ij}}}} \right]^2
 \end{equation}
-where we sum over all the frequency bins $N_{bin}$ and over the set of measurement temperatures $N_{Temp}$. Indeed, the model is simultaneously adjusted on several PSD measurements carried out for temperatures ranging from \SI{18}{\milli\kelvin} to \SI{40}{\milli\kelvin}. We thus hope to obtain better constraints on the parameters, firstly because more points are analyzed, but above all because the change in temperature modifies system parameters (in particular the resistance of the NTD $R(T_e)$) and removes the problems of degeneration between the different free parameters.
+where we sum over all the frequency bins $N_{bin}$ and over the set of measurement temperatures $N_{Temp}$. Indeed, the model is simultaneously adjusted on several PSD measurements carried out for temperatures ranging from \SI{18}{\milli\kelvin} to \SI{40}{\milli\kelvin}. We thus hope to obtain better constraints on the parameters, firstly because more points are analyzed, but above all because the change in temperature modifies the system parameters (in particular the resistance of the NTD $R(T_e)$) and removes the problems of degeneration between the different free parameters.
 
 Motivated by a Bayesian approach \cite{Billard:2012}, the likelihood function to be maximized with the model adjustment to the experimental data is expressed as,
 \begin{equation}
@@ -599,11 +609,15 @@ Motivated by a Bayesian approach \cite{Billard:2012}, the likelihood function to
 
 \subsection{Monte Carlo Markov Chain Analysis }
 \label{par:mcmc}
+\label{sec:ethem-noise}
+\label{par:ethem-noise}
 
-We look for the set of parameter $\Theta$ that maximizes the likelihood function $\mathcal{L}(\Theta | \mathcal{D})$. To do this, we apply a Markov Chain Monte Carlo (MCMC) analysis. It is a method based on random walk with condition of one (or more) Markov chain, a set containing the free parameters, in the dimensional space $N=7$ corresponding to the number of free parameters. It has been shown that with a correct likelihood function, the Markov chain allows to sample this function in a neighborhood of the optimal solution. The advantages of the MCMC method are that it can probe a large part of the free parameter space and its converges quickly to the neighborhood of the optimal solution which can then be explored and analyzed with histograms of Markov chain positions. Figure \ref{fig:triangle-mcmc} displays such histograms in the case of the adjustment to the noise PSD of the EDELWEISS electronics.
+We look for the set of parameters $\Theta$ that maximizes the likelihood function $\mathcal{L}(\Theta | \mathcal{D})$. To do this, we apply a Markov Chain Monte Carlo (MCMC) analysis with the use of the Python module "emcee" \cite{2013PASP}.
+It is a method based on a random walk of one (or more) Markov chain, a set containing the free parameters, in the dimensional space $N=7$ corresponding to the number of free parameters.
+It has been shown that with a correct likelihood function, the Markov chain allows to sample this function in a neighborhood of the optimal solution. The advantages of the MCMC method are that it can probe a large part of the free parameter space and converges quickly to the neighborhood of the optimal solution which can then be explored and analyzed with histograms of Markov chain positions. Figure \ref{fig:triangle-mcmc} displays such histograms in the case of the adjustment to the noise PSD of the \Edelweiss{} electronics.
 \begin{figure}
 \includegraphics [width=\textwidth]{Figures/Ethem/triangle_fin.pdf}
-\caption{Histogram of Markov chain positions with 2-dimensional projections, during MCMC analysis for EDELWEISS electronics. The free parameters presented are from top to bottom, and from left to right: $C_{cabling}, i_A, i_B, i_C, e_A, e_B, e_C, e_{DAC}$.}.
+\caption{Histogram of Markov chain positions with 2-dimensional projections, during MCMC analysis for \Edelweiss{} electronics. The free parameters presented are from top to bottom, and from left to right: $C_{cabling}, i_A, i_B, i_C, e_A, e_B, e_C, e_{DAC}$.}.
 \label{fig:triangle-mcmc}
 \end{figure}
 From the position histogram, the mean position is extracted as an estimate of the set of optimal free parameters as well as the $1\sigma$ error bars on this estimate from the 0.16 and 0.84 quantiles of the distributions. The shape of the distributions also informs us about the quality of the constraint imposed on the considered parameter. Indeed, a narrow distribution indicates a well constrained parameter (like parameter $i_B$) with small error bars contrary to a distribution with wide spread which induces large error bars (like parameter $i_A$). Two parameters whose projection in 2 dimensions is elongated indicates their correlation (parameter $i_C$ and $e_{DAC}$).
@@ -613,18 +627,19 @@ From the position histogram, the mean position is extracted as an estimate of th
 \includegraphics[width=\textwidth]{Figures/Ethem/cuore_fit_fin.pdf}
 \includegraphics[width=\textwidth]{Figures/Ethem/edel_fit_fin.pdf}
 \end{center}
-\caption{Averaged measurements (thin lines) and adjustment by MCMC analysis (thick lines) of noise linear PSD for different temperatures on both electronics: JFET-based and EDELWEISS. It is important to note that these are noise measurements performed without polarization current. For each cryostat temperature $T$ is specified the value of the thermistor $R$. The term $\chi^2/ddl$ indicates the value of the function $\chi^2$ divided by the number of points (degrees of freedom) of the fit. For a perfect modeling of the experimental data: $\chi^2/ddl \rightarrow 1$}
+\caption{Averaged measurements (thin lines) and adjustment by MCMC analysis (thick lines) of noise linear PSD for different temperatures on both electronics: JFET-based and \Edelweiss{}. It is important to note that these are noise measurements performed without polarization current. For each cryostat temperature $T$ is specified the value of the thermistor $R$. The term $\chi^2/ddl$ indicates the value of the function $\chi^2$ divided by the number of points (degrees of freedom) of the fit. For a perfect modeling of the experimental data: $\chi^2/ddl \rightarrow 1$}
 \label{fig:rainbow-plot}
 \end{figure}
 
-After MCMC analysis, we obtain the fit of the experimental data relating to JFET-based and EDELWEISS electronics presented in the figure \ref{fig:rainbow-plot}. The adjustment was performed on the PSD envelope, the parasitic peaks were ignored for the analysis. For the JFET-based electronics, a cut-off above \SI{2}{\kilo\Hz} is observed: this comes from a low-pass filter integrated in the electronics. It has been taken into account and therefore does not affect the convergence of the MCMC for this electronics. We also note the appearance of two additional free parameters. The $f_B$ parameter corresponds to the order of the low-pass filter for JFET-based measurements. The parameter $e_{DAC}$ corresponds to the noise of a power supply connected in series with the capacity of the EDELWEISS electronics. The addition of these additional parameters gives more flexibility to the model so that it better adapts to the experimental data, and thus does not distort the optimal solution.
+After MCMC analysis, we obtain the fit of the experimental data related to JFET-based and \Edelweiss{} electronics presented in the figure \ref{fig:rainbow-plot}. The adjustment was performed on the PSD envelope, the parasitic peaks were ignored for the analysis. For the JFET-based electronics, a cut-off above \SI{2}{\kilo\Hz} is observed: this comes from a low-pass filter integrated in the electronics. It has been taken into account and therefore does not affect the convergence of the MCMC for this electronics. We also note the appearance of two additional free parameters. The $f_B$ parameter corresponds to the order of the low-pass filter for JFET-based measurements. The parameter $e_{DAC}$ corresponds to the noise of a power supply connected in series with the capacitance of the \Edelweiss{} electronics. 
+%These additional parameters give more flexibility to the model so that it better adapts to the experimental data, and thus does not distort the optimal solution.
 
-We check that the fit is excellent on all frequencies, with some slight difference in behavior for the low frequencies of the JFET-based electronics. Indeed, the function of $\chi^2$ weighted by the number of degrees of freedom $ddl$ is equal to $2.556$ for JFET-based and $2.0$ for EDELWEISS, which is close to the $1$ value corresponding to a perfect modeling. The optimal solutions, indicated in the table \ref{tab:result}, for the electronics allow to simulate the noise of the electronics from the proposed model of electronics noise \ref{eq:i-amplifier} and \ref{eq:e-amplifier}. Different behaviors are observed depending on the temperature of the cryostat: the PSD levels are globally greater at with low temperatures. This can be explained by the contribution of the current noise $i_{noise}$ increasing with the norm of the complex impedance $Z_{eq}$. Indeed, the NTD resistance $R(T_e)$ increases very strongly when the temperature of the cryostat decreases, so the complex impedance $Z_{eq}$ also increases.
+We check that the fit is excellent over all frequencies, with some slight difference in behavior for the low frequencies of the JFET-based electronics. Indeed, the function of $\chi^2$ weighted by the number of degrees of freedom $ddl$ is equal to $2.556$ for JFET-based and $2.0$ for \Edelweiss{}, which is close to the value $1$ corresponding to a perfect modeling. The optimal solutions, indicated in the table \ref{tab:result}, for the electronics allow to simulate the noise of the electronics from the proposed model of electronics noise (eq. \ref{eq:i-amplifier} and \ref{eq:e-amplifier}). Different behaviors are observed depending on the temperature of the cryostat: the PSD levels are globally larger at low temperatures. This can be explained by the contribution of the current noise $i_{noise}$ increasing with the norm of the complex impedance $Z_{eq}$. Indeed, the NTD resistance $R(T_e)$ increases very strongly when the temperature of the cryostat decreases, so the complex impedance $Z_{eq}$ also increases.
 
 \begin{align}
 \label{tab:result}
 \begin{aligned}[c]
-& \textrm{\textbf{CUORE}} \\
+& \textrm{\textbf{JFET-based}} \\
 C_{fil} &= (2.94 \pm 0.01)\times 10^{-10}&[F] \\
 i_A &= (1.9 \pm 0.03) \times 10^{-15}&[A/\sqrt{Hz}] \\
 i_B &= (6.11 \pm 0.01) \times 10^{-16}&[A/Hz] \\
@@ -648,7 +663,7 @@ e_{DAC} &= (2.02 \pm 1.9) \times 10^{-9}&[V/\sqrt{Hz}]
 \end{aligned}
 \end{align}
 
-The low-frequency behavior of the two electronics is very similar: one observes a strong rise at low frequencies associated with the parameters $e_{B,C}$. At higher frequencies, we note that the JFET-based electronics noise PSDs are much more sensitive to temperature than for the EDELWEISS electronics. For all temperatures, the noise level of the JFET-based electronics is higher than that of EDELWEISS. We simply have a factor of 2 at \SI{40}{\milli\kelvin} while we have almost an order of magnitude difference at \SI{18}{\milli\kelvin}. The fitting parameters listed in table \ref{tab:result} show a difference of two orders of magnitude between the current noise $i_A$ of the two electronics. For the EDELWEISS, the current noise is coupled to the complex impedance $Z_{eq}$ which explains the measured noise level.
+The low-frequency behavior of the two electronics is very similar: one observes a strong rise at low frequencies associated with the parameters $e_{B,C}$. At higher frequencies, we note that the JFET-based electronics noise PSDs are much more sensitive to temperature than for the \Edelweiss{} electronics. For all temperatures, the noise level of the JFET-based electronics is higher than that of \Edelweiss{}. We simply have a factor of 2 at \SI{40}{\milli\kelvin} while we have almost an order of magnitude difference at \SI{18}{\milli\kelvin}. The fitting parameters listed in table \ref{tab:result} show a difference of two orders of magnitude between the current noise $i_A$ of the two electronics. For the \Edelweiss{}, the current noise is coupled to the complex impedance $Z_{eq}$ which explains the measured noise level.
 
 \begin{figure}
 \begin{minipage}{0.49\textwidth}
@@ -658,13 +673,14 @@ The low-frequency behavior of the two electronics is very similar: one observes 
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/edel_18.pdf}
 \end{minipage}
-\caption{Experimental measurement and model of a noise spectral density at $18$ mK for JFET-based (left) and EDELWEISS (right) electronics with visualization of the contributions of the different noise sources.}
+\caption{Experimental measurement and model of a noise spectral density at $18$ mK for JFET-based (left) and \Edelweiss{} (right) electronics with visualization of the contributions of the different noise sources.}
 \label{fig:noise-sources}
 \end{figure}
 
-It therefore appears that the least noisy is the EDELWEISS electronics. It is thus with this electronics that it is agreed to optimize the resolution of the detectors. Nevertheless, at the time of this study, the EDELWEISS electronics was not ready to readout the heat channel in in the same time polarizing the NTD thermal sensor. Only the JFET-based electronics was available for heat measurements with polarization to characterize the RED10 detector. As it has also been characterized, this does not generate any particular issue.
+It therefore appears that the least noisy is the \Edelweiss{} electronics. It is thus with this electronics that it is agreed to optimize the resolution of the detectors. 
+%Nevertheless, at the time of this study, the \Edelweiss{} electronics was not ready to readout the heat channel in in the same time polarizing the NTD thermal sensor. Only the JFET-based electronics was available for heat measurements with polarization to characterize the RED10 detector. As it has also been characterized, this does not generate any particular issue.
 
-Using the optimal solution found with the MCMC analysis, it is possible to visualize the contributions of the different noise sources to the total noise PSD, an example at \SI{18}{\milli\kelvin} is shown in figure \ref{fig:source-noise} for the two electronics. It can be seen that the current noise of JFET-based is very high and dominates almost the whole frequency range. The Johnson noise cut-off frequency, which is different for the two electronics, illustrates the influence of the cabling $C_{cabling}$ capacity. Indeed, we have $f_{cut} = 2\pi/(R_{NTD} C_{cabling})$ considering $R_L\gg R_{NTD}$. A higher cut-off frequency is found in the case of EDELWEISS which has a lower cabling capacity according to the fitting parameters \ref{tab:result}. It is also possible to study the predominance of noise sources as a function of frequency. For the electronics of EDELWEISS :
+Using the optimal solution found with the MCMC analysis, it is possible to visualize the contributions of the different noise sources to the total noise PSD, an example at \SI{18}{\milli\kelvin} is shown in figure \ref{fig:noise-sources} for the two electronics. It can be seen that the current noise of JFET-based is very high and dominates almost the whole frequency range. The Johnson noise cut-off frequency, which is different for the two electronics, illustrates the influence of the cabling capacitance $C_{cabling}$. Indeed, we have $f_{cut} = 2\pi/(R_{NTD} C_{cabling})$ considering $R_L\gg R_{NTD}$. A higher cut-off frequency is found in the case of \Edelweiss{} which has a lower cabling capacitance according to the fitting parameters (eq. \ref{tab:result}). It is also possible to study the predominance of noise sources as a function of frequency. For the electronics of \Edelweiss{}:
 \begin{itemize}
 \item below \SI{10}{\Hz}, the noise is dominated by the low-frequency contributions of noise in voltage $e_{B,C}$.
 From \SI{10}{\Hz} to \SI{100}{\Hz}, the total noise is based on the intrinsic noise of the detector (TFN noise and Johnson noise of the NTD). This is exactly what is sought: one seeks to be limited by these detector thermal noises which sets the ultimate attainable limit.
@@ -675,7 +691,7 @@ From \SI{10}{\Hz} to \SI{100}{\Hz}, the total noise is based on the intrinsic no
 \subsection{Calculation of the NEP and Resolution}
 \label{par:nep-res}
 
-Now that we have constrained all the parameters of the noise model, it is possible to finalize the computation of the resolution \ref{eq:resolution} with the computation of the NEP \ref{eq:nep}. Figure \ref{fig:nep-fig} shows the simulated sensitivity and NEP graphs of the detector with for the EDELWEISS electronics at \SI{18}{\milli\kelvin} for a bias current $I_P = \SI{1}{\nano\ampere}$. The sensitivity is consistent with the transfer function of a thermal system: it is indeed a low-pass. The simulation of the NEP is obtained from the sensitivity and the total noise PSD according to the formula \ref{eq:nep}. It which presents its lowest values between \SI{1}{\Hz} and \SI{100}{\Hz}. 
+Now that we have constrained all the parameters of the noise model, it is possible to finalize the computation of the resolution (eq. \ref{eq:resolution}) with the computation of the NEP (eq. \ref{eq:nep}). Figure \ref{fig:nep-fig} shows the simulated sensitivity and NEP graphs of the detector for the \Edelweiss{} electronics at \SI{18}{\milli\kelvin} for a bias current $I_P = \SI{1}{\nano\ampere}$. The sensitivity is consistent with the transfer function of a thermal system: it is indeed a low-pass. The simulation of the NEP is obtained from the sensitivity and the total noise PSD according to the formula \ref{eq:nep}. It presents its lowest values between \SI{1}{\Hz} and \SI{100}{\Hz}. 
 
 \begin{figure}[!ht]
 \begin{minipage}{0.49\textwidth}
@@ -685,47 +701,48 @@ Now that we have constrained all the parameters of the noise model, it is possib
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/nep_fin.pdf}
 \end{minipage}
-\caption{Simulation of sensitivity (left) and NEP (right) with contributions of different noise sources for EDELWEISS electronics at a cryostat temperature of $T=18$mK and a bias current of $1$nA.}
+\caption{Simulation of sensitivity (left) and NEP (right) with contributions of different noise sources for \Edelweiss{} electronics at a cryostat temperature of $T=18$mK and a bias current of $1$nA.}
 \label{fig:nep-fig}
 \end{figure}
 
 
-It is now possible to access the resolution of this experimental configuration with the associated formula \ref{eq:resolution}. We calculate here an heat energy resolution of $\sigma_E = \SI{613.15}{\eV}$ for EDELWEISS, and a resolution of \SI{1061}{\eV} with the JFET-based electronics, with a temperature of \SI{18}{\milli\kelvin} and a bias current of \SI{1}{\nano\ampere}. A lower value is obtained with the EDELWEISS electronics, which further confirms the choice of this electronics for the optimization of the resolution.
+It is now possible to access the resolution of this experimental configuration with the associated formula \ref{eq:resolution}. We calculate here a heat energy resolution of $\sigma_E = \SI{613.5}{\eV}$ for \Edelweiss{}, and a resolution of \SI{1061}{\eV} with the JFET-based electronics, with a temperature of \SI{18}{\milli\kelvin} and a bias current of \SI{1}{\nano\ampere}. A lower value is obtained with the \Edelweiss{} electronics, which further confirms the choice of this electronics for the optimization of the resolution.
 
-The formula for calculating the resolution \ref{eq:resolution} indicates that the lowest NEP values contribute the most to the resolution. Although integrating over a wider frequency range results in better lower resolution, the gain becomes negligible as the NEP value increases.
-Note that the NEP takes its minimum values around \SI{10}{\Hz}: most of the heat measurement information is contained in a frequency range from \SI{0}{\Hz} to about \SI{50}{Hz}. The gain in resolution by integrating beyond \SI{50}{\Hz} is marginal. The frequency range of interest for the study of the signal is then identified. By observing the contributions of the different noise sources to the NEP in figure \ref{fig:nep-fig}, we can see that it is the low frequency (LF) noise that dominates in this frequency range of interest, followed by the Johnson noise of the NTD resistor. We understand that to further decrease the resolution of these detectors, we should increase the sensitivity of the system to an event or reduce this low-frequency noise. %Part of the Manoir team is already working to understand this low-frequency noise.
+The formula \ref{eq:resolution} used for calculating the resolution indicates that the lowest NEP values contribute the most to the resolution. Although integrating over a wider frequency range results in lower resolution, the gain becomes negligible as the NEP value increases.
+Note that the NEP takes its minimum values around \SI{10}{\Hz}: most of the heat measurement information is contained in a frequency range from \SI{0}{\Hz} to about \SI{50}{Hz}. The gain in resolution by integrating beyond \SI{50}{\Hz} is marginal. The frequency range of interest for the study of the signal is then identified. By observing the contributions of the different noise sources to the NEP in figure \ref{fig:nep-fig}, we can see that it is the low frequency (LF) noise that dominates in this frequency range of interest, followed by the Johnson noise of the NTD resistor. We understand that to further decrease the resolution of these detectors, we should increase the sensitivity of the system to an event or reduce this low-frequency noise. %Part of the MANOIR team is already working to understand this low-frequency noise.
 
 
 
 % HERE
 \subsection{Thermal Characterization of the RED10 Detector}
 
-At the time of this study of the heat channel, the RED10 detector had only recently come into the possession of the Manoir group. It shares its design with the prototype RED1. The difference with the latter lies in the glue composition used and the dimensions of the NTD used. Some thermal parameters are therefore modified compared to RED1. It is thus necessary to characterize these thermal parameters for this new detector. One will be able to study its response to an event as it was done with RED1 in the previous section.
+At the time of this study of the heat channel, the RED10 detector had only recently come into the possession of the MANOIR group. It shares its design with the prototype RED1. The difference with the latter lies in the glue composition used and the dimensions of the NTD used. Some thermal parameters are therefore modified compared to RED1. It is thus necessary to characterize these thermal parameters for this new detector. One will be able to study its response to an event as it was done with RED1 in the previous section.
 
 \subsection{Current-Voltage Characteristic and Signal Shape}
 
-The characterization of the thermal parameters uses the electro-thermal model that was built in the section \ref{sec:electro-thermal-model}. We want to adjust the unconstrained parameters to the experimental data with an MCMC analysis similarly to the characterization of the electronics in the subsection \ref{par:mcmc}. This time, the set of free parameters is :
+The characterization of the thermal parameters uses the electro-thermal model that was built in the section \ref{sec:electro-thermal-model}. We want to adjust the unconstrained parameters to the experimental data with an MCMC analysis similarly to the characterization of the electronics in the subsection \ref{par:mcmc}. This time, the set of free parameters is:
 \begin{equation}
 \Theta = (R_0, T_0, g_{ep}, g_k, g_{glue}, \epsilon, \tau_P)
 \label{theta-red10}
 \end{equation}
 Indeed, the new glue has a different conductivity $g_{glue}$. The new geometry of the NTD (and also its uncertainty of neutron doping) will lead to a modification of the resistance $R_0$ and characteristic temperature $T_0$ present in the equation \ref{eq:ntd-resistivity}. The change in dimension also impacts the electron-phonon coupling $g_{ep}$ and the Kapitza conduction coefficient $g_k$. In principle, the volumetric thermal capacities of the absorber and the NTD remain unchanged, which makes it possible to recalculate the new thermal capacities from the known dimensions of the NTD. It would have been possible to include these in the free parameters, but the choice to fix them was favored in order to avoid degeneration problems and thus better constrain the set of parameters $\Theta$.
 
-A preliminary study of the signal shape (shown on the right of figure \ref{fig:v2i-red10} of RED10 reveals that the pulse decay has two characteristic time constants. This type of signal has never been observed on signal measurements performed with RED1: there is only one characteristic decay time explained by the thermal leakage to the cryostat from the electron bath with a recoil energy deposit in the absorber. The presence of a second characteristic time for RED10 can only be explained by the presence of athermic phonons as introduced in section \ref{par:ethem-frequency-domain}. These are phonons that do not immediately relax in the absorber, pass into the NTD sensor before relaxing. They thus create a temperature rise directly within the NTD. The source term $\bm{F}$ in the equation \ref{eq:ethem-coupling-mat} is then rewritten:
+A preliminary study of the signal shape (shown on the right of figure \ref{fig:v2i-red10}) of RED10 reveals that the pulse decay has two characteristic time constants. This type of signal has never been observed on signal measurements performed with RED1: there is only one characteristic decay time explained by the thermal leakage to the cryostat from the electron bath with a recoil energy deposit in the absorber. The presence of a second characteristic time for RED10 can only be explained by the presence of athermal phonons as introduced in section \ref{par:ethem-frequency-domain}. These are phonons that do not immediately relax in the absorber, pass into the NTD sensor before relaxing. They thus create a temperature rise directly within the NTD. The source term $\bm{F}$ in the equation \ref{eq:ethem-coupling-mat} is then rewritten:
 \begin{equation}
+\label{eq:source-athermal}
 \bm{F}(t-t_0) = 
 \left( \begin{array}{c}
-(1-\epsilon)E/C_a \
+(1-\epsilon)E/C_a \\
 0 \\
 \epsilon E/C_e \\\
 0
 \end{array} \right) \delta (t-t0)
 \end{equation}
-with $\epsilon$ the fraction of recoil energy converted into athermic phonons, and $C_a$ and $C_e$ the thermal capacity of the absorber and the electron bath respectively.
+with $\epsilon$ the fraction of recoil energy converted into athermal phonons, and $C_a$ and $C_e$ the thermal capacity of the absorber and the electron bath respectively.
 
-The normalization constants of the general time solution \ref{eq:eigein-solution-expr} depend on the source term $\bm{F}$ according to \ref{eq:ethem-initial-value} and therefore differ from the case of RED1, devoid of athermal phonons. This has the effect of better expressing a new exponential, and thus a new characteristic time, contained in the general solution. This observation of two characteristic times for the signal motivates the addition of the fraction of athermic phonons $\epsilon$ and their characteristic relaxation time $\tau_P$ to the free parameters of the model.
+The normalization constants of the general time solution (eq. \ref{eq:eigein-solution-expr}) depend on the source term $\bm{F}$ according to formula \ref{eq:ethem-initial-value} and therefore differ from the case of RED1, devoid of athermal phonons. This has the effect of better expressing a new exponential, and thus a new characteristic time, contained in the general solution. This observation of two characteristic times for the signal motivates the addition of the fraction of athermal phonons $\epsilon$ and their characteristic relaxation time $\tau_P$ to the free parameters of the model.
 
-The electro-thermal model is adjusted to the experimental data collected with RED10. The detector RED10 is polarized with a fixed bias current $I_P = \SI{4}{\nano\ampere}$ for different temperatures ranging from \SI{18}{\milli\kelvin} to \SI{30}{\milli\kelvin}. We study the behavior of RED10 in the steady state (see section \ref{par:staionnary-state}), with its experimental current-voltage characteristic, and its temporal response (section \ref{par:time-domain}) with experimental heat signals generated by electronic recoils induced by the natural radioactivity. The likelihood function analysis is performed with the MCMC method as in section \ref{par:mcmc}. Experimental data with the adjusted models are presented in the figure \ref{fig:v2i-red10}.
+The electro-thermal model is adjusted to the experimental data collected with RED10. The detector RED10 is polarized with a fixed bias current $I_P = \SI{4}{\nano\ampere}$ for different temperatures ranging from \SI{18}{\milli\kelvin} to \SI{30}{\milli\kelvin}. We study the behavior of RED10 in the steady state (see section \ref{par:steady-state}), with its experimental current-voltage characteristic, and its temporal response (section \ref{par:time-domain}) with experimental heat signals generated by electronic recoils induced by the natural radioactivity. The likelihood function analysis is performed with the MCMC method as in section \ref{par:mcmc}. Experimental data with the adjusted models are presented in the figure \ref{fig:v2i-red10}.
 
 \begin{figure}
 \begin{minipage}{0.49\textwidth}
@@ -735,14 +752,14 @@ The electro-thermal model is adjusted to the experimental data collected with RE
 \begin{minipage}{0.49\textwidth}
 \includegraphics[width=\textwidth]{Figures/Ethem/pulse_red10.pdf}
 \end{minipage}
-\caption{Experimental measurement and model fitting of the current-voltage characteristic (left) and normalized heat signals (right) for the RED10 detector.}
+\caption{Experimental measurements and model fittings of the current-voltage characteristic (left) and normalized heat signals (right) for the RED10 detector.}
 \label{fig:v2i-red10}
 \end{figure}
 
-The fit seems good for both types of measurement with a $\chi^2/ddl=1.612$. However, the model has some difficulty in adjusting the pulse for at a temperature of \SI{30}{\milli\kelvin}. The current-voltage characteristic, also called V(I) curve, makes it possible to constrain the free parameters involved in the steady state equations \ref{eq:ethem-system-stationnary}: $R_0, T_0, g_{ep}, g_k$. The experimental points in the linear part of the V(I) curves below \SI{1}{\nano\ampere} mainly constrains the resistance value of the NTD, and thus $R_0, T_0$. The voltage plateau at higher bias current above \SI{1}{\nano\ampere} comes from an excessive Joule effect in the NTD which is then no longer compensated by the thermal leakage to the cryostat. The temperature of the NTD increases and its resistivity decreases with constant bias current $I_P$, which causes the voltage plateau to appear. Its adjustment thus constrains the values of conductivity $g_k$ and electron-phonon coupling $g_{ep}$.
+The fit seems good for both types of measurement with a $\chi^2/ddl=1.612$. However, the model has some difficulty in adjusting the pulse at a temperature of \SI{30}{\milli\kelvin}. The current-voltage characteristic, also called V(I) curve, makes it possible to constrain the free parameters involved in the steady state equations \ref{eq:ethem-system-stationnary}: $R_0, T_0, g_{ep}, g_k$. The experimental points in the linear part of the V(I) curves below \SI{1}{\nano\ampere} mainly constrains the resistance value of the NTD, and thus $R_0, T_0$. The voltage plateau at higher bias current above \SI{1}{\nano\ampere} comes from an excessive Joule effect in the NTD which is then no longer compensated by the thermal leakage to the cryostat. The temperature of the NTD increases and its resistivity decreases with constant bias current $I_P$, which causes the voltage plateau to appear. Its adjustment thus constrains the values of conductivity $g_k$ and electron-phonon coupling $g_{ep}$.
 
-As for the shape of the signal, the model shows two slopes and thus two characteristic times. The adjustment of these two decay slopes constrains the athermic phonon fraction $\epsilon$, and more generally, all the parameters involved in the calculation of the normalization constants of the basis of the eigenvector of the solutions \ref{eq:eigen-solution}.
-The rise in tension allows to constrain the relaxation time of the phonons $\tau_P$. Indeed, for an immediate relaxation of the phonons, the rise time would be infinitely large (modulo the cutoff frequency $(RC_{fil})^{-1]}$).
+As for the shape of the signal, the model shows two slopes and thus two characteristic times. The adjustment of these two decay slopes constrains the athermal phonon fraction $\epsilon$, and more generally, all the parameters involved in the calculation of the normalization constants of the time dependent solutions \ref{eq:eigen-solution}.
+The rise in tension allows to constrain the relaxation time of the phonons $\tau_P$. Indeed, for an immediate relaxation of the phonons, the rise time would be infinitely large (modulo the cutoff frequency $(RC_{cabling})^{-1]}$).
 
 The MCMC method then gives the fitting parameters for RED10:
 
@@ -756,7 +773,7 @@ g_{glue} &= (7.46 \pm 1.67) \times 10^{-4} &[W/K^{n_g}/mm^2] \\
 \tau_P &= (4.03 \pm 0.03) \times 10^{-3} &[s]
 \end{align}
 
-These values are of the same order of magnitude as those corresponding to RED1. It is important to highlight the high portion heat energy expressed as athermal phonons of about \SI{20}{\percent} which is to be compared to their complete absence within the RED1 detector. This is a new observation for this type of detector. Their high presence results in an acceleration of the voltage signal and thus an increase of the frequency range of interest of the signal introduced in the paragraph \ref{par:nep-res}. In addition, athermic phonons are not affected by the capacity of the absorber, and transmit all their energy directly to the NTD. Understanding and increasing the rate of athermal phonons will thus allow to increase the sensitivity leading to better lowered energy resolution of the detector. A new way of optimizing the detectors has been discovered, which has not yet considered within the R\&D program.
+These values are of the same order of magnitude as those corresponding to RED1. It is important to highlight the high portion heat energy expressed as athermal phonons of about \SI{20}{\percent} which is to be compared to their complete absence within the RED1 detector. This is a new observation for this type of detector. Their high proportion results in an acceleration of the voltage signal and thus an increase of the frequency range of interest of the signal introduced in section \ref{par:nep-res}. In addition, athermal phonons are not affected by the capacity of the absorber, and transmit all their energy directly to the NTD. Understanding and increasing the rate of athermal phonons will thus allow to increase the sensitivity leading to lowered energy resolution of the detector. A new way of optimizing the detectors has been discovered, which has not yet been considered within the R\&D program.
 
 
 \subsection{Noise Levels and Energy Resolution of RED10}
@@ -772,7 +789,7 @@ Since RED10 is fully characterized from the thermal point of view, and the JFET-
 \end{figure}
 
 The model and the measurement describe very similar developments. We do find the presence of a low frequency noise of high level dominating the total noise PSD up to \SI{15}{\Hz}. It is then the current noise that predominates over the rest of the frequency range.
-It should be noted that this PSD measurement is performed with the polarization of the NTD as opposed to the characterization of the noise of the JFET-based and EDELWEISS electronics which was done with $I_P = \SI{0}{A}$. As such, it would be incorrect to compare the presented current noise of RED10 with the current noise of RED1 obtained without bias current.
+It should be noted that this PSD measurement is performed with the polarization of the NTD as opposed to the characterization of the noise of the JFET-based and \Edelweiss{} electronics which was done with $I_P = \SI{0}{A}$. As such, it would be incorrect to compare the presented current noise of RED10 with the current noise of RED1 obtained without bias current.
 There is a slight shift in the model from the experimental data to the low frequencies. This can be explained by the underestimation of the low-frequency noise already observed for the JFET-based electronics in the figure \ref{fig:rainbow-plot}. The excess of low-frequency noise also comes from the high rate of muon events during the measurements: despite the cuts made in the analysis, part of the signal decay is always recovered, which helps to amplify the low frequencies of the measured spectrum.
 
 The experimental resolution measurement is carried out from the noise PSD and the measurement of a heat signal. Indeed, renormalizing the amplitude of the signal and applying a Welch method allows to estimate the signal power spectrum, equivalent to the sensitivity $s_V$ of the RED10 detector. The renormalization also requires to know the conversion between the energy deposited in the absorber by an event and the amplitude of the measured signal. This calibration is performed using the interaction of cosmic muons with the absorber. The energy they deposit in the absorber is equal to \SI{18}{\mega\eV}. Measuring the voltage amplitude of a muon signal therefore allows to deduce the conversion factor necessary for the renormalization of a signal. The experimental heat energy resolution $\sigma_E$ is calculated using the discrete analogue of the formula \ref{eq:resolution}.
@@ -787,12 +804,12 @@ The experimental resolution measurement is carried out from the noise PSD and th
 
 Figure \ref{fig:amp-res-red10} shows the energy resolutions $\sigma_E$ as a function of the normalized heat signal amplitudes in \si{\nano\volt\per\kilo\eV} for different temperatures at a fixed bias current. The experimental resolutions are higher than the simulated resolutions. This is explained by the deviation between model and noise measurement observed in figure \ref{fig:noise-red10}: the modeled low-frequency noise is lower than in reality, hence the simulation of lower resolutions. The pulse amplitude is used to estimate the sensitivity of RED10 to the signal. Except for the \SI{30}{\milli\kelvin} measurement where the signal was already poorly modeled, the simulated and real amplitude values are almost identical. Moreover, since the two sets of dots show a very similar evolution of the resolution as a function of amplitude, it is deduced that the model is in good adequacy with the experimental reality. A study of the noise difference is still necessary to obtain a complete adequacy of model and experiment.
 
-It should be noted that the measurements were performed with the JFET-based electronics. The simulation of the resolution-amplitude characteristic is plotted for both the JFET-based and the EDELWEISS electronics. It should be noted that the latter makes it possible to gain almost a factor of 2 on the value of the resolution as the amplitude remains unchanged. This is consistent with the low noise level of EDELWEISS compared to the noise level of the common JFET-based electronics.
+It should be noted that the measurements were performed with the JFET-based electronics. The simulation of the resolution-amplitude characteristic is plotted for both the JFET-based and the \Edelweiss{} electronics. It should be noted that the latter makes it possible to gain almost a factor of 2 on the value of the resolution as the amplitude remains unchanged. This is consistent with the low noise level of \Edelweiss{} compared to the noise level of the common JFET-based electronics.
 
 
 \subsection{Optimization of the RED10 Detector and Perspectives}
 
-An electro-thermal model was built and tested with RED10. Even if some parameters need to be further refined to have a better fit, we can perform a preliminary optimization of the RED10 detector. A simulation of the resolution of RED10 as a function of the bias current $I_P$ in the NTD thermistance for different cryostat temperatures is presented in figure \ref{fig:optim}. The simulation is performed with the EDELWEISS electronics which has the lowest noise level, and the temperature of the load resistor is lowered to the temperature of the mixing chamber to reduce its Johnson noise.
+An electro-thermal model was built and tested with RED10. Even if some parameters need to be further refined to have a better fit, we can perform a preliminary optimization of the RED10 detector. A simulation of the resolution of RED10 as a function of the bias current $I_P$ in the NTD thermistance for different cryostat temperatures is presented in figure \ref{fig:optim}. The simulation is performed with the \Edelweiss{} electronics which has the lowest noise level, and the temperature of the load resistor is lowered to the temperature of the mixing chamber to reduce its Johnson noise.
 
 \begin{figure}
 \begin{minipage}{0.49\textwidth}
@@ -806,18 +823,18 @@ An electro-thermal model was built and tested with RED10. Even if some parameter
 \label{fig:optim}
 \end{figure}
 
-It is observed that there is an optimum bias current $I_P$ corresponding to each temperature to minimize the energy resolution $\sigma_E$. Indeed, if the NTD thermistor is polarized too much, the heat produced by Joule effect can no longer be evacuated efficiently by the thermal leakage. The temperature of the NTD becomes high and therefore its value drops, which affects the sensitivity of the system. This effect is observed in the current-voltage characteristic as the plateau at high bias current in figure \ref{fig:v2i-red10}. At too low bias current, the NTD sensor is no longer polarized enough to efficiently convert the heat signal into a voltage signal: the sensitivity drops as well.
+It is observed that there is an optimal bias current $I_P$ corresponding to each temperature to minimize the energy resolution $\sigma_E$. Indeed, if the NTD thermistor is polarized too much, the heat produced by Joule effect can no longer be evacuated efficiently by the thermal leakage. The temperature of the NTD becomes high and therefore its value drops, which affects the sensitivity of the system. This effect is observed in the current-voltage characteristic as the plateau at high bias current in figure \ref{fig:v2i-red10}. At too low bias current, the NTD sensor is no longer polarized enough to efficiently convert the heat signal into a voltage signal: the sensitivity drops as well.
 
-No matter what bias current is used, the lowest resolution is always obtained at the lowest temperature. The NTD resistivity formula \ref{eq:ntd-resistivity} explains why the signal is more sensitive at low temperatures: the derivative of the resistance with respect to the temperature takes its maximum values there. Moreover, lowering the temperature reduces all TFN noise, and the Johnson noise of the NTD thermistor, which further improves the energy resolution.
+No matter what bias current is used, the lowest resolution is always obtained at the lowest temperature. The NTD resistivity formula \ref{eq:ntd-resistivity} explains why the signal is more sensitive at low temperatures: the derivative of the resistance with respect to the temperature takes its maximum values there. Moreover, lowering the temperature reduces all TFN noises, and the Johnson noise of the NTD thermistor, which further improves the energy resolution.
 
-The RED10 study was fully realized for a bias current of \SI{4}{\nano\ampere}, which corresponds to the optimal current at a temperature of about \SI{24}{\milli\kelvin}. It would therefore have been possible to obtain better resolution values by adjusting the bias current for each temperature. Thus, it will be important, in the future, to properly determine the optimum polarization current of a detector according to the measurement conditions.
+The RED10 study was fully realized for a bias current of \SI{4}{\nano\ampere}, which corresponds to the optimal current at a temperature of about \SI{24}{\milli\kelvin}. It would therefore have been possible to obtain better resolution values by adjusting the bias current for each temperature. Thus, it will be important, in the future, to properly determine the optimal polarization current of a detector according to the measurement conditions.
 
-The precision measurement of the CENNS requires the development of a new generation of detector with very low detection threshold. For this, it is necessary to work on the design of the detectors. For example, it is necessary to study the behavior of the detector according to the geometry of the NTD, the mass of the absorber
+The precision measurement of the CENNS requires the development of a new generation of detectors with very low detection threshold. For this, it is necessary to work on the design of the detectors. For example, it is necessary to study the behavior of the detector according to the geometry of the NTD or the mass of the absorber.
 %or the location of thermal leaks.
-A simulation of the resolution of a detector as a function of the absorber mass is shown in the graph on the right side of figure \ref{fig:optim}. Note that the polarization current is adjusted for each point to draw an already optimized resolution curve. According to the formula \ref{eq:capa}, it would be interesting to reduce the thermal capacity of the absorber $C$, by lowering its mass, in order to increase the temperature pulse $\Delta T$, and thus amplifying the heat signal. According to the simulation, this amplification of the heat signal would appear only for very small detector masses, and would remain very modest for low temperatures. 
+A simulation of the resolution of a detector as a function of the absorber mass is shown in the graph on the right side of figure \ref{fig:optim}. Note that the polarization current is adjusted for each point to draw an already optimized resolution curve. According to the formula \ref{eq:source-athermal}, it would be interesting to reduce the thermal capacity of the absorber $C$, by lowering its mass, in order to increase the temperature pulse $\Delta T$, and thus amplify the heat signal. According to the simulation, this amplification of the heat signal would appear only for very small detector masses, and would remain very modest for low temperatures. 
 
-The results of this study of the heat channel lead to a decrease of the mass of the germanium crystal used in the RED detectors. From the \SI{250}{\g} crystal of the detectors RED1 and RED10, the newest RED detectors such as RED80 and REDN1 (presented in the chapter \ref{ChapterElectrodesExperimental}) possesses smaller \SI{38}{\g} germanium crystals. 
-
+The result of this study motivated the optimization of the RED detector mass. The mass of the germanium crystals went from \SI{200}{\g} for RED10 to \SI{37.6}{\g}, like for the detectors RED80 and REDN1 with electrodes described in the Chapter \ref{ChapterElectrodesExperimental}, and \SI{33.4}{\g} for RED detectors with no ionization channel. 
+Based on five \SI{33.4}{\g} prototype detectors, an average energy resolution \SI{22}{\eV} is reliably obtained, with the best performance being attributed to the detector RED20 \cite{Armengaud:2019kfj} with an energy resolution of \SI{16.5}{\eV}. The specification of the CryoCube on the energy resolution $\sigma(E_R) = \SI{10}{\eV}$ is therefore within reach.
 
 %It is now understood that we remain limited for the moment by another aspect of the detector. In the future, the optimization of the detector will involve the study of the behavior as a function of the dimensions of the NTD thermistor and the thermal conduction surfaces. It already appears that it would be necessary to reduce the thermal capacities of the different baths while maximizing the thermal bonds. 
 %

@@ -56,7 +56,7 @@
     	\sbNomLienCustom[0.3]{Pep}{$P_{ep}$}
     \sbDecaleNoeudy[-4]{C4}{i}
     	\sbRelier{i}{C4}
-    	\sbNomLienCustom[0.3]{i}{$i_{bruit}$}  
+    	\sbNomLienCustom[0.3]{i}{$i_{noise}$}  
     \sbDecaleNoeudy[-3]{C5}{eA}
     	\sbRelier{eA}{C5}
     	\sbNomLienCustom[0.3]{eA}{$e_{ampli.}$}   

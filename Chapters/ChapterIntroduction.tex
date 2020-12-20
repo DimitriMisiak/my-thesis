@@ -1,21 +1,43 @@
-% Chapter 1
+% chapter 1
 
-\chapter{Introduction to EDELWEISS and RICOCHET} % Main chapter title
+%\chapter*{Introduction} % Main chapter title
+%\addcontentsline{toc}{chapter}{Introduction} 
 
-\label{ChapterIntroduction} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\chapter{Introduction}
+\label{chapterIntroduction} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{chapterX}
 
 %----------------------------------------------------------------------------------------
-%	BEGING CHAPTER
+%	BEGING chapter
 %----------------------------------------------------------------------------------------
 
+% Context
+The Coherent Elastic Neutrino-Nucleus Scattering (CENNS) is a process predicted nearly 40 years ago. In August 2017, the COHERENT experiment reported the first keV-scale detection at the 6.7 sigma level of this process opening a window on a myriad of new physics opportunities.
+The \Ricochet{} experiment aims at measuring with high accuracy the CENNS process at low energy in order to probe various exotic physics scenarios in the electroweak sector. Using cryogenic bolometers operated in a cryostat 8 meters away from the core of the ILL research nuclear reactor, the experiment will benefit from an intense neutrino flux, allowing the results of COHERENT to be reproduced in a single week. The objective of an accurate measurement will be achieved after one year of data collection, by 2024. The CryoCube is a compact cubic array of cryogenic detectors developed for \Ricochet{}, with the following specifications: a very low energy threshold of $\mathcal{O}(10)$ eV on the thermal signal, an electromagnetic background rejection of at least $10^3$ and a total target mass of 1 kg distributed among 27 germanium crystals of about 30 g each.
+The objective of this thesis is to propose an optimized detector design for the CryoCube, inspired by the cryogenic germanium detectors equipped with charge and temperature readouts of the direct dark matter search experiment \Edelweiss{}. 
 
-\section{RICOCHET}
+% First chapter
+The first chapter of this manuscript introduces the CENNS process in the framework of the Standard Model. It then presents multiple exotic physics scenarios that would emerge from the measure of the CENNS at low energy range. Different low energy neutrino sources as well as detector technologies are discussed in order to realize this precision measurement. We discuss the R\&D program of the nuclear reactor experiment \Ricochet{}, joint with one of the direct detection dark matter search experiment \Edelweiss{}, based on event discrimination realized in germanium semiconductor crystals. Their specificity is their intrinsic ability to distinguish the nuclear recoils produced by the CENNS or the dark matter from the electronic radioactive background. As these recoils are of the order of $\mathcal{O}(100)$ eV, this thesis work is focused on the development of a new generation of cryogenic low threshold germanium detectors with particle identification.
+ 
+% Second chapter
+The second chapter describes the working principles of these detectors featuring a double measurement of the recoil energy of an incident particle as a temperature increase measured by a GeNTD thermistor (heat channel) and as the collection of electric charges by electrodes on the surface of the crystal (ionization channel). It presents the IP2I cryogenic facility allowing the surface operation of prototype detectors at \SI{20}{\milli\K} in optimal conditions, thanks to the mitigation of the cryostat mechanical vibrations. The data collected from the RED series of prototype detectors drive the studies of the heat and ionization channels in all the later chapters, exploring how to improve the resolution in heat and ionization energies up to $\mathcal{O}(10)\ \si{\eV}$ while maintaining a good rejection of background events.
 
-\begin{figure}
-\centering
-  \includegraphics[scale=1]{Figures/Introduction/scheme_ill.png}
-  \caption{ILL: Reactor Site}
-  \label{fig:scheme-ill}
-\caption{The positions of the detectors and the neutron source are indicated with numbered/colored tokens.}
-\label{fig:scheme-site}
-\end{figure}
+% Third chapter
+The third chapter is dedicated to the study of the heat channel based on experimental data of RED detectors of simple design with one GeNTD thermal sensor and no electrodes. These bolometers are modeled with a system of electro-thermal equations. The noise affecting two readout electronics is characterized by adjusting this model in the frequency domain using Monte Carlo Markov Chain analysis. Similarly, a new detector is characterized based on its steady-state and the shape of heat signals. The strategy for improving the heat channel performance is then discussed based on simulation of the energy resolutions.
+
+% Fourth chapter
+The fourth chapter introduces the ionization channel of the cryogenic detectors. The processes of ionization and charge drift in the semiconducting germanium crystal are described along with the theory of the signal generation on the electrodes. The electrostatic simulation of detectors in the finite element calculation software COMSOL\textsuperscript{\textregistered} is explained. It is used to characterize two detector designs candidate for the CryoCube by estimating their electric field, electric capacitance and fiducial volume. This chapter ends on the estimation of the ionization energy resolution from a future low-noise HEMT-based electronics for the two detector designs.
+
+% Fifth chapter
+The fifth chapter describes the optimization of the detector designs introduced in the previous chapter. It presents a methodology based on the electrostatic simulations for studying the influence of each of the design parameters on the projected ionization channel performance.
+
+% Sixth chapter
+The sixth chapter chapter concludes this series of three chapters dedicated to the ionization channel, by comparing the projected performance from electrostatic simulations and experimental results for two prototype detectors operated in the IP2I cyrostat. It starts with the description of the simulations. It then follows with an explanation of the analysis pipeline applied to the raw experimental data. The last section discusses the comparison between experimental and simulated results, especially regarding the optimization of the designs proposed in chapter 5.
+
+% Seventh chapter
+The seventh chapter is dedicated to the measurement of the neutron background at the IP2I cryogenic facility with the prototype detector RED80. It describes the specific experimental setup used to calibrate the detector with a neutron source. An advanced analysis in order to discriminate the nuclear and electronic recoils is presented using analytical pulse simulation to estimate their associated event rate spectrum. The characterization of the IP2I neutron background is then used to estimate the expected fast neutron background component at the ILL site for \Ricochet{}.
+
+
+
+
+
+

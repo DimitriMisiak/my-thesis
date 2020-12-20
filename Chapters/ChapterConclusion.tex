@@ -1,28 +1,40 @@
 % Chapter Conclusion
 
-\chapter{Conclusion and Future Directions} % Main chapter title
+%\chapter*{Conclusion and Prospects} % Main chapter title
+%\addcontentsline{toc}{chapter}{Conclusion and Prospects} 
 
+\chapter{Conclusion and Prospects} % Main chapter title
 \label{ChapterConclusion} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 %----------------------------------------------------------------------------------------
 %	BEGING CHAPTER
 %----------------------------------------------------------------------------------------
 
-%What could be improved ?
-%What has been achieved ?
-%What is still unknown ?
-%What should the next PhD Student focus on ?
-%Will dark matter be unveiled ?
-%Will CENNS be precisely-measured at ILL ?
-%So much questions, so little inspiration...
+% Recall objective and context
+This thesis is inscribed in the R\&D program of the \Ricochet{} experiment for the precision measurement of the CENNS near the research nuclear reactor of the ILL. Its main goal was to develop a new generation of low-threshold cryogenic germanium detectors satisfying the specifications of the CryoCube detector array for \Ricochet{}. For this purpose, the heat and ionization channels of these cryogenic detectors were modeled and optimized based on experimental data collected from prototype detectors operated at the IP2I cryogenic facility.
 
+% Heat
+This work first started with the study of the heat channel. An electro-thermal model of simple RED detectors was built. Its adjustment to experimental data is excellent and permitted the adoption of a new methodology for the characterization of new detectors. The study of their steady-state and heat response to a scattering particle can be reproduced with this model, thus constraining the thermal properties of the detector components, and in particular the GeNTD thermal sensor. Interestingly, the prototype detector RED10 showed a high \SI{20}{\percent} proportion of athermal phonons, greatly contributing to the sensitivity of the detector and motivating further studies on the relaxation of phonons in the detector. The modelization of the heat channel helped to understand the propagation of the signal into the detector and highlighted the existence of an optimal polarization current for the NTD thermal sensor.
+The noise PSDs of two different readout electronics were also fitted with the electro-thermal model, hinting towards a low-frequency noise component limiting their performance. We also confirmed that the \Edelweiss{} electronics with cold electronics is affected by a lower noise level and should be used for the characterization of detectors and data collection.
+The projected energy resolution calculated from the electro-thermal model motivated the optimization of the heat channel with a lower germanium crystal mass. The most recent prototype detectors operated in the IP2I cryostat weights between \SI{32}{\g} and \SI{38}{\g} and can reliably reach heat energy resolutions inferior to \SI{30}{\eV}.
 
-\section*{Conclusion}
+% Ionization
+This thesis then greatly furthered the knowledge on the ionization channel of the cryogenic detectors. The modelization of the signal generation by the drift of the electric charge carriers in the semiconductor germanium crystal was built.
+Thanks to its matrix formalism, this model brought attention to the influence of the cabling capacitance of the ionization polarization and readout electronics.   
+Indeed, in the current situation, with a dominating high cabling capacitance, the sensitivities of the electrodes are almost equals and are limited by their common high cabling capacitance of their electronics. With the new low-noise HEMT-based electronics which will be installed closer to the detectors at the \SI{1}{\kelvin} stage, inside the \Ricochet{} cryostat, the cabling capacitance will no more dominate the capacitance of the detector electrodes and the ionization signal signatures will drastically change.
+This model of the ionization channel was validated and is now coupled to the electrostatic simulation of the detectors within the finite element calculation software COMSOL\textsuperscript{\textregistered}. These simulations yield a precise estimation of the fiducial volume of the detectors and the electric capacitance of their electrodes.
+The optimization of the two detector designs PL38 and FID38 was realized by scanning over the various parameters within the simulation. The comparison between simulated performance and experimental results highlighted the limitations of the electrostatic simulation, which does not take into account the oblique propagation of the electrons in the germanium crystal or the charge trapping processes.
 
-Le problème de la matière noire est l'un des plus grand défis de la physique moderne. Le résoudre passe par la recherche et la détection de particules WIMPs qui formerait un halo contenant notre galaxie. Leur important flux sur Terre permettrait de les détecter directement. 
+% Neutron
+This final result of this work is the characterization of the neutron background at the IP2I cryogenic laboratory. Benefiting from the good heat and ionization performances of the detector RED80, a data collection lasting more than five days with intermittent calibration using a neutron source was realized.
+The in-depth analysis of the data streams permitted to exploit the intrinsic discrimination between nuclear and electronic recoils within the semiconducting germanium crystal thanks to the double-energy measurement of the detector. Indeed, the electronic and neutronic components of the background were isolated which allowed to compute their associated event rate spectra.
+This measurement of the fast neutron background in the IP2I cryostat will be used to estimate the expected neutron background at ILL site. Being one of the major obstacle to the CENNS precision measurement, knowledge of the neutron background is invaluable to adapt the \Ricochet{} strategy.
 
-L'expérience EDELWEISS étudie la diffusion élastique de WIMPs sur des noyaux de germanium. Pour cela, elle utilisent des détecteurs cryogéniques au sein du Laboratoire Souterrain de Modane. En vue de produire une nouvelle courbe d'exclusion dans les domaines des WIMPs de basse masse, une nouvelle campagne de R\&D a été lancée avec pour objectif actuel l'obtention de détecteur avec une résolution en voie chaleur de $100$eV.
-
-Mon travail de stage au sein de l'équipe Manoir s'est axé sur le développement d'une nouvelle génération de détecteur cryogénique en se basant sur l'étude de deux détecteurs RED1 et RED10.  Dans un premier temps, j'ai construis un modèle électro-thermique de ces détecteurs permettant de prédire leur comportement dans l'état stationnaire, en régime temporel, et en régime fréquentiel. Ce dernier donne accès au calcul de la sensiblité du détecteur, et du bruit affectant sa mesure, permettant à terme l'évaluation de sa résolution en énergie. J'ai ensuite appliqué ce modèle, et analysé divers mesures expérimentales effectuées sur les deux détecteurs. Une analyse par Méthode de Monte Carlo avec Chaîne de Markov a permis de caractériser deux électronique, CUORE et EDELWEISS, et de caractériser thermiquement le nouveau détecteur RED10. La comparaison des données expérimentales et de simulation basées sur le modèle indique la présence de légères déviations mais affirment surtout une bonne adéquation entre théorie et expérience. Grâce à la performance du modèle, on a pu mettre en évidence la présence de phonons athermiques pour la première fois dans ce type de détecteur. Cela ouvre une voie d'optimisation encore jamais envisagée au sein de l'expérience EDELWEISS.
-
-Un travail préliminaire d'optimisation du détecteur RED10 a été effectué. Il a été confirmé l'existence d'un courant de polarisation optimal suivant les conditions d'expérimentations, en particuliers la température du détecteur. Le travail d'optimisation futur se focalisera sur la géométrie du senseur thermique NTD et la configuration des liens thermiques.
+% Global
+In the end, this thesis positions itself as a solid foundation for the development of low-threshold cryogenic germanium detectors. The R\&D program at the IP2I cryogenic facility is in continuation of this work with:
+\begin{itemize}
+\item the upgrade of the suspended tower for the mechanical decoupling solution of the CryoCube within the \Ricochet{} cryostat, soon to be tested at the IP2I laboratory,
+\item the study of the new low-noise HEMT-based electronics with low cabling capacitance, 
+\item the characterization of the two new prototype detectors RED130 and RED140, assembled following the PL38 and FID38 designs, with first experimental results pointing towards excellent performance.
+\end{itemize}
+The \Ricochet{} collaboration is on the right tracks to build the CryoCube according to specifications, to measure with high accuracy the low-energy CENNS process at the ILL by 2024, and perhaps help to go beyond the Standard Model with new exotic physics.
