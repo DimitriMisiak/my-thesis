@@ -64,13 +64,13 @@ In all the streams, RED80 was operated at \SI{16}{\milli\kelvin} with an optimal
 \centering
 \begin{tabular}{l|c|c|c|c}
 Configuration                & Stream   & Starting Date & Stream Duration / \si{ \hour} & Cumulative Duration / \si{ \hour}  \\ \hline \hline
-\multirow{3}{*}{Background}  & tg18l005 & 18/08/2019  & 14.95 & \multirow{3}{*}{52.88}\\
-                             & tg27l000 & 27/08/2019 & 16.43 & \\
-                             & tg28l000 & 28/08/2019 & 21.50 & \\ \hline
-\multirow{4}{*}{Calibration} & tg17l007 & 17/08/2019 & 11.83 & \multirow{4}{*}{75.99} \\
-                             & tg19l010 & 19/08/2019 & 20.86 &\\
-                             & tg20l000 & 20/08/2019 & 26.37  & \\
-                             & tg21l000 & 21/08/2019 & 16.93  &
+\multirow{3}{*}{Background}  & tg18l005 & 18/07/2019  & 14.95 & \multirow{3}{*}{52.88}\\
+                             & tg27l000 & 27/07/2019 & 16.43 & \\
+                             & tg28l000 & 28/07/2019 & 21.50 & \\ \hline
+\multirow{4}{*}{Calibration} & tg17l007 & 17/07/2019 & 11.83 & \multirow{4}{*}{75.99} \\
+                             & tg19l010 & 19/07/2019 & 20.86 &\\
+                             & tg20l000 & 20/07/2019 & 26.37  & \\
+                             & tg21l000 & 21/07/2019 & 16.93  &
 \end{tabular}
 \caption{Starting data and duration of the data streams attributed to the IP2I neutron background measurement. For the Calibration configuration, the neutron source is facing the cryostat in position $C$. For the Background configuration, the detector is isolated from the neutron source stored in position $B$. The cumulative duration of each configuration is calculated.}
 \label{tab:neutron-streams}
@@ -713,7 +713,10 @@ N(\textsf{Background}; \textsf{\SI{1.3}{\kilo\eV} line})
 }{
 N(\textsf{Background}; \textsf{\SI{10.37}{\kilo\eV} line})
 }
-= 0.1217 \pm 0.0005
+=
+\frac{25289}{214840}
+=
+0.1177 \pm 0.0008
 \\
 \frac{P_L}{P_K} (\textsf{Calibration}) 
 &=
@@ -722,7 +725,10 @@ N(\textsf{Calibration}; \textsf{\SI{1.3}{\kilo\eV} line})
 }{
 N(\textsf{Calibration}; \textsf{\SI{10.37}{\kilo\eV} line})
 }
-= 0.1177 \pm 0.0008
+=
+\frac{65158}{535453}
+=
+0.1217 \pm 0.0005
 \end{align}
 with the $1\sigma$ statistical uncertainty assuming a Poisson statistic for the parameters $N(Config.; simu.)$. The most up-to-date measurement of the electron capture ratio is $P_L/P_K=0.117 \pm 0.001$ \cite{Bambynek:1977}. The difference between this reference value and the two estimation can be explained by systematic uncertainties. As such, the agreement with our measurement is excellent. The replication of this result validates our methodology for the measurement of the electronic and neutron backgrounds.
 
@@ -741,7 +747,7 @@ The exposure $\mathcal{E}(Config.)$ is expressed in \si{\kg \day}. Its roles is 
 \label{eq:exposure}
 \mathcal{E}(Config.) = T_{live} (Config.) \cdot m_{Ge}
 \end{equation}
-The live time $T_{live}$ correspond to the duration during which the detector is correctly operating and recording data. For both the Background and the Calibration configurations, the live times are calculated in the table \ref{tab:live-time-cut}.
+The live time $T_{live}$ corresponds to the duration during which the detector is correctly operating and recording data. For both the Background and the Calibration configurations, the live times are calculated in the table \ref{tab:live-time-cut}.
 
 %{\color{red}Just accept a mass of 38g, measured by the entreprise mirion, maybe add some precision with uncertainty if necessary. Because what i am tryig to discuss here is already taken into account in the fiducial cut paragraph}
 %The same concern can be expressed concerning the mass of the detector: by definition the crystal is the only part of the detector used as absorber and contribute to the exposure of the detector. If we want to be even more rigorous, we could say that some fraction of the crystal would not contribute to the exposure. For example, it is known that event happening on the surface of the crystal are subject to edge effects which alter the signal induced by a recoil, discarding it from the analysis through the quality cuts or the charge conservation. Nevertheless, as these surface are entirely negligible, we can consider the mass of the detector to be the mass of the germanium crystal: $m_{Ge} = 38 \textsf{g} = 0.038 \textsf{kg} $.
@@ -755,7 +761,7 @@ The presentation of the measurement of the neutron and electronic backgrounds is
 &=
 \frac{ \mathcal{F}_k \cdot N_k^{band} (Config., RT; exp.) }{ m_{Ge} \cdot T_{live}(Config.) \cdot W_k}
 \end{align}
-using the efficiency correction equation \ref{eq:efficiency-correction}), the detector exposure in equation \ref{eq:exposure}
+using the efficiency correction equation \ref{eq:efficiency-correction}, the detector exposure in equation \ref{eq:exposure}
 and the bin width $W_k$ expressed in equation \ref{eq:bins-edges};
 
 The figure \ref{fig:background-measurements} presents the NR and ER backgrounds for the two neutron source configurations as daily event rate $\mathcal{R}_k(Config., RT)$. The main results of this section concern the estimation of the NR backgrounds. We see that the NR event rate of the Calibration is about 50 times higher than for the Background configuration. The reference value is the NR event rate level at the lowest energies, which is about \SI{1e6}{events \per \kg \per \kilo\eV \per \day} for the Calibration and \num{1e4} for the Background. This is consistent with the presence of the neutron source facing the detector RED80 inducing a high neutron flux in the cryostat and creating a heightened nuclear recoil rate. 

@@ -22,7 +22,7 @@ In order to obtain a low baseline resolution, the ionization channel should pres
 % Fiducial volume metric
 The charge collection is a broad expression covering the 1) fiducial volume, 2) the trapping rate and 3) the signal generation from the drifting electric charges. While the real fiducial volume can only be accessed through experimentation, it can be inferred from the knowledge on the electric charge drifting in germanium (see section \ref{par:charge-drifting}) and the theoretical fiducial volume obtained with electrostatic simulation (see section \ref{par:fiducial-volume}).
 % enorm metric
-A precise value for the electric charge trapping rate is difficult to forecast in the bulk. However, it is known that region of the crystal with low magnitude of electric field exhibit a higher propensity to charge trapping. In will be demonstrated in chapter \ref{ChapterElectrodesExperimental} using the analysis of the RED80 data, that below a critical threshold of $|\vec{E}| \sim \SI{0.1}{\volt\per\centi\meter}$, the trapping rate can be significant. %Thus, tracking the volume fraction displaying a lower electric field norm should 
+A precise value for the electric charge trapping rate is difficult to forecast in the bulk. However, it is known that region of the crystal with low magnitude of electric field exhibit a higher propensity to charge trapping. It will be demonstrated in chapter \ref{ChapterElectrodesExperimental} using the analysis of the RED80 data, that below a critical threshold of $|\vec{E}| \sim \SI{0.1}{\volt\per\centi\meter}$, the trapping rate can be significant. %Thus, tracking the volume fraction displaying a lower electric field norm should 
 % weighting potential metrix
 On further notice concerning the signal generation, the electric charge conservation given in equation \ref{eq:charge-conservation} depends on the quality of the Faraday cage formed by the aluminium electrodes which is quantified by the total weighing potential (TWP), as described in section \ref{par:weighting-potential}. A low TWP coupled with a high trapping rate could result in substantial fraction of the events to be discarded or worse, ill-reconstructed, in the analysis.
 
@@ -460,7 +460,7 @@ The minimal number of planar electrodes $n_{plan}=3$ shows a particular behavior
 % Conclusion
 The number of planar electrode rings $n_{plan}$ can be used to have a better control on the shape of the electric field with a higher fiducial volume at the price of a significant increase in capacitance. Alone, this parameter mainly affects the behavior near the center of the detector as the number of lateral electrode rings $n_{lat}$ is fixed. Its effect on the fiducial volume is strongly correlated with the influence of the polarization ratio $r_{veto}$. In section \ref{par:global-density}, the number of planar rings $n_{plan}$ is scanned over with adapted number of lateral electrode $n_{lat}$ and the polarization ratio $R_{veto}$.
 % Disclaimer
-The effect of the number of planar rings $n_{plan}$ on the capacitance and electric field strongly depends on the values of the parameters $\{n_{lat}, R_{veto}, d_{eq}\}$. In particular, it is more efficient to have a similar ring density on the planar and lateral surfaces in order to lower the capacitive cost of shaping the electric field in the crystal. The study of the interaction between these four parameters is section \ref{par:global-density}.
+The effect of the number of planar rings $n_{plan}$ on the capacitance and electric field strongly depends on the values of the parameters $\{n_{lat}, R_{veto}, d_{eq}\}$. In particular, it is more efficient to have a similar ring density on the planar and lateral surfaces in order to lower the capacitive cost of shaping the electric field in the crystal. The study of the interaction between these four parameters is in section \ref{par:global-density}.
 
 
 \subsection{Number of Lateral Electrode Rings, $n_{lat}$}
@@ -486,7 +486,7 @@ The number of planar electrode rings $n_{plan}$ can be used to have a better con
 \subsection{Global Density of the Electrode Rings, $\{n_{plan}, n_{lat}, R_{veto}, d_{eq}\}$}
 \label{par:global-density}
 
-Section \ref{par:equatorial-distance} to \ref{par:n-lat} were dedicated to uni-dimensional scan over the parameters $n_{plan}$, $n_{lat}$, $R_{veto}$ and $d_{eq}$. In this section, these four parameters are scanned over simultaneously in order to emulate an increasing and uniform global density of the electrode rings with adapted polarization.
+Sections \ref{par:equatorial-distance} to \ref{par:n-lat} were dedicated to uni-dimensional scan over the parameters $n_{plan}$, $n_{lat}$, $R_{veto}$ and $d_{eq}$. In this section, these four parameters are scanned over simultaneously in order to emulate an increasing and uniform global density of the electrode rings with adapted polarization.
 % Choice of the n-plna an d n-lat
 The parameters $\{n_{plan}, n_{lat} \}$ participate in shaping the electric field at the cost of heightened capacitance term, in the center and in the periphery of the crystal respectively. Performance of the ionization channel are uniform in the whole volume of the crystal if the electric field demonstrates homogeneous properties in the crystal. Namely, the density of the electrode rings should be equivalent on the planar surfaces and the lateral surfaces. Thus, the parameters $\{n_{plan}, n_{lat} \}$ are chosen such that the planar $d_{plan}$ and lateral $d_{lat}$ spacings are as close as possible. It happens that the same values of $n_{plan}$ or $n_{lat}$ can be used in multiple configurations. Nevertheless, the results are presented with a monotonically increasing number of total electrodes rings on the detector.
 % Choice of the veto-ratio and equatorial distance
@@ -496,7 +496,7 @@ As to avoid the needlessly complex solution of a second-order polynomial equatio
 \begin{equation}
 d_{eq} \left( n_{lat} \right) = \frac{H_{Ge}}{1 + 2 n_{lat}} \approx d_{lat}
 \end{equation}
-The last unfixed parameter is the polarization ratio $R_{veto}$. As discussed previously in section \ref{par:equatorial-distance}, \ref{par:veto-ratio} and \ref{par:n-lat}, an existing equatorial region is necessary to the viable operation of an FID detector. The condition for the equatorial region to appear is that the electric field at the equator is nullified:
+The last unfixed parameter is the polarization ratio $R_{veto}$. As discussed previously in sections \ref{par:equatorial-distance}, \ref{par:veto-ratio} and \ref{par:n-lat}, an existing equatorial region is necessary to the viable operation of an FID detector. The condition for the equatorial region to appear is that the electric field at the equator is nullified:
 \begin{equation}
 \bm{E}\left(z=\SI{0}{\mm}, r=\SI{15}{\mm} \right) \cdot \hat{\bm{z}} \geq 0
 \end{equation}

@@ -30,7 +30,7 @@ These detectors possesses the two energy measurement channels, heat and ionizati
 \label{fig:photo-redn1-red80}
 \end{figure}
 
-Each detector has its own particularities which are assessed in the following paragraphs \ref{par:red80-presentation} and \ref{par:redn1-presentation} dedicated to the design and the electrostatics simulation of RED80 and REDN1 respectively.
+Each detector has its own particularities which are assessed in the following sections \ref{par:red80-presentation} and \ref{par:redn1-presentation} dedicated to the design and the electrostatics simulation of RED80 and REDN1 respectively.
 
 
 \subsection{RED80 detector}
@@ -434,7 +434,7 @@ The raw voltage measured $V_{CH}(t)$ as a function of the time $t$, is the super
 \end{equation}
 
 % Common noise
-The noise functions $N_{CH}(t)$ are characterized by their PSD in \si{\textsf{ADU}^2\per\Hz}. The modelization of these functions for the heat and ionization channels are discussed in the corresponding chapter \ref{ChapterEthem} and \ref{ChapterElectrodes}. In the case of the ionization channel, the noise function can be separated into two components:
+The noise functions $N_{CH}(t)$ are characterized by their PSD in \si{\textsf{ADU}^2\per\Hz}. The modelization of these functions for the heat and ionization channels are discussed in the corresponding chapters \ref{ChapterEthem} and \ref{ChapterElectrodes}. In the case of the ionization channel, the noise function can be separated into two components:
 \begin{equation}
 \label{eq:noise-corr}
 N_{CH}(t) = n_{CH}^{uncorr.}(t) + n^{corr.}(t)
@@ -522,7 +522,7 @@ For the ionization channel, the template signals $s_{X}(t)$ for $X \in \{A,B,C,D
 \label{eq:ionization-channel-signal-function}
 \forall CH \in \{A,B,C,D\}: \quad s_{CH}(t) = \Theta(t)
 \end{equation}
-Under the assumption of ideal drift of the charge carriers in the germanium crystal, the ionization amplitudes $A_{CH}$ are proportional to the terms of the voltage vector $\vec{V}$ calculated in equations \ref{eq:red80-induced-charges} and \ref{eq:fid38-induced-charges}. The corresponding proportionality factor estimates the ionization energy $E_{Ion.}$ of the event. The figure \ref{fig:pulse-raw} displays four events attributed to different collection volumes of the detector RED80. The signatures of the bulk, guard and guard-collect events are consistent with their modelization \ref{eq:red80-induced-charges}. The frontier event is attributed to a recoil located at the frontier between the collection volumes in the scheme \ref{fig:red80-scheme}. The charge carriers are separated between the different volumes and induce a signal on all the electrodes.
+Under the assumption of ideal drift of the charge carriers in the germanium crystal, the ionization amplitudes $A_{CH}$ are proportional to the terms of the voltage vector $\vec{V}$ calculated in equations \ref{eq:red80-induced-charges} and \ref{eq:fid38-induced-charges}. The corresponding proportionality factor estimates the ionization energy $E_{Ion.}$ of the event. The figure \ref{fig:pulse-raw} displays four events attributed to different collection volumes of the detector RED80. The signatures of the bulk, guard and guard-collect events are consistent with their modelization given in equation \ref{eq:red80-induced-charges}. The frontier event is attributed to a recoil located at the frontier between the collection volumes in the scheme \ref{fig:red80-scheme}. The charge carriers are separated between the different volumes and induce a signal on all the electrodes.
 
 
 \subsection{Optimal Filtering, Trigger and Event Processing}

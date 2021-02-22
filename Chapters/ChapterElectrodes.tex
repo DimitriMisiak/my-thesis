@@ -42,7 +42,7 @@ The reference detector designs are used to illustrate the different concepts of 
 \end{figure}
 
 The geometry on the left corresponds to the "Planar \SI{38}{\g}" design (PL38). Its ionization channel consists in two collecting electrodes fully covering the planar faces and extending on the lateral face.
-The geometry on the right corresponds to the "Fully Inter-Digitized \SI{38}{\g}" design (FID38). This design is an adaptation of the electrode design of the \SI{200}{\g} and \SI{800}{\g} FID detectors from the \Edelweiss{}-III experiment. It possesses four interleaved electrodes made out of concentric circular aluminium rings. Contrary to the simpler PL38 design, the FID38 is able to tag surface events thanks its more complex electrodes shaping the electric field. Both designs are extensively described in Chapter \ref{sec:simulation-ionization}.
+The geometry on the right corresponds to the "Fully Inter-Digitized \SI{38}{\g}" design (FID38). This design is an adaptation of the electrode design of the \SI{200}{\g} and \SI{800}{\g} FID detectors from the \Edelweiss{}-III experiment. It possesses four interleaved electrodes made out of concentric circular aluminium rings. Contrary to the simpler PL38 design, the FID38 is able to tag surface events thanks its more complex electrodes shaping the electric field. Both designs are extensively described in section \ref{sec:simulation-ionization}.
 
 
 \subsection{Ionization in Semiconducting Germanium Crystals}
@@ -463,7 +463,7 @@ C = \epsilon_0 \cdot \epsilon_r(Ge) \cdot \frac{A}{d}
 \end{equation}
 with $\epsilon_0$ the electric constant and $\epsilon_r(Ge)$ the relative permittivity of the germanium. The area $A$ of the circular electrodes is imposed by the geometry of the germanium crystal of height $d=\SI{10}{\mm}$ and radius \SI{15}{\mm}. This capacitance of \SI{10}{\pico\farad} yielded by this naive modelization is set as the objective for the electrode design. 
 % Noise
-Regarding the noise affecting the ionization channel, it is for the moment dominated by the voltage and current noise induced by the JFET-based electronics. The intrinsic noise associated with the polarization process is negligible. As such, efforts are made to model the lower noise of the future HEMT-based electronics and optimizing the design of the ionization channel to reduce it further. With some early calculations, and considering the objective of \SI{10}{\pico\farad} capacitance, an objective of \SI{10}{\eV} is set for the energy resolution of the ionization channel.
+Regarding the noise affecting the ionization channel, it is for the moment dominated by the voltage and current noise induced by the JFET-based electronics. The intrinsic noise associated with the polarization process is negligible. As such, efforts are made to model the lower noise of the future HEMT-based electronics and optimizing the design of the ionization channel to reduce it further. With some early calculations, and considering the objective of \SI{10}{\pico\farad} capacitance, an objective of \SI{20}{\eV} is set for the energy resolution of the ionization channel.
 
 % Fiducial volume
 The effective volume refers to the volume fraction of the germanium crystal in which the ionization energy of events is well reconstructed. This notion is developed later as the fiducial volume. Having a high fiducial fraction close to \SI{100}{\percent} ensures that the whole volume acts as a valid target for the particle interaction. As such the exposure of the detector is maximized and more statistics is collected. That is crucial to estimate the scientific goals and the time scale of the \Ricochet{} and \Edelweiss{} experiments. 
@@ -968,7 +968,7 @@ As reference for the magnitude of the electric field, we can naively compute the
 \label{eq:fid38-naive-efield}
 || \vec{E}_{naive}^{FID38} || = \left| \frac{V_{top} - V_{bottom}}{H_{Ge}} \right| = \SI{0.75}{\volt\per\cm}
 \end{equation}
-This value corresponds to one of the peak of the magnitude distribution which can therefore be attributed to the central bulk of the crystal.
+This value corresponds to one of the peaks of the magnitude distribution which can therefore be attributed to the central bulk of the crystal.
 
 %% Enorm
 %FROM THE SCAN CHAPTER \\
@@ -1704,7 +1704,7 @@ The previous section presented how, with low cabling capacitance, the capacitive
 
 In order to motivate this study, the noise calculation is first done on a very simple model: the PL38 design with a heavily simplified HEMT line featuring only the polarization resistor $R_{polar.}$ and its associated Johnson noise $e_J$. The LPSD associated with the Johnson noise is expressed as:
 \begin{equation}
-e_J = \sqrt{4 \cdot T \cdot R_{polar.}}
+e_J = \sqrt{4 \cdot k_B \cdot T \cdot R_{polar.}}
 \end{equation}
 with the temperature of the polarization resistor set to $T=\SI{10}{\milli\kelvin}$. The scheme of this simplified model is presented in the figure \ref{fig:pl38-analytical-circuit}. Thanks to the superposition theorem and successive Thevenin-Norton transformations of the electric circuit, it is possible to propagate the two Johnson noise sources $e_{J,A}$ and $e_{J,B}$ to the measurement point $S_B$. 
 
@@ -1922,12 +1922,12 @@ The figure \ref{fig:planar38-propagation} presents the total noise and its compo
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/Electrodes/pl38_noise_propagation.pdf}
-\caption{Representation of the total voltage noise LPSD the node $S_B$ along with its components as functions of the frequency. The value of the signal power spectrum (PS) is read on the right axis. The calculation and integration from \SI{1}{\Hz} of the noise equivalent power yields the ionization energy resolution $\sigma_{B} = \SI{34}{\eV}$.}
+\caption{Representation of the total voltage noise LPSD the node $S_B$ along with its components as functions of the frequency. The value of the signal power spectrum (PS) is read on the right axis. The calculation and integration from \SI{1}{\Hz} of the noise equivalent power yields the ionization energy resolution $\sigma_{B} = \SI{30.8}{\eV}$.}
 \label{fig:planar38-propagation}
 \end{figure}
 
 % Noise vs Signal
-The figure \ref{fig:planar38-propagation} also compares the total noise power spectral density to the power spectrum of the signal induced by the transient $I_{bulk}$. The noise follows a $1/\sqrt{f}$ trend while the signal has $1/f$ profile. As such, the majority of the information of the signal is contained in the low frequency of the data stream. When integrating between \SI{1}{\Hz} and infinity, the ionization energy resolution is evaluated to $\sigma_B=\SI{30.8}{\eV}$. There is a factor 3 between this predicted resolution and the naive objective of \SI{10}{\eV} resolution discussed in the section \ref{par:ionization-objective}. By combining the signal of the two electrodes, a lower resolution $\sigma_{A+B} = \sigma_B / \sqrt{2} = \SI{21.8}{\eV}$ is reached. 
+The figure \ref{fig:planar38-propagation} also compares the total noise power spectral density to the power spectrum of the signal induced by the transient $I_{bulk}$. The noise follows a $1/\sqrt{f}$ trend while the signal has $1/f$ profile. As such, the majority of the information of the signal is contained in the low frequency of the data stream. When integrating between \SI{1}{\Hz} and infinity, the ionization energy resolution is evaluated to $\sigma_B=\SI{30.8}{\eV}$. There is a factor 1.5 between this predicted resolution and the objective of \SI{20}{\eV} resolution discussed in the section \ref{par:ionization-objective}. By combining the signal of the two electrodes, a lower resolution $\sigma_{A+B} = \sigma_B / \sqrt{2} = \SI{21.8}{\eV}$ is reached. 
 %(bad? Can be compared to the initial simple model with a single Hemt and single electrode equivalent to the detector).
 \\
 
@@ -1956,7 +1956,8 @@ The FID38 detector cabled with the full HEMT line is illustrated in the scheme \
 The figure \ref{fig:fid38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the HEMT line of the electrode $B$ at low frequency and the intrinsic current noise $i_n^B$ at high frequency. The Johnson noise $e_J^A$ from the other HEMT line of the electrode $A$ is slightly present below \SI{2}{\Hz}, but is quickly dominated by the intrinsic voltage source $e_n^B$. All in all, the results are quite similar to what was observed with the PL38 design: the Johnson noise from the most coupled electrode is significant at very low frequency and is quickly dominated by the intrinsic voltage noise source of the HEMT line $B$. Again, this can be explained by a boosted diagonal term in the Maxwell capacitance matrix which heavily filters the noise sources from spreading to other HEMT line efficiently.
 % Noise vs Signal
 In the case of the FID38, there are three possible signal power spectra associated with the $bulk$, $veto$ and $equator$ events. All this power spectra have the same $1/f$ profile and only differ by a multiplicative factor.
-Once again, due to the $1/\sqrt{f}$ shape of the total noise, most of the information is held in the low frequency of the data stream. The ionization energy resolutions are calculated from the three event types. For the bulk and veto events, the resolutions are pretty similar around \SI{30}{\eV} while the resolution associated with the equator events is very high \SI{151}{\eV}. This indicates that the performance of the FID38 ionization channel drops for equatorial events. This might be problematic in tagging surface events near the equator. The lowest resolution concerns the bulk events with $\sigma_{bulk}^B = \SI{24.1}{\eV}$. By combining the two collecting signal of the collecting electrodes $B$ and $D$, it is possible to lower the ionization energy resolution to  $\sigma_{bulk}^{B+D} = \SI{17.1}{\eV}$. Even if this resolution is two times superior to the objective \SI{10}{\eV}, it is still very close.
+Once again, due to the $1/\sqrt{f}$ shape of the total noise, most of the information is held in the low frequency of the data stream. The ionization energy resolutions are calculated from the three event types. For the bulk and veto events, the resolutions are pretty similar around \SI{30}{\eV} while the resolution associated with the equator events is very high \SI{151}{\eV}. This indicates that the performance of the FID38 ionization channel drops for equatorial events. This might be problematic in tagging surface events near the equator. The lowest resolution concerns the bulk events with $\sigma_{bulk}^B = \SI{24.1}{\eV}$. By combining the two collecting signal of the collecting electrodes $B$ and $D$, it is possible to lower the ionization energy resolution to  $\sigma_{bulk}^{B+D} = \SI{17.1}{\eV}$. As such, it possible to reach the objective ionization resolution of \SI{20}{\eV}.
+%Even if this resolution is two times superior to the objective \SI{10}{\eV}, it is still very close.
 
 \begin{figure}
 \centering
