@@ -269,7 +269,7 @@ This work ends with the characterization of the radioactive background in the cr
 La diffusion élastique cohérente neutrino-noyau (CENNS) est un processus prédit il y a près de 40 ans. En août 2017, l'expérience COHERENT a rapporté la première détection à l’échelle du \si{\kilo\eV} au niveau 6,7 sigma, de ce processus qui est une sonde pour la nouvelle physique à basse énergie, ouvrant une fenêtre sur une myriade de nouvelles possibilités en matière de physique.
 
 L'expérience RICOCHET vise à mesurer avec une grande précision le processus CENNS afin de sonder divers scénarios de physique exotique dans le secteur électrofaible. En utilisant des bolomètres cryogéniques installés dans un cryostat à 8 mètres du cœur du réacteur nucléaire de recherche de l'ILL, l’expérience bénéficiera d'un flux intense de neutrinos, permettant de reproduire les résultats de COHERENT en une semaine. L'objectif de mesure précise sera atteint après un an de collecte de données, d’ici 2024.
-Le CRYOCUBE est un ensemble compact cubique de détecteurs cryogéniques présentant les spécifications suivantes : un seuil en énergie très faible de $\mathcal{O}(10)$ eV sur le signal thermique, un rejet du fond électromagnétique d'au moins $10^3$ et une masse totale de la cible de \SI{}{\kg} répartie entre 27 cristaux de germanium d'environ \SI{30}{\g} chacun.
+Le CRYOCUBE est un ensemble compact cubique de détecteurs cryogéniques présentant les spécifications suivantes : un seuil en énergie très faible de $\mathcal{O}(10)$ eV sur le signal thermique, un rejet du fond électromagnétique d'au moins $10^3$ et une masse totale de la cible de \SI{1}{\kg} répartie entre 27 cristaux de germanium d'environ \SI{30}{\g} chacun.
 
 L'objectif de cette thèse est de proposer une conception optimisée des détecteurs pour le CRYOCUBE, inspirée des détecteurs cryogéniques en germanium équipés de lecture de charge et de températures de l'expérience de détection directe de matière noire EDELWEISS. Ce programme conjoint de R\&D est basé sur la discrimination d'événements réalisée dans des cristaux de germanium semi-conducteurs. L'énergie de recul d'une particule incidente est dérivée soit de l'augmentation de la température du cristal mesurée par une thermistance GeNTD (voie chaleur), soit des charges électriques excitées collectées par des électrodes à sa surface (voie ionisation). Cette double mesure d'énergie permet de distinguer les reculs nucléaires produits par le CENNS ou la matière noire, du fond radioactif électronique. Ces reculs étant de l’ordre de $\mathcal{O}(100)$ \si{eV}, ce travail de thèse est axé sur le développement d'une nouvelle génération de détecteurs cryogéniques au germanium à faible seuil avec identification des particules. Il explore comment améliorer la résolution en énergie chaleur et ionisation jusqu'à $\mathcal{O}(10)$ \si{eV} tout en conservant un bon rejet des événements de fond. Cette étude est basée sur l'essai de prototypes de détecteurs dans le cryostat IP2I, qui sont comparés aux prévisions théoriques issues de la modélisation électro-thermique et électrostatique des détecteurs.
 
@@ -283,13 +283,38 @@ Ces travaux se terminent par la caractérisation du bruit de fond radioactif dan
 
 
 %%----------------------------------------------------------------------------------------
-%%	ACKNOWLEDGEMENTS
-%%----------------------------------------------------------------------------------------
-%
-%\begin{acknowledgements}
-%\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-%The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
-%\end{acknowledgements}
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+\begin{acknowledgements}
+\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+
+J’aimerais remercier toutes les personnes qui m’ont entouré lors de ces trois ans et demi de thèse. Elles ont toutes contribué à leur manière, plus ou moins directement et plus ou moins consciemment, à la création de cette thèse.  
+\\
+
+ Je voudrais tout d’abord remercier mes deux directeurs de thèses, Julien Billard et Corinne Augier pour m’avoir épaulé si remarquablement tout au long de la thèse et pour leur soutien indéfectible pourtant mis à rude épreuve. Julien, je suis honoré d’avoir été ton premier doctorant. Je te suis reconnaissant pour ta présence, ton partage de ta culture scientifique et ta vison toujours optimiste, audacieuse et éclairée qui a pavé mon travail. Corinne, ma directrice 10\%, je te remercie d’avoir toujours trouvé le temps de me conseiller et guider dans mes projets de thèse et d’enseignement. Tu t’es donnée sans compter pour organiser et bonifier cette thèse, tu as tout fait pour garder mon esprit libre de s’adonner à la recherche. Pour ça, tu as toute ma gratitude.
+\\
+
+J’adresse ensuite mes remerciements aux membres de mon jury de soutenance pour l’intérêt qu’ils ont porté à mon sujet de thèse et le temps qu’ils ont consacré à l’évaluation de mon travail. Je remercie  Stefanos Marnieros et Joseph Formaggio qui m’ont fait l’honneur d’être rapporteurs de cette thèse ainsi que Claudia Nones et Dany Davesne qui ont accepté d’en être les examinateurs.
+\\
+
+J’aimerais ensuite remercier tous les membres du groupe de recherche MANOIR avec qui j’ai partagé mon quotidien de doctorant : d’expérimentateur au cryostat, d’analyste dans nos bureaux, de conférencier autour du monde et de bons vivants autour de crêpes, raclettes et autres prétexte à se retrouver ensemble. Je prends conscience de la chance d’avoir effectuer ma thèse à vos côtés. J’ose espérer que j’emmène avec moi dans mes futurs aventures une petite étincelle de la bienveillance et la joie de vivre ensemble qui anime ce groupe. J’ose espérer pouvoir célébrer avec vous d’ici quelques années les prochains résultats de \Edelweiss et \Ricochet. Un grand merci donc à tous les permanents: Maryvonne, Alex, Lionel, Véronique, Antoine, Jules, Corinne et Julien. Ainsi qu’aux un-peu-moins-permanents : Romain, Emeline, Eva, Quentin, Thomas, Valérian, Hugues, Jean-Baptiste et Jules.
+\\
+
+Je remercie ma famille, mes parents, mes grands-parents, tantes, oncles, cousins, petit-cousins pour les bons moments partagés ensemble, votre soutien et votre curiosité toujours renouvelée qui ont agrémenté mes quelques années dans la physique fondamentale.
+\\
+
+Je remercie tout particulièrement mon frère, Vladimir, qui m’a supporté, plus que je n’oserai l’admettre (j’y arriverai jamais Vlad !), tout au long de l’aventure qu’est la thèse ! Je suis ravi d’avoir vécu en ta compagnie d’avoir débattu, joué, ragé, dompté des fauves , rigolé, tout ça depuis notre repaire (sur l’équateur penché Mont-Blanc/centrale nucléaire !). J’ai été témoin de tes études à Lyon, de ton évolution au cours de ces années et j’ai hâte du spectacle que nous offrira ton épanouissement certain lors de ta thèse !
+\\
+
+J’aimerais également exprimer de la gratitude pour mes amis, ceux que j’ai croisé et qui m’ont accompagné tout au long de cette période de vie mouvementée. 
+Merci à Emeline, tu as accepté un petit sauvage dans ton bureau et il est presque devenu doctorant civilisé le bougre, à part quand tu l’invites pour jouer et manger ! Merci à Romain, partenaire inestimable de montage-démontage de cryostat sur chant de Franconie, de grandes choses nous attendent ! Merci à la grande Eva et notre maître absolu le chichissimme Gribouille, que nos discussions méta-physiques soient toujours entrecoupées des meilleurs bêtises !  Merci à Hughes, second à la villicus E. pour l’hospitalité et les notes de sagesses. Merci à Danny pour avoir présidé ma soutenance de thèse, et m’avoir poussé et accompagné dans des expériences marathonienne et dansantes hors-normes. Merci à Jean-Baptiste qui me laisse l’embêter et faire mon intéressant, courage à toi pour la suite de ta thèse. Merci (en vrac mais tout aussi pensé) à Beatrice, Sihem, Valérie, David, Pauline, Katia, Adriana, Marine, Emma. Merci à ceux que j'aurais invariablement oublié de citer.
+\\
+
+Merci à toi qui aura pris le temps de lire jusqu’ici, et qui s’apprête (sait-on jamais) à approfondir ses connaissances dans les bolomètres cryogéniques en lisant les quelques pages suivantes, tu verras c'est fun :)
+
+
+\end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -366,7 +391,7 @@ Ces travaux se terminent par la caractérisation du bruit de fond radioactif dan
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-%% Thesis Introduction
+%%% Thesis Introduction
 \setcounter{secnumdepth}{-1}
 \include{Chapters/ChapterIntroduction}
 \setcounter{secnumdepth}{2}
@@ -380,10 +405,10 @@ Ces travaux se terminent par la caractérisation du bruit de fond radioactif dan
 %% Heat Channel Study
 \include{Chapters/ChapterEthem}
 
-%% Ionization Theory
+%%%% Ionization Theory
 \include{Chapters/ChapterElectrodes}
 
-%% Ionization Scan
+%%% Ionization Scan
 \include{Chapters/ChapterElectrodesScan}
 
 %% Ionization Experimental
@@ -396,8 +421,8 @@ Ces travaux se terminent par la caractérisation du bruit de fond radioactif dan
 \setcounter{secnumdepth}{-1}
 \include{Chapters/ChapterConclusion}
 
-%%% old
-%\include{Chapters/ChapterAnalysis}
+%%%%% old
+%%\include{Chapters/ChapterAnalysis}
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES

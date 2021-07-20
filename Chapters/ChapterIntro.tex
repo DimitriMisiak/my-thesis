@@ -12,7 +12,9 @@
 
 \subsection{Coherent Elastic Neutrino-Nucleus Scattering}
 
-A scattering phenomenon occurs when two particles interacts during a collision. A scattering is considered to be elastic when the energies of the two particles are conserved trough the collision, even though their momentum is not necessarily preserved. 
+A scattering phenomenon occurs when two particles interacts during a collision.
+%A scattering is considered to be elastic when the energies of the two particles are conserved trough the collision, even though their momentum is not necessarily preserved. 
+An elastic scattering is a process where the kinetic energy of a particle is conserved in the center-of-mass frame, but its direction of propagation is modified (by interaction with other particles and/or potentials). Furthermore, while the particle's kinetic energy in the center-of-mass is constant, its energy in the lab frame is not.
 This work especially focuses on the elastic scattering between neutrinos and atomic nuclei. Even though the nucleus is an assembly of nucleons, a coherent scattering occurs when the neutrino can interact with the nucleus as a whole, as if it was a uniform object.
 When the scattering of a neutrino on a nucleus is coherent and elastic, it is defined as a Coherent Elastic Neutrino-Nucleus Scattering, shortened to CE$\nu$NS or CENNS.
 This physical phenomenon, described by Freedman in 1973 within the framework of the Standard Model, was  measured for the first time in august of 2017 by the COHERENT collaboration, with an experiment installed near the spallation source at the Oak Ridge National Laboratory in the United States.
@@ -23,14 +25,14 @@ Before presenting the scientific context of this work, a brief recall is done on
 
 Rutherford's experience with gold leaf in 1909 provided valuable information for the development of Bohr's atomic model in 1913. Rutherford understood that the electrically positively charged of an atom is concentrated in the middle of the atom. Indeed, knowing that the matter is electrically neutral and that an atom has electrons (charged negatively) there are necessarily positive charges "somewhere". Bohr then designed an atomic model for the hydrogen that reminds us of a planetary system. There would be the nucleus at the center and the electrons around it, only allowed to be on specific circular orbitals.
 Theoretical and experimental developments show us today that the electrons are not really on circular orbits but rather have a probability of presence described by combinations of spherical harmonics. Bohr's model for hydrogen is not fundamentally questioned and is still taught. Electrons are considered to orbit around the nucleus of positive charge. The latter can be either stable or unstable in the case of radioactive elements. 
-This is an important fact, that an atom is not a fundamental object of modern physics: it is composed of nucleons (neutrons and protons), which are themselves composed of three quarks held together by to the strong nuclear interaction mediated by gluons. The size of an atom is of the order of $\SI{0.1}{\nano\m} = \SI{1e-10}{\m}$ which is five orders of magnitude larger than the size of its nucleus $\SI{1}{\femto\m} = \SI{1e-15}{\m}$.
+This is an important fact, that an atom is not a fundamental object of modern physics: it is composed of nucleons (neutrons and protons), which are themselves composed of three quarks held together by to the strong nuclear interaction mediated by gluons. The size of an atom is of the order of $\SI{0.1}{\nano\m} = \SI{e-10}{\m}$ which is five orders of magnitude larger than the size of its nucleus $\SI{1}{\femto\m} = \SI{e-15}{\m}$.
 
 
 \subsection{The Neutrino}
 
-The neutrino is one of the elementary particles of the Standard Model of particles physics, which is an electrically neutral lepton. There are three flavors of neutrinos each associated with a charged lepton: the electronic neutrino $\nu_e$ is coupled to the electron $e^-$, the muonic neutrino $\nu_{\mu}$ with the muons $\mu^-$ and the tauic neutrino $\nu_{\tau}$ with the tau $\tau^-$.
+The neutrino is one of the elementary particles of the Standard Model (SM) of particles physics, which is an electrically neutral lepton. There are three flavors of neutrinos each associated with a charged lepton: the electronic neutrino $\nu_e$ is coupled to the electron $e^-$, the muonic neutrino $\nu_{\mu}$ with the muon $\mu^-$ and the tauic neutrino $\nu_{\tau}$ with the tau $\tau^-$.
 The physicist Wolfgang Pauli was the first to postulate the existence of the neutrino in 1930. This new particle (at the time) helped to explain the continuous spectrum of the beta disintegration, which is a radioactive decay in which a radionucleide emits an electron (or positron) and an antineutrino (or neutrino).
-The experimental confirmation was obtained by Cowan and Reines in 1956 based on an idea by Wang Ganchang (1942)and Reines was awarded the Nobel Prize for physics in 1995 for this discovery.
+The experimental confirmation was obtained by Cowan and Reines in 1956 based on an idea by Wang Ganchang (1942) and Reines was awarded the Nobel Prize for physics in 1995 for this discovery.
 A neutrino is only sensitive to the electroweak and gravitational interactions. The later is negligible in particle physics but hold impact on the larger scale of cosmology. 
 %Due to the short range of the weak interaction (\SI{e-18}{\m}) 
 The neutrino has a very low probability of interaction with matter, which is formalized in particle physics as a weak cross-section. To have an order of magnitude in mind we can show that out of 10 billion neutrinos of \SI{1}{\mega\eV} that cross the Earth, only 1 will interact with its components.
@@ -40,7 +42,7 @@ In the study of the CENNS process, no particular attention is brought on disting
 \subsection{CENNS and Standard Model}
 
 It was in 1973 that Daniel Z. Freedman, a physicist currently at MIT, proposed the coherent elastic neutrino-nucleus scattering as a probe for weak interaction \cite{Freedman:1973yd}.
- In its description based on the Standard Model (SM)  still under development at that time (it will take its current form in the mid-1970s) Freedman expresses the evolution rate of the effective cross-section of the neutrino-nucleus interaction as a function of the recoil energy of the nucleus:
+ In its description based on the Standard Model still under development at that time (it will take its current form in the mid-1970s), Freedman expresses the evolution rate of the effective cross-section of the neutrino-nucleus interaction as a function of the recoil energy of the nucleus:
 \begin{equation}
 \label{eq:cenns-equation}
 \frac{\mathrm{d} \sigma (E_{\nu}, E_R)}{\mathrm{d} E_R}
@@ -87,10 +89,9 @@ The detection of CENNS is not done by directly measuring the cross-section of th
 \begin{equation}
 \frac{\mathrm{d} R}{\mathrm{d} E_r}
 =
-\mathcal{N} \cdot
+\mathcal{N}
 \int_{E_{\nu}^{min}}
 \Phi(E_{\nu})
-\cdot
 \frac{\mathrm{d} \sigma (E_{\nu}, E_r) }{\mathrm{d} E_r} \mathrm{d} E_{\nu}
 \end{equation}
 In this equation, $\mathcal{N}$ represents the number of target nuclei per mass unit. The minimum energy of a neutrino to induce a nuclear recoil is given by the relation $E_{\nu}^{min}= \sqrt{m_N E_R /2}$.
@@ -102,7 +103,7 @@ A common representation of this type of interaction in particle physics is done 
 \caption{Feynman diagrams of the CEvNS. On the left in the case of the Standard Model. On the right the same process within the framework of alternative theories.}
 \label{fig:cenns-feynman}
 \end{figure}
-The left diagram corresponds to the CENNS process in the SM framework, by having the the $Z_0$ boson as the mediator of the weak interaction between the neutrino and the nucleus. The right diagram presents the CENNS in the framework of alternative theories.
+The left diagram corresponds to the CENNS process in the SM framework, by having the $Z_0$ boson as the mediator of the weak interaction between the neutrino and the nucleus. The right diagram presents the CENNS in the framework of alternative theories.
 
 
 \subsection{First Detection of CE$\nu$NS}
@@ -127,18 +128,16 @@ It would be now possible to constrain models of new physics \cite{Akimov:2017bs}
 %A number of theories diverge significantly from the prediction of the Standard Model at low energy. Among them we can mention in particular :
 In the framework of beyond Standard Model physics, the measure of the CENNS process at low-energy could be associated with:
 \begin{itemize}
-	\item The existence of new massive bosons,
-	\item The existence of an anomalously large magnetic moment of the neutrino,
-	\item The existence of non-standard interactions.
+	\item the existence of new massive bosons,
+	\item the existence of an anomalously large magnetic moment of the neutrino,
+	\item the existence of non-standard interactions.
 \end{itemize}
 
 There is an important scientific stake in making these low energy measurements to provide additional elements in the understanding of fundamental interactions but also to provide additional constraints for a large number of neutrino research projects. A precise measurement of the CENNS would, for example, make it possible to constrain the previously mentioned theoretical models. 
 
 However, to do new physics research with the CENNS process, the use of a suitable neutrino source is required. This source should have a known and adapted neutrino energy spectrum (typically $E_{\nu} \approx \SI{10}{\mega\eV}$). This will result in lowered recoil energies $E_R$ in the detector requiring lower energy threshold. This upgrade in detector performances can only be reached by diminishing the volume of the detectors resulting in a loss of exposure. As such, the neutrino source should produce a very high flux of neutrinos as to counter the inevitable loss of detector mass and obtain an equivalently high CENNS event rate.
 
-Additionally, various technical and practical considerations are taken into account: possibility of interruption of the flow (or pulsed flow) for background rejection (as in the case of COHERENT for example), minimum accessible source/detector distance
-%(the closer you are to the source, the closer you are to the detector) the greater the flow of neutrinos)
-, ease of access and installation, regulations and availability of infrastructure.
+Additionally, various technical and practical considerations are taken into account: possibility of interruption of the flow (or pulsed flow) for background rejection (as in the case of COHERENT for example), minimum accessible source/detector distance, ease of access and installation, regulations and availability of infrastructure.
 
 \subsection{Neutrino Sources}
 
@@ -162,27 +161,27 @@ Despite of the rather large neutrino flux of the order of \SI{7e10}{\cm^{-2} \s^
 \begin{minipage}{0.48\textwidth}
 \includegraphics [scale=1]{Figures/Introduction/solar_neutrino_spectrum_exp.pdf}
 \end{minipage}
-\caption{Solar neutrino spectrum. On the left, simulated spectra of solar neutrinos seen from the Earth associated with the different fusion reaction, taken from \cite{DAngelo:2014lmb}.
+\caption{Solar neutrino spectrum. On the left, simulated spectra of solar neutrinos seen from the Earth associated with the different fusion reactions, taken from \cite{DAngelo:2014lmb}.
 On the right, solar neutrino spectrum and its components measured by the Borexino experiment at the Gran Sasso in Italy, taken from \cite{Redchuk:2020mza}.}
 \label{fig:solar-neutrino-spectrum}
 \end{figure}
 
-Despite this difficulty, large experiments, such as Borexino located in the underground laboratory of the Gran Sasso in Italy, are able to measure this solar neutrino spectrum as seen on the right subplot of figure \ref{fig:solar-neutrino-spectrum}. However, for a CENNS precision measurement experiment the Sun is clearly not a relevant source because even if the energy of some neutrinos is low enough for probing new physics,the neutrino flux is too low and would require a huge volume (mass) of detector as used by solar neutrino experiments as SNO \cite{Bellerive:2016}. Another negative point is that it is not possible to turn off the source to identify the background noise. Indeed, the solar neutrino flux is constant and crosses the Earth to reach the detector without difficulty.
+Despite this difficulty, large experiments, such as Borexino located in the underground laboratory of the Gran Sasso in Italy, are able to measure this solar neutrino spectrum as seen on the right subplot of figure \ref{fig:solar-neutrino-spectrum}. However, for a CENNS precision measurement experiment, the Sun is clearly not a relevant source because even if the energy of some neutrinos is low enough for probing new physics, the neutrino flux is too low and would require a huge volume (mass) of detector as used by solar neutrino experiments as SNO \cite{Bellerive:2016}. Another negative point is that it is not possible to turn off the source to identify the background noise. Indeed, the solar neutrino flux is constant and crosses the Earth to reach the detector without difficulty.
 
 \subsubsection{Terrestrial Neutrinos (geo-neutrinos)}
 
 Our own planet, the Earth, emits neutrinos through natural radioactivity processes.
-Geo-neutrinos are emitted by the Earth core through natural radioactivity processes, resulting in a flux at the Earth surface estimated to be \SI{1e6}{\cm^{-2} \s^{-1}} \cite{Bellini:2013}. This flux of geo-neutrinos is low and is coupled with a wide distribution in energy. Consequently, they are very difficult to detect because of the background of neutrinos from extraterrestrial and human origin. Nevertheless some experiments try to carry out geo-neutrino measurements for the information they would allow us to obtain on the Earth and in particular at the level of the Earth's core. The same large-scale experiment Borexino claims to have recently detected events attributable to geo-neutrinos \cite{Agostini:2020geo}.
+Geo-neutrinos are emitted by the Earth's core through natural radioactivity processes, resulting in a flux at the Earth's surface estimated to be \SI{1e6}{\cm^{-2} \s^{-1}} \cite{Bellini:2013}. This flux of geo-neutrinos is low and is coupled with a wide distribution in energy. Consequently, they are very difficult to detect because of the background of neutrinos from extraterrestrial and human origin. Nevertheless some experiments try to carry out geo-neutrino measurements for the information they would allow us to obtain on the Earth and in particular at the level of the Earth's core. The same large-scale experiment Borexino claims to have recently detected events attributable to geo-neutrinos \cite{Agostini:2020geo}.
 For reasons similar to solar neutrinos, geo-neutrinos are not relevant in view of the current knowledge for CENNS precision measurement.
 
 \subsubsection{Production from Human Activity}
 
-Humans are capable of producing neutrinos in controlled physical processes. In particle accelerators, for example, it is not uncommon to produce neutrinos with energies of up to \SI{100}{\giga\eV}. The most intense man-made source of low-energy neutrinos are the the nuclear fission power plants. However, the main objective of these power generation plants is not the production of neutrinos, which consists in a very abundant by-product of the electricity production. The flow of neutrinos emitted by a standard nuclear power plant \SI{10}{\m} from the reactor is approximately equal to \SI{2e15}{\cm^{-2} \s^{-1}}, for an average neutrino energy of \SI{4}{\mega\eV}. Nuclear fission reactors offer a range of energy compatible with the research of new physics, the neutrino flux is among the most important and in addition to that it is possible to take advantage of unit outages to measure background noise. For this last point the subtraction background noise is not as optimal as with a pulsed source if the background noise is not stationary on the time scales represented by the combustion of a fuel rod but it is always an interesting plus to gain in measurement accuracy.
+Humans are capable of producing neutrinos in controlled physical processes. In particle accelerators, for example, it is not uncommon to produce neutrinos with energies of up to \SI{100}{\giga\eV}. The most intense man-made source of low-energy neutrinos are the nuclear fission power plants. However, the main objective of these power generation plants is not the production of neutrinos, which consists in a very abundant by-product of the electricity production. The flow of neutrinos emitted by a standard nuclear power plant \SI{10}{\m} from the reactor is approximately equal to \SI{2e15}{\cm^{-2} \s^{-1}}, for an average neutrino energy of \SI{4}{\mega\eV}. Nuclear fission reactors offer a range of energy compatible with the research of new physics, the neutrino flux is among the most important and in addition to that it is possible to take advantage of unit outages to measure background noise. For this last point the subtraction background noise is not as optimal as with a pulsed source if the background noise is not stationary on the time scales represented by the combustion of a fuel rod but it is always an interesting plus to gain in measurement accuracy.
 
 
 \subsection{Reactor Experiments}
 
-The strong potential of nuclear power plants as sources of neutrinos has led a small number of CENNS experiments to be installed close to a reactor core around the world. The main experiments searching for the the CENNS near nuclear reactors are identified on the atlas displayed in figure \ref{fig:cenns-exp-atlas} and listed in the table \ref{tab:reactor-experiments} with their the detector material and their localization.
+The strong potential of nuclear power plants as sources of neutrinos has led a small number of CENNS experiments to be installed close to a reactor core around the world. The main experiments searching for the CENNS near nuclear reactors are identified on the atlas displayed in figure \ref{fig:cenns-exp-atlas} and listed in the table \ref{tab:reactor-experiments} with their detector material and their localization.
 
 \begin{figure}
 \centering
@@ -197,11 +196,11 @@ The strong potential of nuclear power plants as sources of neutrinos has led a s
 \centering
 \begin{tabular}{c|c|c}
 Experiment & (Detector Material) @ Location & Reference  \\ \hline \hline
-NuGEN & 	(Ge) @ Kalinin Reactor (Russie) &	\cite{Belov:2015ufh} \\
-CONUS & 	(Ge) @ Brokdorf (Allemagne) &	\cite{Lindner:2017} \\
+NuGEN & 	(Ge) @ Kalinin Reactor (Russia) &	\cite{Belov:2015ufh} \\
+CONUS & 	(Ge) @ Brokdorf (Germany) &	\cite{Lindner:2017} \\
 TEXONO & 	(Ge) @ Kuo-Sheng Reactor (Taiwan) &	\cite{Soma:2016} \\
-CONNIE & 	(Si) @ Angra Reactor (Brésil) & \cite{AguilarArevalo:2016} \\
-RED100 & 	(Xe) @ Kalinin Reactor (Russie) &\cite{Akimov:2017} \\
+CONNIE & 	(Si) @ Angra Reactor (Brazil) & \cite{AguilarArevalo:2016} \\
+RED100 & 	(Xe) @ Kalinin Reactor (Russia) &\cite{Akimov:2017} \\
 MINER & 	(GeSi) @ Nuclear Science Center (USA) &	\cite{Agnolet:2016zir} \\
 NU-CLEUS &	(\ce{CaWO_4}, \ce{Al_2O_3} ) @ Chooz (France) &	\cite{Strauss_2017} \\
 RICOCHET & 	(Ge, Zn, Al, (Si)) @ ILL (France) &	\cite{Billard:2017giu} \\
@@ -210,7 +209,7 @@ RICOCHET & 	(Ge, Zn, Al, (Si)) @ ILL (France) &	\cite{Billard:2017giu} \\
 \label{tab:reactor-experiments}
 \end{table}
 
-The CENNS experiments near a reactor would allow the estimation of the Weinberg angle $\theta_w$ at low energies. Figure \ref{fig:weinberg-angle} shows the SM prediction (blue line) for this parameter and the zone of the parameter space accessible by the CENNS experiments (green zone) which still remains largely unexplored. The estimation of this parameter with different physical processes is also very important to identify incompatibilities and allow the scientific community to go beyond the Standard Model.
+The CENNS experiments near a reactor would allow the estimation of the Weinberg angle $\theta_w$ at low energies. Figure \ref{fig:weinberg-angle} shows the SM prediction (blue line) for this parameter and the zone of the parameter space accessible by the CENNS experiments (green zone) which still remains largely unexplored. The estimation of this parameter with different physical processes is also very important to identify incompatibilities and allows the scientific community to go beyond the Standard Model.
 
 \begin{figure}
 \centering
@@ -233,25 +232,25 @@ It should be noted that the targeted accuracy is far superior to that obtained b
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/Introduction/ricochet_ill_site.pdf}
-\caption{On the top left, Installation of \Ricochet{} at ILL, 3D modeling. On the top right, View in
+\caption{On the top left, Installation of \Ricochet{} at ILL, 3D modeling. On the top right, view in
 cryostat cut. At the bottom, location of the \Ricochet{} cryostat within the ILL nuclear reactor. The water pool above the location of \Ricochet{} provides protection against cosmic particles. Images adapted from \cite{HDRJulien}.}
 \label{fig:ricochet-ill-site}
 \end{figure}
 
-The CryoCube detector will be at only \SI{8}{\m} from the core of the nuclear reactor which will produce a neutrino flux of \SI{e12}{\cm^{-2} \s^{-1}}. The CryoCube will be cool down close to the absolute zero at cryogenic temperatures around \SI{10}{\milli\kelvin}, in order to be able to measure minute temperature rises caused by the neutrinos following their interaction with the nuclei that make up the detector's target material.
+The CryoCube detector will be at only \SI{8}{\m} from the core of the nuclear reactor which will produce a neutrino flux of \SI{e12}{\cm^{-2} \s^{-1}}. The CryoCube will be cooled down close to the absolute zero at cryogenic temperatures around \SI{10}{\milli\kelvin}, in order to be able to measure minute temperature rises caused by the neutrinos following their interaction with the nuclei that make up the detector's target material.
 
 %The operation of the CryoCube detector will be detailed later. But it is necessary to know that 
 The cryogenic detector load will be protected from external radiations by a thick layer of lead and borated polyethylene shielding weighting more than 15 tons and an active cosmic particle rejection device designated as "veto muon". The objective of this shielding strategy is to prevent as much as possible any unwanted diffusion processes in the experimental data which would reduce the signal-to-noise ratio and significantly hurt the chances of detecting signs of new physics.
 
 The incident neutrino flux at the location of the CryoCube at on ILL site was estimated and
-the collaboration has precisely simulated the expected CENNS spectrum according to different theoretical models considered and taking into account the different background contributions. On the figure \ref{fig:cenns-new-physics}, we see the prediction of the Standard Model (in blue) and the assumed effect of two alternative theories: the existence of an anormally high magnetic moment of neutrino (violet, fine dotted line) or of a new Z' boson (violet, dashed line). The background noise, of electronic or nuclear origin, is represented in grey and is for both almost uniform in the energy range considered.
+the collaboration has precisely simulated the expected CENNS spectrum according to different theoretical models considered and taking into account the different background contributions. In figure \ref{fig:cenns-new-physics}, we see the prediction of the Standard Model (in blue) and the assumed effect of two alternative theories: the existence of an anormally high magnetic moment of neutrino (violet, fine dotted line) or of a new Z' boson (violet, dashed line). The background noise, of electronic or nuclear origin, is represented in grey and is for both almost uniform in the energy range considered.
 
 This numerical simulation allows to define the specifications of \Ricochet{} so that the CENNS spectrum is measured specifically in the region of interest for new physics search. From the spectra associated with two exotic physics scenarios in figure \ref{fig:cenns-new-physics}, we see that we need a low enough detection threshold in recoil energy. Otherwise, we will not be able to see the deviations from the Standard Model or even the CENNS itself.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{Figures/Introduction/cenns_spectrum_ill.pdf}
-\caption{On the left, Simulation of the background noise on the CENNS spectrum for \Ricochet{} at the ILL. The radioactive background noise is represented as its two components inducing electronic recoils in light grey and inducing nuclear recoils in dark gray. Figure taken from \cite{Billard:2018jnl}.}
+\caption{Simulation of the background noise on the CENNS spectrum for \Ricochet{} at the ILL. The radioactive background noise is represented as its two components inducing electronic recoils in light grey and inducing nuclear recoils in dark gray. Figure taken from \cite{Billard:2018jnl}.}
 \label{fig:cenns-new-physics}
 \end{figure}
 
@@ -270,9 +269,9 @@ To carry out the identification of neutrino recoils, the material of the target 
 
 Specifically, a detector with the following characteristics would be required:
 \begin{itemize}
-	\item Detection threshold / energy resolution: $E_R \sim \SI{50}{\eV}$ / $\sigma(E_R) \sim \SI{10}{\eV}$,
-	\item Ability to discriminate between electronic and nuclear recoils with thermometer + electrodes for electronic background rejection with semiconductor material ,
-	\item Mass of the detector: $m_d \sim \SI{1}{\kg}$ with a flux of \SI{e12}{\cm^{-2} \s^{-1}} to have about ten of CENNS events per day.
+	\item detection threshold / energy resolution: $E_R \sim \SI{50}{\eV}$ / $\sigma(E_R) \sim \SI{10}{\eV}$,
+	\item ability to discriminate between electronic and nuclear recoils with thermometer + electrodes for electronic background rejection with semiconductor material ,
+	\item mass of the detector: $m_d \sim \SI{1}{\kg}$ with a flux of \SI{e12}{\cm^{-2} \s^{-1}} to have about ten of CENNS events per day.
 \end{itemize}
 
 To meet these specifications, the members of the \Ricochet{} collaboration are developing an innovative detector called CryoCube which is presented in the figure \ref{fig:cryocube}. It will be composed of 27 germanium crystals of \SI{38}{\g} each equipped with a heat measurement channel and an ionization measurement channel for discrimination purpose. The goal of my thesis is the design of the elementary cryogenic detectors.

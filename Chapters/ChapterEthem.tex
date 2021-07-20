@@ -30,7 +30,7 @@ The NTD of RED10 is characterized later in this work thanks to experimental data
 \section{Electro-Thermal Modelization of the RED Dectectors}
 \label{sec:electro-thermal-model}
 
-In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method \cite{Figueroa:2006} \cite{Billard:2016apk}.
+In this part, the theoretical calculations used to build the detector model are presented. The study focused on the first-order resolution of the system of coupled differential equations using a linear algebra method \cite{Figueroa:2006, Billard:2016apk}.
 It is then possible to simulate the behavior of a detector in the steady state, in the time domain and in the frequency domain, which gives access to the complete characterization of the detector.
 
 \subsection{Describing the Detector with a System of Equation}
@@ -77,7 +77,7 @@ The thermal bath associated with the absorber (index $a$) represents the phonon 
 \label{eq:ap-heat-power}
 P_{ap}=g_{glue} S_{NTD} \left( T_p^{n_g} - T_a^{n_g} \right)
 \end{equation}
-with $S_{NTD}$ the surface of the NTD facing the the absorber in \si{\mm^2}, $g_{glue}$ the surface thermal conductivity constant of the glue and $n_g$ an exponent. 
+with $S_{NTD}$ the surface of the NTD facing the absorber in \si{\mm^2}, $g_{glue}$ the surface thermal conductivity constant of the glue and $n_g$ an exponent. 
 %These two parameters have been experimentally set in previous studies.
 
 The thermal leakage of the detector is assured by the cabling gold wires on the gold-plated electrodes of the NTD. The heat power transferred from the phonon bath to the cryostat thermostat is:
@@ -118,7 +118,7 @@ with simplification in the frequency-domain:
 %\shorthandon{:!}
 }%
 \end{minipage}
-\caption{On the left, Diagram of the polarization and readout electronics. On the right, Simplified diagram in the frequency-space with the use of Thevenin-Norton transformation. The NTD resistor $R(T_e)$, the load resistor $R_L$ and the cabling capacitance $C_{cabling}$ become the equivalent complex impedance $Z_{eq}$. Noise sources appear in red. Johnson noise, $e_{J_{RL}}$ and $e_{J_{NTD}}$, and amplifier current noise $i_{ampli.}$ are grouped into a current noise $i_{noise}$ whose expression is specified.}
+\caption{On the left, diagram of the polarization and readout electronics. On the right, simplified diagram in the frequency-space with the use of Thevenin-Norton transformation. The NTD resistor $R(T_e)$, the load resistor $R_L$ and the cabling capacitance $C_{cabling}$ become the equivalent complex impedance $Z_{eq}$. Noise sources appear in red. Johnson noise, $e_{J_{RL}}$ and $e_{J_{NTD}}$, and amplifier current noise $i_{ampli.}$ are grouped into a current noise $i_{noise}$ whose expression is specified.}
 \label{fig:ethem-electric-scheme}
 \end{figure}
 
@@ -236,7 +236,7 @@ With this linearization of the physical quantities, it is possible to define the
 	&= -G_{ap}^a \Delta T_a + G_{ap}^p \Delta T_p 
 	 \\[10pt]
 \displaystyle C_p \frac{d \Delta T_p}{d t} 
-	&= +G_{ap}^a \Delta T_a - G_{ap}^p \Delta T_p
+	&= G_{ap}^a \Delta T_a - G_{ap}^p \Delta T_p
 	+ G_{ep}^e \Delta T_e - G_{ep}^p \Delta T_p
 	- G_{pb}^p \Delta T_p
 	 \\[10pt]
@@ -276,7 +276,7 @@ A system of linear equations is now being studied. It is thus possible to solve 
 \Delta V
 \end{array} \right)
 \end{equation}
-The simplified system of equation \ref{eq:ethem-system-temp-simplified} is now simply expressed as the matrix equation:
+The simplified system of equations \ref{eq:ethem-system-temp-simplified} is now simply expressed as the matrix equation:
 \begin{equation}
 \label{eq:ethem-matrix-eq}
 \frac{d \bm{\phi}}{d t}= - \bm{M} \bm{\phi} + \bm{F}(t-t_0)
@@ -304,7 +304,7 @@ E/C_a \\
 \end{equation}
 The deposition of the recoil energy, the relaxation of the phonons created in the absorber, and the temperature rise of the absorber are considered instantaneous processes, hence the use of the Dirac function $\delta (t-t_0)$. A variant of this model consists in assigning a relaxation time to the phonons and taking into account the temperature rise of the thermal baths during phonon relaxation.
 
-The general solution of the equation \ref{eq:ethem-coupling-mat} is a linear combination of $N$ exponential, with $N=4$ corresponding to the dimensions of the system, each characterized by a time constant. Their expressions are obtained by diagonalizing the coupling matrix $\bm{M}$, which shifts the framework to the basis formed by the eigenvectors of the system solutions. We consider, for $i \in \{1,2,3,4\}$, the eigenvectors $\bm{v}_i$ and the associated eigenvalues $f_i(t)$ to write these solutions:
+The general solution of the equation \ref{eq:ethem-coupling-mat} is a linear combination of $N$ exponentials, with $N=4$ corresponding to the dimensions of the system, each characterized by a characteristic time constant. Their expressions are obtained by diagonalizing the coupling matrix $\bm{M}$, which shifts the framework to the basis formed by the eigenvectors of the system solutions. We consider, for $i \in \{1,2,3,4\}$, the eigenvectors $\bm{v}_i$ and the associated eigenvalues $\lambda_i$ to write these solutions:
 \begin{equation}
 \label{eq:eigen-solution}
 \bm{f}_i(t) = f_i(t) \bm{v}_i
@@ -316,7 +316,7 @@ Without considering the source term, we introduce these expressions into the mat
 \end{equation}
 Solving this equation leads to the expression of the solutions in the basis of the eigenvectors:
 \begin{equation}
-f_i(t) = A_i e^{-t/\tau_i} \bm{v}_i
+\bm{f}_i(t) = A_i e^{-t/\tau_i} \bm{v}_i
 \end{equation}
 with $A_i$ the normalization constant and $\tau_i=1/\lambda_i$ the characteristic time constant of the solution. The general solution of \ref{eq:ethem-coupling-mat} is then expressed in the new basis as
 \begin{equation}
@@ -412,7 +412,7 @@ and with the complex impedance $Z_{eq}$, containing the electrical components of
 \begin{equation}
 Z_{eq} = \left(\frac{1}{R_L} + \frac{1}{R(T_e)} + i\omega C_{cabling}\right)^{-1}
 \end{equation}
-The expression of the vector of fluctuations $\bm{\phi}$ is obtained by inverting the coupling matrix $\bm{Z}$ as,:
+The expression of the vector of fluctuations $\bm{\tilde{\phi}}$ is obtained by inverting the coupling matrix $\bm{Z}$ as:
 \begin{equation}
 \bm{\tilde{\phi}} (\omega) =
 \left( \begin{array}{c}
@@ -555,7 +555,7 @@ The two available electronics are:
 \item a warm "JFET-based" polarization and readout electronics,
 \item an "\Edelweiss{}" polarization and readout electronics, also using J-FET but at \SI{100}{\kelvin}.
 \end{itemize}
-These two electronics are based on the action of a field effect transistor called FET (Field Effect Transistor). The major difference between JFET-based and \Edelweiss{} comes from the difference in the FET used. In the case of JFET-based, the operating temperature of the FET corresponds to the ambient temperature. For \Edelweiss{}, the FET needs to be placed in the cryostat to reach its optimum operating temperature of \SI{100}{\kelvin}. In addition, a capacity of \SI{10}{\nano\farad} replaces the load resistor in the polarization circuit of the \Edelweiss{} electronics. This component was already present from the previous use of \Edelweiss{} electronics and does not add any additional noise. It only slightly increases the capacity of the cabling  $C_{cabling}$ which does not hinder the characterization and comparison of the two electronics.
+These two electronics are based on the action of a field effect transistor called FET (Field Effect Transistor). The major difference between JFET-based and \Edelweiss{} comes from the difference in the FET used. In the case of JFET-based, the operating temperature of the FET corresponds to the ambient temperature. For \Edelweiss{}, the FET needs to be placed in the cryostat to reach its optimum operating temperature of \SI{100}{\kelvin}. In addition, a capacity of \SI{10}{\pico\farad} replaces the load resistor in the polarization circuit of the \Edelweiss{} electronics. This component was already present from the previous use of \Edelweiss{} electronics and does not add any additional noise. It only slightly increases the capacity of the cabling  $C_{cabling}$ which does not hinder the characterization and comparison of the two electronics.
 
 
 \subsection{Noise Characterization}
@@ -759,7 +759,7 @@ The electro-thermal model is adjusted to the experimental data collected with RE
 The fit seems good for both types of measurement with a $\chi^2/ddl=1.612$. However, the model has some difficulty in adjusting the pulse at a temperature of \SI{30}{\milli\kelvin}. The current-voltage characteristic, also called V(I) curve, makes it possible to constrain the free parameters involved in the steady state equations \ref{eq:ethem-system-stationnary}: $R_0, T_0, g_{ep}, g_k$. The experimental points in the linear part of the V(I) curves below \SI{1}{\nano\ampere} mainly constrains the resistance value of the NTD, and thus $R_0, T_0$. The voltage plateau at higher bias current above \SI{1}{\nano\ampere} comes from an excessive Joule effect in the NTD which is then no longer compensated by the thermal leakage to the cryostat. The temperature of the NTD increases and its resistivity decreases with constant bias current $I_P$, which causes the voltage plateau to appear. Its adjustment thus constrains the values of conductivity $g_k$ and electron-phonon coupling $g_{ep}$.
 
 As for the shape of the signal, the model shows two slopes and thus two characteristic times. The adjustment of these two decay slopes constrains the athermal phonon fraction $\epsilon$, and more generally, all the parameters involved in the calculation of the normalization constants of the time dependent solutions \ref{eq:eigen-solution}.
-The rise in tension allows to constrain the relaxation time of the phonons $\tau_P$. Indeed, for an immediate relaxation of the phonons, the rise time would be infinitely large (modulo the cutoff frequency $(RC_{cabling})^{-1]}$).
+The rise in tension allows to constrain the relaxation time of the phonons $\tau_P$. Indeed, for an immediate relaxation of the phonons, the rise time would be infinitely large (modulo the cutoff frequency $(RC_{cabling})^{-1}$).
 
 The MCMC method then gives the fitting parameters for RED10:
 

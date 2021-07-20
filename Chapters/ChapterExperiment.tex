@@ -16,7 +16,7 @@ This chapter describes the IP2I Cryostat Facility in which the cryogenic germani
 % Intro
 The particle detectors studied in this work are cryogenic germanium bolometers. The term "cryogenic" indicates that these detectors are operated at cryogenic temperatures below $\SI{1}{\kelvin} = \SI{-272,15}{\celsius}$. In order to reach such temperatures, the detectors are placed inside of a \ce{^3He}/\ce{^4He} dilution cryostat.
 
-The experimental results discussed in this work were obtained by running germanium detectors in the the dry dilution cryostat of the \textit{Institut de Physique des 2 Infinis de Lyon} (IP2I). The IP2I cryogenic facility is located in the basement of the IP2I Haefely building (see figure \ref{fig:haefely-building}). With an almost negligible overburden roughly estimated to be about \SI{1.5}{m.w.e} (meter water equivalent), the cryogenic detectors are operated in an above-ground (or surface) experiment as opposed to the underground operation of the \Edelweiss{} detectors at the LSM.
+The experimental results discussed in this work were obtained by running germanium detectors in the dry dilution cryostat of the \textit{Institut de Physique des 2 Infinis de Lyon} (IP2I). The IP2I cryogenic facility is located in the basement of the IP2I Haefely building (see figure \ref{fig:haefely-building}). With an almost negligible overburden roughly estimated to be about \SI{1.5}{m.w.e} (meter water equivalent), the cryogenic detectors are operated in an above-ground (or surface) experiment as opposed to the underground operation of the \Edelweiss{} detectors at the LSM.
 
 % Radioactive shielding
 In order to reduce the environmental gamma background, the cryostat is surrounded by a \SI{10}{\cm} thick cylindrical lead shield covering a solid angle of $\sim \SI{70}{\percent}$ of $4\pi$ around the detectors. A reduction of about a factor of 10 is estimated on the triggering rate of our detectors with this lead shield.
@@ -125,11 +125,11 @@ This internal vibration mitigation solution is the suspended tower which can be 
 The 3-D dynamical description of the elastic-pendulum can be divided into two pseudo-independent equations in the approximation of small perturbations. The natural frequency for vertical modes is then given by:
 \begin{equation}
 \label{eq:Freq-Vertical}
-f_{0,\textrm{vertical}}=\frac{1}{2\pi}\cdot\sqrt{\frac{k}{M}} = \frac{1}{2\pi}\cdot\sqrt{\frac{g}{(l_{\textrm{eq}}-l_{0})}}
+f_{0,\textrm{vertical}}=\frac{1}{2\pi}\sqrt{\frac{k}{M}} = \frac{1}{2\pi}\sqrt{\frac{g}{l_{\textrm{eq}}-l_{0}}}
 \end{equation}
 where $M$ corresponds to the total mass of the suspended tower, $k$, $l_0$, and $l_{\rm eq}$ are the elastic constant, the rest length, and the length at equilibrium of the spring, respectively. The vertical resonance frequency can either be expressed in terms of $k$ and $M$ simultaneously or by the spring elongation alone $|l_{\textrm{eq}}-l_{0}|$. The natural frequency for radial oscillations of the pendulum, which are related to its total length  $l_{\rm tot}$, is given by:
 \begin{equation}
-f_{0,\textrm{ radial}}=\frac{1}{2\pi}\cdot\sqrt{\frac{g}{l_{\rm tot}}}\label{eq:Freq-Radial}.
+f_{0,\textrm{ radial}}=\frac{1}{2\pi}\sqrt{\frac{g}{l_{\rm tot}}}\label{eq:Freq-Radial}.
 \end{equation}
 From these approximations, we can estimate the theoretical resonance frequencies of the elastic pendulum depending on the spring constant, the pendulum length and the total mass of the detector assembly. Interestingly, one can notice that as $l_{\textrm{tot}} \geq (l_{\textrm{eq}}-l_{0})$, the natural frequency in the radial direction is necessarily lower than in the vertical direction: $f_{0,\textrm{ radial}}<f_{0,\textrm{vertical}}$. 
 
@@ -137,7 +137,7 @@ Thanks to the use of a single spring holding system, we avoid any transverse mom
 \begin{equation}
 H(\omega_{i})=\frac{\omega_{0,i}^{2}}{\omega_{0,i}^{2}-\omega_{i}^{2}}\label{eq:Transfer-function},
 \end{equation}
-where $\omega_{0,i}$ is the natural pulsation of the suspended tower, with $\omega_{0,i}=2\pi\cdot f_{0,i}$. 
+where $\omega_{0,i}$ is the natural pulsation of the suspended tower, with $\omega_{0,i}=2\pi f_{0,i}$. 
 The natural frequencies of the suspended tower in both vertical and radial directions have been tuned to be as low as possible in order to attenuate all vibrations above \SI{1.4}{\Hz}, corresponding to the frequency of the pulse-tube cryocooler. According to equation \ref{eq:Freq-Vertical}, we obtain a vertical resonance frequency $f_{0,\textrm{vertical}} \leq \SI{1}{\Hz}$ for a spring elongation of at least $(l_{\textrm{eq}}-l_{0})\geq \SI{25}{\cm}$. The same condition applied to the radial frequency, $f_{0,\textrm{radial}} \leq \SI{1}{\Hz}$ results in a total pendulum length of at least  $l_{tot}\geq \SI{25}{\cm}$ using equation \ref{eq:Freq-Radial}.
 
 The challenge then comes from accommodating with the constraints imposed by the cryostat geometry. As the distance between the mixing chamber plate and the inner thermal screen is only of about \SI{18}{\cm}, the pendulum had to be attached to the still plate and not directly to the mixing chamber.
@@ -150,8 +150,7 @@ With this approach, the total pendulum length from the still plate to the center
 
 \begin{figure}
 \centering
-\captionsetup{justification=centering}
-\includegraphics[height=9cm]{graphics/damocles.png}
+\includegraphics[height=9cm]{Figures/Experiment/damocles.png}
 \caption{Photo of the suspended tower containing the two $\SI{200}{\g}$ bolometers RED10 and RED2. This device mechanically decouples the detector load from the mixing chamber while assuring its thermalization. Figure taken from \cite{Maisonobe:2018tbq}.}
 \label{fig:suspended-tower} 
 \end{figure}
@@ -258,7 +257,7 @@ This work is focused on cryogenic germanium bolometers equipped with an ionizati
 \begin{figure}
 \centering
 \includegraphics[scale=1]{Figures/Experiment/crystalline_detector_principle.pdf}
-\caption{Working principle of a crystalline bolometer (here with additional charge-readout) for particle detection. The induced recoil from an interacting particle (here a nuclear recoil from an incident neutrino) on the atom of the germanium crystal release its recoil energy $E_R$ by creating phonons (illustrated as dashed concentric circles) and excited charge carriers (electron $e^-$ and holes $h^+$). The heat channel measures the increase in temperature $\Delta T$ from the phonons with a GeNTD thermal sensor. The ionization channel consists in the electrodes collecting the drifting charges by applying an electric field $\vec{E}$. Image adapted from \cite{Schumann:2019eaa}}.
+\caption{Working principle of a crystalline bolometer (here with additional charge-readout) for particle detection. The induced recoil from an interacting particle (here a nuclear recoil from an incident neutrino) on the atom of the germanium crystal release its recoil energy $E_R$ by creating phonons (illustrated as dashed concentric circles) and excited charge carriers (electron $e^-$ and holes $h^+$). The heat channel measures the increase in temperature $\Delta T$ from the phonons with a GeNTD thermal sensor. The ionization channel consists in the electrodes collecting the drifting charges by applying an electric field $\vec{E}$. Image adapted from \cite{Schumann:2019eaa}.}
 \label{fig:detector-principle}
 \end{figure}
 
@@ -271,7 +270,7 @@ E_R = E_{ph} + E_{Ion.}
 The fraction of the recoil energy going into the phonon and ionization energies is formalized with the quenching factor $Q$ such that:
 \begin{equation}
 \label{eq:quenching-intro}
-E_{Ion.} = Q \cdot E_R \quad \textsf{and} \quad E_{ph} = (1-Q) \cdot E_R
+E_{Ion.} = Q E_R \quad \textsf{and} \quad E_{ph} = (1-Q) E_R
 \end{equation}
 This quenching factor depends on the type of recoil induced by the incident particle interacting with the germanium crystal. The two major types of recoils considered in this work are the nuclear and the electronic recoils.
 The electronic recoils (ER) are generated by incident photons or charged particles. In this case, the particle interacts with the electronic cloud of a germanium atom of the crystal. As a result, the entirety of the recoil energy $E_R$ is expressed in the excitation of the electrons, such that the associated quenching factor is $Q_{ER} = 1$ with $E_{Ion.} = E_R$.
@@ -282,17 +281,17 @@ The intrinsic difference in heat and ionization energies between the nuclear and
 The term ionization designates the creation of electron-hole pairs by a recoil. These excited charge carriers are the sole agents of the electric conduction in the semiconducting germanium, each carrying a positive or negative elementary charge $q_e = \SI{1.6e-19}{\coulomb}$.
 The ionization energy $E_{e-h}$ determines the number $N_p$ of electron-hole pairs created in the crystal as:
 \begin{equation}
-E_{Ion.} = N_p \cdot \epsilon_{e^--h^+}
+E_{Ion.} = N_p \epsilon_{e^--h^+}
 \end{equation}
 with $\epsilon_{e^--h^+} \approx \SI{3}{\eV}$ the average energy of a pair in Germanium. 
 Several electrodes applying an electric field $\vec{E}$ in the crystal will collect the drifting electrons and holes. The ionization signal is registered as voltage $\Delta V$ in Volt on the electrodes such that:
 \begin{equation}
-Q = N_p \cdot q_e = C_{el} \Delta V
+Q = N_p q_e = C_{el} \Delta V
 \end{equation} 
 with $Q$ the total collected electric charge in Coulomb and $C_{el}$ the electric capacitance of the electrode in Farad.
 The ionization energy $E_{Ion.}$ is deduced from the measured voltage signal $\Delta V$:
 \begin{equation}
-E_{Ion.} = \frac{C_{el} \cdot \Delta V}{q_{e}} \cdot \epsilon_{e^--h^+}
+E_{Ion.} = \frac{C_{el} \Delta V}{q_{e}} \epsilon_{e^--h^+}
 \end{equation}
 and is used to access the recoil energy $E_R$ with knowledge of the quenching in equation \ref{eq:quenching-intro}. This measure of the recoil energy through the ionization energy is defined as the ionization channel of the  detector.
 
@@ -303,7 +302,7 @@ Phonons are vibrations of the crystal lattice which eventually thermalize with a
 Additional phonons are produced by the drifting  of the charge carriers across the crystal under the influence of the voltage bias $V_{bias}$ imposed by the electrodes. This process is the Neganov-Trofimov-Luke effect which can be considered as the equivalent of the Joule effect in semiconductors \cite{Luke,Neganov:1985khw}.
 The boost to the thermal energy is defined as the Luke-Neganov energy expressed as:
 \begin{equation}
-E_{NL} = N_p \cdot q_e \cdot V_{bias} = E_{Ion.} \frac{V_{bias}}{\epsilon_{e^--h^+}}
+E_{NL} = N_p q_e V_{bias} = E_{Ion.} \frac{V_{bias}}{\epsilon_{e^--h^+}}
 \end{equation}
 Hence, the total thermal energy $E_{heat}$ induced by the recoil is expressed:
 \begin{equation}
@@ -312,7 +311,7 @@ E_{heat} = E_{ph} + E_{NL} = E_R \left( 1 + Q \frac{V_{bias}}{\epsilon_{e^--h^+}
 
 It is linked to the increase in crystal temperature $\Delta T$ in Kelvin with the thermal capacity of germanium crystal $C_{Ge}$ in \si{\joule\per\kelvin} such that:
 \begin{equation}
-E_{heat} = C_{Ge} \cdot \Delta T
+E_{heat} = C_{Ge} \Delta T
 \end{equation}
 % Thermal leakage
 In time, the absorber cools down thanks to the thermal leakage, assured with gold wires between the detector and its copper chassis maintained at constant cryogenic temperature.
@@ -320,7 +319,7 @@ In time, the absorber cools down thanks to the thermal leakage, assured with gol
 This thermal signal can be measured with a very sensitive thermometer. In our case, the thermal sensor is a Neutron transmutation dopped germanium thermistor (GeNTD or NTD) glued on the surface of the crystal. The electric resistance $R_{NTD}$ of this thermistance depends very strongly on its temperature $T_{NTD}$ following the law from Efros and Shllovskii \cite{Mathimalar:2014sfa}:
 \begin{equation}
 \label{eq:ntd-resistivity}
-R_{NTD}(T_{NTD}) = R_0 \cdot \exp(\sqrt{\frac{T_0}{T_{NTD}}})
+R_{NTD}(T_{NTD}) = R_0 \exp(\sqrt{\frac{T_0}{T_{NTD}}})
 \end{equation}
 where $R_0$ and $T_0$ are a characteristic resistance $\mathcal{O}(1)\ \si{\ohm}$ and temperature $\mathcal{O}(1)\ \si{\kelvin}$ of the NTD used. They depend on the geometry of the NTD and its doping \cite{Mathimalar:2014sfa}. 
 Although this thermistor is made of germanium, it is doped and its physical properties are changed: it is conductive and thus has a free electron system in addition to a phonon system. The phonon system has a thermal capacity evolving like the cube of the temperature of the absorber (low thermal capacity), while the capacity of the electron system is linear with the temperature (high thermal capacity). We can therefore understand the usefulness of having an absorber-sensor couple: one serves as a target for the deposition of energy with low thermal capacity, while the other allows the measurement of the temperature rise through the epoxy glue assuring the thermal coupling such that $T_{NTD} \simeq T$.
@@ -329,7 +328,7 @@ Therefore, the GeNTD allows the measurement of temperature variations of the ger
 This $R_{NTD}$ resistivity is measured with the polarization of the NTD: a constant direct current $I$ of a few \si{\nano\ampere} is applied to the  thermistance. The Ohm's law gives:
 \begin{equation}
 \label{eq:ohm-law}
-V_{NTD} = R_{NTD} \cdot I
+V_{NTD} = R_{NTD} I
 \end{equation}
 so that the resistance is deduced from its measured voltage $V_{NTD}$.
 
@@ -337,14 +336,13 @@ so that the resistance is deduced from its measured voltage $V_{NTD}$.
 Cryogenic temperatures are necessary to be in a temperature range where the NTD thermistor becomes sufficiently sensitive to temperature variations. The exponential relation \ref{eq:ntd-resistivity} allows to obtain the largest variation of voltage $\Delta V_{NTD}$ for a small temperature variation $\Delta T$ at the lowest temperature of the detector $T$:
 \begin{equation}
 \Delta V_{NTD} = 
-I \cdot
+I
 \left. \frac{\mathrm{d}R_{NTD}}{\mathrm{d}T} \right|_{T}
-\cdot
 \Delta T
 \end{equation}
 In the end, the heat energy $E_{heat}$ is derived from the measured voltage signal $\Delta V_{NTD}$ as:
 \begin{equation}
-E_{heat} = C_{Ge} \cdot \frac{\Delta V_{NTD}}{I} \cdot
+E_{heat} = C_{Ge} \frac{\Delta V_{NTD}}{I}
 \left( \left. \frac{\mathrm{d}R_{NTD}}{\mathrm{d}T} \right|_{T} \right)^{-1}
 \end{equation}
 It is used to calculate the recoil energy $E_R$ with the knowledge of the quenching $Q$ in equation \ref{eq:quenching-intro}. This measure of the recoil energy through the heat energy is defined as the heat channel of the detector.
@@ -426,7 +424,7 @@ The daughter nucleus \ce{{}^{71}Ga^*} is in an excited state due to the hole lef
 %\begin{equation}
 %\begin{cases}
 %Q = Q_{ER} = 1 \\
-%E_{Ion.}^{bulk} = Q \cdot E_R = E_R \\
+%E_{Ion.}^{bulk} = Q E_R = E_R \\
 %E_{heat} 
 %=
 %E_R 

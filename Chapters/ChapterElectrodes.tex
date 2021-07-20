@@ -58,13 +58,16 @@ The geometry on the right corresponds to the "Fully Inter-Digitized \SI{38}{\g}"
 The ionization channel is based on the semi-conducting germanium crystal of high purity acting as absorber of the detectors. Along with an increase in temperature assessed in the previous chapter \ref{ChapterEthem}, the semi-conducting Ge crystal also features a phenomenon of ionization caused by a recoil. This section describes this process of ionization creating electron-hole pairs in the germanium crystal and the subsequent collection of these electric charges by the electrodes.
 
 % Germanium as semi-conducting material
-The pure germanium is a semiconductor for temperatures inferior to \SI{77}{\kelvin}. In order to understand the physical properties of a semi-conductor, we can consider the theory of electronic energy bands. In a solid material at rest, electrons are occupying the lowest state of energy according to a Fermion distribution. This lowest state of energy is strongly linked to the nucleus, forming the valence electronic band of energy. Higher energy states are able to interact with neighboring atoms, carry the electric charges in the material and compose the conduction electronic band of energy. A conducting material has overlapping valence and conduction bands and boasts a very high number of electric charge carriers. On the contrary, insulators presents a separation of the two bands by such high energy gap that its conduction bands is empty. Semiconductors stands as a middle point between conductors and insulators. Semiconducting material features a small energy gap $E_g$ between the valence and conduction bands. This energy gap is low enough that the thermal energy at rest is sufficient to excite charges and creates carriers in the conduction band. As such, the electronic properties of a semiconductor depends on its energy gap and its temperature, these parameters controlling the number of charge carriers presents in the material. The amount of impurities present in the semiconducting crystal is also of importance and is discussed later in this section.
+The pure germanium is a semi-conducting material. In order to understand the physical properties of a semi-conductor, we can consider the theory of electronic energy bands. In a solid material at rest, electrons are occupying the lowest state of energy according to a Fermi-Dirac distribution. This lowest state of energy is strongly linked to the nucleus, forming the valence electronic band of energy. Higher energy states are able to interact with neighboring atoms, carry the electric charges in the material and compose the conduction electronic band of energy. A conducting material has overlapping valence and conduction bands and boasts a very high number of electric charge carriers. On the contrary, insulators presents a separation of the two bands by such high energy gap that its conduction bands is empty. Semiconductors stands as a middle point between conductors and insulators. Semiconducting material features a small energy gap $E_g$ between the valence and conduction bands. This energy gap is low enough that the thermal energy at rest is sufficient to excite charges and creates carriers in the conduction band. As such, the electronic properties of a semiconductor depends on its energy gap and its temperature, these parameters controlling the number of charge carriers presents in the material. The amount of impurities present in the semiconducting crystal is also of importance and is discussed later in this section.
 
-% ionization process
-At the usual temperatures of operation in the cryostat in the order of $\mathcal{O}(\SI{100}{\milli\kelvin})$, the Ge crystal is at its semiconducting state with an additional property. Indeed, at such low cryogenic temperature, no charge crosses the Fermi level resulting in a freeze-out of the electric charge carriers. The Ge crystal effectively acts as an insulator with all the electrons in rest state. This insulating state is revoked in the case that carriers are excited by an external source of energy such as the deposit of a recoil energy by an event in the crystal. This process is called ionization. A recoil excites an electron into the conduction band leaving a hole in the valence band, an electron-hole pair is created and assure charge conduction in the crystal.
+%% ionization process
+%At the usual temperatures of operation in the cryostat in the order of $\mathcal{O}(\SI{100}{\milli\kelvin})$, the Ge crystal is at its semiconducting state with an additional property. Indeed, at such low cryogenic temperature, no charge crosses the Fermi level resulting in a freeze-out of the electric charge carriers. The Ge crystal effectively acts as an insulator with all the electrons in rest state. This insulating state is revoked in the case that carriers are excited by an external source of energy such as the deposit of a recoil energy by an event in the crystal. This process is called ionization. A recoil excites an electron into the conduction band leaving a hole in the valence band, an electron-hole pair is created and assure charge conduction in the crystal.
+
+% ionization process v2
+At cryogenic temperatures in the order of $\mathcal{O}(\SI{100}{\milli\kelvin})$, no charge in the Ge crystal crosses the Fermi level. This results in a freeze-out of the electronics charge carriers with all the electron in rest state. The process called ionization described the carriers being excited by an external source of energy such as the deposit of a recoil energy by an event in the crystal. A recoil excites an electron into the conduction band leaving a hole in the valence band, an electron-hole pair is created and assure charge conduction in the crystal.
 
 % Ionization energy after germanium recoil
-When interacting with the atoms of a germanium crystal, a particle deposits a recoil energy $E_R$ in the crystal lattice. The word "recoil" references to the elastic scattering of the incoming particle on in the germanium crystal. If the particle scattering happens on the nucleus of a Ge atom, the event is called a nuclear recoil (NR). If the particle scatters on an electronic cloud of Ge atom, the event is defined as an electronic recoil (ER). The deposited recoil energy manifests in the crystal lattice as heat energy $E_{heat}$ as phonons and ionization energy $E_{Ion.}$ as electron-hole pairs through the ionization process. The fraction of recoil energy $E_R$ attributed to the ionization channel is the ionization quenching factor $Q$:
+When interacting with the atoms of a germanium crystal, a particle deposits a recoil energy $E_R$ in the crystal lattice. The word "recoil" references to the elastic scattering of the incoming particle on in the germanium crystal. If the particle scattering happens on the nucleus of a Ge atom, the event is called a nuclear recoil (NR). If the particle scatters on an electronic cloud of Ge atom, the event is defined as an electronic recoil (ER). The deposited recoil energy $E_R$ manifests in the crystal lattice in two ways: as heat energy $E_{heat}$ with the creation of phonons and as ionization energy $E_{Ion.}$ with creation of electron-hole pairs through the ionization process. The fraction of recoil energy $E_R$ attributed to the ionization channel is the ionization quenching factor $Q$:
 \begin{equation}
 \label{eq:quenching}
 Q = \frac{E_R}{E_{Ion.}}
@@ -116,7 +119,7 @@ This estimation requires to know the average energy of the pairs $\epsilon_{e^--
 \end{figure}
 
 % presentaion of the band conduction structure
-In the figure \ref{fig:ge-band-structure}, the valence bands are situated below the origin while the conduction bands are above the origin. The minimal band gap $E_g = \SI{0.67}{\eV}$ of the germanium is derived from the lowest-energy states of excited carriers. Excited electrons, carrying a negative charge $-e$ are promoted to the conduction bands while the holes, carrying a positive charge $+e$, are created in the valence bands. The maximum of the valence bands corresponds to the <000> directions signifying a null momentum. The minimum of the conduction bands is obtained along the <111> directions. Excited electrons and holes have different momenta. As such, the germanium gap is defined as indirect: the transition of an electron to an excited state of the conduction band necessitate the transfer of a momentum $\vec{k}$ in addition to the gap energy $E_g$. This momentum transfer, present at the creation of the electron-hole pair and at for its recombination, is carried away by a third party which is a phonon in the germanium crystal. As a consequence, the average energy $\epsilon_{e^--h^+}$ contained in an electron-hole pair is greater than the germanium gap band of energy $E_g$ as it also takes into account the energy of the phonon of momentum $\vec{k} \in \textsf{<111>}$ associated with the pair. The average energy of an electron-hole pair in germanium is measured:
+In the figure \ref{fig:ge-band-structure}, the valence bands are situated below the origin while the conduction bands are above the origin. The minimal band gap $E_g = \SI{0.67}{\eV}$ of the germanium is derived from the lowest-energy states of excited carriers. Excited electrons, carrying a negative charge $-e$ are promoted to the conduction bands while the holes, carrying a positive charge $+e$, are created in the valence bands. The maximum of the valence bands corresponds to the <000> directions signifying a null momentum. The minimum of the conduction bands is obtained along the <111> directions. Excited electrons and holes have different momenta. As such, the germanium gap is defined as indirect: the transition of an electron to an excited state of the conduction band necessitate the transfer of a momentum $\vec{k}$ in addition to the gap energy $E_g$. The average energy $\epsilon_{e^--h^+}$ contained in an electron-hole pair consists in the germanium gap band of energy $E_g$ added to the energy of the phonon of momentum $\vec{k} \in \textsf{<111>}$ associated with the pair. The average energy of an electron-hole pair in germanium is measured:
 \begin{equation}
 \label{eq:energy-pair}
 \epsilon_{e^--h^+} = \SI{2.96}{\eV \per \textsf{pair}}
@@ -133,11 +136,12 @@ The number of created pairs $N_p$ is subject to fluctuation and thus imposes its
 =
 \sqrt{F \frac{Q \cdot E_R}{\epsilon_{e^--h^+}}}
 \end{equation}
-with an introduced Fano factor $F$ of about $0.1$ for the germanium. Considering the current range of ionization channel resolution, the fluctuation of the number of pairs created by ionization could be limiting with $\sigma(N_p) \approx \SI{300}{\kilo\eV}$ which could be obtained for electronic recoil energies greater than \SI{300}{\kilo\eV}. As we are interested in the lowest energy range and the experiments presented in this work use calibration peaks of energy in the order of $\mathcal{O}(10)\ \si{\kilo\eV}$, the impact of these fluctuation are negligible. This is especially true considering other effects with opposite impact on the ionization resolution such as the electronic noise of the electronic readout and incomplete charge collection.
+with an introduced Fano factor $F$ of about $0.1$ for the germanium. Considering the current range of ionization channel resolution, the fluctuation of the number of pairs created by ionization could be limiting with $\sigma(N_p) \approx \SI{300}{\eV}$ which could be obtained for electronic recoil energies greater than \SI{300}{\kilo\eV}. As we are interested in the lowest energy range and the experiments presented in this work use calibration peaks of energy in the order of $\mathcal{O}(10)\ \si{\kilo\eV}$, the impact of these fluctuation are negligible. This is especially true considering other effects with opposite impact on the ionization resolution such as the electronic noise of the electronic readout and incomplete charge collection.
 
 % Impurities in germanium
 The semi-conducting properties of a germanium crystal heavily depends on the impurities affecting it.
-These impurities creates intermediary energy steps in the semi-conducting germanium band gap accessible to electric charges (as seen in figure \ref{fig:ge-band-structure}). The presence of these intermediate energy states  has several consequences on the ionization channel. It reduces the energy necessary to create an electron-hole pair, thus creating additional noise and biasing for the ionization channel. Then, it creates a trapping phenomenon which prevents electric charge carriers from reaching the electrodes. With trapped charges in the crystal, a counter electric field slowly generates, reducing the sensitivity of the electrodes. Finally, these impurities lower the global resistivity of the germanium crystal and increase the leakage current.
+These impurities creates intermediary energy states in the semi-conducting germanium band gap accessible to electric charges (as seen in figure \ref{fig:ge-band-structure}). The presence of these intermediate energy states  has several consequences on the ionization channel. It reduces the energy necessary to create an electron-hole pair, thus creating additional noise and biasing for the ionization channel. Then, it creates a trapping phenomenon which prevents electric charge carriers from reaching the electrodes. With trapped charges in the crystal, a counter electric field slowly generates, reducing the sensitivity of the electrodes.
+%Finally, these impurities lower the global resistivity of the germanium crystal and increase the leakage current.
 The semi-conducting germanium is used as an absorber thus should contain the lowest amount of impurities in order to have a detector with good performances.
 %The study of the trapping in \Edelweiss{} detector and the impact of impurities is presenting in [ref quentin 80].
 We define $N_a$ and $N_d$ as the number of acceptor and donor impurities respectively.
@@ -146,7 +150,7 @@ As a result, the \Edelweiss{} and \Ricochet{} experiment use High-Purity Germani
 \begin{equation}
 10^{9} < |N_a - N_d| < 10^{10} \quad \textsf{in \si{\textsf{atoms}\per\cm^{3}}}
 \end{equation}
-which corresponds to less than one impurity atom for \num{e12} germanium atoms. As reference, a common germanium crystal possesses a concentration of about \SI{e13}{\textsf{atoms}\per\cm^{3}}.  With this material, low leakage currents of few \si{\femto\ampere} can be achieved for the usual operating electric field range of a \si{\volt\per\cm}.
+which corresponds to less than one impurity atom for \num{e12} germanium atoms. As reference, a common germanium crystal possesses a concentration of about \SI{e23}{\textsf{atoms}\per\cm^{3}}.  With this material, low leakage currents of few \si{\femto\ampere} can be achieved for the usual operating electric field range of a \si{\volt\per\cm}.
 
 
 \subsection{Electric Charge Drifting in Crystal}
@@ -169,7 +173,9 @@ At low field strength, inferior to \SI{10}{\volt\per\cm}, the electrons are movi
 At high field strength, superior to \SI{10}{\volt\per\cm}, the probability of electrons scattering in the crystal and switching in another <111> valley is heightened. These inter-valley scattering are so common that the macroscopic trajectory of the electrons corresponds to the electric field lines. This behavior is observable in the vicinity of the FID electrodes where the electric field is increased due to the electric point effect.
 
 % presentation of the oblique propagation figure
-The figure \ref{fig:oblique-propagation} displays the simulated \cite{Broniatowski2014} trajectories of electrons and holes drifting inside the semi-conducting Ge crystal of a \SI{200}{\g} \Edelweiss{} FID detector under the influence of an electric field. The holes drifts along the electric field lines and draw in red directs trajectories to the bottom collecting electrode. The electrons propagates towards the top collecting electrode following oblique trajectories in blue in the <111> directions. The charge drift last a few microseconds corresponding to a speed of the carriers in the order of $\mathcal{O}(\SI{1}{\cm\per\micro\s})$.
+The figure \ref{fig:oblique-propagation} displays the simulated \cite{Broniatowski2014} trajectories of electrons and holes drifting inside the semi-conducting Ge crystal of a \SI{200}{\g} \Edelweiss{} FID detector under the influence of an electric field. The holes drifts along the electric field lines and draw in red directs trajectories to the bottom collecting electrode. The electrons propagates towards the top collecting electrode following oblique trajectories in blue in the <111> directions.
+% The charge drift last a few microseconds corresponding to a speed of the carriers in the order of $\mathcal{O}(\SI{1}{\cm\per\micro\s})$.
+The charge drift lasts less than one microsecond (of the order of few \SI{100}{\nano\second}).
 
 \begin{figure}
 \centering
@@ -181,24 +187,25 @@ The figure \ref{fig:oblique-propagation} displays the simulated \cite{Broniatows
 The transversal motion of the electrons in the Ge crystal is problematic for the charge collection. Whereas the trajectories of the holes are predicted from the electric field lines, the electrons deviates from expectations. As such, there is more error on forecasting the position of the electrons at the end of their drift and the resulting signal induced on the electrodes. 
 
 % Trapping processes
-Several processes can lead to an incomplete charge collection. An incomplete collection means the number of electron-hole pairs measured is lower than the actual number of pair created by a recoil. This happens when an electric charge does not reach its associated collecting electrode. These four phenomenon are: the bulk trapping, the surface trapping, the surface trapping, the crystal neutralization and the recoils under the electrodes.
+Several processes can lead to an incomplete charge collection. An incomplete collection means the number of electron-hole pairs measured is lower than the actual number of pair created by a recoil. This happens when an electric charge does not reach its associated collecting electrode. These three phenomenon are: the bulk trapping, the surface trapping and the crystal neutralization.
+% and the recoils under the electrodes.
 
 % Bulk trapping
 The bulk trapping corresponds to electric charge getting stuck in the crystal due to intermediate energy state induced by impurities in the crystal. This trapping is countered with the use of High Purity germanium crystals. The amount of charge lost is proportional to the initial number created by the ionization process. As such, assuming a constant rate of bulk trapping, the sensitivity of the ionization channel is lowered but the measurement of the ionization energy $E_{Ion.}$ is feasible. In this work, the bulk trapping rate is estimated to \SI{2}{\percent} at a standard magnitude of \SI{2}{\volt\per\cm}. The bulk trapping rate depends on the electric field magnitude: while low magnitude $\mathcal{O}(\SI{0.1}{\volt\per\cm})$ boasts a high rate of bulk trapping, the application of a high electric field $\mathcal{O}(\SI{10}{\volt\per\cm})$ drastically reduces this rate.
 
 % surface trapping
-The surface trapping is happening when electric charges reach the bare surface of the Ge crystal. As opposed to the interior of the crystal with a controlled electronic band structure due to the repeating lattice, the germanium lattice stops on the surface creating irregularities in the band structure due to edge effects. These surface irregularities easily trap in place the electrons or holes. As such any charge reaching a surface is considered to have been surface trapped. This effect can be avoided for the holes: the detector are designed as to avoid electric field lines leaving the crystal. However, this counter has mitigated efficiency for the electrons due to their oblique propagation.
+The surface trapping is happening when electric charges reach the bare surface of the Ge crystal. As opposed to the interior of the crystal with a controlled electronic band structure due to the periodic lattice, the germanium lattice stops on the surface creating irregularities in the band structure due to edge effects. These surface irregularities easily trap in place the electrons or holes. As such any charge reaching a surface is considered to have been surface trapped. This effect can be avoided for the holes: the detector are designed as to avoid electric field lines leaving the crystal. However, this counter has mitigated efficiency for the electrons due to their oblique propagation.
 
 % crystal neutralization
 The crystal neutralization refers to the progressive weakening of the electric field in the Ge crystal. All the electric charges trapped in the crystal produce a counter electric field. Depending on the crystal crystallography and the design of the electrodes, the electric field can lose in magnitude or can be warped, effectively becoming neutralized. This neutralization further boost the bulk trapping rate and can lead to unexpected surface trapping.
-This phenomenon gains in intensity with the trapping rate, the event rate and the operation time of the detector. It usually becomes noticeable within hours to days. The crystal neutralization is countered by a "regeneration" procedure. It consists in grounding all the electrodes of the detector and submitting it to an intense event rate in order to shake up the trapped charges. These events are generally originating from a LED or a radioactive source. Stuck charges are excited out of their traps and recombines under the influence of their own counter electric field. As the detector is not available for data taking in this condition, the period between two regeneration procedures should be empirically adjusted to the measured charge accumulation while not too frequent to avoid supplementary dead times. For the above-ground operation at IP2I, a regeneration is realized ever two days. A radioactive cesium  source (\ce{^{137}Cs}) of high activity of about \SI{4e10}{\becquerel} is placed on the outside of the closed cryostat at about \SI{20}{\cm} from the detector load.
+This phenomenon gains in intensity with the trapping rate, the event rate and the operation time of the detector. It usually becomes noticeable within hours to days. The crystal neutralization is countered by a "regeneration" procedure. It consists in grounding all the electrodes of the detector and submitting it to an intense event rate in order to neutralize the trapped charges. These events are generally originating from a LED or a radioactive source. Stuck charges are excited out of their traps and recombines under the influence of their own counter electric field. As the detector is not available for data taking in this condition, the period between two regeneration procedures should be empirically adjusted to the measured charge accumulation while not too frequent to avoid supplementary dead times. For the above-ground operation at IP2I, a regeneration is realized ever two days. A radioactive cesium  source (\ce{^{137}Cs}) of high activity of about \SI{4e10}{\becquerel} is placed on the outside of the closed cryostat at about \SI{20}{\cm} from the detector load.
 
 %While a maintenance shakes up the majority of the trapped electric charges, a small fraction is not affected and participates to build up the counter field. These remaining charges are deeply trapped and need for a stronger perturbation to be freed. The detector is therefore periodically submitted to a procedure called "regeneration" aiming at a full reset of any passive electric field in the germanium crystal. With the electrodes being grounded, an intense gamma-ray radioactive source irradiates the detector. The high frequency of high energy recoils produces ionization in the whole crystal which eventually neutralize the accumulated space charges. 
 %While the majority of the electric charges produces by the ionization process are collected by the electrodes, some become trapped in the crystal (impurities) or on the surfaces of the crystal. These trapped charges are slowly accumulating and creating a counter electric field in the absorber. This results in a lower electric field perceived in the bulk of the detector which hampers a correct charge collection and decreases the sensitivity of the electrodes.
 
 
-% Recoils under the electrodes
-The recoils under the electrodes are rare occurrences when the electron-hole pairs are created at a few tens of \si{\micro\m} under the aluminium electrodes deposited on the germanium surface. These surfaces of the germanium crystal are specially prepared as to allow the correct deposition of the aluminium. This results in a metallic behavior of the germanium in the vicinity of the electrodes, thus creating a extension of the electrode in the crystal. With virtually no energy gap, charges created in these regions immediately recombines and do not drift under the influence of the electric field. This phenomenon is countered by processing the surface under the electrodes and creating a layer of amorphous layer of high band gap. This amorphous layer separates the crystal from the metallic layer and prevent the undesired recombinations.
+%% Recoils under the electrodes
+%The recoils under the electrodes are rare occurrences when the electron-hole pairs are created at a few tens of \si{\micro\m} under the aluminium electrodes deposited on the germanium surface. These surfaces of the germanium crystal are specially prepared as to allow the correct deposition of the aluminium. This results in a metallic behavior of the germanium in the vicinity of the electrodes, thus creating a extension of the electrode in the crystal. With virtually no energy gap, charges created in these regions immediately recombines and do not drift under the influence of the electric field. This phenomenon is countered by processing the surface under the electrodes and creating a layer of amorphous layer of high band gap. This amorphous layer separates the crystal from the metallic layer and prevent the undesired recombinations.
 
 
 \subsection{Electrode Deposition on the Germanium Crystal Surface}
@@ -242,14 +249,14 @@ With more complex design like the FID38 design or the REDN1 detector, wires are 
 
 The ionization channel is based on the induction of a voltage signal $\Delta V$ on the electrodes  of capacitance $C$ by collecting drifting charges $\Delta Q$. A naive but false explanation to this signal generation is to consider that the charge $\Delta Q$ is entirely deposited instantly when the charges reach the electrode. The correct explanation is to consider the current $i$ induced on the electrode starting from the moment the electrons and holes drift in the crystal. This signal induction is theorized with the Shockley-Ramo theorem \cite{Shockley:1938itm} \cite{Ramo:1939vr} which states that the current $I_X$ induced on a given electrode, labeled $X$, due to the motion of a charge in an given electric field $\vec{E}$ created by multiples electrodes, is given by:
 \begin{equation}
-I_X = q \cdot \left( \vec{E}_X \cdot \vec{v} \right)
+I_X = q \left( \vec{E}_X \cdot \vec{v} \right)
 \end{equation}
 %= q \cdot E_v \cdot \| \vec{v} \|
 where $q$ is the charge of the particle, $\vec{v}$ its velocity and $\vec{E}_X$ the "weighting electric field" associated to the electrode $X$. This weighting field $\vec{E}_X$ is virtual and differs from the actual electric field $\vec{E}$ in the crystal. The weighting electric field $\vec{E}_X$ associated to the electrode $X$ corresponds to the electric fields in the crystal with all free charges removed, the given electrode $X$ raised to unit potential $V_X = \SI{1}{\volt}$, and all other conductors grounded. This theorem ensues from the Gauss theorem.
 An interpretation of the Shockley-Ramo theorem is that a charge moving in the vicinity of an electrode induces an instantaneous electric current by affecting the electrostatic field lines ending on the electrode.
-This theorem can be integrated to access the instantaneous induced charge $Q_X$ on the given electrode $X$. In the case of a drifting charge $q$ of initial position $\vec{r_{q,i}}$ and final position $\vec{r_{q,f}}$, the total integrated charge induced on the electrode $X$ is:
+This theorem can be integrated to access the instantaneous induced charge $Q_X$ on the given electrode $X$. In the case of a drifting charge $q$ of initial position $\vec{r}_{q,i}$ and final position $\vec{r}_{q,f}$, the total integrated charge induced on the electrode $X$ is:
 \begin{equation}
-Q_X = q \left( \Phi_X (\vec{r_{q,f}}) - \Phi_X (\vec{r_{q,i}}) \right)
+Q_X = q \left( \Phi_X (\vec{r}_{q,f}) - \Phi_X (\vec{r}_{q,i}) \right)
 \end{equation}
 The term $\Phi_X(\vec{r})$ is called the "weighting potential" of the electrode $X$ at the position $\vec{r}$. It is derived from the weighting electric field associated to the electrode $X$ using the usual formula:
 \begin{equation}
@@ -317,7 +324,7 @@ q \int_{ \vec{r}_{q,i} }^{ \vec{r}_{q,f} } \vec{E} \ \mathrm{d}\vec{r}_q
 =
 q \int_{ \vec{r}_{q,i} }^{ \vec{r}_{q,f} } \frac{\partial V}{\partial \vec{r}} d\vec{r}
 =
-q \cdot \left( V(\vec{r}_{q,f}) - V(\vec{r}_{q,i}) \right)
+q \left( V(\vec{r}_{q,f}) - V(\vec{r}_{q,i}) \right)
 \end{equation}
 %As discussed in the chapter \ref{ChapterEthem}, as the phonons thermalize in the crystal, their momentum is converted into thermal energy adding to the initial heat energy of the recoil. 
 
@@ -325,9 +332,9 @@ In the case of a recoil producing $N_p$ electron-hole pairs, the work provided b
 \begin{equation}
 E_{NL}
 =
-e \sum_{n}^{N_p} \cdot \left( V(\vec{r}_{h^+,f}^n) - V(\vec{r}_{q,i}^n) \right)
+e \sum_{n}^{N_p} \left( V(\vec{r}_{h^+,f}^n) - V(\vec{r}_{q,i}^n) \right)
 + 
-(- e) \sum_{n}^{N_p} \cdot \left( V(\vec{r}_{e^-,f}^n) - V(\vec{r}_{e^-,i}^n) \right)
+(- e) \sum_{n}^{N_p} \left( V(\vec{r}_{e^-,f}^n) - V(\vec{r}_{e^-,i}^n) \right)
 \end{equation}
 Similarly to the application of the Shockley-Ramo theorem to a recoil, the electron and the hole of a same pair have the same initial position such that $V(\vec{r}_{q,i}^n) = V(\vec{r}_{e^-,i}^n)$. As such, the expression of the Luke-Neganov energy simplifies to:
 \begin{equation}
@@ -349,23 +356,23 @@ It appears that $E_{NL}$ depends solely on the electric potential $V$ in the cry
 
 A useful, and mostly accurate, assumption is to consider the complete charge collection: all the charges end their drift by reaching the electrodes polarized at potentials $V_+$ and $V_-$. The Luke-Neganov boost is further simplified to:
 \begin{equation}
-E_{NL} = N_p \cdot e \cdot (V_+ - V_-) = N_p \cdot e \cdot \Delta V
+E_{NL} = N_p e (V_+ - V_-) = N_p e \Delta V
 \end{equation}
 The Luke-Neganov effect is proportional to the number of pairs $N_p$ created in the ionization process and the voltage bias $\Delta V$ of the detector. Using the equation \ref{eq:number-pairs}, we can express the boost as a function of the recoil energy $E_R$ and the quenching factor $Q$:
 \begin{equation}
-E_{Luke-Neganov} = \frac{E_{Ion.}}{\epsilon_{e^--h^+}} \cdot e \Delta V = Q \frac{E_R}{\epsilon_{e^--h^+}} \cdot e \Delta V
+E_{Luke-Neganov} = \frac{E_{Ion.}}{\epsilon_{e^--h^+}} e \Delta V = Q \frac{E_R}{\epsilon_{e^--h^+}} e \Delta V
 \end{equation}
 Although they deposit the same recoil energy $E_R$, an electronic recoil benefits more than a nuclear recoil from the Luke-Neganov boost according to the hierarchy of their quenching factor $Q_{ER} > Q_{NR}$. 
 A useful simplification is to consider that $e / \epsilon_{e^--h^+} = 1/2.97\ \si{\per\volt}$,  and to have a final expression of the Luke-Neganov boost as:
 \begin{equation}
 \label{eq:nl-boost}
-E_{NL} = Q \cdot E_R \cdot \frac{\Delta V}{2.97}
+E_{NL} = Q E_R \frac{\Delta V}{2.97}
 \end{equation}
 
 It is essential to take into account the Luke-Neganov energy when reconstructing the recoil energy $E_R$ from the measured heat energy $E_{heat}$ given that:
 \begin{equation}
 \label{eq:heat-energy-nl-boost}
-E_{heat} = E_R + E_{NL} = E_R \cdot \left( 1 + Q \frac{\Delta V}{2.97} \right)
+E_{heat} = E_R + E_{NL} = E_R \left( 1 + Q \frac{\Delta V}{2.97} \right)
 \end{equation}
 
 The Luke-Neganov effect is a very interesting strategy to enhance the sensitivity of the heat channel. However, this heat channel boost is applied at the expanse of the discrimination ability of the detectors thanks to the double heat-ionization energy measurement. When operating the detector with voltages higher than $\sim \SI{10}{\volt}$, the Luke-Neganov boost dominates in the expression of the measured heat energy $E_{heat}$:
@@ -374,7 +381,7 @@ The Luke-Neganov effect is a very interesting strategy to enhance the sensitivit
 \quad \Rightarrow \quad
 E_{heat} \approx E_{NL} \propto E_{Ion.}
 \end{equation}
-The heat energy becomes equals to the ionization energy ignoring the multiplicative factor. As such, it becomes impossible to distinguish discriminate the electronic recoils from the nuclear recoils as their signature in the same. In fact, this observation can be further at any voltage bias: the existence of the Luke-Neganov effect diminishes the discrimination power of the ER and NR events. As this feature is essential for the correct operation of the the detector and to reach their scientific goals, the Luke-Neganov effect should be kept minimal by aiming at low voltage bias in the detector design  ({\it e.g.} $\Delta V \sim \SI{8}{\volt}$ for FID800 detectors of \Edelweiss{}-III).
+The heat energy becomes equals to the ionization energy ignoring the multiplicative factor. As such, it becomes impossible to distinguish discriminate the electronic recoils from the nuclear recoils as their signature in the same. In fact, this observation can be further at any voltage bias: the existence of the Luke-Neganov effect diminishes the discrimination power of the ER and NR events. As this feature is essential for the correct operation of the detector and to reach their scientific goals, the Luke-Neganov effect should be kept minimal by aiming at low voltage bias in the detector design  ({\it e.g.} $\Delta V \sim \SI{8}{\volt}$ for FID800 detectors of \Edelweiss{}-III).
 
 %This is very important to keep in mind when reconstructing the recoil energy $E_R$ from the measured heat energy $E_{heat}$ as it is a function of the deposited recoil energy $E_R$ and the recoil type $j$:
 %\begin{align}
@@ -413,7 +420,9 @@ Figure \ref{fig:electronics-scheme} shows two electric circuits of the electroni
 \end{figure}
 
 The readout of the JFET-based and HEMT-based electronics lines measure the same physical quantity: the electric potential of the electrode. The JFET and HEMT are used to readout and amplify the voltage signal. This method can differ from other experiments equipped for reading the current induced by the drifting charge on a feedback capacitance with a charge amplifier. Compared to a charge amplifier, a voltage amplifier does not involve any resistor in the amplification scheme, resulting a lower electronic noise. However, the use of a voltage amplifier is only possible with low leakage current lower than \SI{0.1}{\femto\ampere}.
-One should note that the amplifying transistor situated at the end of the electronic line is separated from the electrode, represented by the capacitance $C_d$, by a coupling capacitor of higher value $C_c \sim \mathcal{O}(\SI{1}{\nano\farad})$. This ensures that the electrical charges of the electrodes are not going into the readout electronics.
+One should note that the amplifying transistor situated at the end of the electronic line is separated from the electrode, represented by the capacitance $C_d$, by a coupling capacitor of higher value $C_c \sim \mathcal{O}(\SI{1}{\nano\farad})$.
+% This ensures that the electrical charges of the electrodes are not going into the readout electronics.
+The role of this decoupling capacitance $C_d$ is to isolate the transistor gate from the bias voltage applied on the electrodes of the detector.
 
 % (good for \Edelweiss{}, but is this possible for \Ricochet{} with operation on surface).
 The electronics lines are designed to assure their functions while keeping the electronics noise as low as possible. Once the signal is amplified, it is transmitted to the acquisition computer through the hot electronics without adding additional noise.
@@ -455,9 +464,9 @@ The energy resolution is roughly a signal-to-noise ratio. There is two ways to l
 The sensitivity of the ionization channel is described in a simplistic manner with the equation \ref{eq:capacitor-basic}. The voltage signal is inversely proportional to the capacitance of the electrodes. The modelization of the ionization channel is furthered in the later section \ref{sec:simulation-ionization} with a more accurate theorization of the signal generation, yet pointing towards a similar relation between sensitivity and electrode capacitance. As a starting point, we can model a simple and naive ionization channel as a parallel plate capacitor whose dielectric is the cylindrical germanium crystal. The associated capacitance without edge effects is:
 \begin{equation}
 \label{eq:parrallel-plate-capacitor}
-C = \epsilon_0 \cdot \epsilon_r(Ge) \cdot \frac{A}{d}
+C = \epsilon_0 \epsilon_r(Ge) \frac{A}{d}
 =
-8.854 \times 10^{-12} \times 16.3 \times \frac{\pi \cdot (15 \times 10^{-3})^2}{10 \times 10^{-3}}
+8.854 \times 10^{-12} \times 16.3 \times \frac{\pi (15 \times 10^{-3})^2}{10 \times 10^{-3}}
 =
 \SI{10.20}{\pico\farad}
 \end{equation}
@@ -699,7 +708,7 @@ Symmetric factor of the voltage bias        & $S_{bias}$    & {$0.5$}
 \end{table}
 
 % Common geometry
-The two PL38 and FID38 detector designs use cylindrical germanium crystals of height $H_{Ge} = \SI{10}{\mm}$ and radius $R_{Ge} = \SI{15}{\mm}$ as absorber. The mass of these crystals are about \SI{38}{\g} hence the name of the the designs as to differentiate them from more massive \SI{200}{\g} and \SI{800}{\g} \Edelweiss{} detectors. Each crystal is surrounded by an hollow cylindrical chassis which is electrically grounded to \SI{0}{\volt}. This copper chassis is spaced from the crystal by a distance $d_{Cu} = \SI{3}{\mm}$ of vacuum.
+The two PL38 and FID38 detector designs use cylindrical germanium crystals of height $H_{Ge} = \SI{10}{\mm}$ and radius $R_{Ge} = \SI{15}{\mm}$ as absorber. The mass of these crystals are about \SI{38}{\g} hence the name of the designs as to differentiate them from more massive \SI{200}{\g} and \SI{800}{\g} \Edelweiss{} detectors. Each crystal is surrounded by an hollow cylindrical chassis which is electrically grounded to \SI{0}{\volt}. This copper chassis is spaced from the crystal by a distance $d_{Cu} = \SI{3}{\mm}$ of vacuum.
 % Permittivty
 The vacuum is simulated with a relative electric permittivity of $\epsilon_r(\textsf{Vacuum}) = 1$ and the germanium crystal possesses a much higher value of $\epsilon_r (\textsf{Ge}) = 16.3$. Although present in real detectors to maintain the crystal, Teflon clamps are not simulated. Indeed, their influences is considered negligible due to their small size and low permittivity $\epsilon_r(\textsf{Teflon})=2.1$.
 % NTD location
@@ -748,10 +757,10 @@ With this two parameters, the polarization of the PL38 design is expressed as:
 \label{eq:pl38-polarization}
 \begin{cases}
 \displaystyle
-V_A = V_{bias} \cdot S_{bias}
+V_A = V_{bias} S_{bias}
 \\
 \displaystyle
-V_B = - V_{bias} \cdot (1 - S_{bias})
+V_B = - V_{bias} (1 - S_{bias})
 \end{cases}
 \Rightarrow
 \textsf{with } S_{bias} = 0.5,
@@ -777,16 +786,16 @@ With two auxiliary veto electrodes, the FID38 necessitates an additional paramet
 \label{eq:fid38-polarization}
 \begin{cases}
 \displaystyle 
-V_A = V_{bias} \cdot \left( S_{bias} - \frac{\left( 1 + R_{veto}\right)}{2}\right)
+V_A = V_{bias} \left( S_{bias} - \frac{\left( 1 + R_{veto}\right)}{2}\right)
 \\
 \displaystyle
-V_B = V_{bias} \cdot S_{bias}
+V_B = V_{bias} S_{bias}
 \\
 \displaystyle
-V_C = V_{bias} \cdot \left( S_{bias} + \frac{\left( -1 + R_{veto}\right)}{2}\right)
+V_C = V_{bias} \left( S_{bias} + \frac{\left( -1 + R_{veto}\right)}{2}\right)
 \\
 \displaystyle
-V_D = - V_{bias} \cdot (1 - S_{bias})
+V_D = - V_{bias} (1 - S_{bias})
 \end{cases}
 \Rightarrow
 \textsf{with } S_{bias} = 0.5,
@@ -862,7 +871,7 @@ The graphics of the top and bottom rows show that the weighting potentials $\Phi
 \forall Y \neq X: \Phi_X \left( \vec{r} \in \Sigma(Y) \right) = 0
 \end{cases}
 \end{equation} 
-where $\Sigma(X)$ is the surface of the the electrode $X$.
+where $\Sigma(X)$ is the surface of the electrode $X$.
 
 %While the red color indicate a total weighted potential $\phi_T$ which tends to 1, the color blue is associated to an inferior total weighted potential.
 
@@ -946,7 +955,7 @@ By applying a gradient function, the electric field $\vec{E}(r,z)$ is calculated
 The graphics of the bottom row of the figure \ref{fig:pl38-fid38-steady-state} corresponds to the density histogram of the electric field norm $||\vec{E}(r,z)||$ over the whole crystal volume. The histograms are completed with the cumulative distribution function. The histograms and cumulatives are computed with the weighting function:
 \begin{equation}
 \label{eq:rotation-weight}
-W(r,z) = 2\pi \times r
+W(r,z) = 2\pi r
 \end{equation}
 This is a consequence of the use of the 2D-axisymmetry: estimating a volume from an area of the radial slice necessitates to revolve it by $2\pi$. Similarly, the later estimation of the fiducial volume is based on this weighting function.
 
@@ -1956,7 +1965,7 @@ The FID38 detector cabled with the full HEMT line is illustrated in the scheme \
 The figure \ref{fig:fid38-propagation} presents the total noise and its components measured at $S_B$ as a function of the frequency. The predominant noise are the Johnson noise $e_{J,B}$ of the HEMT line of the electrode $B$ at low frequency and the intrinsic current noise $i_n^B$ at high frequency. The Johnson noise $e_J^A$ from the other HEMT line of the electrode $A$ is slightly present below \SI{2}{\Hz}, but is quickly dominated by the intrinsic voltage source $e_n^B$. All in all, the results are quite similar to what was observed with the PL38 design: the Johnson noise from the most coupled electrode is significant at very low frequency and is quickly dominated by the intrinsic voltage noise source of the HEMT line $B$. Again, this can be explained by a boosted diagonal term in the Maxwell capacitance matrix which heavily filters the noise sources from spreading to other HEMT line efficiently.
 % Noise vs Signal
 In the case of the FID38, there are three possible signal power spectra associated with the $bulk$, $veto$ and $equator$ events. All this power spectra have the same $1/f$ profile and only differ by a multiplicative factor.
-Once again, due to the $1/\sqrt{f}$ shape of the total noise, most of the information is held in the low frequency of the data stream. The ionization energy resolutions are calculated from the three event types. For the bulk and veto events, the resolutions are pretty similar around \SI{30}{\eV} while the resolution associated with the equator events is very high \SI{151}{\eV}. This indicates that the performance of the FID38 ionization channel drops for equatorial events. This might be problematic in tagging surface events near the equator. The lowest resolution concerns the bulk events with $\sigma_{bulk}^B = \SI{24.1}{\eV}$. By combining the two collecting signal of the collecting electrodes $B$ and $D$, it is possible to lower the ionization energy resolution to  $\sigma_{bulk}^{B+D} = \SI{17.1}{\eV}$. As such, it possible to reach the objective ionization resolution of \SI{20}{\eV}.
+Once again, due to the $1/\sqrt{f}$ shape of the total noise, most of the information is held in the low frequency of the data stream. The ionization energy resolutions are calculated from the three event types. For the bulk and veto events, the resolutions are pretty similar around \SI{30}{\eV}. The resolution associated with the equator events is a very high \SI{151}{\eV} as only a small fraction of the charges is actually induced on the collect electrode $B$. This indicates that the performance of the FID38 ionization channel drops for equatorial events. This might be problematic in tagging surface events near the equator. The lowest resolution concerns the bulk events with $\sigma_{bulk}^B = \SI{24.1}{\eV}$. By combining the two collecting signal of the collecting electrodes $B$ and $D$, it is possible to lower the ionization energy resolution to  $\sigma_{bulk}^{B+D} = \SI{17.1}{\eV}$. As such, it possible to reach the objective ionization resolution of \SI{20}{\eV}.
 %Even if this resolution is two times superior to the objective \SI{10}{\eV}, it is still very close.
 
 \begin{figure}
